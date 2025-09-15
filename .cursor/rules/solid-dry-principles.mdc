@@ -1,0 +1,17 @@
+---
+description: Enforce SOLID and DRY principles in Angular codebase
+globs:
+alwaysApply: true
+---
+
+- **S (Single Responsibility)**: Each class, service, or component should handle only one responsibility.
+- **O (Open/Closed)**: Favor extension (interfaces, abstract classes) over modification.
+- **L (Liskov Substitution)**: Subtypes should always be usable as their base type.
+- **I (Interface Segregation)**: Break large interfaces into smaller, more focused ones.
+- **D (Dependency Inversion)**: Depend on abstractions, not implementations (e.g. inject services via tokens/interfaces).
+
+**DRY (Don't Repeat Yourself):**
+
+- Extract repeated logic into **utility functions**, **services**, or **RxJS operators**.
+- Avoid duplicating form definitions; use **Angular Reactive Forms** with shared form builders.
+- Share constants via `constants.ts` files.

@@ -1,0 +1,12 @@
+---
+description: Best practices for using RxJS in Angular
+globs: apps/admin-panel/**/*.ts
+---
+
+- Use **`async` pipe** in templates instead of manual `.subscribe()`.
+- Always **unsubscribe** from observables (prefer `takeUntil`, `take`, `first`, or `AsyncPipe`).
+- Use `combineLatest`, `switchMap`, `mergeMap`, and `exhaustMap` thoughtfully:
+  - `switchMap` for dependent requests.
+  - `mergeMap` for parallel tasks.
+  - `exhaustMap` for handling form submissions to avoid duplicate calls.
+- Use **Subjects/BehaviorSubjects** only for state that changes over time; otherwise prefer signals or `store`.

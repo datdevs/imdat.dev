@@ -1,0 +1,13 @@
+---
+description: TypeScript best practices for Angular
+globs: apps/**/*.ts
+---
+
+- Prefer **interfaces** over `type` when defining object shapes.
+- Use **enums or union types** instead of magic strings.
+- Apply **generics** when writing reusable functions or services.
+- Always annotate function return types (no implicit `any`).
+- Avoid `any`; use `unknown` or precise types.
+- Use **readonly** for immutable properties.
+- Prefer `const` over `let` unless reassignment is required.
+- Use **async/await** instead of `Promise.then` chains.
