@@ -12,7 +12,6 @@
       "options": {
         "outputPath": "dist/apps/admin-panel",
         "browser": "apps/admin-panel/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/admin-panel/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -60,6 +59,9 @@
         "development": {
           "buildTarget": "admin-panel:build:development"
         }
+      },
+      "options": {
+        "port": 3001
       },
       "defaultConfiguration": "development"
     },

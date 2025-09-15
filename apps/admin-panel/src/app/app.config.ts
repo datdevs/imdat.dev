@@ -1,10 +1,15 @@
-import { ApplicationConfig, inject, isDevMode, provideAppInitializer, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  isDevMode,
+  provideAppInitializer,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from '@angular/fire/app-check';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
@@ -18,6 +23,7 @@ import * as fromUser from './store/user/user.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAppCheck(() =>
       initializeAppCheck(getApp(), {
@@ -26,9 +32,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
-    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(appRoutes, withPreloading(PreloadAllModules) /* withDebugTracing() */),
-    provideAnimationsAsync(),
     provideStore(),
     provideEffects(UserEffects),
     provideState(fromUser.USER_FEATURE_KEY, fromUser.userReducer),
