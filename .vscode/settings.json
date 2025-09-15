@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["dotlottie", "imdat", "lottiefiles", "ngrx", "notiflix", "rspack"],
+  "cSpell.words": ["dotlottie", "Firestore", "imdat", "lottiefiles", "ngrx", "notiflix", "rspack"],
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.options": {
