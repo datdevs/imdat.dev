@@ -1,0 +1,11 @@
+<div class="loading__wrapper">
+  <div class="loading__protected" [class]="{ loading__protected_onload: loading }">
+    <ng-content></ng-content>
+  </div>
+
+  @if (loading) {
+    <div class="loading__overlay">
+      <mat-spinner [diameter]="50"></mat-spinner>
+    </div>
+  }
+</div>

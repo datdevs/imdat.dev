@@ -1,0 +1,30 @@
+<app-loading-overlay [loading]="loading()">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="profileForm">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input formControlName="displayName" matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Avatar</mat-label>
+          <input formControlName="photoURL" matInput placeholder="https://" />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions [align]="'end'">
+      <button mat-flat-button [disabled]="loading()" (click)="save()">
+        @if (loading()) {
+          <mat-spinner color="white" [diameter]="20"></mat-spinner>
+        } @else {
+          <mat-icon>save</mat-icon>
+        }
+        <span>Save</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</app-loading-overlay>

@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@use 'vendor/theme';
+
+:host {
+  align-items: center;
+  background-color: rgba(mat.get-theme-color(theme.$light-theme, primary-container), 0.5);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.mat-mdc-card {
+  margin: 20px;
+  max-width: calc(100% - 40px);
+  width: 600px;
+}
+
+.lottie__frame {
+  height: 500px;
+  width: 500px;
+}
+
+.section {
+  &__wrap {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px 50px;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin: 0 0 20px;
+  }
+
+  &__content {
+    margin: 0 0 30px;
+  }
+}

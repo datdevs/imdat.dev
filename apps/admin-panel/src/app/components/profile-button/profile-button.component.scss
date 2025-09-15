@@ -1,0 +1,47 @@
+$profile-size: 40px;
+
+.profile {
+  &-button__wrap {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+  }
+
+  &__avatar {
+    border-radius: $profile-size;
+    height: $profile-size;
+    width: $profile-size;
+
+    &_placeholder {
+      align-items: center;
+      background-color: #f0f0f0;
+      border-radius: $profile-size;
+      color: #767777;
+      display: flex;
+      font-size: 30px;
+      height: $profile-size;
+      justify-content: center;
+      width: $profile-size;
+    }
+  }
+
+  &__menu-wrap {
+    align-items: center;
+    border-bottom: 1px solid #eeeeee;
+    display: flex;
+    gap: 10px;
+    margin: 0 -12px 12px;
+    padding: 8px 24px 20px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__email {
+    color: #767777;
+    font-size: 12px;
+  }
+}

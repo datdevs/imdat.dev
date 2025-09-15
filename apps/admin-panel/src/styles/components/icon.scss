@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  .mat-icon {
+    &.mat-primary {
+      color: mat.get-theme-color($theme, primary);
+    }
+
+    &.mat-tertiary {
+      color: mat.get-theme-color($theme, tertiary);
+    }
+  }
+}

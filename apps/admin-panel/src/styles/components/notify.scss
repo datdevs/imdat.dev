@@ -1,0 +1,25 @@
+[id^='NotiflixNotifyWrap'] {
+  $svgIconSize: 18px;
+
+  > .idv-notif {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    line-height: 1.5;
+
+    > span.nx-with-icon {
+      margin: 0 0 0 $svgIconSize;
+      width: calc(100% - $svgIconSize);
+    }
+
+    &.nx-with-icon {
+      min-height: 46px;
+    }
+
+    > .nx-message-icon {
+      border-radius: 0;
+      font-size: $svgIconSize;
+      height: 1em;
+      line-height: 1;
+      width: 1em;
+    }
+  }
+}
