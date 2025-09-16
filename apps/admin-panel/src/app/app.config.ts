@@ -1,3 +1,5 @@
+import { provideEventPlugins } from "@taiga-ui/event-plugins";
+import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   ApplicationConfig,
   inject,
@@ -23,7 +25,8 @@ import * as fromUser from './store/user/user.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZonelessChangeDetection(),
+        provideAnimations(),
+        provideZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAppCheck(() =>
       initializeAppCheck(getApp(), {
@@ -50,5 +53,6 @@ export const appConfig: ApplicationConfig = {
     { provide: TitleStrategy, useClass: PageTitleService },
     AuthService,
     NotifyService,
-  ],
+        provideEventPlugins()
+    ],
 };
