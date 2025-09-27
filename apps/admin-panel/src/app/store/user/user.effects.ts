@@ -11,20 +11,33 @@ import { UserActions } from './user.actions';
 
 @Injectable()
 export class UserEffects {
-  private actions$ = inject(Actions);
-  private auth = inject(AuthService);
-  private notify = inject(NotifyService);
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly actions$ = inject(Actions);
+  private readonly auth = inject(AuthService);
+  private readonly notify = inject(NotifyService);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
-  login$ = createEffect(() =>
-    { return this.actions$.pipe(
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(UserActions.login),
-      switchMap(({ password, username }) =>
+      switchMap(({ username, password }) =>
         this.auth.signIn(username, password).pipe(
           map((userCredential: UserCredential) => UserActions.loginSuccess({ uid: userCredential.user.uid })),
           catchError((error: FirebaseError) => {
-            this.notify.error(error.code || 'Error logging in');
+            let message = 'Failed to login';
+
+            switch (error.code) {
+              case 'auth/invalid-credential':
+                message = 'Invalid credentials';
+                break;
+              case 'auth/invalid-email':
+                message = 'Invalid email';
+                break;
+              default:
+                break;
+            }
+
+            this.notify.error(message);
             return of(UserActions.loginFailure({ error }));
           }),
           tap(async () => {
@@ -35,17 +48,17 @@ export class UserEffects {
           }),
         ),
       ),
-    ) },
-  );
+    );
+  });
 
-  logout$ = createEffect(() =>
-    { return this.actions$.pipe(
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(UserActions.logout),
       switchMap(() =>
         this.auth.signOut().pipe(
           map(() => UserActions.logoutSuccess()),
           catchError((error: FirebaseError) => {
-            this.notify.error(error.code || 'Error logging out');
+            this.notify.error(error.code || 'Failed to logout');
             return of(UserActions.logoutFailure({ error }));
           }),
           tap(async () => {
@@ -53,17 +66,17 @@ export class UserEffects {
           }),
         ),
       ),
-    ) },
-  );
+    );
+  });
 
-  updateProfile$ = createEffect(() =>
-    { return this.actions$.pipe(
+  updateProfile$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(UserActions.updateProfile),
       switchMap(({ userProfile }) =>
         this.auth.updateProfile(userProfile).pipe(
           map(() => UserActions.updateProfileSuccess()),
           catchError((error: FirebaseError) => {
-            this.notify.error(error.code || 'Error updating profile');
+            this.notify.error(error.code || 'Failed to update profile');
             return of(UserActions.updateProfileFailure({ error }));
           }),
           tap(() => {
@@ -71,6 +84,6 @@ export class UserEffects {
           }),
         ),
       ),
-    ) },
-  );
+    );
+  });
 }

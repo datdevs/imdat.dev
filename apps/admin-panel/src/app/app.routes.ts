@@ -49,11 +49,11 @@ export const appRoutes: Route[] = [
         path: 'employees',
         title: 'Employees',
       },
-      {
-        loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
-        path: 'profile',
-        title: 'Profile',
-      },
+      // {
+      //   loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+      //   path: 'profile',
+      //   title: 'Profile',
+      // },
     ],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin,

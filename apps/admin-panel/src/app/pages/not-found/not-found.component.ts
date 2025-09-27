@@ -1,15 +1,14 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
+import { TuiButton, TuiIcon } from '@taiga-ui/core';
+import { TuiCard } from '@taiga-ui/layout';
 
 @Component({
   selector: 'app-not-found',
-  imports: [RouterModule, MatCardModule, MatButtonModule, MatIconModule],
+  imports: [RouterModule, TuiCard, TuiIcon, TuiButton],
   templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.scss'
+  styleUrl: './not-found.component.scss',
 })
 export class NotFoundComponent implements AfterViewInit {
   @ViewChild('notFoundCanvas') notFoundCanvas!: ElementRef;

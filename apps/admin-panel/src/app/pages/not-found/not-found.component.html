@@ -1,15 +1,13 @@
-<mat-card>
-  <mat-card-content>
-    <div class="section__wrap">
-      <canvas #notFoundCanvas class="lottie__frame"></canvas>
+<section tuiCardLarge>
+  <div class="section__wrap">
+    <canvas #notFoundCanvas class="lottie__frame"></canvas>
 
-      <h3 class="section__title">Not Found</h3>
-      <p class="section__content">Unable to find that page</p>
+    <h3 class="section__title">Not Found</h3>
+    <p class="section__content">Unable to find that page</p>
 
-      <button class="btn__back" mat-flat-button routerLink="/">
-        <mat-icon>arrow_back</mat-icon>
-        <span>Back to home</span>
-      </button>
-    </div>
-  </mat-card-content>
-</mat-card>
+    <button class="btn__back" routerLink="/" tuiButton>
+      <tui-icon icon="@tui.corner-up-left" />
+      <span>Back to home</span>
+    </button>
+  </div>
+</section>

@@ -1,43 +1,43 @@
 @if (user()) {
-  <div class="profile-button__wrap" [matMenuTriggerFor]="settingsMenu">
+  <div class="profile-button__wrap" [tuiDropdown]="settingsMenu">
     @if (user()?.photoURL) {
       <img class="profile__avatar" [alt]="user()?.displayName" [src]="user()?.photoURL" />
     } @else {
-      <mat-icon class="profile__avatar_placeholder">person</mat-icon>
+      <tui-icon class="profile__avatar_placeholder" [icon]="'@tui.user'"></tui-icon>
     }
   </div>
 
-  <mat-menu #settingsMenu class="menu">
+  <ng-template #settingsMenu let-close>
     <div class="profile__menu-wrap">
       @if (user()?.photoURL) {
         <img class="profile__avatar" [alt]="user()?.displayName" [src]="user()?.photoURL" />
       } @else {
-        <mat-icon class="profile__avatar_placeholder">person</mat-icon>
+        <tui-icon class="profile__avatar_placeholder" [icon]="'@tui.user'"></tui-icon>
       }
       <div class="profile__info">
         <div class="profile__name">{{ user()?.displayName }}</div>
         <div class="profile__email">{{ user()?.email }}</div>
       </div>
     </div>
-    <menu mat-menu-item [routerLink]="['/profile']">
-      <mat-icon>id_card</mat-icon>
+    <menu [routerLink]="['/profile']">
+      <tui-icon [icon]="'@tui.id-card'"></tui-icon>
       Profile
     </menu>
-    <!--    <menu mat-menu-item>-->
+    <!--    <menu >-->
     <!--      <mat-icon>account_circle</mat-icon>-->
     <!--      Account-->
     <!--    </menu>-->
-    <!--    <menu mat-menu-item>-->
+    <!--    <menu >-->
     <!--      <mat-icon>language</mat-icon>-->
     <!--      Language-->
     <!--    </menu>-->
-    <menu mat-menu-item [disabled]="loading()" (click)="signOut()">
+    <!-- <menu [disabled]="loading()" (click)="signOut()">
       @if (loading()) {
-        <mat-spinner color="white" [diameter]="20"></mat-spinner>
+        <tui-loader [showLoader]="true" [size]="'s'"></tui-loader>
       } @else {
-        <mat-icon>logout</mat-icon>
+        <tui-icon [icon]="'@tui.log-out'"></tui-icon>
       }
       Sign Out
-    </menu>
-  </mat-menu>
+    </menu> -->
+  </ng-template>
 }

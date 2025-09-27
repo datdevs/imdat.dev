@@ -1,5 +1,3 @@
-import { provideEventPlugins } from "@taiga-ui/event-plugins";
-import { provideAnimations } from "@angular/platform-browser/animations";
 import {
   ApplicationConfig,
   inject,
@@ -11,11 +9,11 @@ import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from '@angular/fire/app-check';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideEventPlugins } from '@taiga-ui/event-plugins';
 
 import { firebaseConfig } from '../config/firebase';
 import { appRoutes } from './app.routes';
@@ -25,8 +23,7 @@ import * as fromUser from './store/user/user.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-        provideAnimations(),
-        provideZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAppCheck(() =>
       initializeAppCheck(getApp(), {
@@ -44,15 +41,9 @@ export const appConfig: ApplicationConfig = {
       const initializerFn = initializeNotifyService(inject(NotifyService));
       return initializerFn();
     }),
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: {
-        appearance: 'outline',
-      },
-    },
     { provide: TitleStrategy, useClass: PageTitleService },
     AuthService,
     NotifyService,
-        provideEventPlugins()
-    ],
+    provideEventPlugins(),
+  ],
 };

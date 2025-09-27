@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
@@ -6,9 +6,7 @@ import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
   providedIn: 'root',
 })
 export class PageTitleService extends TitleStrategy {
-  constructor(private title: Title) {
-    super();
-  }
+  private readonly title = inject(Title);
 
   updateTitle(snapshot: RouterStateSnapshot): void {
     const title = this.buildTitle(snapshot);

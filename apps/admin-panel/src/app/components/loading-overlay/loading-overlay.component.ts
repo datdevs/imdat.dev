@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { TuiLoader } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-loading-overlay',
-  imports: [MatProgressSpinner],
+  imports: [TuiLoader],
   templateUrl: './loading-overlay.component.html',
-  styleUrl: './loading-overlay.component.scss'
+  styleUrl: './loading-overlay.component.scss',
 })
 export class LoadingOverlayComponent {
   @Input() loading = false;

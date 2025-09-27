@@ -2,12 +2,6 @@ import { Component, effect, inject, Signal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { User } from '@angular/fire/auth';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { Store } from '@ngrx/store';
 
 import { LoadingOverlayComponent } from '../../components/loading-overlay/loading-overlay.component';
@@ -17,18 +11,9 @@ import { selectUserLoading } from '../../store/user/user.selectors';
 
 @Component({
   selector: 'app-profile',
-  imports: [
-    ReactiveFormsModule,
-    MatCardModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatProgressSpinner,
-    LoadingOverlayComponent,
-  ],
+  imports: [ReactiveFormsModule, LoadingOverlayComponent],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss'
+  styleUrl: './profile.component.scss',
 })
 export class ProfileComponent {
   private store = inject(Store);

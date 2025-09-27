@@ -1,40 +1,48 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar>Menu</mat-toolbar>
-    @if (mainMenu.length > 0) {
-      <mat-nav-list>
-        @for (menu of mainMenu; track menu.path) {
-          <a mat-list-item [routerLink]="[menu.path]" [routerLinkActive]="'link_active'">
-            <mat-icon color="primary" matListItemIcon>{{ menu.data?.['icon'] }}</mat-icon>
-            <span>{{ menu.title }}</span>
-          </a>
-        }
-      </mat-nav-list>
-    }
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="toolbar__top">
-      @if (isHandset$ | async) {
-        <button aria-label="Toggle sidenav" mat-icon-button type="button" (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-      }
+<div class="flex h-screen bg-gray-50">
+  <!-- Sidebar -->
+  <aside class="bg-white shadow-lg transition-all duration-300 ease-in-out">
+    <div class="h-full flex flex-col">
+      <!-- Sidebar Header -->
+      <div class="p-4 border-b border-gray-200">
+        <h2 class="text-lg font-semibold text-gray-800">Menu</h2>
+      </div>
 
-      <span>{{ title }}</span>
+      <!-- Navigation Menu -->
+      @if (mainMenu.length > 0) {
+        <nav class="flex-1 p-4 space-y-2">
+          @for (menu of mainMenu; track menu.path) {
+            <a
+              class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200"
+              routerLinkActive="bg-blue-50 text-blue-700 border-r-2 border-blue-700"
+              [routerLink]="[menu.path]"
+            >
+              <tui-icon class="mr-3 text-gray-500" [icon]="menu.data?.['icon']"></tui-icon>
+              <span>{{ menu.title }}</span>
+            </a>
+          }
+        </nav>
+      }
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+    <!-- Top Toolbar -->
+    <header
+      class="bg-white shadow-sm border-b border-gray-200 px-4 py-3 flex items-center justify-between sticky top-0 z-10"
+    >
+      <div class="flex items-center space-x-4">
+        <h1 class="text-xl font-semibold text-gray-800">{{ title }}</h1>
+      </div>
 
       <app-profile-button></app-profile-button>
-    </mat-toolbar>
-    <div class="sidenav-scroll-wrapper">
-      <div class="sidenav-content">
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-auto bg-gray-50">
+      <div class="p-4">
         <router-outlet></router-outlet>
       </div>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </main>
+  </div>
+</div>

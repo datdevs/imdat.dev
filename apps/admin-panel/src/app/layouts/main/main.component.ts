@@ -1,43 +1,22 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule, Routes } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { TuiIcon } from '@taiga-ui/core';
+import { filter } from 'rxjs/operators';
 
 import { ProfileButtonComponent } from '../../components/profile-button/profile-button.component';
 
 @Component({
   selector: 'app-main',
-  imports: [
-    RouterModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    AsyncPipe,
-    ProfileButtonComponent,
-  ],
+  imports: [AsyncPipe, RouterModule, AsyncPipe, ProfileButtonComponent, TuiIcon],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  styleUrl: './main.component.scss',
 })
 export class MainComponent {
-  private breakpointObserver = inject(BreakpointObserver);
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map((result) => result.matches),
-    shareReplay(),
-  );
-
   mainMenu: Routes = [];
   title = '';
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   constructor() {
     this.getTitle();
@@ -53,7 +32,7 @@ export class MainComponent {
   }
 
   private getMainMenu() {
-    this.mainMenu = this.route.routeConfig?.children?.filter((route) => route?.data?.['mainMenu']) || [];
+    this.mainMenu = this.route.routeConfig?.children?.filter((route) => route?.data?.['mainMenu']) ?? [];
   }
 
   private getTitle() {

@@ -1,11 +1,5 @@
 @use 'tailwindcss';
-
 @use 'core/reset';
-@use 'vendor/angular-material';
 
 // Components
-@use 'components/button';
-@use 'components/card';
-@use 'components/form';
-@use 'components/menu';
 @use 'components/notify';

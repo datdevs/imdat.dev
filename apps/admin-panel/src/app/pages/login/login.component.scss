@@ -1,9 +1,7 @@
-@use '@angular/material' as mat;
-@use 'vendor/theme';
-
 :host {
   align-items: center;
-  background-color: rgba(mat.get-theme-color(theme.$light-theme, primary-container), 0.5);
+
+  // background-color: rgba(mat.get-theme-color(theme.$light-theme, primary-container), 0.5);
   display: flex;
   height: 100vh;
   justify-content: center;
