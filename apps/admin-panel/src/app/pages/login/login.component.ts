@@ -1,4 +1,5 @@
-import { Component, effect, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -6,8 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Store } from '@ngrx/store';
+import { TuiAppearance, TuiButton, TuiError, TuiIcon, TuiLabel, TuiTextfield, TuiTitle } from '@taiga-ui/core';
+import { TuiButtonLoading, TuiFieldErrorPipe, TuiPassword, tuiValidationErrorsProvider } from '@taiga-ui/kit';
+import { TuiCard, TuiForm, TuiHeader } from '@taiga-ui/layout';
 
-import { GridComponent } from '../../layouts/grid/grid.component';
 import { UserActions } from '../../store/user/user.actions';
 import { selectUserLoading } from '../../store/user/user.selectors';
 import { LoginForm } from '../../types/forms';
@@ -18,18 +21,39 @@ import { LoginForm } from '../../types/forms';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    GridComponent,
     ReactiveFormsModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+
+    AsyncPipe,
+
+    TuiAppearance,
+    TuiForm,
+    TuiCard,
+    TuiHeader,
+    TuiTitle,
+    TuiTextfield,
+    TuiLabel,
+    TuiError,
+    TuiFieldErrorPipe,
+    TuiIcon,
+    TuiPassword,
+    TuiButton,
+    TuiButtonLoading,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  providers: [
+    tuiValidationErrorsProvider({
+      required: 'Field is required',
+    }),
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  private store = inject(Store);
+  private readonly store = inject(Store);
   readonly loading = this.store.selectSignal(selectUserLoading);
-  loginForm: FormGroup<LoginForm> = new FormGroup<LoginForm>({
+  protected loginForm: FormGroup<LoginForm> = new FormGroup<LoginForm>({
     password: new FormControl<string>('', {
       nonNullable: true,
       validators: Validators.required,

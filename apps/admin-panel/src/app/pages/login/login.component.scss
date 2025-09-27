@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use 'vendor/theme.scss';
+@use 'vendor/theme';
 
 :host {
   align-items: center;
@@ -7,30 +7,4 @@
   display: flex;
   height: 100vh;
   justify-content: center;
-}
-
-.login {
-  &__card {
-    margin: 0 auto;
-    max-width: 500px;
-    width: 100%;
-  }
-}
-
-.btn {
-  &__signIn {
-    width: 100%;
-  }
-}
-
-.mat-mdc-card-header {
-  padding: 40px;
-}
-
-.mat-mdc-card-content {
-  padding: 0 40px;
-}
-
-.mat-mdc-card-actions {
-  padding: 10px 40px 40px;
 }

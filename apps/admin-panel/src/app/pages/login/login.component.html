@@ -1,47 +1,31 @@
-<mat-card class="login__card">
-  <mat-card-header>
-    <mat-card-title>Sign In</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="loginForm">
-      <div>
-        <mat-form-field>
-          <mat-label>Username</mat-label>
-          <input
-            formControlName="username"
-            matInput
-            name="username"
-            placeholder="Username"
-            required
-            (keyup.enter)="handleSignIn()"
-          />
-          <mat-error>Username is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div style="margin-top: 5px">
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input
-            formControlName="password"
-            matInput
-            name="password"
-            placeholder="Password"
-            required
-            type="password"
-            (keyup.enter)="handleSignIn()"
-          />
-          <mat-error>Password is required</mat-error>
-        </mat-form-field>
-      </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button class="btn__signIn" mat-flat-button [disabled]="loading()" (click)="handleSignIn()">
-      @if (loading()) {
-        <mat-spinner color="white" [diameter]="20"></mat-spinner>
-      } @else {
-        <span>Sign In</span>
-      }
+<form class="w-xl" tuiAppearance="floating" tuiCardLarge tuiForm [formGroup]="loginForm">
+  <header tuiHeader>
+    <h1 tuiTitle>ImDat.dev</h1>
+  </header>
+
+  <tui-textfield>
+    <label for="username" tuiLabel>Username</label>
+    <input formControlName="username" name="username" tuiTextfield (keyup.enter)="handleSignIn()" />
+  </tui-textfield>
+  <tui-error formControlName="username" [error]="[] | tuiFieldError | async" />
+
+  <tui-textfield>
+    <label for="password" tuiLabel>Password</label>
+    <input formControlName="password" name="password" tuiTextfield type="password" (keyup.enter)="handleSignIn()" />
+    <tui-icon tuiPassword />
+  </tui-textfield>
+  <tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+
+  <footer>
+    <button
+      class="w-full"
+      tuiButton
+      type="submit"
+      [disabled]="loading()"
+      [loading]="loading()"
+      (click)="handleSignIn()"
+    >
+      Sign In
     </button>
-  </mat-card-actions>
-</mat-card>
+  </footer>
+</form>
