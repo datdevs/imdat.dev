@@ -1,11 +1,11 @@
 @use 'tailwindcss';
 
-@import 'core/reset';
-@import 'vendor/angular-material';
+@use 'core/reset';
+@use 'vendor/angular-material';
 
 // Components
-@import 'components/button';
-@import 'components/card';
-@import 'components/form';
-@import 'components/menu';
-@import 'components/notify';
+@use 'components/button';
+@use 'components/card';
+@use 'components/form';
+@use 'components/menu';
+@use 'components/notify';
