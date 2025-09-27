@@ -15,7 +15,7 @@ export const appRoutes: Route[] = [
       },
       {
         data: {
-          icon: 'space_dashboard',
+          icon: 'chart-pie',
           mainMenu: true,
         },
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
@@ -24,7 +24,7 @@ export const appRoutes: Route[] = [
       },
       {
         data: {
-          icon: 'folder_special',
+          icon: 'briefcase-business',
           mainMenu: true,
         },
         loadComponent: () => import('./pages/portfolio/portfolio.component').then((m) => m.PortfolioComponent),
@@ -33,21 +33,12 @@ export const appRoutes: Route[] = [
       },
       {
         data: {
-          icon: 'group',
+          icon: 'users',
           mainMenu: true,
         },
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         path: 'users',
         title: 'Users',
-      },
-      {
-        data: {
-          icon: 'engineering',
-          mainMenu: true,
-        },
-        loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-        path: 'employees',
-        title: 'Employees',
       },
       // {
       //   loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),

@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, Signal, signal } from '@angular/core';
+import { Component, inject, input, OnDestroy, OnInit, Signal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { User } from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ import { selectUserLoading } from '../../store/user/user.selectors';
   styleUrl: './profile-button.component.scss',
 })
 export class ProfileButtonComponent implements OnDestroy, OnInit {
+  isCollapsed = input(false);
   private readonly store = inject(Store);
   readonly loading = this.store.selectSignal(selectUserLoading);
 

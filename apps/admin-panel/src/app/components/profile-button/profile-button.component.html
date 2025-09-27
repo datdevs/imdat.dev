@@ -1,9 +1,26 @@
 @if (user()) {
-  <div class="profile-button__wrap" [tuiDropdown]="settingsMenu">
+  <div class="profile-button__wrap" [class.justify-center]="isCollapsed()" [tuiDropdown]="settingsMenu">
     @if (user()?.photoURL) {
-      <img class="profile__avatar" [alt]="user()?.displayName" [src]="user()?.photoURL" />
+      <img
+        class="profile__avatar"
+        [alt]="user()?.displayName"
+        [class.h-8]="isCollapsed()"
+        [class.w-8]="isCollapsed()"
+        [src]="user()?.photoURL"
+      />
     } @else {
-      <tui-icon class="profile__avatar_placeholder" [icon]="'@tui.user'"></tui-icon>
+      <tui-icon
+        class="profile__avatar_placeholder"
+        [class.h-8]="isCollapsed()"
+        [class.w-8]="isCollapsed()"
+        [icon]="'@tui.user'"
+      ></tui-icon>
+    }
+    @if (!isCollapsed()) {
+      <div class="profile__info ml-3">
+        <div class="profile__name text-sm font-medium text-gray-900 truncate">{{ user()?.displayName }}</div>
+        <div class="profile__email text-xs text-gray-500 truncate">{{ user()?.email }}</div>
+      </div>
     }
   </div>
 

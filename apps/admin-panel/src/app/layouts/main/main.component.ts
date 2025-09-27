@@ -1,26 +1,61 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, HostListener, inject, signal } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule, Routes } from '@angular/router';
 import { TuiIcon } from '@taiga-ui/core';
 import { filter } from 'rxjs/operators';
 
 import { ProfileButtonComponent } from '../../components/profile-button/profile-button.component';
 
+export interface MenuItem {
+  icon: string;
+  isActive?: boolean;
+  path: string;
+  title: string;
+}
+
 @Component({
   selector: 'app-main',
-  imports: [AsyncPipe, RouterModule, AsyncPipe, ProfileButtonComponent, TuiIcon],
+  imports: [AsyncPipe, RouterModule, ProfileButtonComponent, TuiIcon],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
   mainMenu: Routes = [];
   title = '';
-  private readonly route = inject(ActivatedRoute);
+  isSidebarCollapsed = signal(false);
+
   private readonly router = inject(Router);
+
+  menuItems = computed(() => {
+    return this.mainMenu.map((route) => ({
+      path: route.path ?? '',
+      title: (route.title as string) || '',
+      icon: route.data?.['icon'] ?? 'circle',
+      isActive: this.router.url.includes(route.path ?? ''),
+    }));
+  });
+
+  private readonly route = inject(ActivatedRoute);
 
   constructor() {
     this.getTitle();
     this.getMainMenu();
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  toggleSidebar() {
+    this.isSidebarCollapsed.update((collapsed) => !collapsed);
+  }
+
+  private checkScreenSize() {
+    if (window.innerWidth < 1024) {
+      this.isSidebarCollapsed.set(true);
+    }
   }
 
   private getChild(activatedRoute: ActivatedRoute): ActivatedRoute {

@@ -1,0 +1,61 @@
+// Custom styles for the main layout
+.profile-button__wrap {
+  @apply flex items-center p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer;
+}
+
+.profile__avatar {
+  @apply w-10 h-10 rounded-full object-cover;
+}
+
+.profile__avatar_placeholder {
+  @apply w-10 h-10 text-gray-400;
+}
+
+.profile__menu-wrap {
+  @apply flex items-center p-3 border-b border-gray-200;
+}
+
+.profile__info {
+  @apply flex-1 min-w-0;
+}
+
+.profile__name {
+  @apply text-sm font-medium text-gray-900 truncate;
+}
+
+.profile__email {
+  @apply text-xs text-gray-500 truncate;
+}
+
+// Responsive design
+@media (width <= 768px) {
+  .sidebar-mobile {
+    @apply fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out;
+  }
+
+  .sidebar-mobile-hidden {
+    @apply -translate-x-full;
+  }
+}
+
+// Smooth transitions
+.sidebar-transition {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+// Custom scrollbar for sidebar
+.sidebar-scroll::-webkit-scrollbar {
+  @apply w-1;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
