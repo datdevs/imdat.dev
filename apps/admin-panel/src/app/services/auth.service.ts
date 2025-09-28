@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Auth, signInWithEmailAndPassword, signOut, updateProfile, user } from '@angular/fire/auth';
 import { from } from 'rxjs';
 
@@ -8,7 +9,7 @@ import { from } from 'rxjs';
 export class AuthService {
   private readonly auth = inject(Auth);
 
-  user$ = user(this.auth);
+  readonly user = toSignal(user(this.auth), { initialValue: null });
 
   signIn(username: string, password: string) {
     return from(signInWithEmailAndPassword(this.auth, username, password));
