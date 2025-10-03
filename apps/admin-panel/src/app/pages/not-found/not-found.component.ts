@@ -1,25 +1,25 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
+import { TuiButton, TuiIcon } from '@taiga-ui/core';
+import { TuiCard } from '@taiga-ui/layout';
 
 @Component({
   selector: 'app-not-found',
-  imports: [RouterModule, MatCardModule, MatButtonModule, MatIconModule],
+  imports: [RouterModule, TuiCard, TuiIcon, TuiButton],
   templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.scss'
+  styleUrl: './not-found.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundComponent implements AfterViewInit {
-  @ViewChild('notFoundCanvas') notFoundCanvas!: ElementRef;
+  readonly notFoundCanvas = viewChild<ElementRef>('notFoundCanvas');
 
   dotLottie!: DotLottie;
 
   ngAfterViewInit() {
     this.dotLottie = new DotLottie({
       autoplay: true,
-      canvas: this.notFoundCanvas.nativeElement,
+      canvas: this.notFoundCanvas()?.nativeElement,
       loop: true,
       src: '/images/animation-1724212391171.json',
     });

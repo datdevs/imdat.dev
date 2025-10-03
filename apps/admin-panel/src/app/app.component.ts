@@ -1,19 +1,12 @@
-import { Component, inject } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
-
-import { MainComponent } from './layouts/main/main.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { TuiRoot } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-admin',
-  imports: [MainComponent, RouterModule],
+  imports: [TuiRoot, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  private matIconRegistry = inject(MatIconRegistry);
-
-  constructor() {
-    this.matIconRegistry.setDefaultFontSetClass('material-symbols-rounded');
-  }
-}
+export class AppComponent {}

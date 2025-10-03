@@ -7,22 +7,22 @@ import {
 } from '@angular/core';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from '@angular/fire/app-check';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
+import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from '@angular/router';
-import { provideEffects } from '@ngrx/effects';
-import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideEventPlugins } from '@taiga-ui/event-plugins';
 
 import { firebaseConfig } from '../config/firebase';
 import { appRoutes } from './app.routes';
 import { AuthService, initializeNotifyService, NotifyService, PageTitleService } from './services';
-import { UserEffects } from './store/user/user.effects';
-import * as fromUser from './store/user/user.reducer';
+import { AuthStore } from './store/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
+    provideEventPlugins(),
     provideZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAppCheck(() =>
@@ -30,25 +30,29 @@ export const appConfig: ApplicationConfig = {
         provider: new ReCaptchaV3Provider('6Lf8-ioqAAAAAALOhjPzaUXUiSSNotkDMNU_Citq'),
       }),
     ),
-    provideFirestore(() => getFirestore()),
-    provideAuth(() => getAuth()),
+    provideAuth(() => {
+      const auth = getAuth();
+      if (location.hostname === 'localhost') {
+        connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
+      }
+      return auth;
+    }),
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      if (location.hostname === 'localhost') {
+        connectFirestoreEmulator(firestore, '127.0.0.1', 8080);
+      }
+      return firestore;
+    }),
     provideRouter(appRoutes, withPreloading(PreloadAllModules) /* withDebugTracing() */),
-    provideStore(),
-    provideEffects(UserEffects),
-    provideState(fromUser.USER_FEATURE_KEY, fromUser.userReducer),
     provideStoreDevtools({ logOnly: !isDevMode() }),
     provideAppInitializer(() => {
       const initializerFn = initializeNotifyService(inject(NotifyService));
       return initializerFn();
     }),
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: {
-        appearance: 'outline',
-      },
-    },
     { provide: TitleStrategy, useClass: PageTitleService },
     AuthService,
     NotifyService,
+    AuthStore,
   ],
 };

@@ -1,17 +1,6 @@
-.mat-mdc-menu-item,
-.mdc-list-item {
-  transition:
-    background-color 0.25s,
-    color 0.25s;
-}
-
-.mdc-button {
-  &.mat-mdc-button > .mat-icon,
-  &.mat-mdc-unelevated-button > .mat-icon,
-  &.mat-mdc-raised-button > .mat-icon,
-  &.mat-mdc-outlined-button > .mat-icon {
-    font-size: 18px;
-    height: 1em;
-    width: 1em;
-  }
+button[tuiButton][data-size],
+button[tuiIconButton][data-size],
+a[tuiButton][data-size],
+a[tuiIconButton][data-size] {
+  font-weight: 500;
 }

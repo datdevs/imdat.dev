@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-grid',
   imports: [],
   templateUrl: './grid.component.html',
-  styleUrl: './grid.component.scss'
+  styleUrl: './grid.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GridComponent {
-  @Input() columns = 1;
-  @Input() gutter = '16px';
-  @Input() gutterColumn = '16px';
-  @Input() gutterRow = '16px';
-  @Input() rows = 1;
+  readonly columns = input<number>(1);
+  readonly gutter = input<string>('16px');
+  readonly gutterColumn = input<string>('16px');
+  readonly gutterRow = input<string>('16px');
+  readonly rows = input<number>(1);
 }

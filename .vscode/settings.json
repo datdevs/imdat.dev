@@ -1,7 +1,14 @@
 {
   "cSpell.words": ["dotlottie", "Firestore", "imdat", "lottiefiles", "ngrx", "notiflix", "rspack"],
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.removeUnused.ts": "explicit",
+    "source.removeUnusedImports": "explicit"
+  },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
   "eslint.options": {
     "cache": true,
     "cacheLocation": ".eslintcache"
@@ -11,32 +18,32 @@
     "**/.angular": true,
     "**/.DS_Store": true,
     "**/.git": true,
+    "**/.nx": true,
     "**/.tsbuildinfo": true,
     "**/dist": true,
-    "**/node_modules": true,
-    "**/.nx": true
+    "**/node_modules": true
   },
   "files.watcherExclude": {
     "**/.angular/**": true,
+    "**/.nx/**": true,
     "**/.tsbuildinfo": true,
     "**/build/**": true,
     "**/coverage/**": true,
     "**/dist/**": true,
     "**/node_modules/**": true,
     "**/projects/**": true,
-    "**/src/assets/**": true,
-    "**/.nx/**": true
+    "**/src/assets/**": true
   },
   "nxConsole.generateAiAgentRules": true,
   "search.exclude": {
     "**/.angular": true,
+    "**/.nx": true,
     "**/build": true,
     "**/coverage": true,
     "**/dist": true,
     "**/node_modules": true,
     "**/projects": true,
-    "**/src/assets": true,
-    "**/.nx": true
+    "**/src/assets": true
   },
   "stylelint.validate": ["css", "scss", "sass", "less", "stylus"],
   "typescript.tsdk": "node_modules/typescript/lib"

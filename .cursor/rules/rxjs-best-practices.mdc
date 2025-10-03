@@ -1,6 +1,6 @@
 ---
 description: Best practices for using RxJS in Angular
-globs: apps/admin-panel/**/*.ts
+globs: apps/**/*.ts
 ---
 
 - Use **`async` pipe** in templates instead of manual `.subscribe()`.
@@ -10,3 +10,139 @@ globs: apps/admin-panel/**/*.ts
   - `mergeMap` for parallel tasks.
   - `exhaustMap` for handling form submissions to avoid duplicate calls.
 - Use **Subjects/BehaviorSubjects** only for state that changes over time; otherwise prefer signals or `store`.
+
+# Use the Right Operators
+
+Choosing the correct RxJS operators is crucial for performance and readability.
+
+- Use `**map()**` instead of `**tap()**` when transforming data.
+- Prefer `**switchMap()**` over `**mergeMap()**` for HTTP requests to cancel previous ones.
+
+```
+this.searchInput.valueChanges.pipe(
+  debounceTime(300),
+  distinctUntilChanged(),
+  switchMap(searchTerm => this.noteService.searchNotes(searchTerm))
+).subscribe();
+```
+
+# Manage Subscriptions Properly
+
+Unmanaged subscriptions can cause memory leaks, leading to performance degradation over time.
+
+- Use the `**async**` pipe in templates to handle subscriptions automatically.
+- Use `**takeUntil()**` with a subject to manage component lifecycle.
+- Use `**take(1)**` when you need only the first emitted value
+- Complete your `**Subject**` at component destruction
+
+```
+private destroy$ = new Subject<void>();
+
+ngOnInit() {
+  this.noteService.getNotes()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe();
+}
+
+ngOnDestroy() {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
+```
+
+# Avoid Placing Logic Inside `subscribe()`
+
+Placing logic inside `**subscribe()**` can make code harder to maintain and test.
+
+- Use RxJS operators to transform and handle data before subscribing.
+- Chain multiple operators if needed instead of writing complex logic inside `subscribe()`.
+- Keep your operators as simple and as short as possible.
+
+**🚫 Avoid this:**
+
+```
+this.noteService.getNotes().subscribe(notes => {
+  const importantNotes = notes.filter(note => note.important);
+  console.log('Important notes:', importantNotes);
+  this.notes = importantNotes;
+});
+```
+
+**✅ Better approach:**
+
+```
+this.notes$ = this.noteService.getNotes().pipe(
+  map(notes => notes.filter(note => note.important)),
+  tap(filteredNotes => console.log('Important notes:', filteredNotes))
+);
+```
+
+# Use `combineLatest()` for Dependent Observables
+
+When working with multiple observables that depend on each other, `combineLatest()` is useful for emitting the latest values whenever one of them changes.
+
+- Use `**combineLatest()**` when you need the latest values from multiple observables.
+- Ensure all observables emit at least one value to avoid unexpected behavior.
+
+```
+import { combineLatest } from 'rxjs';
+
+const noteTitle$ = this.noteService.getNoteTitle();
+const noteContent$ = this.noteService.getNoteContent();
+
+combineLatest([noteTitle$, noteContent$]).pipe(
+    tap(([title, content]) => {
+      console.log(`Title: ${title}, Content: ${content}`);
+    })
+).subscribe();
+```
+
+This ensures that whenever either the title or the content updates, the latest values are always emitted together.
+
+# Use Subjects Wisely
+
+Subjects are powerful but should be used carefully to avoid unnecessary complexity.
+
+- Use `**BehaviorSubject**` when you need an initial value and want subscribers to get the last emitted value.
+- Use `**ReplaySubject**` when you need to replay multiple past values.
+- Use `**Subject**` for event handling, like user actions.
+- Don’t overuse `**BehaviorSubject**` , depending on your need `**Signals**` might be better.
+
+```
+private notesSubject = new BehaviorSubject<Note[]>([]);
+this.notes$ = this.notesSubject.asObservable();
+
+updateNotes(newNotes: Note[]) {
+  this.notesSubject.next(newNotes);
+}
+```
+
+# Optimize Performance
+
+RxJS provides operators to improve performance and reduce unnecessary computations.
+
+- Use `**debounceTime()**` and `**distinctUntilChanged()**` for handling user inputs efficiently.
+- Use `**shareReplay(1)**` for caching API responses.
+
+```
+this.notes$ = this.noteService.getNotes().pipe(
+  shareReplay(1)
+);
+```
+
+# Debug RxJS Streams Effectively
+
+Debugging RxJS can be challenging, but there are techniques to make it easier.
+
+- Use `**tap()**` to log intermediate values.
+- Use `**catchError()**` to handle errors with a clean approach.
+
+```
+this.notes$ = this.noteService.getNotes().pipe(
+  tap(notes => console.log('Fetched notes:', notes)),
+  catchError(error => {
+    console.error('Error fetching notes', error);
+    return of([]);
+  })
+);
+```
