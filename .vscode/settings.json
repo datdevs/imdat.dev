@@ -3,9 +3,9 @@
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
-    "source.fixAll": "explicit",
-    "source.removeUnused.ts": "explicit",
-    "source.removeUnusedImports": "explicit"
+    "source.fixAll": "always",
+    "source.removeUnused.ts": "explicit"
+    // "source.removeUnusedImports": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
