@@ -5,8 +5,8 @@ import { TuiAppearance, TuiButton, TuiError, TuiIcon, TuiLabel, TuiTextfield, Tu
 import { TuiButtonLoading, TuiFieldErrorPipe, TuiPassword, tuiValidationErrorsProvider } from '@taiga-ui/kit';
 import { TuiCard, TuiForm, TuiHeader } from '@taiga-ui/layout';
 
+import { LoginFormControls } from '../../models/forms';
 import { AuthStore } from '../../store/auth';
-import { LoginFormControls } from '../../types/forms';
 
 @Component({
   selector: 'app-login',

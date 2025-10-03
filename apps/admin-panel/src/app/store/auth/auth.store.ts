@@ -9,7 +9,7 @@ import { pipe, switchMap, tap } from 'rxjs';
 
 import { AUTH_CODE } from '../../core/constants';
 import { AuthService, NotifyService } from '../../services';
-import { LoginCredentials } from '../../types/forms';
+import { LoginCredentials } from '../../models/forms';
 
 interface AuthState {
   isSigningIn: boolean;
