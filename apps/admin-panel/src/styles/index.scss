@@ -1,5 +1,6 @@
-@use 'tailwindcss';
-@use 'core/reset';
+@use 'vendor/tailwind';
 
 // Components
+@use 'components/button';
 @use 'components/notify';
+@use 'components/input';

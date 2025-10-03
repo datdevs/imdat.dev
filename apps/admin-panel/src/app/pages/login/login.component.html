@@ -1,7 +1,9 @@
-<form class="w-xl" tuiAppearance="floating" tuiCardLarge tuiForm [formGroup]="loginForm">
+<form class="w-xl" tuiCardLarge tuiForm [formGroup]="loginForm">
   <header tuiHeader>
     <h1 tuiTitle>ImDat.dev</h1>
   </header>
+
+  <h3 class="text-2xl">Sign in to your account</h3>
 
   <tui-textfield>
     <label for="username" tuiLabel>Username</label>
@@ -16,15 +18,8 @@
   </tui-textfield>
   <tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
 
-  <footer>
-    <button
-      class="w-full"
-      tuiButton
-      type="submit"
-      [disabled]="loading()"
-      [loading]="loading()"
-      (click)="handleSignIn()"
-    >
+  <footer class="justify-end">
+    <button size="m" tuiButton type="submit" [disabled]="loading()" [loading]="loading()" (click)="handleSignIn()">
       Sign In
     </button>
   </footer>

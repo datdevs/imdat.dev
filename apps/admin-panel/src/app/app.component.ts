@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { TuiRoot } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-admin',
-  imports: [RouterModule, TuiRoot],
+  imports: [TuiRoot, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

@@ -1,10 +1,21 @@
-import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AuthGuard, AuthPipe, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { Route } from '@angular/router';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/']);
 
-export const appRoutes: Route[] = [
+export interface MenuItem extends Route {
+  children?: MenuItem[];
+  data?: {
+    authGuardPipe?: () => AuthPipe;
+    icon?: string;
+    isShowInMenu?: boolean;
+    mainMenu?: boolean;
+    sideNavPosition?: number;
+  };
+}
+
+export const appRoutes: MenuItem[] = [
   {
     canActivate: [AuthGuard],
     children: [
@@ -16,7 +27,8 @@ export const appRoutes: Route[] = [
       {
         data: {
           icon: 'chart-pie',
-          mainMenu: true,
+          isShowInMenu: true,
+          sideNavPosition: 1,
         },
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         path: 'dashboard',
@@ -25,7 +37,8 @@ export const appRoutes: Route[] = [
       {
         data: {
           icon: 'briefcase-business',
-          mainMenu: true,
+          isShowInMenu: true,
+          sideNavPosition: 2,
         },
         loadComponent: () => import('./pages/portfolio/portfolio.component').then((m) => m.PortfolioComponent),
         path: 'portfolio',
@@ -34,7 +47,8 @@ export const appRoutes: Route[] = [
       {
         data: {
           icon: 'users',
-          mainMenu: true,
+          isShowInMenu: true,
+          sideNavPosition: 2,
         },
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         path: 'users',
@@ -48,6 +62,7 @@ export const appRoutes: Route[] = [
     ],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin,
+      mainMenu: true,
     },
     loadComponent: () => import('./layouts/main/main.component').then((m) => m.MainComponent),
     path: '',

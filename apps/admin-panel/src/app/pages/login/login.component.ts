@@ -1,14 +1,12 @@
 import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { TuiAppearance, TuiButton, TuiError, TuiIcon, TuiLabel, TuiTextfield, TuiTitle } from '@taiga-ui/core';
 import { TuiButtonLoading, TuiFieldErrorPipe, TuiPassword, tuiValidationErrorsProvider } from '@taiga-ui/kit';
 import { TuiCard, TuiForm, TuiHeader } from '@taiga-ui/layout';
 
-import { UserActions } from '../../store/user/user.actions';
-import { selectUserLoading } from '../../store/user/user.selectors';
-import { LoginForm } from '../../types/forms';
+import { AuthStore } from '../../store/auth';
+import { LoginFormControls } from '../../types/forms';
 
 @Component({
   selector: 'app-login',
@@ -39,14 +37,16 @@ import { LoginForm } from '../../types/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  private readonly store = inject(Store);
-  readonly loading = this.store.selectSignal(selectUserLoading);
-  protected loginForm: FormGroup<LoginForm> = new FormGroup<LoginForm>({
-    password: new FormControl<string>('', {
+  private readonly authStore = inject(AuthStore);
+
+  readonly loading = computed(() => this.authStore.isSigningIn());
+
+  protected loginForm: FormGroup<LoginFormControls> = new FormGroup<LoginFormControls>({
+    username: new FormControl<string>('', {
       nonNullable: true,
       validators: Validators.required,
     }),
-    username: new FormControl<string>('', {
+    password: new FormControl<string>('', {
       nonNullable: true,
       validators: Validators.required,
     }),
@@ -54,7 +54,7 @@ export class LoginComponent {
 
   constructor() {
     effect(() => {
-      if (this.loading()) {
+      if (this.authStore.isSigningIn()) {
         this.loginForm.disable();
       } else {
         this.loginForm.enable();
@@ -67,10 +67,10 @@ export class LoginComponent {
 
     if (this.loginForm.invalid) return;
 
-    const { password, username } = this.loginForm.value;
+    const { username, password } = this.loginForm.value;
 
     if (!username || !password) return;
 
-    this.store.dispatch(UserActions.login({ password, username }));
+    this.authStore.signIn({ username, password });
   }
 }
