@@ -1,47 +1,93 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule, Routes } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal, signal, WritableSignal } from '@angular/core';
+import {
+  ActivatedRoute,
+  Event,
+  NavigationEnd,
+  Route,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterModule,
+} from '@angular/router';
+import { tuiAsPortal, TuiPortals } from '@taiga-ui/cdk';
+import {
+  TuiAppearance,
+  TuiButton,
+  TuiDataList,
+  TuiDropdown,
+  TuiDropdownService,
+  TuiIcon,
+  TuiTextfield,
+} from '@taiga-ui/core';
+import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification, TuiChevron, TuiFade, TuiTabs } from '@taiga-ui/kit';
+import { TuiNavigation } from '@taiga-ui/layout';
+import { filter } from 'rxjs/operators';
 
+import { appRoutes, MenuItem } from '../../app.routes';
 import { ProfileButtonComponent } from '../../components/profile-button/profile-button.component';
 
 @Component({
   selector: 'app-main',
   imports: [
     RouterModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    AsyncPipe,
+    TuiIcon,
     ProfileButtonComponent,
+    TuiButton,
+    TuiBadgedContent,
+    TuiAvatar,
+    TuiBadgeNotification,
+    RouterLink,
+    RouterLinkActive,
+    TuiAppearance,
+    TuiAvatar,
+    TuiBadgeNotification,
+    TuiButton,
+    TuiChevron,
+    TuiDataList,
+    TuiDropdown,
+    TuiFade,
+    TuiIcon,
+    TuiNavigation,
+    TuiTabs,
+    TuiTextfield,
   ],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  styleUrl: './main.component.scss',
+  providers: [TuiDropdownService, tuiAsPortal(TuiDropdownService)],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent {
-  private breakpointObserver = inject(BreakpointObserver);
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map((result) => result.matches),
-    shareReplay(),
+export class MainComponent extends TuiPortals {
+  readonly title: WritableSignal<string> = signal('');
+  readonly currentRoute: WritableSignal<null | Route> = signal<null | Route>(null);
+  readonly isSidebarCollapsed: WritableSignal<boolean> = signal<boolean>(false);
+  private readonly menus: WritableSignal<MenuItem[]> = signal<MenuItem[]>([]);
+
+  readonly sideNavHeaderMenus: Signal<MenuItem[]> = computed(() =>
+    this.menus().filter((menu) => menu.data?.sideNavPosition === 1),
   );
 
-  mainMenu: Routes = [];
-  title = '';
-  private route = inject(ActivatedRoute);
-  private router = inject(Router);
+  readonly sideNavMiddleMenus: Signal<MenuItem[]> = computed(() =>
+    this.menus().filter((menu) => menu.data?.sideNavPosition === 2),
+  );
+
+  readonly sideNavFooterMenus: Signal<MenuItem[]> = computed(() =>
+    this.menus().filter((menu) => menu.data?.sideNavPosition === 3),
+  );
+
+  protected readonly expanded = signal(false);
+
+  private readonly router = inject(Router);
+
+  private readonly route = inject(ActivatedRoute);
 
   constructor() {
+    super();
     this.getTitle();
     this.getMainMenu();
+  }
+
+  protected handleToggle(): void {
+    this.expanded.update((e) => !e);
   }
 
   private getChild(activatedRoute: ActivatedRoute): ActivatedRoute {
@@ -53,14 +99,22 @@ export class MainComponent {
   }
 
   private getMainMenu() {
-    this.mainMenu = this.route.routeConfig?.children?.filter((route) => route?.data?.['mainMenu']) || [];
+    const mainMenu: MenuItem | undefined = appRoutes.find((route: MenuItem) => route.data?.mainMenu);
+
+    if (!mainMenu?.children) {
+      return;
+    }
+
+    const menus: MenuItem[] = mainMenu.children.filter((route: MenuItem) => route.data?.isShowInMenu) ?? [];
+
+    this.menus.set(menus);
   }
 
   private getTitle() {
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+    this.router.events.pipe(filter((event: Event) => event instanceof NavigationEnd)).subscribe(() => {
       const route = this.getChild(this.route);
-      this.title =
-        route.routeConfig?.title && typeof route.routeConfig?.title === 'string' ? route.routeConfig?.title : '';
+
+      this.currentRoute.set(route.routeConfig);
     });
   }
 }

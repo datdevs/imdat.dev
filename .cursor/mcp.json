@@ -1,17 +1,19 @@
 {
   "mcpServers": {
-    "nx-mcp": {
-      "command": "npx",
-      "args": ["-y", "nx-mcp@latest"]
-    },
     "eslint": {
       "command": "npx",
-      "args": ["@eslint/mcp@latest"],
+      "args": [
+        "@eslint/mcp@latest"
+      ],
       "env": {}
     },
     "angular-cli": {
       "command": "npx",
-      "args": ["-y", "@angular/cli", "mcp"]
+      "args": [
+        "-y",
+        "@angular/cli",
+        "mcp"
+      ]
     }
   }
 }

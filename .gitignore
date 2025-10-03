@@ -45,3 +45,5 @@ Thumbs.db
 
 .angular
 firebase.config.ts
+
+*.log

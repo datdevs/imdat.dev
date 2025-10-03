@@ -1,43 +1,38 @@
-import { Component, inject, OnDestroy, OnInit, Signal, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { User } from '@angular/fire/auth';
-import { MatIcon } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { TuiAutoColorPipe, TuiDataList, TuiDropdown, TuiFallbackSrcPipe, TuiIcon } from '@taiga-ui/core';
+import { TuiAvatar } from '@taiga-ui/kit';
 
-import { AuthService } from '../../services';
-import { UserActions } from '../../store/user/user.actions';
-import { selectUserLoading } from '../../store/user/user.selectors';
+import { AuthService } from '../../services/auth.service';
+import { AuthStore } from '../../store/auth';
 
 @Component({
   selector: 'app-profile-button',
-  imports: [MatMenuModule, MatIcon, MatProgressSpinner, RouterModule],
+  imports: [
+    AsyncPipe,
+    RouterModule,
+    TuiIcon,
+    TuiDropdown,
+    TuiDataList,
+    TuiAvatar,
+    TuiFallbackSrcPipe,
+    TuiAutoColorPipe,
+  ],
   templateUrl: './profile-button.component.html',
-  styleUrl: './profile-button.component.scss'
+  styleUrl: './profile-button.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileButtonComponent implements OnDestroy, OnInit {
-  private store = inject(Store);
+export class ProfileButtonComponent {
+  private readonly authStore = inject(AuthStore);
+  readonly isSigningOut: Signal<boolean> = computed(() => this.authStore.isSigningOut());
+  private readonly authService = inject(AuthService);
+  readonly user: Signal<null | User> = computed(() => this.authService.user());
 
-  readonly loading = this.store.selectSignal(selectUserLoading);
-  user: Signal<null | User> = signal(null);
-
-  private auth = inject(AuthService);
-
-  constructor() {
-    this.user = toSignal(this.auth.user$, { initialValue: null });
-  }
-
-  ngOnInit(): void {
-    console.log('ngOnInit');
-  }
-
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy');
-  }
+  protected openDropdown = false;
 
   signOut() {
-    this.store.dispatch(UserActions.logout());
+    this.authStore.signOut();
   }
 }

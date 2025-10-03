@@ -8,7 +8,9 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/admin-panel",
         "browser": "apps/admin-panel/src/main.ts",
@@ -18,11 +20,22 @@
           {
             "glob": "**/*",
             "input": "apps/admin-panel/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
-        "styles": ["apps/admin-panel/src/styles.scss"],
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/admin-panel/src/styles.scss"
+        ],
         "stylePreprocessorOptions": {
-          "includePaths": ["apps/admin-panel/src/styles"]
+          "includePaths": [
+            "apps/admin-panel/src/styles"
+          ]
         }
       },
       "configurations": {
@@ -76,7 +89,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/admin-panel/jest.config.ts",
         "tsConfig": "apps/admin-panel/tsconfig.spec.json"

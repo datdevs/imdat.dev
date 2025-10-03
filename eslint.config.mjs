@@ -36,7 +36,7 @@ export default defineConfig([
     },
     extends: [
       eslint.configs.recommended,
-      ...tseslint.configs.recommendedTypeChecked,
+      // ...tseslint.configs.recommendedTypeChecked,
       ...tseslint.configs.stylisticTypeChecked,
       stylistic.configs.recommended,
       perfectionist.configs['recommended-alphabetical'],

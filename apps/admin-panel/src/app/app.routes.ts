@@ -1,10 +1,21 @@
-import { AuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { AuthGuard, AuthPipe, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { Route } from '@angular/router';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/']);
 
-export const appRoutes: Route[] = [
+export interface MenuItem extends Route {
+  children?: MenuItem[];
+  data?: {
+    authGuardPipe?: () => AuthPipe;
+    icon?: string;
+    isShowInMenu?: boolean;
+    mainMenu?: boolean;
+    sideNavPosition?: number;
+  };
+}
+
+export const appRoutes: MenuItem[] = [
   {
     canActivate: [AuthGuard],
     children: [
@@ -15,8 +26,9 @@ export const appRoutes: Route[] = [
       },
       {
         data: {
-          icon: 'space_dashboard',
-          mainMenu: true,
+          icon: 'chart-pie',
+          isShowInMenu: true,
+          sideNavPosition: 1,
         },
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         path: 'dashboard',
@@ -24,8 +36,9 @@ export const appRoutes: Route[] = [
       },
       {
         data: {
-          icon: 'folder_special',
-          mainMenu: true,
+          icon: 'briefcase-business',
+          isShowInMenu: true,
+          sideNavPosition: 2,
         },
         loadComponent: () => import('./pages/portfolio/portfolio.component').then((m) => m.PortfolioComponent),
         path: 'portfolio',
@@ -33,30 +46,23 @@ export const appRoutes: Route[] = [
       },
       {
         data: {
-          icon: 'group',
-          mainMenu: true,
+          icon: 'users',
+          isShowInMenu: true,
+          sideNavPosition: 2,
         },
         loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
         path: 'users',
         title: 'Users',
       },
-      {
-        data: {
-          icon: 'engineering',
-          mainMenu: true,
-        },
-        loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-        path: 'employees',
-        title: 'Employees',
-      },
-      {
-        loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
-        path: 'profile',
-        title: 'Profile',
-      },
+      // {
+      //   loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+      //   path: 'profile',
+      //   title: 'Profile',
+      // },
     ],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin,
+      mainMenu: true,
     },
     loadComponent: () => import('./layouts/main/main.component').then((m) => m.MainComponent),
     path: '',

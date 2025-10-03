@@ -1,40 +1,70 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar>Menu</mat-toolbar>
-    @if (mainMenu.length > 0) {
-      <mat-nav-list>
-        @for (menu of mainMenu; track menu.path) {
-          <a mat-list-item [routerLink]="[menu.path]" [routerLinkActive]="'link_active'">
-            <mat-icon color="primary" matListItemIcon>{{ menu.data?.['icon'] }}</mat-icon>
-            <span>{{ menu.title }}</span>
-          </a>
-        }
-      </mat-nav-list>
-    }
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="toolbar__top">
-      @if (isHandset$ | async) {
-        <button aria-label="Toggle sidenav" mat-icon-button type="button" (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+<header tuiNavigationHeader tuiTheme="light">
+  <button appearance="action" tuiIconButton type="button">
+    <tui-avatar appearance="info" class="text" src="RN" />
+  </button>
+  <span tuiNavigationLogo>
+    <tui-icon [icon]="currentRoute()?.data?.['icon'] ?? 'cloud-alert'" />
+    <span tuiFade>{{ currentRoute()?.title }}</span>
+  </span>
+  <hr />
+  <button appearance="secondary-grayscale" iconStart="plus" tuiButton type="button">Create</button>
+  <button iconStart="bell" tuiIconButton type="button">
+    Notifications
+    <tui-badge-notification />
+  </button>
+  <button iconStart="settings" tuiIconButton type="button">More</button>
+  <app-profile-button />
+</header>
+
+<div class="flex flex-1">
+  <aside class="h-full" tuiTheme="light" [tuiNavigationAside]="expanded()">
+    <header>
+      @for (menu of sideNavHeaderMenus(); track menu.path) {
+        <button tuiAsideItem type="button" [iconStart]="menu.data?.icon" [routerLink]="menu.path">
+          <span tuiFade>{{ menu.title }}</span>
         </button>
       }
+    </header>
 
-      <span>{{ title }}</span>
+    @for (menu of sideNavMiddleMenus(); track menu.path) {
+      <button tuiAsideItem type="button" [iconStart]="menu.data?.icon" [routerLink]="menu.path">
+        <span tuiFade>{{ menu.title }}</span>
+      </button>
+    }
 
-      <app-profile-button></app-profile-button>
-    </mat-toolbar>
-    <div class="sidenav-scroll-wrapper">
-      <div class="sidenav-content">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <tui-aside-group>
+      <button automation-id="setting" iconStart="@tui.settings" tuiAsideItem tuiChevron type="button">
+        Settings
+        <ng-template>
+          <button tuiAsideItem type="button">Account</button>
+          <button tuiAsideItem type="button">Notifications</button>
+          <button tuiAsideItem type="button">Privacy</button>
+        </ng-template>
+      </button>
+    </tui-aside-group>
+
+    <footer>
+      @for (menu of sideNavFooterMenus(); track menu.path) {
+        <button tuiAsideItem type="button" [iconStart]="menu.data?.icon" [routerLink]="menu.path">
+          <span tuiFade>{{ menu.title }}</span>
+        </button>
+      }
+      <button
+        tuiAsideItem
+        type="button"
+        [iconStart]="expanded() ? '@tui.chevron-left' : '@tui.chevron-right'"
+        (click)="handleToggle()"
+      >
+        {{ expanded() ? 'Collapse' : 'Expand' }}
+      </button>
+    </footer>
+  </aside>
+
+  <main class="bg-slate-100" tuiNavigationMain>
+    <router-outlet />
+  </main>
+</div>
+
+<div class="custom-portal">
+  <ng-container #viewContainer />
+</div>
