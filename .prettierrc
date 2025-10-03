@@ -3,7 +3,7 @@
   "singleQuote": true,
   "printWidth": 120,
   "htmlWhitespaceSensitivity": "ignore",
-  "plugins": ["prettier-plugin-organize-attributes"],
+  "plugins": ["prettier-plugin-organize-attributes", "prettier-plugin-tailwindcss"],
   "attributeGroups": [
     "$ANGULAR_STRUCTURAL_DIRECTIVE",
     "$ANGULAR_ELEMENT_REF",
