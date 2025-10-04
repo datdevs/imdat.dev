@@ -2,11 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import {
   addDoc,
   collection,
+  collectionData,
   deleteDoc,
   doc,
   Firestore,
   getDoc,
-  getDocs,
   orderBy,
   query,
   updateDoc,
@@ -27,7 +27,7 @@ export class PortfolioService {
   /**
    * Get all portfolios with optional filters
    */
-  getPortfolios(filters?: PortfolioFilters): Observable<Portfolio[]> {
+  getPortfolios(filters?: PortfolioFilters) {
     const portfolioCollection = collection(this.firestore, this.collectionName);
     let q = query(portfolioCollection, orderBy('order', 'asc'));
 
@@ -42,38 +42,7 @@ export class PortfolioService {
       q = query(q, where('technologies', 'array-contains-any', filters.technologies));
     }
 
-    return from(getDocs(q)).pipe(
-      map((snapshot) => {
-        const portfolios: Portfolio[] = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          portfolios.push({
-            id: doc.id,
-            ...data,
-            createdAt: data['createdAt']?.toDate() ?? new Date(),
-            updatedAt: data['updatedAt']?.toDate() ?? new Date(),
-            publishedAt: data['publishedAt']?.toDate(),
-          } as Portfolio);
-        });
-
-        // Apply search filter if provided
-        if (filters?.search) {
-          const searchTerm = filters.search.toLowerCase();
-          return portfolios.filter(
-            (portfolio) =>
-              portfolio.title.toLowerCase().includes(searchTerm) ||
-              portfolio.description.toLowerCase().includes(searchTerm) ||
-              portfolio.shortDescription.toLowerCase().includes(searchTerm),
-          );
-        }
-
-        return portfolios;
-      }),
-      catchError((error) => {
-        console.error('Error fetching portfolios:', error);
-        throw error;
-      }),
-    );
+    return collectionData(q);
   }
 
   /**
@@ -162,44 +131,6 @@ export class PortfolioService {
         throw error;
       }),
     );
-  }
-
-  /**
-   * Get featured portfolios (published and featured)
-   */
-  getFeaturedPortfolios(): Observable<Portfolio[]> {
-    return this.getPortfolios({
-      status: 'published',
-      featured: true,
-    });
-  }
-
-  /**
-   * Search portfolios by title and description
-   */
-  searchPortfolios(searchTerm: string): Observable<Portfolio[]> {
-    return this.getPortfolios({
-      search: searchTerm,
-    });
-  }
-
-  /**
-   * Get portfolios by technology
-   */
-  getPortfoliosByTechnology(technologies: string[]): Observable<Portfolio[]> {
-    return this.getPortfolios({
-      technologies,
-      status: 'published',
-    });
-  }
-
-  /**
-   * Get published portfolios only
-   */
-  getPublishedPortfolios(): Observable<Portfolio[]> {
-    return this.getPortfolios({
-      status: 'published',
-    });
   }
 
   /**

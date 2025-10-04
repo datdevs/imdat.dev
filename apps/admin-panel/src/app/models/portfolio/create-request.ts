@@ -1,4 +1,5 @@
 import { PortfolioImage } from './image';
+import { PortfolioStatus } from './portfolio';
 
 export interface CreatePortfolioRequest {
   description: string;
@@ -10,7 +11,7 @@ export interface CreatePortfolioRequest {
   order: number;
   publishedAt?: Date;
   shortDescription: string;
-  status: 'archived' | 'draft' | 'published';
+  status: PortfolioStatus;
   technologies: string[];
   title: string;
 }
