@@ -27,8 +27,8 @@ import { AuthStore } from '../../store/auth';
     TuiButton,
     TuiButtonLoading,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './login.html',
+  styleUrl: './login.scss',
   providers: [
     tuiValidationErrorsProvider({
       required: 'Field is required',
@@ -36,7 +36,7 @@ import { AuthStore } from '../../store/auth';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
+export class Login {
   private readonly authStore = inject(AuthStore);
 
   readonly loading = computed(() => this.authStore.isSigningIn());

@@ -1,8 +1,8 @@
 import { AuthGuard, AuthPipe, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { Route } from '@angular/router';
 
-import { MainComponent } from './layouts/main/main.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { MainLayout } from './layouts/main/main.layout';
+import { NotFound } from './pages/not-found/not-found';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/']);
@@ -22,7 +22,7 @@ export interface MenuItem extends Route {
 export const appRoutes: MenuItem[] = [
   {
     path: '',
-    component: MainComponent,
+    component: MainLayout,
     canActivate: [AuthGuard],
     data: {
       authGuardPipe: redirectUnauthorizedToLogin,
@@ -42,7 +42,7 @@ export const appRoutes: MenuItem[] = [
           isShowInMenu: true,
           sideNavPosition: 1,
         },
-        loadComponent: async () => (await import('./pages/dashboard/dashboard.component')).DashboardComponent,
+        loadComponent: async () => (await import('./pages/dashboard/dashboard')).Dashboard,
       },
       {
         path: 'portfolio',
@@ -63,7 +63,7 @@ export const appRoutes: MenuItem[] = [
           isShowInMenu: true,
           sideNavPosition: 2,
         },
-        loadComponent: async () => (await import('./pages/dashboard/dashboard.component')).DashboardComponent,
+        loadComponent: async () => (await import('./pages/dashboard/dashboard')).Dashboard,
       },
       // {
       //   loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
@@ -79,12 +79,12 @@ export const appRoutes: MenuItem[] = [
     data: {
       authGuardPipe: redirectLoggedInToHome,
     },
-    loadComponent: async () => (await import('./pages/login/login.component')).LoginComponent,
+    loadComponent: async () => (await import('./pages/login/login')).Login,
   },
   {
     path: '404',
     title: 'Page Not Found',
-    component: NotFoundComponent,
+    component: NotFound,
   },
   {
     path: '**',

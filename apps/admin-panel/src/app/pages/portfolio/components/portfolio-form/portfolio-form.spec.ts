@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { PortfolioForm } from './portfolio-form';
 
-import { PortfolioComponent } from './portfolio.component';
-
-describe('PortfolioComponent', () => {
-  let component: PortfolioComponent;
-  let fixture: ComponentFixture<PortfolioComponent>;
+describe('PortfolioForm', () => {
+  let component: PortfolioForm;
+  let fixture: ComponentFixture<PortfolioForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PortfolioComponent],
+      imports: [PortfolioForm],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PortfolioComponent);
+    fixture = TestBed.createComponent(PortfolioForm);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

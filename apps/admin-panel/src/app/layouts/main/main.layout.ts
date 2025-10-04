@@ -33,14 +33,14 @@ import { TuiNavigation } from '@taiga-ui/layout';
 import { filter } from 'rxjs/operators';
 
 import { appRoutes, MenuItem } from '../../app.routes';
-import { ProfileButtonComponent } from '../../components/profile-button/profile-button.component';
+import { ProfileButton } from '../../components/profile-button/profile-button';
 
 @Component({
   selector: 'app-main',
   imports: [
     RouterModule,
     TuiIcon,
-    ProfileButtonComponent,
+    ProfileButton,
     TuiButton,
     TuiBadgedContent,
     TuiAvatar,
@@ -60,12 +60,12 @@ import { ProfileButtonComponent } from '../../components/profile-button/profile-
     TuiTabs,
     TuiTextfield,
   ],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
+  templateUrl: './main.layout.html',
+  styleUrl: './main.layout.scss',
   providers: [TuiDropdownService, tuiAsPortal(TuiDropdownService)],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent extends TuiPortals {
+export class MainLayout extends TuiPortals {
   readonly title: WritableSignal<string> = signal('');
   readonly currentRoute: WritableSignal<MenuItem | null> = signal<MenuItem | null>(null);
   readonly isSidebarCollapsed: WritableSignal<boolean> = signal<boolean>(false);

@@ -5,8 +5,8 @@ import { TuiRoot } from '@taiga-ui/core';
 @Component({
   selector: 'app-admin',
   imports: [TuiRoot, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class App {}

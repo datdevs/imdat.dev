@@ -8,11 +8,11 @@ import { AuthStore } from '../../store/auth';
 @Component({
   selector: 'app-profile',
   imports: [ReactiveFormsModule],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss',
+  templateUrl: './profile.html',
+  styleUrl: './profile.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent {
+export class Profile {
   private readonly authStore = inject(AuthStore);
   readonly loading: Signal<boolean> = computed(() => this.authStore.isSigningOut());
   private readonly authService = inject(AuthService);

@@ -7,11 +7,11 @@ import { TuiCard } from '@taiga-ui/layout';
 @Component({
   selector: 'app-not-found',
   imports: [RouterModule, TuiCard, TuiIcon, TuiButton],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.scss',
+  templateUrl: './not-found.html',
+  styleUrl: './not-found.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotFoundComponent implements AfterViewInit {
+export class NotFound implements AfterViewInit {
   readonly notFoundCanvas = viewChild<ElementRef>('notFoundCanvas');
 
   dotLottie!: DotLottie;

@@ -20,11 +20,11 @@ import { AuthStore } from '../../store/auth';
     TuiFallbackSrcPipe,
     TuiAutoColorPipe,
   ],
-  templateUrl: './profile-button.component.html',
-  styleUrl: './profile-button.component.scss',
+  templateUrl: './profile-button.html',
+  styleUrl: './profile-button.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileButtonComponent {
+export class ProfileButton {
   private readonly authStore = inject(AuthStore);
   readonly isSigningOut: Signal<boolean> = computed(() => this.authStore.isSigningOut());
   private readonly authService = inject(AuthService);
