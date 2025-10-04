@@ -1,8 +1,11 @@
 import { computed, inject } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, type, withComputed, withMethods, withState } from '@ngrx/signals';
-import { entityConfig, withEntities } from '@ngrx/signals/entities';
+import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { pipe, switchMap } from 'rxjs';
 
-import { Portfolio, PortfolioFilters } from '../../models/portfolio';
+import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../models/portfolio';
 import { PortfolioService } from '../../services';
 
 export interface PortfolioState {
@@ -81,30 +84,29 @@ export const PortfolioStore = signalStore(
     draftCount: computed(() => portfoliosEntities().filter((p) => p.status === 'draft').length),
     featuredCount: computed(() => portfoliosEntities().filter((p) => p.featured).length),
   })),
-  withMethods((store, _portfolioService = inject(PortfolioService)) => ({
+  withMethods((store, portfolioService = inject(PortfolioService)) => {
     // Load all portfolios
-    // loadPortfolios: rxMethod<PortfolioFilters | void>(
-    //   pipe(
-    //     switchMap((filters) => {
-    //       patchState(store, { loading: true, error: null, filters: filters || null });
-    //       return portfolioService.getPortfolios(filters || undefined).pipe(
-    //         tapResponse({
-    //           next: (portfolios) => {
-    //             patchState(store, setAllEntities(portfolios, portfolioEntityConfig), {
-    //               loading: false,
-    //             });
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to load portfolios',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
+    const loadPortfolios = rxMethod<null | PortfolioFilters>(
+      pipe(
+        switchMap((filters) => {
+          patchState(store, { loading: true, error: null, filters: filters ?? null });
+          return portfolioService.getPortfolios(filters ?? undefined).pipe(
+            tapResponse({
+              next: (portfolios) => {
+                patchState(store, setAllEntities(portfolios as Portfolio[], portfolioEntityConfig), {
+                  loading: false,
+                });
+              },
+              error: () => {
+                patchState(store, {
+                  loading: false,
+                });
+              },
+            }),
+          );
+        }),
+      ),
+    );
 
     // // Load single portfolio by ID
     // loadPortfolioById: rxMethod<string>(
@@ -137,29 +139,28 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    // // Create new portfolio
-    // createPortfolio: rxMethod<CreatePortfolioRequest>(
-    //   pipe(
-    //     switchMap((portfolioData) => {
-    //       patchState(store, { loading: true, error: null });
-    //       return portfolioService.createPortfolio(portfolioData).pipe(
-    //         tapResponse({
-    //           next: () => {
-    //             // Reload portfolios to get the new one with all data
-    //             store.loadPortfolios(store.filters());
-    //             patchState(store, { loading: false });
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to create portfolio',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
+    // Create new portfolio
+    const createPortfolio = rxMethod<CreatePortfolioRequest>(
+      pipe(
+        switchMap((portfolioData) => {
+          patchState(store, { loading: true, error: null });
+          return portfolioService.createPortfolio(portfolioData).pipe(
+            tapResponse({
+              next: () => {
+                // Reload portfolios to get the new one with all data
+                loadPortfolios(store.filters());
+                patchState(store, { loading: false });
+              },
+              error: () => {
+                patchState(store, {
+                  loading: false,
+                });
+              },
+            }),
+          );
+        }),
+      ),
+    );
 
     // // Update portfolio
     // updatePortfolio: rxMethod<UpdatePortfolioRequest>(
@@ -330,24 +331,6 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    // Select portfolio
-    selectPortfolio(id: null | string): void {
-      patchState(store, { selectedPortfolioId: id });
-    },
-
-    // Clear error
-    clearError(): void {
-      patchState(store, { error: null });
-    },
-
-    // Set filters
-    setFilters(filters: null | PortfolioFilters): void {
-      patchState(store, { filters });
-    },
-
-    // Clear search
-    clearSearch(): void {
-      patchState(store, { searchTerm: '' });
-    },
-  })),
+    return { loadPortfolios, createPortfolio };
+  }),
 );

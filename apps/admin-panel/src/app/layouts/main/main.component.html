@@ -3,11 +3,13 @@
     <tui-avatar appearance="info" class="text" src="RN" />
   </button>
   <span tuiNavigationLogo>
-    <tui-icon [icon]="currentRoute()?.data?.['icon'] ?? 'cloud-alert'" />
-    <span tuiFade>{{ currentRoute()?.title }}</span>
+    <tui-icon [icon]="currentRouteIcon()" />
+    <span tuiFade>{{ currentRouteTitle() }}</span>
   </span>
   <hr />
-  <button appearance="secondary-grayscale" iconStart="plus" tuiButton type="button">Create</button>
+  @if (canCreate()) {
+    <button appearance="secondary-grayscale" iconStart="plus" tuiButton type="button" (click)="create()">Create</button>
+  }
   <button iconStart="bell" tuiIconButton type="button">
     Notifications
     <tui-badge-notification />

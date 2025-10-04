@@ -1,12 +1,16 @@
 import { AuthGuard, AuthPipe, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { Route } from '@angular/router';
 
+import { MainComponent } from './layouts/main/main.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['/']);
 
 export interface MenuItem extends Route {
   children?: MenuItem[];
   data?: {
+    allowCreate?: boolean;
     authGuardPipe?: () => AuthPipe;
     icon?: string;
     isShowInMenu?: boolean;
@@ -17,7 +21,13 @@ export interface MenuItem extends Route {
 
 export const appRoutes: MenuItem[] = [
   {
+    path: '',
+    component: MainComponent,
     canActivate: [AuthGuard],
+    data: {
+      authGuardPipe: redirectUnauthorizedToLogin,
+      mainMenu: true,
+    },
     children: [
       {
         path: '',
@@ -25,34 +35,35 @@ export const appRoutes: MenuItem[] = [
         redirectTo: 'dashboard',
       },
       {
+        path: 'dashboard',
+        title: 'Dashboard',
         data: {
           icon: 'chart-pie',
           isShowInMenu: true,
           sideNavPosition: 1,
         },
-        loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-        path: 'dashboard',
-        title: 'Dashboard',
+        loadComponent: async () => (await import('./pages/dashboard/dashboard.component')).DashboardComponent,
       },
       {
+        path: 'portfolio',
+        title: 'Portfolio',
         data: {
+          allowCreate: true,
           icon: 'briefcase-business',
           isShowInMenu: true,
           sideNavPosition: 2,
         },
-        loadComponent: () => import('./pages/portfolio/portfolio.component').then((m) => m.PortfolioComponent),
-        path: 'portfolio',
-        title: 'Portfolio',
+        loadChildren: async () => (await import('./pages/portfolio/portfolio.routes')).portfolioRoutes,
       },
       {
+        path: 'users',
+        title: 'Users',
         data: {
           icon: 'users',
           isShowInMenu: true,
           sideNavPosition: 2,
         },
-        loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-        path: 'users',
-        title: 'Users',
+        loadComponent: async () => (await import('./pages/dashboard/dashboard.component')).DashboardComponent,
       },
       // {
       //   loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
@@ -60,26 +71,20 @@ export const appRoutes: MenuItem[] = [
       //   title: 'Profile',
       // },
     ],
-    data: {
-      authGuardPipe: redirectUnauthorizedToLogin,
-      mainMenu: true,
-    },
-    loadComponent: () => import('./layouts/main/main.component').then((m) => m.MainComponent),
-    path: '',
   },
   {
+    path: 'login',
+    title: 'Login',
     canActivate: [AuthGuard],
     data: {
       authGuardPipe: redirectLoggedInToHome,
     },
-    loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
-    path: 'login',
-    title: 'Login',
+    loadComponent: async () => (await import('./pages/login/login.component')).LoginComponent,
   },
   {
-    loadComponent: () => import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
     path: '404',
     title: 'Page Not Found',
+    component: NotFoundComponent,
   },
   {
     path: '**',
