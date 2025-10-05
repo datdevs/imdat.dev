@@ -5,8 +5,12 @@ import { TuiStringHandler } from '@taiga-ui/cdk/types';
 import { TuiButton, TuiDataList, TuiDialogService, TuiError, TuiIcon, TuiLabel, TuiTextfield } from '@taiga-ui/core';
 import {
   TuiButtonLoading,
+  TuiChip,
   TuiDataListWrapper,
   TuiFieldErrorPipe,
+  TuiFilterByInputPipe,
+  TuiHideSelectedPipe,
+  TuiInputChip,
   TuiSelect,
   TuiSwitch,
   TuiTabs,
@@ -24,7 +28,12 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
   selector: 'app-portfolio-form',
   imports: [
     ReactiveFormsModule,
+    // Pipes
     AsyncPipe,
+    TuiFieldErrorPipe,
+    TuiFilterByInputPipe,
+    TuiHideSelectedPipe,
+    // Taiga UI
     TuiTabs,
     TuiForm,
     TuiLabel,
@@ -34,11 +43,13 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
     TuiTextareaLimit,
     TuiSelect,
     TuiDataList,
+    TuiDataListWrapper,
     TuiSwitch,
-    TuiFieldErrorPipe,
     TuiIcon,
     TuiButton,
     TuiButtonLoading,
+    TuiInputChip,
+    TuiChip,
   ],
   templateUrl: './portfolio-form.html',
   styleUrl: './portfolio-form.scss',

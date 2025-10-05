@@ -66,66 +66,29 @@
 
   <!-- Technologies & Features Tab -->
   @if (cTab === 1) {
-    <div class="tab-content">
-      <!-- Technologies Section -->
-      <div class="section">
-        <h3>Technologies</h3>
-        <div class="technologies-container">
-          <div class="selected-technologies">
-            @for (tech of technologiesControl.value; track tech) {
-              <div class="tech-chip">
-                <span>{{ tech }}</span>
-                <button class="remove-btn" type="button" (click)="removeTechnology(tech)">×</button>
-              </div>
-            }
-          </div>
+    <tui-textfield multi>
+      <label for="technologies" tuiLabel>Technologies</label>
 
-          <div class="add-technology">
-            <input #techInput class="form-input" placeholder="Type technology name" type="text" />
-            <button
-              class="btn btn-primary"
-              type="button"
-              (click)="addTechnology(techInput.value); techInput.value = ''"
-            >
-              Add
-            </button>
-          </div>
+      <input formControlName="technologies" name="technologies" placeholder="Type to search" tuiInputChip />
 
-          <div class="common-technologies">
-            <h4>Common Technologies</h4>
-            <div class="tech-grid">
-              @for (tech of commonTechnologies; track tech) {
-                <button
-                  class="btn btn-outline"
-                  type="button"
-                  [disabled]="technologiesControl.value?.includes(tech)"
-                  (click)="addTechnology(tech)"
-                >
-                  {{ tech }}
-                </button>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
+      <tui-input-chip *tuiItem />
 
-      <!-- Features Section -->
-      <div class="section">
-        <h3>Features</h3>
-        <div class="features-container">
-          <div class="selected-features">
-            @for (feature of featuresControl.value; track feature) {
-              <div class="feature-chip">
-                <span>{{ feature }}</span>
-                <button class="remove-btn" type="button" (click)="removeFeature(feature)">×</button>
-              </div>
-            }
-          </div>
+      <tui-data-list-wrapper
+        *tuiTextfieldDropdown
+        new
+        [items]="commonTechnologies | tuiFilterByInput | tuiHideSelected"
+      />
+    </tui-textfield>
+    <tui-error formControlName="technologies" [error]="[] | tuiFieldError | async" />
 
-          <button class="btn btn-primary" type="button" (click)="addFeature()">+ Add Feature</button>
-        </div>
-      </div>
-    </div>
+    <tui-textfield multi>
+      <label for="features" tuiLabel>Features</label>
+
+      <input formControlName="features" name="features" placeholder="Type and press enter to add" tuiInputChip />
+
+      <tui-input-chip *tuiItem />
+    </tui-textfield>
+    <tui-error formControlName="features" [error]="[] | tuiFieldError | async" />
   }
 
   <!-- Images & Links Tab -->
