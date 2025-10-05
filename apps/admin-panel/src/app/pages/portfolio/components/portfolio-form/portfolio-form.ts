@@ -14,7 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiValidationError } from '@taiga-ui/cdk/classes';
 import { TuiStringHandler } from '@taiga-ui/cdk/types';
-import { TuiButton, TuiDataList, TuiDialogService, TuiError, TuiIcon, TuiLabel, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiDataList, TuiDialogContext, TuiError, TuiIcon, TuiLabel, TuiTextfield } from '@taiga-ui/core';
 import {
   TuiButtonLoading,
   TuiChip,
@@ -32,6 +32,7 @@ import {
   tuiValidationErrorsProvider,
 } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
+import { injectContext } from '@taiga-ui/polymorpheus';
 
 import { STATUS_OPTIONS, StatusEnum } from '../../../../core/constants/status';
 import { Status } from '../../../../models/common';
@@ -78,12 +79,14 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioForm implements OnInit {
+  public readonly context = injectContext<TuiDialogContext<boolean>>();
   protected readonly isSubmitting: WritableSignal<boolean> = signal(false);
   protected readonly currentTab: WritableSignal<number> = signal(0);
   protected readonly isVisibleImageForm: WritableSignal<boolean> = signal(false);
-  protected readonly previewImageError: WritableSignal<null | TuiValidationError> = signal(null);
 
+  protected readonly previewImageError: WritableSignal<null | TuiValidationError> = signal(null);
   private readonly fb = inject(FormBuilder);
+
   protected readonly form = this.fb.group({
     title: this.fb.control('', [Validators.required, Validators.minLength(3)]),
     shortDescription: this.fb.control('', [Validators.required, Validators.minLength(10)]),
@@ -134,10 +137,9 @@ export class PortfolioForm implements OnInit {
   ];
 
   protected readonly isFormValid: Signal<boolean> = computed(() => this.form.valid);
-
   private readonly destroyRef = inject(DestroyRef);
+
   private readonly portfolioStore = inject(PortfolioStore);
-  private readonly dialogService = inject(TuiDialogService);
 
   get fc() {
     return {
@@ -191,33 +193,36 @@ export class PortfolioForm implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      this.isSubmitting.set(true);
+    this.form.markAllAsTouched();
 
-      const formValue = this.form.value;
-      const portfolioData: CreatePortfolioRequest = {
-        title: formValue.title!,
-        shortDescription: formValue.shortDescription!,
-        description: formValue.description!,
-        status: formValue.status!,
-        featured: formValue.featured!,
-        technologies: formValue.technologies!,
-        features: formValue.features!,
-        githubUrl: formValue.githubUrl ?? undefined,
-        liveUrl: formValue.liveUrl ?? undefined,
-        images: formValue.images ?? [],
-        order: 0, // Will be set by the service
-      };
-
-      this.portfolioStore.createPortfolio(portfolioData);
-      this.isSubmitting.set(false);
-      (this.dialogService as any).complete();
+    if (this.form.invalid) {
+      return;
     }
+
+    this.isSubmitting.set(true);
+
+    const formValue = this.form.value;
+    const portfolioData: CreatePortfolioRequest = {
+      title: formValue.title!,
+      shortDescription: formValue.shortDescription!,
+      description: formValue.description!,
+      status: formValue.status!,
+      featured: formValue.featured!,
+      technologies: formValue.technologies!,
+      features: formValue.features!,
+      githubUrl: formValue.githubUrl ?? undefined,
+      liveUrl: formValue.liveUrl ?? undefined,
+      images: formValue.images ?? [],
+      order: 0, // Will be set by the service
+    };
+
+    this.portfolioStore.createPortfolio(portfolioData);
+    this.isSubmitting.set(false);
   }
 
   onCancel(): void {
     this.form.reset();
-    (this.dialogService as any).complete();
+    this.context.completeWith(false);
   }
 
   protected readonly statusStringify: TuiStringHandler<number> = (id) =>

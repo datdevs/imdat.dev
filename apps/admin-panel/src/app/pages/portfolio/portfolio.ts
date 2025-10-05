@@ -40,7 +40,7 @@ export class Portfolio {
    * Open the create dialog
    */
   private _openCreateDialog() {
-    this.portfolioCreateDialog()
+    this.portfolioCreateDialog(undefined)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
