@@ -1,1 +1,234 @@
-<p>portfolio-form works!</p>
+@let cTab = currentTab();
+
+<form tuiForm [formGroup]="portfolioForm" (submit)="onSubmit()">
+  <tui-tabs [(activeItemIndex)]="currentTab">
+    <button tuiTab (click)="currentTab.set(0)">Basic Information</button>
+    <button tuiTab (click)="currentTab.set(1)">Technologies & Features</button>
+    <button tuiTab (click)="currentTab.set(2)">Images & Links</button>
+  </tui-tabs>
+
+  <!-- Basic Information Tab -->
+  @if (cTab === 0) {
+    <tui-textfield>
+      <label for="title" tuiLabel>Title</label>
+      <input formControlName="title" name="title" tuiTextfield />
+    </tui-textfield>
+    <tui-error formControlName="title" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+      <label for="shortDescription" tuiLabel>Short Description</label>
+      <textarea
+        formControlName="shortDescription"
+        name="shortDescription"
+        placeholder="Brief description (max 200 characters)"
+        tuiTextarea
+        [limit]="200"
+        [max]="5"
+        [tuiTextfieldCleaner]="true"
+      ></textarea>
+    </tui-textfield>
+    <tui-error formControlName="shortDescription" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+      <label for="description" tuiLabel>Description</label>
+      <textarea
+        formControlName="description"
+        name="description"
+        placeholder="Detailed description of the project"
+        tuiTextarea
+        [max]="10"
+        [min]="5"
+        [minlength]="50"
+        [tuiTextfieldCleaner]="true"
+      ></textarea>
+    </tui-textfield>
+    <tui-error formControlName="description" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield tuiChevron [stringify]="statusStringify" [tuiTextfieldCleaner]="false">
+      <label for="status" tuiLabel>Status</label>
+      <input formControlName="status" name="status" tuiSelect />
+
+      <tui-data-list *tuiTextfieldDropdown>
+        @for (item of statusOptions; track $index) {
+          <button new tuiOption type="button" [value]="item.value">
+            {{ item.label }}
+          </button>
+        }
+      </tui-data-list>
+    </tui-textfield>
+
+    <label class="cursor-pointer" tuiLabel>
+      <input formControlName="featured" tuiSwitch type="checkbox" />
+      Featured Portfolio
+      <tui-icon tuiTooltip="Featured portfolio will be displayed on the home page" />
+    </label>
+  }
+
+  <!-- Technologies & Features Tab -->
+  @if (cTab === 1) {
+    <div class="tab-content">
+      <!-- Technologies Section -->
+      <div class="section">
+        <h3>Technologies</h3>
+        <div class="technologies-container">
+          <div class="selected-technologies">
+            @for (tech of technologiesControl.value; track tech) {
+              <div class="tech-chip">
+                <span>{{ tech }}</span>
+                <button class="remove-btn" type="button" (click)="removeTechnology(tech)">×</button>
+              </div>
+            }
+          </div>
+
+          <div class="add-technology">
+            <input #techInput class="form-input" placeholder="Type technology name" type="text" />
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="addTechnology(techInput.value); techInput.value = ''"
+            >
+              Add
+            </button>
+          </div>
+
+          <div class="common-technologies">
+            <h4>Common Technologies</h4>
+            <div class="tech-grid">
+              @for (tech of commonTechnologies; track tech) {
+                <button
+                  class="btn btn-outline"
+                  type="button"
+                  [disabled]="technologiesControl.value?.includes(tech)"
+                  (click)="addTechnology(tech)"
+                >
+                  {{ tech }}
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="section">
+        <h3>Features</h3>
+        <div class="features-container">
+          <div class="selected-features">
+            @for (feature of featuresControl.value; track feature) {
+              <div class="feature-chip">
+                <span>{{ feature }}</span>
+                <button class="remove-btn" type="button" (click)="removeFeature(feature)">×</button>
+              </div>
+            }
+          </div>
+
+          <button class="btn btn-primary" type="button" (click)="addFeature()">+ Add Feature</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Images & Links Tab -->
+  @if (cTab === 2) {
+    <div class="tab-content">
+      <!-- Images Section -->
+      <div class="section">
+        <h3>Images</h3>
+        <div class="images-container">
+          @for (imageControl of imagesArray.controls; track $index) {
+            <div class="image-item" [formGroup]="imageControl">
+              <div class="image-preview">
+                <img
+                  class="preview-img"
+                  [alt]="imageControl.get('alt')?.value"
+                  [src]="imageControl.get('url')?.value"
+                  (error)="$event.target.style.display = 'none'"
+                />
+              </div>
+
+              <div class="image-form">
+                <div class="form-field">
+                  <label>Image URL *</label>
+                  <input
+                    class="form-input"
+                    formControlName="url"
+                    placeholder="https://example.com/image.jpg"
+                    type="url"
+                  />
+                  @if (imageControl.get('url')?.hasError('required')) {
+                    <div class="error-message">URL is required</div>
+                  }
+                  @if (imageControl.get('url')?.hasError('pattern')) {
+                    <div class="error-message">Please enter a valid URL</div>
+                  }
+                </div>
+
+                <div class="form-field">
+                  <label>Alt Text *</label>
+                  <input class="form-input" formControlName="alt" placeholder="Describe the image" type="text" />
+                  @if (imageControl.get('alt')?.hasError('required')) {
+                    <div class="error-message">Alt text is required</div>
+                  }
+                  @if (imageControl.get('alt')?.hasError('minlength')) {
+                    <div class="error-message">Alt text must be at least 3 characters</div>
+                  }
+                </div>
+
+                <div class="image-actions">
+                  <label class="checkbox-label">
+                    <input
+                      class="form-checkbox"
+                      formControlName="isMain"
+                      type="checkbox"
+                      (change)="setMainImage($index)"
+                    />
+                    Main Image
+                  </label>
+                  <button class="btn btn-danger" type="button" (click)="removeImage($index)">Delete</button>
+                </div>
+              </div>
+            </div>
+          }
+
+          <button class="btn btn-primary" type="button" (click)="addImage()">+ Add Image</button>
+        </div>
+      </div>
+
+      <!-- Links Section -->
+      <div class="section">
+        <h3>Links</h3>
+        <div class="links-container">
+          <div class="form-field">
+            <label>GitHub URL</label>
+            <input
+              class="form-input"
+              formControlName="githubUrl"
+              placeholder="https://github.com/username/repo"
+              type="url"
+            />
+            @if (portfolioForm.get('githubUrl')?.hasError('pattern')) {
+              <div class="error-message">Please enter a valid GitHub URL</div>
+            }
+          </div>
+
+          <div class="form-field">
+            <label>Live URL</label>
+            <input class="form-input" formControlName="liveUrl" placeholder="https://example.com" type="url" />
+            @if (portfolioForm.get('liveUrl')?.hasError('pattern')) {
+              <div class="error-message">Please enter a valid URL</div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Form Actions -->
+  <footer>
+    <button appearance="secondary" tuiButton type="button" (click)="onCancel()">Cancel</button>
+
+    <button tuiButton type="submit" [disabled]="isSubmitting()" [loading]="isSubmitting()" (click)="onSubmit()">
+      Save
+    </button>
+  </footer>
+</form>

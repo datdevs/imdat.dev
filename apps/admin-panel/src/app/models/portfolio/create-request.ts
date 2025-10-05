@@ -1,5 +1,5 @@
+import { StatusEnum } from '../../core/constants/status';
 import { PortfolioImage } from './image';
-import { PortfolioStatus } from './portfolio';
 
 export interface CreatePortfolioRequest {
   description: string;
@@ -11,7 +11,7 @@ export interface CreatePortfolioRequest {
   order: number;
   publishedAt?: Date;
   shortDescription: string;
-  status: PortfolioStatus;
+  status: StatusEnum;
   technologies: string[];
   title: string;
 }
