@@ -18,16 +18,7 @@ import {
   RouterLinkActive,
   RouterModule,
 } from '@angular/router';
-import { tuiAsPortal, TuiPortals } from '@taiga-ui/cdk';
-import {
-  TuiAppearance,
-  TuiButton,
-  TuiDataList,
-  TuiDropdown,
-  TuiDropdownService,
-  TuiIcon,
-  TuiTextfield,
-} from '@taiga-ui/core';
+import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification, TuiChevron, TuiFade, TuiTabs } from '@taiga-ui/kit';
 import { TuiNavigation } from '@taiga-ui/layout';
 import { filter } from 'rxjs/operators';
@@ -39,18 +30,14 @@ import { ProfileButton } from '../../components/profile-button/profile-button';
   selector: 'app-main',
   imports: [
     RouterModule,
-    TuiIcon,
     ProfileButton,
     TuiButton,
     TuiBadgedContent,
     TuiAvatar,
-    TuiBadgeNotification,
     RouterLink,
     RouterLinkActive,
     TuiAppearance,
-    TuiAvatar,
     TuiBadgeNotification,
-    TuiButton,
     TuiChevron,
     TuiDataList,
     TuiDropdown,
@@ -62,10 +49,9 @@ import { ProfileButton } from '../../components/profile-button/profile-button';
   ],
   templateUrl: './main.layout.html',
   styleUrl: './main.layout.scss',
-  providers: [TuiDropdownService, tuiAsPortal(TuiDropdownService)],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainLayout extends TuiPortals {
+export class MainLayout {
   readonly title: WritableSignal<string> = signal('');
   readonly currentRoute: WritableSignal<MenuItem | null> = signal<MenuItem | null>(null);
   readonly isSidebarCollapsed: WritableSignal<boolean> = signal<boolean>(false);
@@ -146,7 +132,7 @@ export class MainLayout extends TuiPortals {
   private readonly router = inject(Router);
 
   constructor() {
-    super();
+    // super();
     this.getTitle();
     this.getMainMenu();
   }
