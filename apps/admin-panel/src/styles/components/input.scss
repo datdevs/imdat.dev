@@ -1,3 +1,9 @@
+@import '@taiga-ui/core/styles/taiga-ui-local';
+
 [tuiAppearance][data-appearance='textfield'] {
   --t-shadow: none;
+
+  @include appearance-hover {
+    box-shadow: none;
+  }
 }
