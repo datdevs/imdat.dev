@@ -2,18 +2,25 @@
   "cSpell.words": ["dotlottie", "Firestore", "imdat", "lottiefiles", "ngrx", "notiflix", "rspack"],
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
   "editor.codeActionsOnSave": {
-    "source.addMissingImports": "explicit",
-    "source.fixAll": "always",
-    "source.removeUnused.ts": "explicit"
+    "source.addMissingImports": "always",
+    "source.fixAll": "explicit",
+    "source.removeUnused.ts": "always"
     // "source.removeUnusedImports": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.inlayHints.enabled": "on",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
   "eslint.options": {
     "cache": true,
     "cacheLocation": ".eslintcache"
   },
   "eslint.validate": ["typescript", "html"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "files.exclude": {
     "**/.angular": true,
     "**/.DS_Store": true,
@@ -45,6 +52,8 @@
     "**/projects": true,
     "**/src/assets": true
   },
-  "stylelint.validate": ["css", "scss", "sass", "less", "stylus"],
+  "stylelint.validate": ["css", "scss"],
+  "tailwindCSS.experimental.configFile": "apps/admin-panel/src/styles.scss",
+  "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.tsdk": "node_modules/typescript/lib"
 }
