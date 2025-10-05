@@ -196,34 +196,30 @@
       Add Image
     </button>
 
-    <div class="tab-content">
-      <!-- Links Section -->
-      <div class="section">
-        <h3>Links</h3>
-        <div class="links-container">
-          <div class="form-field">
-            <label>GitHub URL</label>
-            <input
-              class="form-input"
-              formControlName="githubUrl"
-              placeholder="https://github.com/username/repo"
-              type="url"
-            />
-            @if (form.get('githubUrl')?.hasError('pattern')) {
-              <div class="error-message">Please enter a valid GitHub URL</div>
-            }
-          </div>
+    <tui-textfield>
+      <label for="githubUrl" tuiLabel>
+        GitHub URL
+        <span class="text-red-500">*</span>
+      </label>
+      <input
+        formControlName="githubUrl"
+        name="githubUrl"
+        placeholder="https://github.com/username/repo"
+        tuiTextfield
+        type="url"
+      />
+      <tui-error formControlName="githubUrl" [error]="[] | tuiFieldError | async" />
+    </tui-textfield>
+    <tui-error formControlName="githubUrl" [error]="[] | tuiFieldError | async" />
 
-          <div class="form-field">
-            <label>Live URL</label>
-            <input class="form-input" formControlName="liveUrl" placeholder="https://example.com" type="url" />
-            @if (form.get('liveUrl')?.hasError('pattern')) {
-              <div class="error-message">Please enter a valid URL</div>
-            }
-          </div>
-        </div>
-      </div>
-    </div>
+    <tui-textfield>
+      <label for="liveUrl" tuiLabel>
+        Live URL
+        <span class="text-red-500">*</span>
+      </label>
+      <input formControlName="liveUrl" name="liveUrl" placeholder="https://example.com" tuiTextfield type="url" />
+    </tui-textfield>
+    <tui-error formControlName="liveUrl" [error]="[] | tuiFieldError | async" />
   }
 
   <!-- Form Actions -->
