@@ -1,6 +1,6 @@
 @let cTab = currentTab();
 
-<form tuiForm [formGroup]="portfolioForm" (submit)="onSubmit()">
+<form tuiForm [formGroup]="form" (submit)="onSubmit()">
   <tui-tabs [(activeItemIndex)]="currentTab">
     <button tuiTab (click)="currentTab.set(0)">Basic Information</button>
     <button tuiTab (click)="currentTab.set(1)">Technologies & Features</button>
@@ -10,13 +10,19 @@
   <!-- Basic Information Tab -->
   @if (cTab === 0) {
     <tui-textfield>
-      <label for="title" tuiLabel>Title</label>
+      <label for="title" tuiLabel>
+        Title
+        <span class="text-red-500">*</span>
+      </label>
       <input formControlName="title" name="title" tuiTextfield />
     </tui-textfield>
     <tui-error formControlName="title" [error]="[] | tuiFieldError | async" />
 
     <tui-textfield>
-      <label for="shortDescription" tuiLabel>Short Description</label>
+      <label for="shortDescription" tuiLabel>
+        Short Description
+        <span class="text-red-500">*</span>
+      </label>
       <textarea
         formControlName="shortDescription"
         name="shortDescription"
@@ -30,7 +36,10 @@
     <tui-error formControlName="shortDescription" [error]="[] | tuiFieldError | async" />
 
     <tui-textfield>
-      <label for="description" tuiLabel>Description</label>
+      <label for="description" tuiLabel>
+        Description
+        <span class="text-red-500">*</span>
+      </label>
       <textarea
         formControlName="description"
         name="description"
@@ -45,7 +54,10 @@
     <tui-error formControlName="description" [error]="[] | tuiFieldError | async" />
 
     <tui-textfield tuiChevron [stringify]="statusStringify" [tuiTextfieldCleaner]="false">
-      <label for="status" tuiLabel>Status</label>
+      <label for="status" tuiLabel>
+        Status
+        <span class="text-red-500">*</span>
+      </label>
       <input formControlName="status" name="status" tuiSelect />
 
       <tui-data-list *tuiTextfieldDropdown>
@@ -67,7 +79,10 @@
   <!-- Technologies & Features Tab -->
   @if (cTab === 1) {
     <tui-textfield multi>
-      <label for="technologies" tuiLabel>Technologies</label>
+      <label for="technologies" tuiLabel>
+        Technologies
+        <span class="text-red-500">*</span>
+      </label>
 
       <input formControlName="technologies" name="technologies" placeholder="Type to search" tuiInputChip />
 
@@ -82,7 +97,10 @@
     <tui-error formControlName="technologies" [error]="[] | tuiFieldError | async" />
 
     <tui-textfield multi>
-      <label for="features" tuiLabel>Features</label>
+      <label for="features" tuiLabel>
+        Features
+        <span class="text-red-500">*</span>
+      </label>
 
       <input formControlName="features" name="features" placeholder="Type and press enter to add" tuiInputChip />
 
@@ -93,70 +111,92 @@
 
   <!-- Images & Links Tab -->
   @if (cTab === 2) {
-    <div class="tab-content">
-      <!-- Images Section -->
-      <div class="section">
-        <h3>Images</h3>
-        <div class="images-container">
-          @for (imageControl of imagesArray.controls; track $index) {
-            <div class="image-item" [formGroup]="imageControl">
-              <div class="image-preview">
-                <img
-                  class="preview-img"
-                  [alt]="imageControl.get('alt')?.value"
-                  [src]="imageControl.get('url')?.value"
-                  (error)="$event.target.style.display = 'none'"
-                />
-              </div>
+    <tui-elastic-container>
+      <h5 class="text-lg font-medium">Images</h5>
 
-              <div class="image-form">
-                <div class="form-field">
-                  <label>Image URL *</label>
-                  <input
-                    class="form-input"
-                    formControlName="url"
-                    placeholder="https://example.com/image.jpg"
-                    type="url"
-                  />
-                  @if (imageControl.get('url')?.hasError('required')) {
-                    <div class="error-message">URL is required</div>
-                  }
-                  @if (imageControl.get('url')?.hasError('pattern')) {
-                    <div class="error-message">Please enter a valid URL</div>
-                  }
-                </div>
+      <div class="flex flex-wrap gap-5 p-4">
+        @for (item of fc.images.value || []; track $index) {
+          <div class="relative">
+            <img
+              class="aspect-square size-[100px] rounded-2xl object-cover shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
+              height="100"
+              width="100"
+              [alt]="item.alt"
+              [ngSrc]="item.url"
+            />
 
-                <div class="form-field">
-                  <label>Alt Text *</label>
-                  <input class="form-input" formControlName="alt" placeholder="Describe the image" type="text" />
-                  @if (imageControl.get('alt')?.hasError('required')) {
-                    <div class="error-message">Alt text is required</div>
-                  }
-                  @if (imageControl.get('alt')?.hasError('minlength')) {
-                    <div class="error-message">Alt text must be at least 3 characters</div>
-                  }
-                </div>
-
-                <div class="image-actions">
-                  <label class="checkbox-label">
-                    <input
-                      class="form-checkbox"
-                      formControlName="isMain"
-                      type="checkbox"
-                      (change)="setMainImage($index)"
-                    />
-                    Main Image
-                  </label>
-                  <button class="btn btn-danger" type="button" (click)="removeImage($index)">Delete</button>
-                </div>
-              </div>
-            </div>
-          }
-
-          <button class="btn btn-primary" type="button" (click)="addImage()">+ Add Image</button>
-        </div>
+            <button
+              class="absolute top-1 right-1 inline-flex cursor-pointer items-center justify-center rounded-full bg-black/10 p-1 shadow-lg"
+              type="button"
+              (click)="removeImage($index)"
+            >
+              <tui-icon icon="x" [style.font-size.px]="12" />
+            </button>
+          </div>
+        }
       </div>
+    </tui-elastic-container>
 
+    @if (isVisibleImageForm()) {
+      <section class="flex flex-row gap-5 rounded-3xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+        <div>
+          <img
+            class="mb-5 aspect-square size-[100px] rounded-2xl object-cover"
+            [alt]="imageFormGroup.value.alt"
+            [src]="imageFormGroup.value.url"
+            (error)="handleImageError($event)"
+          />
+          <tui-error [error]="previewImageError()"></tui-error>
+        </div>
+
+        <form class="flex-1" tuiForm="m" [formGroup]="imageFormGroup">
+          <tui-textfield>
+            <label for="url" tuiLabel>
+              Image URL
+              <span class="text-red-500">*</span>
+            </label>
+            <input formControlName="url" name="url" tuiTextfield type="url" />
+          </tui-textfield>
+          <tui-error formControlName="url" [error]="[] | tuiFieldError | async" />
+
+          <tui-textfield>
+            <label for="alt" tuiLabel>
+              Image description
+              <span class="text-red-500">*</span>
+            </label>
+            <input formControlName="alt" name="alt" tuiTextfield type="text" />
+          </tui-textfield>
+          <tui-error formControlName="alt" [error]="[] | tuiFieldError | async" />
+
+          <footer>
+            <button appearance="secondary" size="m" tuiButton type="button" (click)="cancelImage()">Cancel</button>
+            <button
+              appearance="primary"
+              size="m"
+              tuiButton
+              type="button"
+              [disabled]="imageFormGroup.invalid"
+              (click)="addImage()"
+            >
+              Save
+            </button>
+          </footer>
+        </form>
+      </section>
+    }
+
+    <button
+      iconStart="plus"
+      size="s"
+      tuiButton
+      type="button"
+      [disabled]="isVisibleImageForm()"
+      (click)="isVisibleImageForm.set(true)"
+    >
+      Add Image
+    </button>
+
+    <div class="tab-content">
       <!-- Links Section -->
       <div class="section">
         <h3>Links</h3>
@@ -169,7 +209,7 @@
               placeholder="https://github.com/username/repo"
               type="url"
             />
-            @if (portfolioForm.get('githubUrl')?.hasError('pattern')) {
+            @if (form.get('githubUrl')?.hasError('pattern')) {
               <div class="error-message">Please enter a valid GitHub URL</div>
             }
           </div>
@@ -177,7 +217,7 @@
           <div class="form-field">
             <label>Live URL</label>
             <input class="form-input" formControlName="liveUrl" placeholder="https://example.com" type="url" />
-            @if (portfolioForm.get('liveUrl')?.hasError('pattern')) {
+            @if (form.get('liveUrl')?.hasError('pattern')) {
               <div class="error-message">Please enter a valid URL</div>
             }
           </div>

@@ -1,12 +1,25 @@
-import { AsyncPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  OnInit,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TuiValidationError } from '@taiga-ui/cdk/classes';
 import { TuiStringHandler } from '@taiga-ui/cdk/types';
 import { TuiButton, TuiDataList, TuiDialogService, TuiError, TuiIcon, TuiLabel, TuiTextfield } from '@taiga-ui/core';
 import {
   TuiButtonLoading,
   TuiChip,
   TuiDataListWrapper,
+  TuiElasticContainer,
   TuiFieldErrorPipe,
   TuiFilterByInputPipe,
   TuiHideSelectedPipe,
@@ -21,6 +34,8 @@ import {
 import { TuiForm } from '@taiga-ui/layout';
 
 import { STATUS_OPTIONS, StatusEnum } from '../../../../core/constants/status';
+import { Status } from '../../../../models/common';
+import { PortfolioImage } from '../../../../models/portfolio';
 import { CreatePortfolioRequest } from '../../../../models/portfolio/create-request';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 
@@ -50,6 +65,8 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
     TuiButtonLoading,
     TuiInputChip,
     TuiChip,
+    TuiElasticContainer,
+    NgOptimizedImage,
   ],
   templateUrl: './portfolio-form.html',
   styleUrl: './portfolio-form.scss',
@@ -60,12 +77,14 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PortfolioForm {
-  readonly isSubmitting = signal(false);
+export class PortfolioForm implements OnInit {
+  protected readonly isSubmitting: WritableSignal<boolean> = signal(false);
+  protected readonly currentTab: WritableSignal<number> = signal(0);
+  protected readonly isVisibleImageForm: WritableSignal<boolean> = signal(false);
+  protected readonly previewImageError: WritableSignal<null | TuiValidationError> = signal(null);
 
-  readonly currentTab = signal(0);
   private readonly fb = inject(FormBuilder);
-  readonly portfolioForm = this.fb.group({
+  protected readonly form = this.fb.group({
     title: this.fb.control('', [Validators.required, Validators.minLength(3)]),
     shortDescription: this.fb.control('', [Validators.required, Validators.minLength(10)]),
     description: this.fb.control('', [Validators.required, Validators.minLength(50)]),
@@ -75,12 +94,18 @@ export class PortfolioForm {
     features: this.fb.control<string[]>([], [Validators.required, Validators.minLength(1)]),
     githubUrl: this.fb.control('', [Validators.pattern(/^https?:\/\/github\.com\/.+/)]),
     liveUrl: this.fb.control('', [Validators.pattern(/^https?:\/\/.+/)]),
-    images: this.fb.array<FormGroup>([]),
+    images: this.fb.control<PortfolioImage[]>([]),
   });
 
-  readonly statusOptions = STATUS_OPTIONS;
+  protected readonly imageFormGroup = this.fb.group({
+    url: this.fb.control('', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]),
+    alt: this.fb.control('', [Validators.required, Validators.minLength(3)]),
+    isMain: this.fb.control(false),
+  });
 
-  readonly commonTechnologies = [
+  protected readonly statusOptions: Status[] = STATUS_OPTIONS;
+
+  protected readonly commonTechnologies: string[] = [
     'Angular',
     'React',
     'Vue.js',
@@ -108,73 +133,68 @@ export class PortfolioForm {
     'Cypress',
   ];
 
-  readonly isFormValid = computed(() => this.portfolioForm.valid);
+  protected readonly isFormValid: Signal<boolean> = computed(() => this.form.valid);
 
-  readonly imagesArray = this.portfolioForm.get('images') as FormArray<FormGroup>;
-
+  private readonly destroyRef = inject(DestroyRef);
   private readonly portfolioStore = inject(PortfolioStore);
-
   private readonly dialogService = inject(TuiDialogService);
-  get technologiesControl() {
-    return this.portfolioForm.get('technologies') as FormControl<null | string[]>;
+
+  get fc() {
+    return {
+      images: this.form.get('images') as FormControl<PortfolioImage[]>,
+    };
   }
 
-  get featuresControl() {
-    return this.portfolioForm.get('features') as FormControl<null | string[]>;
+  ngOnInit(): void {
+    this.imageFormGroup
+      .get('url')
+      ?.valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.previewImageError.set(null);
+      });
+  }
+
+  handleImageError(event: Event): void {
+    (event.target as HTMLImageElement).src = 'https://placehold.net/default.png';
+
+    if (!this.imageFormGroup.value.url) {
+      this.previewImageError.set(null);
+      return;
+    }
+
+    this.previewImageError.set(new TuiValidationError('Invalid image URL'));
   }
 
   addImage(): void {
-    const imageGroup = this.fb.group({
-      url: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]],
-      alt: ['', [Validators.required, Validators.minLength(3)]],
-      isMain: [false],
-      order: [this.imagesArray.length],
-    });
+    this.fc.images.setValue([
+      ...this.fc.images.value,
+      {
+        order: this.fc.images.value.length,
+        alt: this.imageFormGroup.value.alt ?? '',
+        url: this.imageFormGroup.value.url ?? '',
+        isMain: this.imageFormGroup.value.isMain ?? false,
+      },
+    ]);
 
-    this.imagesArray.push(imageGroup);
+    this.imageFormGroup.reset();
+    this.isVisibleImageForm.set(false);
   }
 
-  removeImage(index: number): void {
-    this.imagesArray.removeAt(index);
+  removeImage(imageIndex: number): void {
+    this.fc.images.setValue(this.fc.images.value.filter((_, index) => index !== imageIndex));
     this.updateImageOrders();
   }
 
-  setMainImage(index: number): void {
-    this.imagesArray.controls.forEach((control, i) => {
-      control.get('isMain')?.setValue(i === index);
-    });
-  }
-
-  addTechnology(technology: string): void {
-    const currentTechnologies = this.technologiesControl.value || [];
-    if (!currentTechnologies.includes(technology)) {
-      this.technologiesControl.setValue([...currentTechnologies, technology]);
-    }
-  }
-
-  removeTechnology(technology: string): void {
-    const currentTechnologies = this.technologiesControl.value || [];
-    this.technologiesControl.setValue(currentTechnologies.filter((t) => t !== technology));
-  }
-
-  addFeature(): void {
-    const currentFeatures = this.featuresControl.value || [];
-    const newFeature = prompt('Enter feature:');
-    if (newFeature?.trim()) {
-      this.featuresControl.setValue([...currentFeatures, newFeature.trim()]);
-    }
-  }
-
-  removeFeature(feature: string): void {
-    const currentFeatures = this.featuresControl.value || [];
-    this.featuresControl.setValue(currentFeatures.filter((f) => f !== feature));
+  cancelImage(): void {
+    this.imageFormGroup.reset();
+    this.isVisibleImageForm.set(false);
   }
 
   onSubmit(): void {
-    if (this.portfolioForm.valid) {
+    if (this.form.valid) {
       this.isSubmitting.set(true);
 
-      const formValue = this.portfolioForm.value;
+      const formValue = this.form.value;
       const portfolioData: CreatePortfolioRequest = {
         title: formValue.title!,
         shortDescription: formValue.shortDescription!,
@@ -183,14 +203,9 @@ export class PortfolioForm {
         featured: formValue.featured!,
         technologies: formValue.technologies!,
         features: formValue.features!,
-        githubUrl: formValue.githubUrl || undefined,
-        liveUrl: formValue.liveUrl || undefined,
-        images: this.imagesArray.value.map((img: any) => ({
-          url: img.url!,
-          alt: img.alt!,
-          isMain: img.isMain!,
-          order: img.order!,
-        })),
+        githubUrl: formValue.githubUrl ?? undefined,
+        liveUrl: formValue.liveUrl ?? undefined,
+        images: formValue.images ?? [],
         order: 0, // Will be set by the service
       };
 
@@ -201,8 +216,7 @@ export class PortfolioForm {
   }
 
   onCancel(): void {
-    this.portfolioForm.reset();
-    this.imagesArray.clear();
+    this.form.reset();
     (this.dialogService as any).complete();
   }
 
@@ -210,8 +224,6 @@ export class PortfolioForm {
     this.statusOptions.find((item) => item.id === id)?.label ?? '';
 
   private updateImageOrders(): void {
-    this.imagesArray.controls.forEach((control, index) => {
-      control.get('order')?.setValue(index);
-    });
+    this.fc.images.setValue(this.fc.images.value?.map((img, index) => ({ ...img, order: index })) ?? []);
   }
 }
