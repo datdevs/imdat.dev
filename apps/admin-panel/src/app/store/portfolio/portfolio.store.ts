@@ -1,4 +1,5 @@
 import { computed, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, type, withComputed, withMethods, withState } from '@ngrx/signals';
 import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
@@ -6,22 +7,22 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 
 import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../models/portfolio';
-import { PortfolioService } from '../../services';
+import { NotifyService, PortfolioService } from '../../services';
 
 export interface PortfolioState {
-  error: null | string;
   filters: null | PortfolioFilters;
+  isSubmitting: boolean;
   loading: boolean;
   searchTerm: string;
   selectedPortfolioId: null | string;
 }
 
 const initialState: PortfolioState = {
-  loading: false,
-  error: null,
-  selectedPortfolioId: null,
   filters: null,
+  isSubmitting: false,
+  loading: false,
   searchTerm: '',
+  selectedPortfolioId: null,
 };
 
 const portfolioEntityConfig = entityConfig({
@@ -84,12 +85,16 @@ export const PortfolioStore = signalStore(
     draftCount: computed(() => portfoliosEntities().filter((p) => p.status === 'draft').length),
     featuredCount: computed(() => portfoliosEntities().filter((p) => p.featured).length),
   })),
-  withMethods((store, portfolioService = inject(PortfolioService)) => {
+  withMethods((store) => {
+    const portfolioService = inject(PortfolioService);
+    const router = inject(Router);
+    const notify = inject(NotifyService);
+
     // Load all portfolios
     const loadPortfolios = rxMethod<null | PortfolioFilters>(
       pipe(
         switchMap((filters) => {
-          patchState(store, { loading: true, error: null, filters: filters ?? null });
+          patchState(store, { loading: true, filters: filters ?? null });
           return portfolioService.getPortfolios(filters ?? undefined).pipe(
             tapResponse({
               next: (portfolios) => {
@@ -143,19 +148,19 @@ export const PortfolioStore = signalStore(
     const createPortfolio = rxMethod<CreatePortfolioRequest>(
       pipe(
         switchMap((portfolioData) => {
-          patchState(store, { loading: true, error: null });
+          patchState(store, { isSubmitting: true });
           return portfolioService.createPortfolio(portfolioData).pipe(
             tapResponse({
               next: () => {
                 // Reload portfolios to get the new one with all data
                 loadPortfolios(store.filters());
-                patchState(store, { loading: false });
+                notify.success('Portfolio was created successfully');
+                router.navigate(['/portfolio']);
               },
               error: () => {
-                patchState(store, {
-                  loading: false,
-                });
+                notify.error('Failed to create portfolio');
               },
+              finalize: () => patchState(store, { isSubmitting: false }),
             }),
           );
         }),

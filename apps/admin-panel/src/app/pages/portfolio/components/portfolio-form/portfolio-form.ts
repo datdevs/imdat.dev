@@ -2,7 +2,6 @@ import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   DestroyRef,
   inject,
   OnInit,
@@ -80,7 +79,6 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 })
 export class PortfolioForm implements OnInit {
   public readonly context = injectContext<TuiDialogContext<boolean>>();
-  protected readonly isSubmitting: WritableSignal<boolean> = signal(false);
   protected readonly currentTab: WritableSignal<number> = signal(0);
   protected readonly isVisibleImageForm: WritableSignal<boolean> = signal(false);
 
@@ -136,10 +134,36 @@ export class PortfolioForm implements OnInit {
     'Cypress',
   ];
 
-  protected readonly isFormValid: Signal<boolean> = computed(() => this.form.valid);
+  private readonly portfolioStore = inject(PortfolioStore);
+  protected readonly isSubmitting: Signal<boolean> = this.portfolioStore.isSubmitting;
   private readonly destroyRef = inject(DestroyRef);
 
-  private readonly portfolioStore = inject(PortfolioStore);
+  constructor() {
+    // this.portfolioStore.createPortfolio({
+    //   title: 'Website ban hang Vinfast Nha Trang.',
+    //   shortDescription: 'Website ban hang Vinfast Nha Trang.',
+    //   description:
+    //     'Website ban hang Vinfast Nha Trang.Website ban hang Vinfast Nha Trang.Website ban hang Vinfast Nha Trang.',
+    //   status: 'published',
+    //   featured: false,
+    //   technologies: ['Website ban hang Vinfast Nha Trang.'],
+    //   features: ['Website ban hang Vinfast Nha Trang.'],
+    //   githubUrl: 'https://github.com/datdevs/hehe',
+    //   liveUrl: 'https://github.com',
+    //   images: [
+    //     {
+    //       order: 0,
+    //       alt: 'Website ban hang Vinfast Nha Trang.',
+    //       url: 'https://s3-alpha.figma.com/hub/file/5033289953/f3145c66-8cc3-4bfb-9881-8e6b0cf000b1-cover.png',
+    //       isMain: false,
+    //     },
+    //   ],
+    //   order: 0,
+    //   createdAt: '2025-10-07T11:22:56.257Z',
+    //   updatedAt: '2025-10-07T11:22:56.257Z',
+    //   publishedAt: '2025-10-07T11:22:56.257Z',
+    // } as any);
+  }
 
   get fc() {
     return {
@@ -199,8 +223,6 @@ export class PortfolioForm implements OnInit {
       return;
     }
 
-    this.isSubmitting.set(true);
-
     const formValue = this.form.value;
     const portfolioData: CreatePortfolioRequest = {
       title: formValue.title!,
@@ -217,7 +239,6 @@ export class PortfolioForm implements OnInit {
     };
 
     this.portfolioStore.createPortfolio(portfolioData);
-    this.isSubmitting.set(false);
   }
 
   onCancel(): void {

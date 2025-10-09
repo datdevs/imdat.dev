@@ -84,7 +84,7 @@ export class PortfolioService {
       ...portfolioData,
       createdAt: now,
       updatedAt: now,
-      publishedAt: portfolioData.status === 'published' ? now : undefined,
+      publishedAt: portfolioData.status === 'published' ? now : null,
     };
 
     return from(addDoc(portfolioCollection, portfolioToCreate)).pipe(

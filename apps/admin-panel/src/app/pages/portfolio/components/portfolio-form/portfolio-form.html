@@ -114,27 +114,29 @@
     <tui-elastic-container>
       <h5 class="text-lg font-medium">Images</h5>
 
-      <div class="flex flex-wrap gap-5 p-4">
-        @for (item of fc.images.value || []; track $index) {
-          <div class="relative">
-            <img
-              class="aspect-square size-[100px] rounded-2xl object-cover shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
-              height="100"
-              width="100"
-              [alt]="item.alt"
-              [ngSrc]="item.url"
-            />
+      @if (fc.images.value && fc.images.value.length > 0) {
+        <div class="flex flex-wrap gap-5 p-4">
+          @for (item of fc.images.value || []; track $index) {
+            <div class="relative">
+              <img
+                class="aspect-square size-[100px] rounded-2xl object-cover shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
+                height="100"
+                width="100"
+                [alt]="item.alt"
+                [ngSrc]="item.url"
+              />
 
-            <button
-              class="absolute top-1 right-1 inline-flex cursor-pointer items-center justify-center rounded-full bg-black/10 p-1 shadow-lg"
-              type="button"
-              (click)="removeImage($index)"
-            >
-              <tui-icon icon="x" [style.font-size.px]="12" />
-            </button>
-          </div>
-        }
-      </div>
+              <button
+                class="absolute top-1 right-1 inline-flex cursor-pointer items-center justify-center rounded-full bg-black/10 p-1 shadow-lg"
+                type="button"
+                (click)="removeImage($index)"
+              >
+                <tui-icon icon="x" [style.font-size.px]="12" />
+              </button>
+            </div>
+          }
+        </div>
+      }
     </tui-elastic-container>
 
     @if (isVisibleImageForm()) {
@@ -226,8 +228,6 @@
   <footer>
     <button appearance="secondary" tuiButton type="button" (click)="onCancel()">Cancel</button>
 
-    <button tuiButton type="submit" [disabled]="isSubmitting()" [loading]="isSubmitting()" (click)="onSubmit()">
-      Save
-    </button>
+    <button tuiButton type="submit" [disabled]="isSubmitting()" [loading]="isSubmitting()">Save</button>
   </footer>
 </form>
