@@ -26,8 +26,10 @@ export class PortfolioService {
 
   /**
    * Get all portfolios with optional filters
+   * @param {PortfolioFilters} filters
+   * @returns {Observable<Portfolio[]>}
    */
-  getPortfolios(filters?: PortfolioFilters) {
+  getPortfolios(filters?: PortfolioFilters): Observable<Portfolio[]> {
     const portfolioCollection = collection(this.firestore, this.collectionName);
     let q = query(portfolioCollection, orderBy('order', 'asc'));
 
@@ -42,7 +44,9 @@ export class PortfolioService {
       q = query(q, where('technologies', 'array-contains-any', filters.technologies));
     }
 
-    return collectionData(q);
+    return collectionData(q, {
+      idField: 'id',
+    }) as Observable<Portfolio[]>;
   }
 
   /**
@@ -66,15 +70,13 @@ export class PortfolioService {
           publishedAt: data['publishedAt']?.toDate(),
         } as Portfolio;
       }),
-      catchError((error) => {
-        console.error('Error fetching portfolio:', error);
-        throw error;
-      }),
     );
   }
 
   /**
    * Create a new portfolio
+   * @param {CreatePortfolioRequest} portfolioData
+   * @returns {Observable<{ id: string }>}
    */
   createPortfolio(portfolioData: CreatePortfolioRequest): Observable<{ id: string }> {
     const portfolioCollection = collection(this.firestore, this.collectionName);
@@ -87,13 +89,7 @@ export class PortfolioService {
       publishedAt: portfolioData.status === 'published' ? now : null,
     };
 
-    return from(addDoc(portfolioCollection, portfolioToCreate)).pipe(
-      map((docRef) => ({ id: docRef.id })),
-      catchError((error) => {
-        console.error('Error creating portfolio:', error);
-        throw error;
-      }),
-    );
+    return from(addDoc(portfolioCollection, portfolioToCreate)).pipe(map((docRef) => ({ id: docRef.id })));
   }
 
   /**
@@ -120,17 +116,13 @@ export class PortfolioService {
 
   /**
    * Delete a portfolio
+   * @param {string} id
+   * @returns {Observable<void>}
    */
-  deletePortfolio(id: string): Observable<boolean> {
+  deletePortfolio(id: string): Observable<void> {
     const portfolioDoc = doc(this.firestore, this.collectionName, id);
 
-    return from(deleteDoc(portfolioDoc)).pipe(
-      map(() => true),
-      catchError((error) => {
-        console.error('Error deleting portfolio:', error);
-        throw error;
-      }),
-    );
+    return from(deleteDoc(portfolioDoc));
   }
 
   /**

@@ -121,6 +121,7 @@
               <img
                 class="aspect-square size-[100px] rounded-2xl object-cover shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
                 height="100"
+                loading="lazy"
                 width="100"
                 [alt]="item.alt"
                 [ngSrc]="item.url"
@@ -144,6 +145,7 @@
         <div>
           <img
             class="mb-5 aspect-square size-[100px] rounded-2xl object-cover"
+            loading="lazy"
             [alt]="imageFormGroup.value.alt"
             [src]="imageFormGroup.value.url"
             (error)="handleImageError($event)"

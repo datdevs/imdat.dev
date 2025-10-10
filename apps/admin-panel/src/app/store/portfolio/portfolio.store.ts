@@ -1,3 +1,4 @@
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { tapResponse } from '@ngrx/operators';
@@ -8,13 +9,13 @@ import { pipe, switchMap } from 'rxjs';
 
 import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../models/portfolio';
 import { NotifyService, PortfolioService } from '../../services';
+import { FirebaseError } from '@angular/fire/app';
 
 export interface PortfolioState {
   filters: null | PortfolioFilters;
   isSubmitting: boolean;
   loading: boolean;
   searchTerm: string;
-  selectedPortfolioId: null | string;
 }
 
 const initialState: PortfolioState = {
@@ -22,68 +23,25 @@ const initialState: PortfolioState = {
   isSubmitting: false,
   loading: false,
   searchTerm: '',
-  selectedPortfolioId: null,
 };
 
 const portfolioEntityConfig = entityConfig({
   entity: type<Portfolio>(),
-  collection: 'portfolios',
+  collection: '_portfolios',
   selectId: (portfolio: Portfolio) => portfolio.id,
 });
 
 export const PortfolioStore = signalStore(
   { providedIn: 'root' },
+  withDevtools('portfolios'),
   withState(initialState),
   withEntities(portfolioEntityConfig),
-  withComputed(({ portfoliosEntities, selectedPortfolioId, portfoliosEntityMap }) => ({
+  withComputed(({ _portfoliosEntities }) => ({
     // Get all portfolios as array
-    portfolios: computed(() => portfoliosEntities()),
-
-    // Get selected portfolio
-    selectedPortfolio: computed(() => {
-      const id = selectedPortfolioId();
-      return id ? portfoliosEntityMap()[id] : undefined;
-    }),
-
-    // Get published portfolios only
-    publishedPortfolios: computed(() => portfoliosEntities().filter((portfolio) => portfolio.status === 'published')),
-
-    // Get featured portfolios
-    featuredPortfolios: computed(() =>
-      portfoliosEntities().filter((portfolio) => portfolio.featured && portfolio.status === 'published'),
-    ),
-
-    // Get draft portfolios
-    draftPortfolios: computed(() => portfoliosEntities().filter((portfolio) => portfolio.status === 'draft')),
-
-    // Get portfolios by technology
-    portfoliosByTechnology: computed(
-      () => (technologies: string[]) =>
-        portfoliosEntities().filter(
-          (portfolio) =>
-            portfolio.status === 'published' && technologies.some((tech) => portfolio.technologies.includes(tech)),
-        ),
-    ),
-
-    // Search portfolios
-    searchResults: computed(() => (searchTerm: string) => {
-      if (!searchTerm) return portfoliosEntities();
-
-      const term = searchTerm.toLowerCase();
-      return portfoliosEntities().filter(
-        (portfolio) =>
-          portfolio.title.toLowerCase().includes(term) ||
-          portfolio.description.toLowerCase().includes(term) ||
-          portfolio.shortDescription.toLowerCase().includes(term) ||
-          portfolio.technologies.some((tech) => tech.toLowerCase().includes(term)),
-      );
-    }),
+    portfolios: computed(() => _portfoliosEntities()),
 
     // Statistics
-    totalPortfolios: computed(() => portfoliosEntities().length),
-    publishedCount: computed(() => portfoliosEntities().filter((p) => p.status === 'published').length),
-    draftCount: computed(() => portfoliosEntities().filter((p) => p.status === 'draft').length),
-    featuredCount: computed(() => portfoliosEntities().filter((p) => p.featured).length),
+    totalPortfolios: computed(() => _portfoliosEntities().length),
   })),
   withMethods((store) => {
     const portfolioService = inject(PortfolioService);
@@ -98,11 +56,12 @@ export const PortfolioStore = signalStore(
           return portfolioService.getPortfolios(filters ?? undefined).pipe(
             tapResponse({
               next: (portfolios) => {
-                patchState(store, setAllEntities(portfolios as Portfolio[], portfolioEntityConfig), {
+                patchState(store, setAllEntities(portfolios, portfolioEntityConfig), {
                   loading: false,
                 });
               },
-              error: () => {
+              error: (error: FirebaseError) => {
+                notify.error(error.message ?? 'Failed to load portfolios');
                 patchState(store, {
                   loading: false,
                 });
@@ -157,8 +116,8 @@ export const PortfolioStore = signalStore(
                 notify.success('Portfolio was created successfully');
                 router.navigate(['/portfolio']);
               },
-              error: () => {
-                notify.error('Failed to create portfolio');
+              error: (error: FirebaseError) => {
+                notify.error(error.message ?? 'Failed to create portfolio');
               },
               finalize: () => patchState(store, { isSubmitting: false }),
             }),
@@ -198,36 +157,26 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    // // Delete portfolio
-    // deletePortfolio: rxMethod<string>(
-    //   pipe(
-    //     switchMap((id) => {
-    //       patchState(store, { loading: true, error: null });
-    //       return portfolioService.deletePortfolio(id).pipe(
-    //         tapResponse({
-    //           next: (success) => {
-    //             if (success) {
-    //               patchState(store, removeEntity(id, portfolioEntityConfig), {
-    //                 loading: false,
-    //               });
-    //             } else {
-    //               patchState(store, {
-    //                 loading: false,
-    //                 error: 'Failed to delete portfolio',
-    //               });
-    //             }
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to delete portfolio',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
+    // Delete portfolio
+    const deletePortfolio = rxMethod<string>(
+      pipe(
+        switchMap((id: string) => {
+          patchState(store, { loading: true });
+          return portfolioService.deletePortfolio(id).pipe(
+            tapResponse({
+              next: () => {
+                loadPortfolios(store.filters());
+                notify.success('Portfolio was deleted successfully');
+              },
+              error: (error: FirebaseError) => {
+                notify.error(error.message ?? 'Failed to delete portfolio');
+              },
+              finalize: () => patchState(store, { loading: false }),
+            }),
+          );
+        }),
+      ),
+    );
 
     // // Search portfolios
     // searchPortfolios: rxMethod<string>(
@@ -336,6 +285,6 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    return { loadPortfolios, createPortfolio };
+    return { loadPortfolios, createPortfolio, deletePortfolio };
   }),
 );

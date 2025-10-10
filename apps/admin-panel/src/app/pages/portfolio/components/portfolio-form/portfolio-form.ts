@@ -138,33 +138,6 @@ export class PortfolioForm implements OnInit {
   protected readonly isSubmitting: Signal<boolean> = this.portfolioStore.isSubmitting;
   private readonly destroyRef = inject(DestroyRef);
 
-  constructor() {
-    // this.portfolioStore.createPortfolio({
-    //   title: 'Website ban hang Vinfast Nha Trang.',
-    //   shortDescription: 'Website ban hang Vinfast Nha Trang.',
-    //   description:
-    //     'Website ban hang Vinfast Nha Trang.Website ban hang Vinfast Nha Trang.Website ban hang Vinfast Nha Trang.',
-    //   status: 'published',
-    //   featured: false,
-    //   technologies: ['Website ban hang Vinfast Nha Trang.'],
-    //   features: ['Website ban hang Vinfast Nha Trang.'],
-    //   githubUrl: 'https://github.com/datdevs/hehe',
-    //   liveUrl: 'https://github.com',
-    //   images: [
-    //     {
-    //       order: 0,
-    //       alt: 'Website ban hang Vinfast Nha Trang.',
-    //       url: 'https://s3-alpha.figma.com/hub/file/5033289953/f3145c66-8cc3-4bfb-9881-8e6b0cf000b1-cover.png',
-    //       isMain: false,
-    //     },
-    //   ],
-    //   order: 0,
-    //   createdAt: '2025-10-07T11:22:56.257Z',
-    //   updatedAt: '2025-10-07T11:22:56.257Z',
-    //   publishedAt: '2025-10-07T11:22:56.257Z',
-    // } as any);
-  }
-
   get fc() {
     return {
       images: this.form.get('images') as FormControl<PortfolioImage[]>,
