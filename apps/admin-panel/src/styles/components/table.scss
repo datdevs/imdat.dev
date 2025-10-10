@@ -1,7 +1,7 @@
 @use 'tailwindcss';
 
 table[tuiTable] {
-  --table-radius: var(--tui-radius-l);
+  --table-radius: var(--tui-radius-xl);
 
   th[tuith] {
     border-color: transparent;
