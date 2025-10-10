@@ -16,12 +16,13 @@ import {
   TuiDataList,
   TuiDropdown,
   TuiDropdownContext,
+  TuiLoader,
   TuiOptionNew,
   TuiScrollable,
   TuiScrollbar,
   TuiTitle,
 } from '@taiga-ui/core';
-import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiSkeleton, TuiStatus } from '@taiga-ui/kit';
+import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
 import { TuiCard, TuiCell } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
@@ -53,7 +54,6 @@ import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
     TuiDataList,
     TuiOptionNew,
     NgOptimizedImage,
-    TuiSkeleton,
     Empty,
     TuiAppearance,
     TuiTablePagination,
@@ -63,6 +63,7 @@ import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
     CdkVirtualScrollViewport,
     TuiScrollable,
     TuiScrollbar,
+    TuiLoader,
   ],
   templateUrl: './portfolio-table.html',
   styleUrl: './portfolio-table.scss',
