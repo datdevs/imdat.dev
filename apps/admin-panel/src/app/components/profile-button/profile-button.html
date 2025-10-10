@@ -1,11 +1,5 @@
 @if (user(); as user) {
-  <div
-    class="cursor-pointer"
-    tuiDropdownAlign="right"
-    type="button"
-    [tuiDropdown]="settingsMenu"
-    [(tuiDropdownOpen)]="openDropdown"
-  >
+  <div class="cursor-pointer" tuiDropdownAlign="right" tuiDropdownOpen type="button" [tuiDropdown]="settingsMenu">
     <tui-avatar
       size="s"
       [src]="user.photoURL ?? '' | tuiFallbackSrc: '@tui.user' | async"
@@ -28,11 +22,11 @@
     </div>
 
     <tui-data-list size="m">
-      <a tuiOption [routerLink]="['/profile']">
+      <a new tuiOption [routerLink]="['/profile']">
         <tui-icon icon="id-card" [style.font-size.px]="16"></tui-icon>
         Profile
       </a>
-      <button tuiOption [disabled]="isSigningOut()" (click)="signOut()">
+      <button new tuiOption [disabled]="isSigningOut()" (click)="signOut()">
         <tui-icon icon="log-out" [style.font-size.px]="16"></tui-icon>
         Sign Out
       </button>
