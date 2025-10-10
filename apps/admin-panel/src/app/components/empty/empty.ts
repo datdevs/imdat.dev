@@ -10,19 +10,15 @@ import {
   viewChild,
   WritableSignal,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { DotLottie } from '@lottiefiles/dotlottie-web';
-import { TuiButton, TuiIcon } from '@taiga-ui/core';
-import { TuiCard } from '@taiga-ui/layout';
 
 @Component({
-  selector: 'app-not-found',
-  imports: [RouterModule, TuiCard, TuiIcon, TuiButton],
-  templateUrl: './not-found.html',
-  styleUrl: './not-found.scss',
+  selector: 'app-empty',
+  templateUrl: './empty.html',
+  styleUrl: './empty.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotFound {
+export class Empty {
   protected readonly notFoundCanvas: Signal<ElementRef | undefined> = viewChild<ElementRef>('notFoundCanvas');
   private readonly destroyRef = inject(DestroyRef);
 
@@ -36,7 +32,7 @@ export class NotFound {
             autoplay: true,
             canvas: this.notFoundCanvas()?.nativeElement,
             loop: true,
-            src: '/images/404.lottie',
+            src: '/images/not-found.lottie',
           }),
         );
       }
