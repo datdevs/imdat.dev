@@ -2,9 +2,4 @@
 
 :root {
   --tui-theme-color: #fff;
-
-  tui-badge[data-size='m'],
-  [tuiBadge][data-size='m'] {
-    --t-padding: 0 0.625rem;
-  }
 }

@@ -1,7 +1,15 @@
+import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TuiCheckboxTableDirective, TuiTable, TuiTableControl, TuiTablePagination } from '@taiga-ui/addon-table';
+import { faker } from '@faker-js/faker';
+import {
+  TuiCheckboxTableDirective,
+  TuiTable,
+  TuiTableControl,
+  TuiTablePagination,
+  TuiTablePaginationEvent,
+} from '@taiga-ui/addon-table';
 import {
   TuiAppearance,
   TuiButton,
@@ -9,13 +17,16 @@ import {
   TuiDropdown,
   TuiDropdownContext,
   TuiOptionNew,
+  TuiScrollable,
+  TuiScrollbar,
   TuiTitle,
 } from '@taiga-ui/core';
 import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiSkeleton, TuiStatus } from '@taiga-ui/kit';
 import { TuiCard, TuiCell } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
-import { Portfolio } from '../../../../models/portfolio';
+import { StatusEnum } from '../../../../core/constants/status';
+import { CreatePortfolioRequest, Portfolio } from '../../../../models/portfolio';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 import { StatusPipe } from '../../../../utils/pipes';
 import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
@@ -47,6 +58,11 @@ import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
     TuiAppearance,
     TuiTablePagination,
     TuiCard,
+    CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf,
+    CdkVirtualScrollViewport,
+    TuiScrollable,
+    TuiScrollbar,
   ],
   templateUrl: './portfolio-table.html',
   styleUrl: './portfolio-table.scss',
@@ -76,11 +92,61 @@ export class PortfolioTable {
   private readonly portfolioStore = inject(PortfolioStore);
   protected readonly portfolios: Signal<Portfolio[]> = this.portfolioStore.portfolios;
   protected readonly loading: Signal<boolean> = this.portfolioStore.loading;
+  protected readonly totalPortfolios: Signal<number> = this.portfolioStore.totalPortfolios;
   protected readonly page = computed(() => this.portfolioStore.filters()?.page ?? 0);
   protected readonly size = computed(() => this.portfolioStore.filters()?.limit ?? 10);
 
   constructor() {
-    this.portfolioStore.loadPortfolios(null);
+    this.portfolioStore.loadPortfolios();
+    // this.createFakeData();
+  }
+
+  createFakeData() {
+    const fakeData: CreatePortfolioRequest[] = faker.helpers.multiple(
+      () => ({
+        createdAt: faker.date.recent({ days: 365 }),
+        updatedAt: faker.date.recent({ days: 365 }),
+        publishedAt: faker.date.recent({ days: 365 }),
+        title: faker.book.title(),
+        description: faker.lorem.paragraph(),
+        shortDescription: faker.lorem.sentence(),
+        technologies: faker.helpers.multiple(() => faker.lorem.word(), { count: 3 }),
+        features: faker.helpers.multiple(() => faker.lorem.word(), { count: 3 }),
+        images: faker.helpers.multiple(
+          () => ({
+            url: faker.image.urlPicsumPhotos(),
+            alt: faker.lorem.word(),
+            isMain: false,
+          }),
+          { count: 3 },
+        ),
+        featured: faker.datatype.boolean(),
+        order: 0,
+        status: faker.helpers.arrayElement(Object.values(StatusEnum)),
+        githubUrl: faker.internet.url(),
+        liveUrl: faker.internet.url(),
+      }),
+      {
+        count: 100,
+      },
+    );
+
+    console.log(fakeData);
+    // fakeData.forEach((portfolio) => {
+    //   this.portfolioStore.createPortfolio(portfolio);
+    // });
+  }
+
+  /**
+   * Handle pagination change
+   * @param {TuiTablePaginationEvent} event
+   */
+  onPaginationChange({ page, size }: TuiTablePaginationEvent) {
+    this.portfolioStore.updateFilters({
+      page,
+      limit: size,
+    });
+    this.portfolioStore.loadPortfolios();
   }
 
   /**

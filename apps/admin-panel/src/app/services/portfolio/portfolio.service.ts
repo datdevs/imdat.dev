@@ -7,8 +7,10 @@ import {
   doc,
   Firestore,
   getDoc,
+  limit,
   orderBy,
   query,
+  startAfter,
   updateDoc,
   where,
 } from '@angular/fire/firestore';
@@ -24,14 +26,17 @@ export class PortfolioService {
   private readonly firestore = inject(Firestore);
   private readonly collectionName = 'portfolios';
 
+  get collection() {
+    return collection(this.firestore, this.collectionName);
+  }
+
   /**
    * Get all portfolios with optional filters
    * @param {PortfolioFilters} filters
    * @returns {Observable<Portfolio[]>}
    */
   getPortfolios(filters?: PortfolioFilters): Observable<Portfolio[]> {
-    const portfolioCollection = collection(this.firestore, this.collectionName);
-    let q = query(portfolioCollection, orderBy('order', 'asc'));
+    let q = query(this.collection, orderBy('updatedAt', 'desc'));
 
     // Apply filters
     if (filters?.status) {
@@ -44,9 +49,38 @@ export class PortfolioService {
       q = query(q, where('technologies', 'array-contains-any', filters.technologies));
     }
 
+    // Apply pagination
+    if (filters?.limit) {
+      q = query(q, limit(filters?.limit ?? 10));
+    }
+    if (filters?.page) {
+      q = query(q, startAfter(filters?.page * (filters?.limit ?? 10)));
+    }
+
     return collectionData(q, {
       idField: 'id',
     }) as Observable<Portfolio[]>;
+  }
+
+  /**
+   * Get the count of all portfolios
+   * @returns {Observable<number>}
+   */
+  getPortfoliosCount(filters?: PortfolioFilters): Observable<number> {
+    let q = query(this.collection, orderBy('order', 'asc'));
+
+    // Apply filters
+    if (filters?.status) {
+      q = query(q, where('status', '==', filters.status));
+    }
+    if (filters?.featured !== undefined) {
+      q = query(q, where('featured', '==', filters.featured));
+    }
+    if (filters?.technologies && filters.technologies.length > 0) {
+      q = query(q, where('technologies', 'array-contains-any', filters.technologies));
+    }
+
+    return collectionData(q, { idField: 'id' }).pipe(map((portfolios) => portfolios.length));
   }
 
   /**
@@ -79,7 +113,6 @@ export class PortfolioService {
    * @returns {Observable<{ id: string }>}
    */
   createPortfolio(portfolioData: CreatePortfolioRequest): Observable<{ id: string }> {
-    const portfolioCollection = collection(this.firestore, this.collectionName);
     const now = new Date();
 
     const portfolioToCreate = {
@@ -89,7 +122,7 @@ export class PortfolioService {
       publishedAt: portfolioData.status === 'published' ? now : null,
     };
 
-    return from(addDoc(portfolioCollection, portfolioToCreate)).pipe(map((docRef) => ({ id: docRef.id })));
+    return from(addDoc(this.collection, portfolioToCreate)).pipe(map((docRef) => ({ id: docRef.id })));
   }
 
   /**

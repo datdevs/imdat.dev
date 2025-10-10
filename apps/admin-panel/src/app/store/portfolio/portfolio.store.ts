@@ -1,28 +1,33 @@
 import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { computed, inject } from '@angular/core';
+import { FirebaseError } from '@angular/fire/app';
 import { Router } from '@angular/router';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, type, withComputed, withMethods, withState } from '@ngrx/signals';
 import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
+import { merge, pipe, switchMap } from 'rxjs';
 
 import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../models/portfolio';
 import { NotifyService, PortfolioService } from '../../services';
-import { FirebaseError } from '@angular/fire/app';
 
 export interface PortfolioState {
-  filters: null | PortfolioFilters;
+  filters: PortfolioFilters;
   isSubmitting: boolean;
   loading: boolean;
   searchTerm: string;
+  totalPortfolios: number;
 }
 
 const initialState: PortfolioState = {
-  filters: null,
+  filters: {
+    limit: 10,
+    page: 0,
+  },
   isSubmitting: false,
   loading: false,
   searchTerm: '',
+  totalPortfolios: 0,
 };
 
 const portfolioEntityConfig = entityConfig({
@@ -39,26 +44,38 @@ export const PortfolioStore = signalStore(
   withComputed(({ _portfoliosEntities }) => ({
     // Get all portfolios as array
     portfolios: computed(() => _portfoliosEntities()),
-
-    // Statistics
-    totalPortfolios: computed(() => _portfoliosEntities().length),
   })),
   withMethods((store) => {
     const portfolioService = inject(PortfolioService);
     const router = inject(Router);
     const notify = inject(NotifyService);
 
+    // Update filters
+    const updateFilters = (filters: Partial<PortfolioFilters>) => {
+      patchState(store, (state) => ({ ...state, filters: { ...state.filters, ...filters } }));
+    };
+
     // Load all portfolios
-    const loadPortfolios = rxMethod<null | PortfolioFilters>(
+    const loadPortfolios = rxMethod<void>(
       pipe(
-        switchMap((filters) => {
-          patchState(store, { loading: true, filters: filters ?? null });
-          return portfolioService.getPortfolios(filters ?? undefined).pipe(
+        switchMap(() => {
+          patchState(store, { loading: true });
+          return merge(
+            portfolioService.getPortfolios(store.filters()),
+            portfolioService.getPortfoliosCount(store.filters()),
+          ).pipe(
             tapResponse({
-              next: (portfolios) => {
-                patchState(store, setAllEntities(portfolios, portfolioEntityConfig), {
-                  loading: false,
-                });
+              next: (result) => {
+                if (typeof result === 'number') {
+                  patchState(store, {
+                    totalPortfolios: result,
+                    loading: false,
+                  });
+                } else {
+                  patchState(store, setAllEntities(result, portfolioEntityConfig), {
+                    loading: false,
+                  });
+                }
               },
               error: (error: FirebaseError) => {
                 notify.error(error.message ?? 'Failed to load portfolios');
@@ -112,7 +129,7 @@ export const PortfolioStore = signalStore(
             tapResponse({
               next: () => {
                 // Reload portfolios to get the new one with all data
-                loadPortfolios(store.filters());
+                loadPortfolios();
                 notify.success('Portfolio was created successfully');
                 router.navigate(['/portfolio']);
               },
@@ -165,7 +182,7 @@ export const PortfolioStore = signalStore(
           return portfolioService.deletePortfolio(id).pipe(
             tapResponse({
               next: () => {
-                loadPortfolios(store.filters());
+                loadPortfolios();
                 notify.success('Portfolio was deleted successfully');
               },
               error: (error: FirebaseError) => {
@@ -285,6 +302,6 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    return { loadPortfolios, createPortfolio, deletePortfolio };
+    return { updateFilters, loadPortfolios, createPortfolio, deletePortfolio };
   }),
 );

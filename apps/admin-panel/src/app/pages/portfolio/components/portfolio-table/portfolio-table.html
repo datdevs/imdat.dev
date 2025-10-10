@@ -1,86 +1,109 @@
 @let data = portfolios();
 @let isLoading = loading();
 
-<table class="w-full" tuiTable [(ngModel)]="selectedPortfolios">
-  <thead>
-    <tr>
-      <th tuiTh>
-        <div tuiCell [tuiSkeleton]="isLoading">
-          <input size="s" tuiCheckbox tuiCheckboxTable type="checkbox" />
-        </div>
-      </th>
-      <th tuiTh>Title</th>
-      <th tuiTh>Short Description</th>
-      <th tuiTh>Status</th>
-      <th tuiTh>Updated At</th>
-      <th tuiTh>Published At</th>
-      <th tuiTh></th>
-    </tr>
-  </thead>
-  <tbody tuiTbody>
-    @for (item of data; track item.id) {
-      <tr #dropdown="tuiDropdown" tuiDropdownContext [tuiDropdown]="actions">
-        <td tuiTd>
-          <div tuiCell [tuiSkeleton]="isLoading">
-            <input size="s" tuiCheckbox type="checkbox" [tuiCheckboxRow]="item" />
-          </div>
-        </td>
-        <td tuiTd>
-          <div tuiCell [tuiSkeleton]="isLoading">
-            <img
-              class="aspect-square size-[50px] rounded-lg object-cover"
-              height="50"
-              loading="lazy"
-              width="50"
-              [alt]="item.images[0].alt"
-              [ngSrc]="item.images[0].url"
-            />
-            <span tuiTitle>
-              {{ item.title }}
+<tui-scrollbar>
+  <cdk-virtual-scroll-viewport
+    #viewport
+    appendOnly
+    class="viewport tui-zero-scrollbar"
+    tuiScrollable
+    [itemSize]="75"
+    [maxBufferPx]="500"
+    [minBufferPx]="400"
+  >
+    <table class="w-full" tuiTable [(ngModel)]="selectedPortfolios">
+      <thead>
+        <tr>
+          <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">
+            @if (data.length > 0) {
+              <div tuiCell>
+                <input size="s" tuiCheckbox tuiCheckboxTable type="checkbox" />
+              </div>
+            }
+          </th>
+          <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">Title</th>
+          <th
+            tuiTh
+            [sticky]="true"
+            [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+            [style.width.%]="20"
+          >
+            Short Description
+          </th>
+          <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">Status</th>
+          <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">Updated At</th>
+          <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">
+            Published At
+          </th>
+          <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"></th>
+        </tr>
+      </thead>
+      <tbody tuiTbody>
+        <tr *cdkVirtualFor="let item of data" #dropdown="tuiDropdown" tuiDropdownContext [tuiDropdown]="actions">
+          <td tuiTd>
+            <div tuiCell [tuiSkeleton]="isLoading">
+              <input size="s" tuiCheckbox type="checkbox" [tuiCheckboxRow]="item" />
+            </div>
+          </td>
+          <td tuiTd>
+            <div tuiCell [tuiSkeleton]="isLoading">
+              <img
+                class="aspect-square size-[50px] rounded-lg object-cover"
+                height="50"
+                loading="lazy"
+                width="50"
+                [alt]="item.images[0].alt"
+                [ngSrc]="item.images[0].url"
+              />
+              <div class="max-w-[200px]" tuiTitle>
+                <span class="line-clamp-1 text-ellipsis">
+                  {{ item.title }}
+                </span>
+              </div>
+            </div>
+          </td>
+          <td tuiTd>
+            <div tuiCell [tuiSkeleton]="isLoading">
+              <span class="line-clamp-2">
+                {{ item.shortDescription }}
+              </span>
+            </div>
+          </td>
+          <td tuiTd>
+            <div tuiCell [tuiSkeleton]="isLoading">
+              <tui-badge tuiStatus [appearance]="item.status | appearance">
+                {{ item.status | status }}
+              </tui-badge>
+            </div>
+          </td>
+          <td tuiTd>
+            <span tuiCell [tuiSkeleton]="isLoading">
+              {{ item.updatedAt.toDate() | date: 'dd/MM/yyyy, HH:mm:ss' }}
             </span>
-          </div>
-        </td>
-        <td tuiTd>
-          <span tuiCell [tuiSkeleton]="isLoading">
-            {{ item.shortDescription }}
-          </span>
-        </td>
-        <td tuiTd>
-          <div tuiCell [tuiSkeleton]="isLoading">
-            <tui-badge tuiStatus [appearance]="item.status | appearance">
-              {{ item.status | status }}
-            </tui-badge>
-          </div>
-        </td>
-        <td tuiTd>
-          <span tuiCell [tuiSkeleton]="isLoading">
-            {{ item.updatedAt.toDate() | date: 'dd/MM/yyyy, HH:mm:ss' }}
-          </span>
-        </td>
-        <td tuiTd>
-          <span tuiCell [tuiSkeleton]="isLoading">
-            {{ item.publishedAt?.toDate() | date: 'dd/MM/yyyy, HH:mm:ss' }}
-          </span>
-        </td>
-        <td tuiTd>
-          <div tuiCell [tuiSkeleton]="isLoading">
-            <button
-              appearance="action"
-              iconStart="ellipsis"
-              size="xs"
-              tuiDropdownAlign="right"
-              tuiDropdownOpen
-              tuiIconButton
-              type="button"
-              [tuiDropdown]="actions"
-            >
-              More
-            </button>
-          </div>
+          </td>
+          <td tuiTd>
+            <span tuiCell [tuiSkeleton]="isLoading">
+              {{ item.publishedAt?.toDate() | date: 'dd/MM/yyyy, HH:mm:ss' }}
+            </span>
+          </td>
+          <td tuiTd>
+            <div tuiCell [tuiSkeleton]="isLoading">
+              <button
+                appearance="action"
+                iconStart="ellipsis"
+                size="xs"
+                tuiDropdownAlign="right"
+                tuiDropdownOpen
+                tuiIconButton
+                type="button"
+                [tuiDropdown]="actions"
+              >
+                More
+              </button>
+            </div>
 
-          <ng-template #actions let-close>
-            <tui-data-list size="s">
-              <tui-opt-group [label]="item.title">
+            <ng-template #actions let-close>
+              <tui-data-list size="s">
                 @for (button of actionButtons; track button.label) {
                   <button
                     class="!m-1"
@@ -94,22 +117,27 @@
                     {{ button.label }}
                   </button>
                 }
-              </tui-opt-group>
-            </tui-data-list>
-          </ng-template>
-        </td>
-      </tr>
-    }
-    @if (data.length === 0 && !isLoading) {
-      <tr>
-        <td colspan="7" tuiTd>
-          <app-empty></app-empty>
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>
+              </tui-data-list>
+            </ng-template>
+          </td>
+        </tr>
+        @if (data.length === 0 && !isLoading) {
+          <tr>
+            <td colspan="7" tuiTd>
+              <app-empty></app-empty>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </cdk-virtual-scroll-viewport>
+</tui-scrollbar>
 
 <div class="mt-5" tuiCardLarge>
-  <tui-table-pagination [page]="page()" [size]="size()" [total]="237" />
+  <tui-table-pagination
+    [page]="page()"
+    [size]="size()"
+    [total]="totalPortfolios()"
+    (paginationChange)="onPaginationChange($event)"
+  />
 </div>

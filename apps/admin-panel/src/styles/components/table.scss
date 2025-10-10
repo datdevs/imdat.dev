@@ -9,6 +9,10 @@ table[tuiTable] {
 
     @apply border-b-slate-100;
 
+    &::after {
+      content: none !important;
+    }
+
     &:first-child {
       border-top-left-radius: var(--table-radius);
     }
