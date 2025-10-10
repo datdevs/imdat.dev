@@ -1,8 +1,10 @@
+import { Timestamp } from '@angular/fire/firestore';
+
 import { StatusEnum } from '../../core/constants/status';
 import { PortfolioImage } from './image';
 
 export interface Portfolio {
-  createdAt: Date;
+  createdAt: Timestamp;
   description: string;
   featured: boolean;
   features: string[];
@@ -11,10 +13,10 @@ export interface Portfolio {
   images: PortfolioImage[];
   liveUrl?: string;
   order: number;
-  publishedAt?: Date;
+  publishedAt?: Timestamp;
   shortDescription: string;
   status: StatusEnum;
   technologies: string[];
   title: string;
-  updatedAt: Date;
+  updatedAt: Timestamp;
 }
