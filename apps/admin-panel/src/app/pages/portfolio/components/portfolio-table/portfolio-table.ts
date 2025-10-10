@@ -1,18 +1,18 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TuiCheckboxTableDirective, TuiTable, TuiTableControl } from '@taiga-ui/addon-table';
+import { TuiCheckboxTableDirective, TuiTable, TuiTableControl, TuiTablePagination } from '@taiga-ui/addon-table';
 import {
+  TuiAppearance,
   TuiButton,
   TuiDataList,
   TuiDropdown,
+  TuiDropdownContext,
   TuiOptionNew,
   TuiTitle,
-  TuiAppearance,
-  TuiDropdownContext,
 } from '@taiga-ui/core';
 import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiSkeleton, TuiStatus } from '@taiga-ui/kit';
-import { TuiCell } from '@taiga-ui/layout';
+import { TuiCard, TuiCell } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
 import { Portfolio } from '../../../../models/portfolio';
@@ -45,6 +45,8 @@ import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
     TuiSkeleton,
     Empty,
     TuiAppearance,
+    TuiTablePagination,
+    TuiCard,
   ],
   templateUrl: './portfolio-table.html',
   styleUrl: './portfolio-table.scss',
@@ -74,6 +76,8 @@ export class PortfolioTable {
   private readonly portfolioStore = inject(PortfolioStore);
   protected readonly portfolios: Signal<Portfolio[]> = this.portfolioStore.portfolios;
   protected readonly loading: Signal<boolean> = this.portfolioStore.loading;
+  protected readonly page = computed(() => this.portfolioStore.filters()?.page ?? 0);
+  protected readonly size = computed(() => this.portfolioStore.filters()?.limit ?? 10);
 
   constructor() {
     this.portfolioStore.loadPortfolios(null);
