@@ -2,6 +2,8 @@
 @use 'vendor/tailwind';
 
 // Components
+@use 'components/badge';
 @use 'components/button';
 @use 'components/notify';
 @use 'components/input';
+@use 'components/table';
