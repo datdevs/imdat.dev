@@ -11,7 +11,7 @@ export class AppearancePipe implements PipeTransform {
   transform(value: string): TuiAppearanceOptions['appearance'] {
     switch (value) {
       case StatusEnum.ARCHIVED:
-        return 'accent';
+        return 'warning';
       case StatusEnum.DRAFT:
         return 'neutral';
       case StatusEnum.PUBLISHED:
