@@ -35,7 +35,7 @@ import { injectContext } from '@taiga-ui/polymorpheus';
 
 import { STATUS_OPTIONS, StatusEnum } from '../../../../core/constants/status';
 import { Status } from '../../../../models/common';
-import { PortfolioImage } from '../../../../models/portfolio';
+import { Portfolio, PortfolioImage } from '../../../../models/portfolio';
 import { CreatePortfolioRequest } from '../../../../models/portfolio/create-request';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 
@@ -78,7 +78,7 @@ import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioForm implements OnInit {
-  public readonly context = injectContext<TuiDialogContext<boolean>>();
+  public readonly context = injectContext<TuiDialogContext<boolean, Portfolio | undefined>>();
   protected readonly currentTab: WritableSignal<number> = signal(0);
   protected readonly isVisibleImageForm: WritableSignal<boolean> = signal(false);
 
@@ -137,6 +137,12 @@ export class PortfolioForm implements OnInit {
   private readonly portfolioStore = inject(PortfolioStore);
   protected readonly isSubmitting: Signal<boolean> = this.portfolioStore.isSubmitting;
   private readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    if (this.context.data) {
+      this.form.patchValue(this.context.data);
+    }
+  }
 
   get fc() {
     return {

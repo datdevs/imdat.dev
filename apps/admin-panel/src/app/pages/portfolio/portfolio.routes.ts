@@ -1,4 +1,5 @@
 import { MenuItem } from '../../app.routes';
+import { portfolioEditGuard } from './guards';
 
 export const portfolioRoutes: MenuItem[] = [
   {
@@ -16,5 +17,6 @@ export const portfolioRoutes: MenuItem[] = [
   {
     path: 'edit/:id',
     loadComponent: async () => (await import('./portfolio')).Portfolio,
+    canActivate: [portfolioEditGuard],
   },
 ];

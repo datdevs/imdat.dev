@@ -2,6 +2,7 @@ import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } 
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   TuiCheckboxTableDirective,
   TuiSortChange,
@@ -113,9 +114,7 @@ export class PortfolioTable {
     () => this.portfolioStore.filters()?.orderBy ?? 'updatedAt',
   );
 
-  // private readonly router = inject(Router);
-  // private readonly route = inject(ActivatedRoute);
-  // private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
 
   constructor() {
     this.portfolioStore.loadPortfolios();
@@ -175,7 +174,7 @@ export class PortfolioTable {
    * @param {Portfolio} portfolio
    */
   private _editPortfolio(portfolio: Portfolio) {
-    console.log(portfolio);
+    this.router.navigate(['/portfolio/edit', portfolio.id]);
   }
 
   /**

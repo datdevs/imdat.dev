@@ -5,9 +5,9 @@ import {
   collectionData,
   deleteDoc,
   doc,
+  docData,
   endBefore,
   Firestore,
-  getDoc,
   limit,
   limitToLast,
   orderBy,
@@ -28,7 +28,7 @@ export class PortfolioService {
   private readonly firestore = inject(Firestore);
   private readonly collectionName = 'portfolios';
 
-  get collection() {
+  get collectionConfig() {
     return collection(this.firestore, this.collectionName);
   }
 
@@ -41,7 +41,7 @@ export class PortfolioService {
     const orderByColumn = filters?.orderBy ?? 'updatedAt';
     const orderDirection = filters?.orderDirection ?? 'desc';
 
-    let q = query(this.collection, orderBy(orderByColumn, orderDirection));
+    let q = query(this.collectionConfig, orderBy(orderByColumn, orderDirection));
 
     // Apply filters
     if (filters?.status) {
@@ -77,7 +77,7 @@ export class PortfolioService {
    * @returns {Observable<number>}
    */
   getPortfoliosCount(filters?: PortfolioFilters): Observable<number> {
-    let q = query(this.collection, orderBy('order', 'asc'));
+    let q = query(this.collectionConfig, orderBy('order', 'asc'));
 
     // Apply filters
     if (filters?.status) {
@@ -96,25 +96,8 @@ export class PortfolioService {
   /**
    * Get a single portfolio by ID
    */
-  getPortfolioById(id: string): Observable<null | Portfolio> {
-    const portfolioDoc = doc(this.firestore, this.collectionName, id);
-
-    return from(getDoc(portfolioDoc)).pipe(
-      map((docSnapshot) => {
-        if (!docSnapshot.exists()) {
-          return null;
-        }
-
-        const data = docSnapshot.data();
-        return {
-          id: docSnapshot.id,
-          ...data,
-          createdAt: data['createdAt']?.toDate() ?? new Date(),
-          updatedAt: data['updatedAt']?.toDate() ?? new Date(),
-          publishedAt: data['publishedAt']?.toDate(),
-        } as Portfolio;
-      }),
-    );
+  getPortfolioById(id: string): Observable<Portfolio> {
+    return docData(doc(this.firestore, this.collectionName, id), { idField: 'id' }) as Observable<Portfolio>;
   }
 
   /**
@@ -132,7 +115,7 @@ export class PortfolioService {
       publishedAt: portfolioData.status === 'published' ? now : null,
     };
 
-    return from(addDoc(this.collection, portfolioToCreate)).pipe(map((docRef) => ({ id: docRef.id })));
+    return from(addDoc(this.collectionConfig, portfolioToCreate)).pipe(map((docRef) => ({ id: docRef.id })));
   }
 
   /**

@@ -3,6 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { tuiDialog } from '@taiga-ui/core';
 
+import { Portfolio as PortfolioModel } from '../../models/portfolio';
 import { PortfolioForm } from './components/portfolio-form/portfolio-form';
 import { PortfolioTable } from './components/portfolio-table/portfolio-table';
 
@@ -17,7 +18,7 @@ export class Portfolio {
   private readonly destroyRef = inject(DestroyRef);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly portfolioCreateDialog = tuiDialog(PortfolioForm, {
+  private portfolioDialog = tuiDialog(PortfolioForm, {
     label: 'Create Portfolio',
     dismissible: false,
     size: 'l',
@@ -33,16 +34,25 @@ export class Portfolio {
   private _listenToRoute() {
     this.route.url.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((url: UrlSegment[]) => {
       if (url.some((segment) => segment.path === 'create')) {
-        this._openCreateDialog();
+        this._openDialog();
+      } else if (url.some((segment) => segment.path === 'edit')) {
+        const portfolio = this.route.snapshot.data['portfolioData'] as PortfolioModel;
+        this.portfolioDialog = tuiDialog(PortfolioForm, {
+          label: `Edit ${portfolio.title}`,
+          dismissible: false,
+          size: 'l',
+        });
+        this._openDialog(portfolio);
       }
     });
   }
 
   /**
-   * Open the create dialog
+   * Open the portfolio dialog (create or edit)
+   * @param {PortfolioModel} portfolio
    */
-  private _openCreateDialog() {
-    this.portfolioCreateDialog(undefined)
+  private _openDialog(portfolio?: PortfolioModel) {
+    this.portfolioDialog(portfolio)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: () => {
