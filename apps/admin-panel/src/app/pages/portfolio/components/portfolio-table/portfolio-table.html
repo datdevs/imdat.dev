@@ -12,18 +12,42 @@
       [maxBufferPx]="500"
       [minBufferPx]="400"
     >
-      <table class="w-full" tuiTable [(ngModel)]="selectedPortfolios">
+      <table
+        class="w-full"
+        tuiTable
+        [columns]="columns"
+        [direction]="direction()"
+        [tuiSortBy]="sortBy()"
+        (tuiSortChange)="sortChange($any($event))"
+        [(ngModel)]="selectedPortfolios"
+      >
         <thead>
-          <tr>
-            <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">
+          <tr tuiThGroup>
+            <th
+              *tuiHead="'checkbox'"
+              tuiTh
+              [sticky]="true"
+              [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+              [tuiSortable]="false"
+            >
               @if (data.length > 0) {
                 <div tuiCell>
                   <input size="s" tuiCheckbox tuiCheckboxTable type="checkbox" />
                 </div>
               }
             </th>
-            <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">Title</th>
             <th
+              *tuiHead="'title'"
+              tuiSortable
+              tuiTh
+              [sticky]="true"
+              [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+            >
+              Title
+            </th>
+            <th
+              *tuiHead="'shortDescription'"
+              tuiSortable
               tuiTh
               [sticky]="true"
               [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
@@ -31,18 +55,51 @@
             >
               Short Description
             </th>
-            <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">Status</th>
-            <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">
+            <th
+              *tuiHead="'status'"
+              tuiSortable
+              tuiTh
+              [sticky]="true"
+              [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+            >
+              Status
+            </th>
+            <th
+              *tuiHead="'updatedAt'"
+              tuiSortable
+              tuiTh
+              [requiredSort]="true"
+              [sticky]="true"
+              [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+            >
               Updated At
             </th>
-            <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)">
+            <th
+              *tuiHead="'publishedAt'"
+              tuiSortable
+              tuiTh
+              [sticky]="true"
+              [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+            >
               Published At
             </th>
-            <th tuiTh [sticky]="true" [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"></th>
+            <th
+              *tuiHead="'actions'"
+              tuiTh
+              [sticky]="true"
+              [style.top.px]="-(viewport.getOffsetToRenderedContentStart() || 0)"
+              [tuiSortable]="false"
+            ></th>
           </tr>
         </thead>
         <tbody tuiTbody>
-          <tr *cdkVirtualFor="let item of data" #dropdown="tuiDropdown" tuiDropdownContext [tuiDropdown]="actions">
+          <tr
+            *cdkVirtualFor="let item of data"
+            #dropdown="tuiDropdown"
+            tuiDropdownContext
+            tuiTr
+            [tuiDropdown]="actions"
+          >
             <td tuiTd>
               <div tuiCell>
                 <input size="s" tuiCheckbox type="checkbox" [tuiCheckboxRow]="item" />
@@ -138,7 +195,7 @@
 
   <div class="mt-5" tuiCardLarge>
     <tui-table-pagination
-      [page]="page()"
+      [page]="page() - 1"
       [size]="size()"
       [total]="totalPortfolios()"
       (paginationChange)="onPaginationChange($event)"

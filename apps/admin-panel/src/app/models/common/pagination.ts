@@ -5,7 +5,7 @@ export interface Pagination<T> {
   limit: number;
   orderBy: keyof T;
   orderDirection: 'asc' | 'desc';
-  page: number;
+  page: number; // 1-based page number
   search?: string;
   total?: number;
 }

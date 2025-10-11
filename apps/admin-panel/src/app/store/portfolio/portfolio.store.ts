@@ -22,7 +22,7 @@ export interface PortfolioState {
 const initialState: PortfolioState = {
   filters: {
     limit: 10,
-    page: 0,
+    page: 1,
     orderBy: 'updatedAt',
     orderDirection: 'desc',
   },

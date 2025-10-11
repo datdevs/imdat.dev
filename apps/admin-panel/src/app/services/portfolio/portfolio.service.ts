@@ -57,14 +57,14 @@ export class PortfolioService {
     // Apply pagination
     if (filters?.cursor === 'next') {
       if (filters?.lastDoc) {
-        q = query(q, startAfter(filters?.lastDoc?.[orderByColumn]), limit(filters?.limit ?? 10));
+        q = query(q, startAfter(filters?.lastDoc?.[orderByColumn]), limit(Number(filters?.limit ?? 10)));
       }
     } else if (filters?.cursor === 'prev') {
       if (filters?.firstDoc) {
-        q = query(q, endBefore(filters?.firstDoc?.[orderByColumn]), limitToLast(filters?.limit ?? 10));
+        q = query(q, endBefore(filters?.firstDoc?.[orderByColumn]), limitToLast(Number(filters?.limit ?? 10)));
       }
     } else {
-      q = query(q, limit(filters?.limit ?? 10));
+      q = query(q, limit(Number(filters?.limit ?? 10)));
     }
 
     return collectionData(q, {

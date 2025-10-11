@@ -2,9 +2,9 @@ import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } 
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { faker } from '@faker-js/faker';
 import {
   TuiCheckboxTableDirective,
+  TuiSortChange,
   TuiTable,
   TuiTableControl,
   TuiTablePagination,
@@ -26,8 +26,7 @@ import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiStatus } from '@taiga-ui/ki
 import { TuiCard, TuiCell } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
-import { StatusEnum } from '../../../../core/constants/status';
-import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../../../models/portfolio';
+import { Portfolio, PortfolioFilters } from '../../../../models/portfolio';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 import { StatusPipe } from '../../../../utils/pipes';
 import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
@@ -70,6 +69,16 @@ import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PortfolioTable {
+  protected columns: string[] = [
+    'checkbox',
+    'title',
+    'shortDescription',
+    'status',
+    'updatedAt',
+    'publishedAt',
+    'actions',
+  ];
+
   protected selectedPortfolios: Portfolio[] = [];
   protected actionButtons = [
     {
@@ -94,52 +103,29 @@ export class PortfolioTable {
   protected readonly portfolios: Signal<Portfolio[]> = this.portfolioStore.portfolios;
   protected readonly loading: Signal<boolean> = this.portfolioStore.loading;
   protected readonly totalPortfolios: Signal<number> = this.portfolioStore.totalPortfolios;
-  protected readonly page = computed(() => this.portfolioStore.filters()?.page ?? 0);
-  protected readonly size = computed(() => this.portfolioStore.filters()?.limit ?? 10);
+  protected readonly page: Signal<number> = computed(() => this.portfolioStore.filters()?.page ?? 1);
+  protected readonly size: Signal<number> = computed(() => this.portfolioStore.filters()?.limit ?? 10);
+  protected readonly direction: Signal<-1 | 1> = computed(() =>
+    this.portfolioStore.filters()?.orderDirection === 'asc' ? 1 : -1,
+  );
+
+  protected readonly sortBy: Signal<keyof Portfolio> = computed(
+    () => this.portfolioStore.filters()?.orderBy ?? 'updatedAt',
+  );
+
+  // private readonly router = inject(Router);
+  // private readonly route = inject(ActivatedRoute);
+  // private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
     this.portfolioStore.loadPortfolios();
-    // this.createFakeData();
-  }
 
-  createFakeData() {
-    const fakeData: CreatePortfolioRequest[] = faker.helpers.multiple(
-      () => ({
-        createdAt: faker.date.recent({ days: 365 }),
-        updatedAt: faker.date.recent({ days: 365 }),
-        publishedAt: faker.date.recent({ days: 365 }),
-        title: faker.book.title(),
-        description: faker.lorem.paragraph(),
-        shortDescription: faker.lorem.sentence(),
-        technologies: faker.helpers.multiple(() => faker.lorem.word(), { count: 3 }),
-        features: faker.helpers.multiple(() => faker.lorem.word(), { count: 3 }),
-        images: faker.helpers.multiple(
-          () => ({
-            url: faker.image.urlPicsumPhotos(),
-            alt: faker.lorem.word(),
-            isMain: false,
-          }),
-          { count: 3 },
-        ),
-        featured: faker.datatype.boolean(),
-        order: 0,
-        status: faker.helpers.arrayElement(Object.values(StatusEnum)),
-        githubUrl: faker.internet.url(),
-        liveUrl: faker.internet.url(),
-      }),
-      {
-        count: 101,
-      },
-    );
+    // this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params: Params) => {
+    //   const filters: Partial<PortfolioFilters> = params;
 
-    // fakeData = fakeData.sort((a: any, b: any) => b.updatedAt.getTime() - a.updatedAt.getTime());
-    // fakeData = fakeData.map((portfolio, index) => ({ ...portfolio, title: index.toString() }));
-
-    console.log(fakeData);
-
-    fakeData.forEach((portfolio) => {
-      this.portfolioStore.createPortfolio(portfolio);
-    });
+    //   this.portfolioStore.updateFilters(filters);
+    //   this.portfolioStore.loadPortfolios();
+    // });
   }
 
   /**
@@ -147,20 +133,40 @@ export class PortfolioTable {
    * @param {TuiTablePaginationEvent} event
    */
   onPaginationChange({ page, size }: TuiTablePaginationEvent) {
+    const pageNumber = page + 1;
+
     const filters: Partial<PortfolioFilters> = {
-      page,
+      page: pageNumber,
       limit: size,
-      orderBy: 'updatedAt',
-      orderDirection: 'desc',
+      orderBy: this.portfolioStore.filters()?.orderBy ?? 'updatedAt',
+      orderDirection: this.portfolioStore.filters()?.orderDirection ?? 'desc',
     };
 
-    if (page > this.page()) {
+    if (pageNumber > this.page()) {
       filters.cursor = 'next';
-    } else if (page < this.page()) {
+    } else if (pageNumber < this.page()) {
       filters.cursor = 'prev';
     }
 
+    // this._updateParams(filters);
     this.portfolioStore.updateFilters(filters);
+    this.portfolioStore.loadPortfolios();
+  }
+
+  /**
+   * Handle sort change
+   * @param event
+   */
+  sortChange(event: TuiSortChange<Portfolio>): void {
+    // this._updateParams({
+    //   orderBy: event.sortKey ?? this.sortBy(),
+    //   orderDirection: event.sortDirection === 1 ? 'asc' : 'desc',
+    // });
+
+    this.portfolioStore.updateFilters({
+      orderBy: event.sortKey ?? this.sortBy(),
+      orderDirection: event.sortDirection === 1 ? 'asc' : 'desc',
+    });
     this.portfolioStore.loadPortfolios();
   }
 
@@ -179,4 +185,55 @@ export class PortfolioTable {
   private _deletePortfolio(portfolio: Portfolio) {
     this.portfolioStore.deletePortfolio(portfolio.id);
   }
+
+  /**
+   * Update the params in the route
+   * @param {Partial<PortfolioFilters>} filters
+   */
+  // private _updateParams(filters: Partial<PortfolioFilters>) {
+  //   this.router.navigate(['/portfolio'], { queryParams: filters });
+  // }
+
+  /**
+   * Create fake data
+   */
+  // private _createFakeData() {
+  //   const fakeData: CreatePortfolioRequest[] = faker.helpers.multiple(
+  //     () => ({
+  //       createdAt: faker.date.recent({ days: 365 }),
+  //       updatedAt: faker.date.recent({ days: 365 }),
+  //       publishedAt: faker.date.recent({ days: 365 }),
+  //       title: faker.book.title(),
+  //       description: faker.lorem.paragraph(),
+  //       shortDescription: faker.lorem.sentence(),
+  //       technologies: faker.helpers.multiple(() => faker.lorem.word(), { count: 3 }),
+  //       features: faker.helpers.multiple(() => faker.lorem.word(), { count: 3 }),
+  //       images: faker.helpers.multiple(
+  //         () => ({
+  //           url: faker.image.urlPicsumPhotos(),
+  //           alt: faker.lorem.word(),
+  //           isMain: false,
+  //         }),
+  //         { count: 3 },
+  //       ),
+  //       featured: faker.datatype.boolean(),
+  //       order: 0,
+  //       status: faker.helpers.arrayElement(Object.values(StatusEnum)),
+  //       githubUrl: faker.internet.url(),
+  //       liveUrl: faker.internet.url(),
+  //     }),
+  //     {
+  //       count: 101,
+  //     },
+  //   );
+
+  //   // fakeData = fakeData.sort((a: any, b: any) => b.updatedAt.getTime() - a.updatedAt.getTime());
+  //   // fakeData = fakeData.map((portfolio, index) => ({ ...portfolio, title: index.toString() }));
+
+  //   console.log(fakeData);
+
+  //   fakeData.forEach((portfolio) => {
+  //     this.portfolioStore.createPortfolio(portfolio);
+  //   });
+  // }
 }
