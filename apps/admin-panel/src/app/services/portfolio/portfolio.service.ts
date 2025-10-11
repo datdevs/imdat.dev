@@ -5,9 +5,11 @@ import {
   collectionData,
   deleteDoc,
   doc,
+  endBefore,
   Firestore,
   getDoc,
   limit,
+  limitToLast,
   orderBy,
   query,
   startAfter,
@@ -36,7 +38,10 @@ export class PortfolioService {
    * @returns {Observable<Portfolio[]>}
    */
   getPortfolios(filters?: PortfolioFilters): Observable<Portfolio[]> {
-    let q = query(this.collection, orderBy('updatedAt', 'desc'));
+    const orderByColumn = filters?.orderBy ?? 'updatedAt';
+    const orderDirection = filters?.orderDirection ?? 'desc';
+
+    let q = query(this.collection, orderBy(orderByColumn, orderDirection));
 
     // Apply filters
     if (filters?.status) {
@@ -50,11 +55,16 @@ export class PortfolioService {
     }
 
     // Apply pagination
-    if (filters?.limit) {
+    if (filters?.cursor === 'next') {
+      if (filters?.lastDoc) {
+        q = query(q, startAfter(filters?.lastDoc?.[orderByColumn]), limit(filters?.limit ?? 10));
+      }
+    } else if (filters?.cursor === 'prev') {
+      if (filters?.firstDoc) {
+        q = query(q, endBefore(filters?.firstDoc?.[orderByColumn]), limitToLast(filters?.limit ?? 10));
+      }
+    } else {
       q = query(q, limit(filters?.limit ?? 10));
-    }
-    if (filters?.page) {
-      q = query(q, startAfter(filters?.page * (filters?.limit ?? 10)));
     }
 
     return collectionData(q, {

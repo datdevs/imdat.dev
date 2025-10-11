@@ -23,6 +23,8 @@ const initialState: PortfolioState = {
   filters: {
     limit: 10,
     page: 0,
+    orderBy: 'updatedAt',
+    orderDirection: 'desc',
   },
   isSubmitting: false,
   loading: false,
@@ -75,6 +77,10 @@ export const PortfolioStore = signalStore(
                   patchState(store, setAllEntities(result, portfolioEntityConfig), {
                     loading: false,
                   });
+                  patchState(store, (state) => ({
+                    ...state,
+                    filters: { ...state.filters, lastDoc: result[result.length - 1], firstDoc: result[0] },
+                  }));
                 }
               },
               error: (error: FirebaseError) => {

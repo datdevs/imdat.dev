@@ -1,5 +1,11 @@
-export interface Pagination {
+export interface Pagination<T> {
+  cursor?: 'next' | 'prev';
+  firstDoc?: T;
+  lastDoc?: T;
   limit: number;
+  orderBy: keyof T;
+  orderDirection: 'asc' | 'desc';
   page: number;
+  search?: string;
   total?: number;
 }

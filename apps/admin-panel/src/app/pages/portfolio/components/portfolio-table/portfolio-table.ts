@@ -27,7 +27,7 @@ import { TuiCard, TuiCell } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
 import { StatusEnum } from '../../../../core/constants/status';
-import { CreatePortfolioRequest, Portfolio } from '../../../../models/portfolio';
+import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../../../models/portfolio';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 import { StatusPipe } from '../../../../utils/pipes';
 import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
@@ -128,14 +128,18 @@ export class PortfolioTable {
         liveUrl: faker.internet.url(),
       }),
       {
-        count: 100,
+        count: 101,
       },
     );
 
+    // fakeData = fakeData.sort((a: any, b: any) => b.updatedAt.getTime() - a.updatedAt.getTime());
+    // fakeData = fakeData.map((portfolio, index) => ({ ...portfolio, title: index.toString() }));
+
     console.log(fakeData);
-    // fakeData.forEach((portfolio) => {
-    //   this.portfolioStore.createPortfolio(portfolio);
-    // });
+
+    fakeData.forEach((portfolio) => {
+      this.portfolioStore.createPortfolio(portfolio);
+    });
   }
 
   /**
@@ -143,10 +147,20 @@ export class PortfolioTable {
    * @param {TuiTablePaginationEvent} event
    */
   onPaginationChange({ page, size }: TuiTablePaginationEvent) {
-    this.portfolioStore.updateFilters({
+    const filters: Partial<PortfolioFilters> = {
       page,
       limit: size,
-    });
+      orderBy: 'updatedAt',
+      orderDirection: 'desc',
+    };
+
+    if (page > this.page()) {
+      filters.cursor = 'next';
+    } else if (page < this.page()) {
+      filters.cursor = 'prev';
+    }
+
+    this.portfolioStore.updateFilters(filters);
     this.portfolioStore.loadPortfolios();
   }
 
