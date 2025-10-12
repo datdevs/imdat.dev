@@ -6,6 +6,5 @@ export interface Pagination<T> {
   orderBy: keyof T;
   orderDirection: 'asc' | 'desc';
   page: number; // 1-based page number
-  search?: string;
   total?: number;
 }

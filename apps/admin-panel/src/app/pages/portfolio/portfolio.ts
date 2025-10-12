@@ -4,12 +4,13 @@ import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { tuiDialog } from '@taiga-ui/core';
 
 import { Portfolio as PortfolioModel } from '../../models/portfolio';
+import { PortfolioFilter } from './components/portfolio-filter/portfolio-filter';
 import { PortfolioForm } from './components/portfolio-form/portfolio-form';
 import { PortfolioTable } from './components/portfolio-table/portfolio-table';
 
 @Component({
   selector: 'app-portfolio',
-  imports: [PortfolioTable],
+  imports: [PortfolioTable, PortfolioFilter],
   templateUrl: './portfolio.html',
   styleUrl: './portfolio.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

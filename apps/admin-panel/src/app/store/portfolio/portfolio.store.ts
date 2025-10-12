@@ -79,7 +79,12 @@ export const PortfolioStore = signalStore(
                   });
                   patchState(store, (state) => ({
                     ...state,
-                    filters: { ...state.filters, lastDoc: result[result.length - 1], firstDoc: result[0] },
+                    filters: {
+                      ...state.filters,
+                      lastDoc: result[result.length - 1],
+                      firstDoc: result[0],
+                      cursor: undefined,
+                    },
                   }));
                 }
               },

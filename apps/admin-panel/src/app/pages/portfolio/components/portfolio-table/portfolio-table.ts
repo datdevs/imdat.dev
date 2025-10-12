@@ -1,6 +1,6 @@
 import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -80,7 +80,7 @@ export class PortfolioTable {
     'actions',
   ];
 
-  protected selectedPortfolios: Portfolio[] = [];
+  protected readonly selectedPortfolios: WritableSignal<Portfolio[]> = signal<Portfolio[]>([]);
   protected actionButtons = [
     {
       label: 'Edit',

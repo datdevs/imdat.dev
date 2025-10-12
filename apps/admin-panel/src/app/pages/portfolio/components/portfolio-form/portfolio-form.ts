@@ -104,7 +104,7 @@ export class PortfolioForm implements OnInit {
     isMain: this.fb.control(false),
   });
 
-  protected readonly statusOptions: Status[] = STATUS_OPTIONS;
+  protected readonly statusOptions: Status<StatusEnum>[] = STATUS_OPTIONS;
 
   protected readonly commonTechnologies: string[] = [
     'Angular',

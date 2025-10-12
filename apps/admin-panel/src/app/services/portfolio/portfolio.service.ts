@@ -6,13 +6,17 @@ import {
   deleteDoc,
   doc,
   docData,
+  DocumentData,
   endBefore,
   Firestore,
   limit,
   limitToLast,
+  or,
   orderBy,
+  Query,
   query,
   startAfter,
+  Timestamp,
   updateDoc,
   where,
 } from '@angular/fire/firestore';
@@ -43,16 +47,7 @@ export class PortfolioService {
 
     let q = query(this.collectionConfig, orderBy(orderByColumn, orderDirection));
 
-    // Apply filters
-    if (filters?.status) {
-      q = query(q, where('status', '==', filters.status));
-    }
-    if (filters?.featured !== undefined) {
-      q = query(q, where('featured', '==', filters.featured));
-    }
-    if (filters?.technologies && filters.technologies.length > 0) {
-      q = query(q, where('technologies', 'array-contains-any', filters.technologies));
-    }
+    q = this._applyFilters(q, filters);
 
     // Apply pagination
     if (filters?.cursor === 'next') {
@@ -79,16 +74,7 @@ export class PortfolioService {
   getPortfoliosCount(filters?: PortfolioFilters): Observable<number> {
     let q = query(this.collectionConfig, orderBy('order', 'asc'));
 
-    // Apply filters
-    if (filters?.status) {
-      q = query(q, where('status', '==', filters.status));
-    }
-    if (filters?.featured !== undefined) {
-      q = query(q, where('featured', '==', filters.featured));
-    }
-    if (filters?.technologies && filters.technologies.length > 0) {
-      q = query(q, where('technologies', 'array-contains-any', filters.technologies));
-    }
+    q = this._applyFilters(q, filters);
 
     return collectionData(q, { idField: 'id' }).pipe(map((portfolios) => portfolios.length));
   }
@@ -169,5 +155,49 @@ export class PortfolioService {
         throw error;
       }),
     );
+  }
+
+  /**
+   * Apply filters to a query
+   * @param {Query<DocumentData, DocumentData>} q
+   * @param {PortfolioFilters} filters
+   * @returns {Query<DocumentData, DocumentData>}
+   */
+  private _applyFilters(
+    q: Query<DocumentData, DocumentData>,
+    filters?: PortfolioFilters,
+  ): Query<DocumentData, DocumentData> {
+    if (filters?.statuses && filters.statuses.length > 0) {
+      q = query(q, where('status', 'in', filters.statuses));
+    }
+    if (filters?.featured !== undefined) {
+      q = query(q, where('featured', '==', filters.featured));
+    }
+    q = query(
+      q,
+      or(
+        ...(filters?.features && filters.features.length > 0
+          ? [where('features', 'array-contains-any', filters.features)]
+          : []),
+        ...(filters?.technologies && filters.technologies.length > 0
+          ? [where('technologies', 'array-contains-any', filters.technologies)]
+          : []),
+      ),
+    );
+    if (filters?.updatedDateRange) {
+      q = query(
+        q,
+        where('updatedAt', '>=', Timestamp.fromDate(filters.updatedDateRange.from.toLocalNativeDate())),
+        where('updatedAt', '<=', Timestamp.fromDate(filters.updatedDateRange.to.toLocalNativeDate())),
+      );
+    }
+    if (filters?.publishedDateRange) {
+      q = query(
+        q,
+        where('publishedAt', '>=', Timestamp.fromDate(filters.publishedDateRange.from.toLocalNativeDate())),
+        where('publishedAt', '<=', Timestamp.fromDate(filters.publishedDateRange.to.toLocalNativeDate())),
+      );
+    }
+    return q;
   }
 }

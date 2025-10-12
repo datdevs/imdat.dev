@@ -1,9 +1,14 @@
+import { TuiDayRange } from '@taiga-ui/cdk/date-time';
+
 import { StatusEnum } from '../../core/constants/status';
 import { Pagination } from '../common';
 import { Portfolio } from './portfolio';
 
 export interface PortfolioFilters extends Pagination<Portfolio> {
   featured?: boolean;
-  status?: StatusEnum;
+  features?: string[];
+  publishedDateRange?: TuiDayRange;
+  statuses?: StatusEnum[];
   technologies?: string[];
+  updatedDateRange?: TuiDayRange;
 }

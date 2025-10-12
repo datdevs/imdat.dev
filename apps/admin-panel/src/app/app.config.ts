@@ -1,17 +1,11 @@
-import {
-  ApplicationConfig,
-  inject,
-  isDevMode,
-  provideAppInitializer,
-  provideZonelessChangeDetection,
-} from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from '@angular/fire/app-check';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from '@angular/router';
-import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { tuiDateFormatProvider } from '@taiga-ui/core';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
 
 import { firebaseConfig } from '../config/firebase';
@@ -45,7 +39,7 @@ export const appConfig: ApplicationConfig = {
       return firestore;
     }),
     provideRouter(appRoutes, withPreloading(PreloadAllModules) /* withDebugTracing() */),
-    provideStoreDevtools({ logOnly: !isDevMode() }),
+    tuiDateFormatProvider({ mode: 'DMY', separator: '/' }),
     provideAppInitializer(() => {
       const initializerFn = initializeNotifyService(inject(NotifyService));
       return initializerFn();

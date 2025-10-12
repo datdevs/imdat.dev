@@ -6,7 +6,7 @@ export enum StatusEnum {
   PUBLISHED = 'published',
 }
 
-export const STATUS_OPTIONS: Status[] = [
+export const STATUS_OPTIONS: Status<StatusEnum>[] = [
   { id: StatusEnum.DRAFT, label: 'Draft', value: StatusEnum.DRAFT },
   { id: StatusEnum.PUBLISHED, label: 'Published', value: StatusEnum.PUBLISHED },
   { id: StatusEnum.ARCHIVED, label: 'Archived', value: StatusEnum.ARCHIVED },
