@@ -8,8 +8,8 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
 import { AUTH_CODE } from '../../core/constants';
+import { LoginCredentials } from '../../models/forms';
 import { AuthService, NotifyService } from '../../services';
-import { LoginCredentials } from '../../types/forms';
 
 interface AuthState {
   isSigningIn: boolean;

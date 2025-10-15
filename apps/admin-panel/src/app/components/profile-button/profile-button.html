@@ -1,0 +1,35 @@
+@if (user(); as user) {
+  <div class="cursor-pointer" tuiDropdownAlign="right" tuiDropdownOpen type="button" [tuiDropdown]="settingsMenu">
+    <tui-avatar
+      size="s"
+      [src]="user.photoURL ?? '' | tuiFallbackSrc: '@tui.user' | async"
+      [style.background]="user.displayName ?? '' | tuiAutoColor"
+    />
+  </div>
+
+  <ng-template #settingsMenu let-close>
+    <div class="flex items-center gap-3 px-4 py-2">
+      <tui-avatar
+        size="s"
+        [src]="user.photoURL ?? '' | tuiFallbackSrc: '@tui.user' | async"
+        [style.background]="user.displayName ?? '' | tuiAutoColor"
+      />
+
+      <div class="profile__info text-left">
+        <div class="profile__name truncate text-sm font-medium text-gray-900">{{ user?.displayName }}</div>
+        <div class="profile__email truncate text-xs font-normal text-gray-400">{{ user?.email }}</div>
+      </div>
+    </div>
+
+    <tui-data-list size="m">
+      <a new tuiOption [routerLink]="['/profile']">
+        <tui-icon icon="id-card" [style.font-size.px]="16"></tui-icon>
+        Profile
+      </a>
+      <button new tuiOption [disabled]="isSigningOut()" (click)="signOut()">
+        <tui-icon icon="log-out" [style.font-size.px]="16"></tui-icon>
+        Sign Out
+      </button>
+    </tui-data-list>
+  </ng-template>
+}

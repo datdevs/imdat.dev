@@ -1,0 +1,145 @@
+@let filteredFeatures = appliedFilters().features;
+@let filteredTechnologies = appliedFilters().technologies;
+@let filteredStatuses = appliedFilters().statuses;
+@let filteredUpdatedDateRange = appliedFilters().updatedDateRange;
+@let filteredPublishedDateRange = appliedFilters().publishedDateRange;
+
+<!-- <tui-textfield iconStart="search" tuiTextfieldSize="m" [style.max-width.%]="100" [style.width.%]="100">
+  <input
+    name="search"
+    placeholder="Search by title, description, technologies, features"
+    tuiTextfield
+    (keyup.enter)="applyFilters()"
+    [(ngModel)]="search"
+  />
+</tui-textfield> -->
+
+<button
+  appearance="outline-grayscale"
+  iconStart="funnel"
+  size="s"
+  tuiButton
+  tuiDropdownLimitWidth="min"
+  type="button"
+  [tuiDropdown]="filterDropdown"
+  [(tuiDropdownOpen)]="dropdownOpen"
+>
+  Filters
+</button>
+
+@if (filteredUpdatedDateRange) {
+  <tui-chip size="s">
+    Updated from:
+    {{ filteredUpdatedDateRange?.from?.toLocalNativeDate() | date: 'dd/MM/yyyy' }}
+    -
+    {{ filteredUpdatedDateRange?.to?.toLocalNativeDate() | date: 'dd/MM/yyyy' }}
+  </tui-chip>
+}
+
+@if (filteredPublishedDateRange) {
+  <tui-chip size="s">
+    Published from:
+    {{ filteredPublishedDateRange?.from?.toLocalNativeDate() | date: 'dd/MM/yyyy' }}
+    -
+    {{ filteredPublishedDateRange?.to?.toLocalNativeDate() | date: 'dd/MM/yyyy' }}
+  </tui-chip>
+}
+
+@for (item of filteredStatuses; track $index) {
+  <tui-chip size="s">
+    {{ item | status }}
+  </tui-chip>
+}
+
+@for (item of filteredTechnologies; track $index) {
+  <tui-chip size="s">
+    {{ item }}
+  </tui-chip>
+}
+
+@for (item of filteredFeatures; track $index) {
+  <tui-chip size="s">
+    {{ item }}
+  </tui-chip>
+}
+
+<ng-template #filterDropdown>
+  <section class="flex max-w-[300px] flex-col gap-4 px-4 pt-4">
+    <label tuiLabel>
+      Updated Date Range
+
+      <tui-textfield iconStart="calendar-range" tuiTextfieldSize="s">
+        <input name="updatedDateRange" tuiInputDateRange [(ngModel)]="updatedDateRange" />
+        <tui-calendar-range *tuiTextfieldDropdown />
+      </tui-textfield>
+    </label>
+
+    <label tuiLabel>
+      Published Date Range
+
+      <tui-textfield iconStart="calendar-range" tuiTextfieldSize="s">
+        <input name="publishedDateRange" tuiInputDateRange [(ngModel)]="publishedDateRange" />
+        <tui-calendar-range *tuiTextfieldDropdown />
+      </tui-textfield>
+    </label>
+
+    <div class="flex flex-wrap items-center gap-2">
+      <div>
+        <span>Status:</span>
+      </div>
+
+      <div class="flex gap-1">
+        <button
+          appearance="outline-grayscale"
+          size="s"
+          tuiButton
+          type="button"
+          [tuiAppearanceMode]="selectedStatuses().length === statusOptions.length ? 'checked' : ''"
+          (click)="selectedStatuses.set(selectedStatuses().length === statusOptions.length ? [] : statusOptions)"
+        >
+          All
+        </button>
+
+        <tui-filter
+          size="s"
+          [content]="statusContent"
+          [items]="statusOptions"
+          [ngModel]="selectedStatuses()"
+          (ngModelChange)="selectedStatuses.set($event)"
+        />
+      </div>
+    </div>
+
+    <ng-template #statusContent let-item>
+      {{ item.label }}
+    </ng-template>
+
+    <label tuiLabel>
+      Technologies
+
+      <tui-textfield multi tuiTextfieldSize="s">
+        <input name="technologies" placeholder="Type and press enter to add" tuiInputChip [(ngModel)]="technologies" />
+
+        <tui-input-chip *tuiItem />
+      </tui-textfield>
+    </label>
+
+    <label tuiLabel>
+      Features
+
+      <tui-textfield multi tuiTextfieldSize="s">
+        <input name="features" placeholder="Type and press enter to add" tuiInputChip [(ngModel)]="features" />
+
+        <tui-input-chip *tuiItem />
+      </tui-textfield>
+    </label>
+
+    <div class="sticky bottom-0 flex justify-end gap-2 bg-white pt-2 pb-4">
+      <button appearance="outline-grayscale" size="s" tuiButton type="button" (click)="dropdownOpen.set(false)">
+        Close
+      </button>
+      <button appearance="outline-destructive" size="s" tuiButton type="button" (click)="clearFilters()">Clear</button>
+      <button appearance="primary" size="s" tuiButton type="button" (click)="applyFilters()">Apply</button>
+    </div>
+  </section>
+</ng-template>

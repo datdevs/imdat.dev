@@ -42,6 +42,7 @@ export default defineConfig([
       perfectionist.configs['recommended-alphabetical'],
     ],
     rules: {
+      'no-unused-vars': 'off',
       '@nx/enforce-module-boundaries': [
         'error',
         {
@@ -56,7 +57,7 @@ export default defineConfig([
         },
       ],
       /** Typescript rules */
-      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/await-thenable': 'error',
       // Performance optimizations
       '@typescript-eslint/no-require-imports': 'off',

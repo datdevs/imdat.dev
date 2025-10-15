@@ -1,0 +1,12 @@
+:root {
+  [tuiStatus][data-size='s'],
+  [tuiStatus][data-size='m'],
+  [tuiStatus][data-size='l'] {
+    gap: 0.375rem;
+  }
+
+  tui-badge[data-size='m'],
+  [tuiBadge][data-size='m'] {
+    --t-padding: 0 0.625rem;
+  }
+}

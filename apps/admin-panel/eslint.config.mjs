@@ -11,6 +11,19 @@ export default defineConfig([
     files: ['**/*.ts'],
     extends: [...ngrx.configs.all],
     rules: {
+      'no-unused-vars': 'off',
+      /** Typescript rules */
+      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/await-thenable': 'error',
+      // Performance optimizations
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-non-null-assertion': 'warn',
+      // Disable expensive rules for better performance
+      '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/return-await': 'off',
       '@angular-eslint/directive-selector': [
         'error',
         {
