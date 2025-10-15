@@ -216,7 +216,6 @@ export class PortfolioTable {
   //         { count: 3 },
   //       ),
   //       featured: faker.datatype.boolean(),
-  //       order: 0,
   //       status: faker.helpers.arrayElement(Object.values(StatusEnum)),
   //       githubUrl: faker.internet.url(),
   //       liveUrl: faker.internet.url(),

@@ -72,7 +72,7 @@ export class PortfolioService {
    * @returns {Observable<number>}
    */
   getPortfoliosCount(filters?: PortfolioFilters): Observable<number> {
-    let q = query(this.collectionConfig, orderBy('order', 'asc'));
+    let q = query(this.collectionConfig);
 
     q = this._applyFilters(q, filters);
 
@@ -135,26 +135,6 @@ export class PortfolioService {
     const portfolioDoc = doc(this.firestore, this.collectionName, id);
 
     return from(deleteDoc(portfolioDoc));
-  }
-
-  /**
-   * Update portfolio order
-   */
-  updatePortfolioOrder(portfolioIds: string[]): Observable<boolean> {
-    const updates = portfolioIds.map((id, index) =>
-      updateDoc(doc(this.firestore, this.collectionName, id), {
-        order: index + 1,
-        updatedAt: new Date(),
-      }),
-    );
-
-    return from(Promise.all(updates)).pipe(
-      map(() => true),
-      catchError((error) => {
-        console.error('Error updating portfolio order:', error);
-        throw error;
-      }),
-    );
   }
 
   /**

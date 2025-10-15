@@ -204,17 +204,16 @@ export class PortfolioForm implements OnInit {
 
     const formValue = this.form.value;
     const portfolioData: CreatePortfolioRequest = {
-      title: formValue.title!,
-      shortDescription: formValue.shortDescription!,
-      description: formValue.description!,
-      status: formValue.status!,
-      featured: formValue.featured!,
-      technologies: formValue.technologies!,
-      features: formValue.features!,
+      title: formValue.title ?? '',
+      shortDescription: formValue.shortDescription ?? '',
+      description: formValue.description ?? '',
+      status: formValue.status ?? StatusEnum.DRAFT,
+      featured: formValue.featured ?? false,
+      technologies: formValue.technologies ?? [],
+      features: formValue.features ?? [],
       githubUrl: formValue.githubUrl ?? undefined,
       liveUrl: formValue.liveUrl ?? undefined,
       images: formValue.images ?? [],
-      order: 0, // Will be set by the service
     };
 
     this.portfolioStore.createPortfolio(portfolioData);

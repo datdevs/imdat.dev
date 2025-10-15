@@ -282,37 +282,6 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    // // Update portfolio order
-    // updatePortfolioOrder: rxMethod<string[]>(
-    //   pipe(
-    //     switchMap((portfolioIds) => {
-    //       patchState(store, { loading: true, error: null });
-    //       return portfolioService.updatePortfolioOrder(portfolioIds).pipe(
-    //         tapResponse({
-    //           next: (success) => {
-    //             if (success) {
-    //               // Reload portfolios to get updated order
-    //               store.loadPortfolios(store.filters());
-    //               patchState(store, { loading: false });
-    //             } else {
-    //               patchState(store, {
-    //                 loading: false,
-    //                 error: 'Failed to update portfolio order',
-    //               });
-    //             }
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to update portfolio order',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
-
     return { updateFilters, loadPortfolios, createPortfolio, deletePortfolio };
   }),
 );

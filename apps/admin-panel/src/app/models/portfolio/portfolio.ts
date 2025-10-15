@@ -12,7 +12,6 @@ export interface Portfolio {
   id: string;
   images: PortfolioImage[];
   liveUrl?: string;
-  order: number;
   publishedAt?: Timestamp;
   shortDescription: string;
   status: StatusEnum;

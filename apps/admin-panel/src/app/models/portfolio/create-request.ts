@@ -8,7 +8,6 @@ export interface CreatePortfolioRequest {
   githubUrl?: string;
   images: Omit<PortfolioImage, 'id'>[];
   liveUrl?: string;
-  order: number;
   publishedAt?: Date;
   shortDescription: string;
   status: StatusEnum;
