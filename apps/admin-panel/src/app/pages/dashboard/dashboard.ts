@@ -72,7 +72,7 @@ export class Dashboard {
     };
   });
 
-  protected activeItemIndex = NaN;
+  protected pieChartActiveItemIndex = NaN;
 
   protected readonly value = [13769, 12367, 10172, 3018, 2592];
 
@@ -83,11 +83,7 @@ export class Dashboard {
     this.portfolioStore.loadRecentPortfolios();
   }
 
-  protected isItemActive(index: number): boolean {
-    return this.activeItemIndex === index;
-  }
-
-  protected onHover(index: number, hovered: any): void {
-    this.activeItemIndex = hovered ? index : NaN;
+  onLegendOfPieChartHover(index: number, hovered: boolean): void {
+    this.pieChartActiveItemIndex = hovered ? index : NaN;
   }
 }
