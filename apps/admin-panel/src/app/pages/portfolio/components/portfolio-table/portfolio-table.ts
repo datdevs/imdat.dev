@@ -27,7 +27,7 @@ import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiStatus } from '@taiga-ui/ki
 import { TuiCard, TuiCell } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
-import { Portfolio, PortfolioFilters } from '../../../../models/portfolio';
+import { IPortfolio, PortfolioFilters } from '../../../../models/portfolio';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 import { StatusPipe } from '../../../../utils/pipes';
 import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
@@ -80,13 +80,13 @@ export class PortfolioTable {
     'actions',
   ];
 
-  protected readonly selectedPortfolios: WritableSignal<Portfolio[]> = signal<Portfolio[]>([]);
+  protected readonly selectedPortfolios: WritableSignal<IPortfolio[]> = signal<IPortfolio[]>([]);
   protected actionButtons = [
     {
       label: 'Edit',
       icon: 'pencil',
       appearance: 'info',
-      onClick: (portfolio: Portfolio) => {
+      onClick: (portfolio: IPortfolio) => {
         this._editPortfolio(portfolio);
       },
     },
@@ -94,14 +94,14 @@ export class PortfolioTable {
       label: 'Delete',
       icon: 'trash',
       appearance: 'negative',
-      onClick: (portfolio: Portfolio) => {
+      onClick: (portfolio: IPortfolio) => {
         this._deletePortfolio(portfolio);
       },
     },
   ];
 
   private readonly portfolioStore = inject(PortfolioStore);
-  protected readonly portfolios: Signal<Portfolio[]> = this.portfolioStore.portfolios;
+  protected readonly portfolios: Signal<IPortfolio[]> = this.portfolioStore.portfolios;
   protected readonly loading: Signal<boolean> = this.portfolioStore.loading;
   protected readonly totalPortfolios: Signal<number> = this.portfolioStore.totalPortfolios;
   protected readonly page: Signal<number> = computed(() => this.portfolioStore.filters()?.page ?? 1);
@@ -110,7 +110,7 @@ export class PortfolioTable {
     this.portfolioStore.filters()?.orderDirection === 'asc' ? 1 : -1,
   );
 
-  protected readonly sortBy: Signal<keyof Portfolio> = computed(
+  protected readonly sortBy: Signal<keyof IPortfolio> = computed(
     () => this.portfolioStore.filters()?.orderBy ?? 'updatedAt',
   );
 
@@ -156,7 +156,7 @@ export class PortfolioTable {
    * Handle sort change
    * @param event
    */
-  sortChange(event: TuiSortChange<Portfolio>): void {
+  sortChange(event: TuiSortChange<IPortfolio>): void {
     // this._updateParams({
     //   orderBy: event.sortKey ?? this.sortBy(),
     //   orderDirection: event.sortDirection === 1 ? 'asc' : 'desc',
@@ -171,17 +171,17 @@ export class PortfolioTable {
 
   /**
    * Edit a portfolio
-   * @param {Portfolio} portfolio
+   * @param {IPortfolio} portfolio
    */
-  private _editPortfolio(portfolio: Portfolio) {
+  private _editPortfolio(portfolio: IPortfolio) {
     this.router.navigate(['/portfolio/edit', portfolio.id]);
   }
 
   /**
    * Delete a portfolio
-   * @param {Portfolio} portfolio
+   * @param {IPortfolio} portfolio
    */
-  private _deletePortfolio(portfolio: Portfolio) {
+  private _deletePortfolio(portfolio: IPortfolio) {
     this.portfolioStore.deletePortfolio(portfolio.id);
   }
 
@@ -197,7 +197,7 @@ export class PortfolioTable {
    * Create fake data
    */
   // private _createFakeData() {
-  //   const fakeData: CreatePortfolioRequest[] = faker.helpers.multiple(
+  //   const fakeData: PortfolioRequestBody[] = faker.helpers.multiple(
   //     () => ({
   //       createdAt: faker.date.recent({ days: 365 }),
   //       updatedAt: faker.date.recent({ days: 365 }),

@@ -8,7 +8,7 @@ import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entiti
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { merge, pipe, switchMap } from 'rxjs';
 
-import { CreatePortfolioRequest, Portfolio, PortfolioFilters } from '../../models/portfolio';
+import { IPortfolio, PortfolioFilters, PortfolioRequestBody } from '../../models/portfolio';
 import { NotifyService, PortfolioService } from '../../services';
 
 export interface PortfolioState {
@@ -33,9 +33,9 @@ const initialState: PortfolioState = {
 };
 
 const portfolioEntityConfig = entityConfig({
-  entity: type<Portfolio>(),
+  entity: type<IPortfolio>(),
   collection: '_portfolios',
-  selectId: (portfolio: Portfolio) => portfolio.id,
+  selectId: (portfolio: IPortfolio) => portfolio.id,
 });
 
 export const PortfolioStore = signalStore(
@@ -115,7 +115,7 @@ export const PortfolioStore = signalStore(
     //             } else {
     //               patchState(store, {
     //                 loading: false,
-    //                 error: 'Portfolio not found',
+    //                 error: 'IPortfolio not found',
     //               });
     //             }
     //           },
@@ -132,7 +132,7 @@ export const PortfolioStore = signalStore(
     // ),
 
     // Create new portfolio
-    const createPortfolio = rxMethod<CreatePortfolioRequest>(
+    const createPortfolio = rxMethod<PortfolioRequestBody>(
       pipe(
         switchMap((portfolioData) => {
           patchState(store, { isSubmitting: true });
@@ -141,7 +141,7 @@ export const PortfolioStore = signalStore(
               next: () => {
                 // Reload portfolios to get the new one with all data
                 loadPortfolios();
-                notify.success('Portfolio was created successfully');
+                notify.success('IPortfolio was created successfully');
                 router.navigate(['/portfolio']);
               },
               error: (error: FirebaseError) => {
@@ -155,35 +155,27 @@ export const PortfolioStore = signalStore(
     );
 
     // // Update portfolio
-    // updatePortfolio: rxMethod<UpdatePortfolioRequest>(
-    //   pipe(
-    //     switchMap((portfolioData) => {
-    //       patchState(store, { loading: true, error: null });
-    //       return portfolioService.updatePortfolio(portfolioData).pipe(
-    //         tapResponse({
-    //           next: (success) => {
-    //             if (success) {
-    //               // Reload portfolios to get updated data
-    //               store.loadPortfolios(store.filters());
-    //               patchState(store, { loading: false });
-    //             } else {
-    //               patchState(store, {
-    //                 loading: false,
-    //                 error: 'Failed to update portfolio',
-    //               });
-    //             }
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to update portfolio',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
+    const updatePortfolio = rxMethod<{ id: string; payload: PortfolioRequestBody }>(
+      pipe(
+        switchMap(({ id, payload }) => {
+          patchState(store, { isSubmitting: true });
+          return portfolioService.updatePortfolio(id, payload).pipe(
+            tapResponse({
+              next: () => {
+                // Reload portfolios to get the new one with all data
+                loadPortfolios();
+                notify.success('IPortfolio was updated successfully');
+                router.navigate(['/portfolio']);
+              },
+              error: (error: FirebaseError) => {
+                notify.error(error.message ?? 'Failed to update portfolio');
+              },
+              finalize: () => patchState(store, { isSubmitting: false }),
+            }),
+          );
+        }),
+      ),
+    );
 
     // Delete portfolio
     const deletePortfolio = rxMethod<string>(
@@ -194,7 +186,7 @@ export const PortfolioStore = signalStore(
             tapResponse({
               next: () => {
                 loadPortfolios();
-                notify.success('Portfolio was deleted successfully');
+                notify.success('IPortfolio was deleted successfully');
               },
               error: (error: FirebaseError) => {
                 notify.error(error.message ?? 'Failed to delete portfolio');
@@ -234,54 +226,6 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    // // Load featured portfolios
-    // loadFeaturedPortfolios: rxMethod<void>(
-    //   pipe(
-    //     switchMap(() => {
-    //       patchState(store, { loading: true, error: null });
-    //       return portfolioService.getFeaturedPortfolios().pipe(
-    //         tapResponse({
-    //           next: (portfolios) => {
-    //             patchState(store, setAllEntities(portfolios, portfolioEntityConfig), {
-    //               loading: false,
-    //             });
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to load featured portfolios',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
-
-    // // Load portfolios by technology
-    // loadPortfoliosByTechnology: rxMethod<string[]>(
-    //   pipe(
-    //     switchMap((technologies) => {
-    //       patchState(store, { loading: true, error: null });
-    //       return portfolioService.getPortfoliosByTechnology(technologies).pipe(
-    //         tapResponse({
-    //           next: (portfolios) => {
-    //             patchState(store, setAllEntities(portfolios, portfolioEntityConfig), {
-    //               loading: false,
-    //             });
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to load portfolios by technology',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
-
-    return { updateFilters, loadPortfolios, createPortfolio, deletePortfolio };
+    return { updateFilters, loadPortfolios, createPortfolio, updatePortfolio, deletePortfolio };
   }),
 );

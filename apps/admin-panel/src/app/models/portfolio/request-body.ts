@@ -1,21 +1,17 @@
-import { Timestamp } from '@angular/fire/firestore';
-
 import { StatusEnum } from '../../core/constants/status';
 import { PortfolioImage } from './image';
 
-export interface Portfolio {
-  createdAt: Timestamp;
+export interface PortfolioRequestBody {
   description: string;
   featured: boolean;
   features: string[];
   githubUrl?: string;
-  id: string;
+  id?: string;
   images: PortfolioImage[];
   liveUrl?: string;
-  publishedAt?: Timestamp;
+  publishedAt?: Date;
   shortDescription: string;
   status: StatusEnum;
   technologies: string[];
   title: string;
-  updatedAt: Timestamp;
 }

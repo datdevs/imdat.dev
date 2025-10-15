@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router } from '@angular/router';
 import { of, switchMap } from 'rxjs';
 
-import { Portfolio } from '../../../models/portfolio';
+import { IPortfolio } from '../../../models/portfolio';
 import { PortfolioService } from '../../../services';
 
 export const portfolioEditGuard: CanActivateFn = (route: ActivatedRouteSnapshot) => {
@@ -17,7 +17,7 @@ export const portfolioEditGuard: CanActivateFn = (route: ActivatedRouteSnapshot)
   }
 
   return service.getPortfolioById(portfolioId).pipe(
-    switchMap((portfolio: Portfolio) => {
+    switchMap((portfolio: IPortfolio) => {
       if (!portfolio) return of(false);
 
       route.data = {

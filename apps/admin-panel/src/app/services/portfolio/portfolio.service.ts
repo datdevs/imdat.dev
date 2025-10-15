@@ -21,9 +21,9 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { from, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
-import { CreatePortfolioRequest, Portfolio, PortfolioFilters, UpdatePortfolioRequest } from '../../models/portfolio';
+import { IPortfolio, PortfolioFilters, PortfolioRequestBody } from '../../models/portfolio';
 
 @Injectable({
   providedIn: 'root',
@@ -39,9 +39,9 @@ export class PortfolioService {
   /**
    * Get all portfolios with optional filters
    * @param {PortfolioFilters} filters
-   * @returns {Observable<Portfolio[]>}
+   * @returns {Observable<IPortfolio[]>}
    */
-  getPortfolios(filters?: PortfolioFilters): Observable<Portfolio[]> {
+  getPortfolios(filters?: PortfolioFilters): Observable<IPortfolio[]> {
     const orderByColumn = filters?.orderBy ?? 'updatedAt';
     const orderDirection = filters?.orderDirection ?? 'desc';
 
@@ -64,11 +64,12 @@ export class PortfolioService {
 
     return collectionData(q, {
       idField: 'id',
-    }) as Observable<Portfolio[]>;
+    }) as Observable<IPortfolio[]>;
   }
 
   /**
    * Get the count of all portfolios
+   * @param {PortfolioFilters} filters
    * @returns {Observable<number>}
    */
   getPortfoliosCount(filters?: PortfolioFilters): Observable<number> {
@@ -81,24 +82,25 @@ export class PortfolioService {
 
   /**
    * Get a single portfolio by ID
+   * @param {string} id
+   * @returns {Observable<IPortfolio>}
    */
-  getPortfolioById(id: string): Observable<Portfolio> {
-    return docData(doc(this.firestore, this.collectionName, id), { idField: 'id' }) as Observable<Portfolio>;
+  getPortfolioById(id: string): Observable<IPortfolio> {
+    return docData(doc(this.firestore, this.collectionName, id), { idField: 'id' }) as Observable<IPortfolio>;
   }
 
   /**
    * Create a new portfolio
-   * @param {CreatePortfolioRequest} portfolioData
+   * @param {PortfolioRequestBody} portfolioData
    * @returns {Observable<{ id: string }>}
    */
-  createPortfolio(portfolioData: CreatePortfolioRequest): Observable<{ id: string }> {
+  createPortfolio(portfolioData: PortfolioRequestBody): Observable<{ id: string }> {
     const now = new Date();
 
     const portfolioToCreate = {
       ...portfolioData,
       createdAt: now,
       updatedAt: now,
-      publishedAt: portfolioData.status === 'published' ? now : null,
     };
 
     return from(addDoc(this.collectionConfig, portfolioToCreate)).pipe(map((docRef) => ({ id: docRef.id })));
@@ -106,24 +108,19 @@ export class PortfolioService {
 
   /**
    * Update an existing portfolio
+   * @param {string} id
+   * @param {PortfolioRequestBody} portfolioData
+   * @returns {Observable<void>}
    */
-  updatePortfolio(portfolioData: UpdatePortfolioRequest): Observable<boolean> {
-    const { id, ...updateData } = portfolioData;
+  updatePortfolio(id: string, portfolioData: PortfolioRequestBody) {
     const portfolioDoc = doc(this.firestore, this.collectionName, id);
 
     const updatePayload = {
-      ...updateData,
+      ...portfolioData,
       updatedAt: new Date(),
-      publishedAt: updateData.status === 'published' && !updateData.publishedAt ? new Date() : undefined,
     };
 
-    return from(updateDoc(portfolioDoc, updatePayload)).pipe(
-      map(() => true),
-      catchError((error) => {
-        console.error('Error updating portfolio:', error);
-        throw error;
-      }),
-    );
+    return from(updateDoc(portfolioDoc, updatePayload));
   }
 
   /**

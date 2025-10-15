@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { tuiDialog } from '@taiga-ui/core';
 
-import { Portfolio as PortfolioModel } from '../../models/portfolio';
+import { IPortfolio } from '../../models/portfolio';
 import { PortfolioFilter } from './components/portfolio-filter/portfolio-filter';
 import { PortfolioForm } from './components/portfolio-form/portfolio-form';
 import { PortfolioTable } from './components/portfolio-table/portfolio-table';
@@ -37,7 +37,7 @@ export class Portfolio {
       if (url.some((segment) => segment.path === 'create')) {
         this._openDialog();
       } else if (url.some((segment) => segment.path === 'edit')) {
-        const portfolio = this.route.snapshot.data['portfolioData'] as PortfolioModel;
+        const portfolio = this.route.snapshot.data['portfolioData'] as IPortfolio;
         this.portfolioDialog = tuiDialog(PortfolioForm, {
           label: `Edit ${portfolio.title}`,
           dismissible: false,
@@ -50,9 +50,9 @@ export class Portfolio {
 
   /**
    * Open the portfolio dialog (create or edit)
-   * @param {PortfolioModel} portfolio
+   * @param {IPortfolio} portfolio
    */
-  private _openDialog(portfolio?: PortfolioModel) {
+  private _openDialog(portfolio?: IPortfolio) {
     this.portfolioDialog(portfolio)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
