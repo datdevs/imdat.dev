@@ -1,0 +1,228 @@
+@let cTab = currentTab();
+
+<form tuiForm [formGroup]="form" (submit)="onSubmit()">
+  <tui-tabs [(activeItemIndex)]="currentTab">
+    <button tuiTab (click)="currentTab.set(0)">Basic Information</button>
+    <button tuiTab (click)="currentTab.set(1)">Technologies & Features</button>
+    <button tuiTab (click)="currentTab.set(2)">Images & Links</button>
+  </tui-tabs>
+
+  <!-- Basic Information Tab -->
+  @if (cTab === 0) {
+    <tui-textfield>
+      <label for="title" tuiLabel>
+        Title
+        <span class="text-red-500">*</span>
+      </label>
+      <input formControlName="title" name="title" tuiTextfield />
+    </tui-textfield>
+    <tui-error formControlName="title" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+      <label for="shortDescription" tuiLabel>
+        Short Description
+        <span class="text-red-500">*</span>
+      </label>
+      <textarea
+        formControlName="shortDescription"
+        name="shortDescription"
+        placeholder="Brief description (max 200 characters)"
+        tuiTextarea
+        [limit]="200"
+        [max]="5"
+        [tuiTextfieldCleaner]="true"
+      ></textarea>
+    </tui-textfield>
+    <tui-error formControlName="shortDescription" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+      <label for="description" tuiLabel>
+        Description
+        <span class="text-red-500">*</span>
+      </label>
+      <textarea
+        formControlName="description"
+        name="description"
+        placeholder="Detailed description of the project"
+        tuiTextarea
+        [max]="10"
+        [min]="5"
+        [minlength]="50"
+        [tuiTextfieldCleaner]="true"
+      ></textarea>
+    </tui-textfield>
+    <tui-error formControlName="description" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield tuiChevron [stringify]="statusStringify" [tuiTextfieldCleaner]="false">
+      <label for="status" tuiLabel>
+        Status
+        <span class="text-red-500">*</span>
+      </label>
+      <input formControlName="status" name="status" tuiSelect />
+
+      <tui-data-list *tuiTextfieldDropdown>
+        @for (item of statusOptions; track $index) {
+          <button new tuiOption type="button" [value]="item.value">
+            {{ item.label }}
+          </button>
+        }
+      </tui-data-list>
+    </tui-textfield>
+
+    <label class="cursor-pointer" tuiLabel>
+      <input formControlName="featured" tuiSwitch type="checkbox" />
+      Featured Portfolio
+      <tui-icon tuiTooltip="Featured portfolio will be displayed on the home page" />
+    </label>
+  }
+
+  <!-- Technologies & Features Tab -->
+  @if (cTab === 1) {
+    <tui-textfield multi>
+      <label for="technologies" tuiLabel>
+        Technologies
+        <span class="text-red-500">*</span>
+      </label>
+
+      <input formControlName="technologies" name="technologies" placeholder="Type to search" tuiInputChip />
+
+      <tui-input-chip *tuiItem />
+
+      <tui-data-list-wrapper
+        *tuiTextfieldDropdown
+        new
+        [items]="commonTechnologies | tuiFilterByInput | tuiHideSelected"
+      />
+    </tui-textfield>
+    <tui-error formControlName="technologies" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield multi>
+      <label for="features" tuiLabel>
+        Features
+        <span class="text-red-500">*</span>
+      </label>
+
+      <input formControlName="features" name="features" placeholder="Type and press enter to add" tuiInputChip />
+
+      <tui-input-chip *tuiItem />
+    </tui-textfield>
+    <tui-error formControlName="features" [error]="[] | tuiFieldError | async" />
+  }
+
+  <!-- Images & Links Tab -->
+  @if (cTab === 2) {
+    <tui-elastic-container>
+      <h5 class="text-lg font-medium">Images</h5>
+
+      @if (fc.images.value && fc.images.value.length > 0) {
+        <div class="flex flex-wrap gap-5 p-4">
+          @for (item of fc.images.value || []; track $index) {
+            <div class="relative">
+              <img
+                class="aspect-square size-[100px] rounded-2xl object-cover shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
+                height="100"
+                loading="lazy"
+                width="100"
+                [alt]="item.alt"
+                [ngSrc]="item.url"
+              />
+
+              <button
+                class="absolute top-1 right-1 inline-flex cursor-pointer items-center justify-center rounded-full bg-black/10 p-1 shadow-lg"
+                type="button"
+                (click)="removeImage($index)"
+              >
+                <tui-icon icon="x" [style.font-size.px]="12" />
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </tui-elastic-container>
+
+    @if (isVisibleImageForm()) {
+      <section class="flex flex-row gap-5 rounded-[1.25rem] p-6 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
+        <div>
+          <img
+            class="mb-5 aspect-square size-[100px] rounded-2xl object-cover"
+            loading="lazy"
+            [alt]="imageFormGroup.value.alt"
+            [src]="imageFormGroup.value.url"
+            (error)="handleImageError($event)"
+          />
+          <tui-error [error]="previewImageError()"></tui-error>
+        </div>
+
+        <form class="flex-1" tuiForm="m" [formGroup]="imageFormGroup">
+          <tui-textfield>
+            <label for="url" tuiLabel>
+              Image URL
+              <span class="text-red-500">*</span>
+            </label>
+            <input formControlName="url" name="url" tuiTextfield type="url" />
+          </tui-textfield>
+          <tui-error formControlName="url" [error]="[] | tuiFieldError | async" />
+
+          <tui-textfield>
+            <label for="alt" tuiLabel>
+              Image description
+              <span class="text-red-500">*</span>
+            </label>
+            <input formControlName="alt" name="alt" tuiTextfield type="text" />
+          </tui-textfield>
+          <tui-error formControlName="alt" [error]="[] | tuiFieldError | async" />
+
+          <footer>
+            <button appearance="secondary" size="m" tuiButton type="button" (click)="cancelImage()">Cancel</button>
+            <button
+              appearance="primary"
+              size="m"
+              tuiButton
+              type="button"
+              [disabled]="imageFormGroup.invalid"
+              (click)="addImage()"
+            >
+              Save
+            </button>
+          </footer>
+        </form>
+      </section>
+    }
+
+    <button
+      iconStart="plus"
+      size="s"
+      tuiButton
+      type="button"
+      [disabled]="isVisibleImageForm()"
+      (click)="isVisibleImageForm.set(true)"
+    >
+      Add Image
+    </button>
+
+    <tui-textfield>
+      <label for="githubUrl" tuiLabel>GitHub URL</label>
+      <input
+        formControlName="githubUrl"
+        name="githubUrl"
+        placeholder="https://github.com/username/repo"
+        tuiTextfield
+        type="url"
+      />
+    </tui-textfield>
+    <tui-error formControlName="githubUrl" [error]="[] | tuiFieldError | async" />
+
+    <tui-textfield>
+      <label for="liveUrl" tuiLabel>Live URL</label>
+      <input formControlName="liveUrl" name="liveUrl" placeholder="https://example.com" tuiTextfield type="url" />
+    </tui-textfield>
+    <tui-error formControlName="liveUrl" [error]="[] | tuiFieldError | async" />
+  }
+
+  <!-- Form Actions -->
+  <footer>
+    <button appearance="secondary" tuiButton type="button" (click)="onCancel()">Cancel</button>
+
+    <button tuiButton type="submit" [disabled]="isSubmitting()" [loading]="isSubmitting()">Save</button>
+  </footer>
+</form>
