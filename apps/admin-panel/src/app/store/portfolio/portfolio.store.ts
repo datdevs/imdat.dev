@@ -1,4 +1,3 @@
-import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { computed, inject } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entiti
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { merge, pipe, switchMap } from 'rxjs';
 
+import { environment } from '../../core/environments';
 import { IPortfolio, PortfolioFilters, PortfolioRequestBody } from '../../models/portfolio';
 import { NotifyService, PortfolioService } from '../../services';
 
@@ -54,9 +54,11 @@ const recentPortfoliosEntityConfig = entityConfig({
   selectId: (portfolio: IPortfolio) => portfolio.id,
 });
 
+const devtools = environment.storeWithDevTools;
+
 export const PortfolioStore = signalStore(
   { providedIn: 'root' },
-  withDevtools('portfolios'),
+  devtools('portfolios'),
   withState(initialState),
   withEntities(portfolioEntityConfig),
   withEntities(dashboardEntityConfig),
