@@ -8,7 +8,7 @@ on:
 
 permissions:
   actions: read
-  contents: read
+  contents: write
 
 jobs:
   main:
@@ -34,6 +34,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: ./package-lock.json
 
-      - run: npm install --legacy-peer-deps
+      - run: npm ci --legacy-peer-deps
       # - run: npx nx run-many -t lint test build -p admin-panel
       - run: npx nx affected -t lint test build
