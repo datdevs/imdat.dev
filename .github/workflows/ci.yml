@@ -1,39 +1,39 @@
-# name: CI
+name: CI
 
-# on:
-#   push:
-#     branches:
-#       - master
-#   pull_request:
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
-# permissions:
-#   actions: read
-#   contents: read
+permissions:
+  actions: read
+  contents: read
 
-# jobs:
-#   main:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v5
-#         with:
-#           fetch-depth: 0
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
-#       - name: Cache node npm
-#         uses: actions/cache@v4
-#         with:
-#           # npm cache files are stored in `~/.npm` on Linux/macOS
-#           path: ~/.npm
-#           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-#           restore-keys: |
-#             ${{ runner.os }}-node-
+      - name: Cache node npm
+        uses: actions/cache@v4
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-#       - name: Setup node
-#         uses: actions/setup-node@v6
-#         with:
-#           node-version: 22
-#           cache: "npm"
-#           cache-dependency-path: ./package-lock.json
+      - name: Setup node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: "npm"
+          cache-dependency-path: ./package-lock.json
 
-#       - run: npm ci
-#       # - run: npx nx run-many -t lint test build -p admin-panel
-#       - run: npx nx affected -t lint test build
+      - run: npm install --legacy-peer-deps
+      # - run: npx nx run-many -t lint test build -p admin-panel
+      - run: npx nx affected -t lint test build
