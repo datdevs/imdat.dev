@@ -52,14 +52,22 @@ export class PortfolioService {
     // Apply pagination
     if (filters?.cursor === 'next') {
       if (filters?.lastDoc) {
-        q = query(q, startAfter(filters?.lastDoc?.[orderByColumn]), limit(Number(filters?.limit ?? 10)));
+        q = query(
+          q,
+          startAfter(filters?.lastDoc?.[orderByColumn]),
+          ...(filters?.limit ? [limit(Number(filters?.limit))] : []),
+        );
       }
     } else if (filters?.cursor === 'prev') {
       if (filters?.firstDoc) {
-        q = query(q, endBefore(filters?.firstDoc?.[orderByColumn]), limitToLast(Number(filters?.limit ?? 10)));
+        q = query(
+          q,
+          endBefore(filters?.firstDoc?.[orderByColumn]),
+          ...(filters?.limit ? [limitToLast(Number(filters?.limit))] : []),
+        );
       }
     } else {
-      q = query(q, limit(Number(filters?.limit ?? 10)));
+      q = query(q, ...(filters?.limit ? [limit(Number(filters?.limit))] : []));
     }
 
     return collectionData(q, {

@@ -1,4 +1,3 @@
-import { withDevtools } from '@angular-architects/ngrx-toolkit';
 import { computed, inject } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { Router } from '@angular/router';
@@ -8,11 +7,14 @@ import { entityConfig, setAllEntities, withEntities } from '@ngrx/signals/entiti
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { merge, pipe, switchMap } from 'rxjs';
 
+import { environment } from '../../core/environments';
 import { IPortfolio, PortfolioFilters, PortfolioRequestBody } from '../../models/portfolio';
 import { NotifyService, PortfolioService } from '../../services';
 
 export interface PortfolioState {
   filters: PortfolioFilters;
+  isDashboardLoading: boolean;
+  isRecentPortfoliosLoading: boolean;
   isSubmitting: boolean;
   loading: boolean;
   searchTerm: string;
@@ -26,6 +28,8 @@ const initialState: PortfolioState = {
     orderBy: 'updatedAt',
     orderDirection: 'desc',
   },
+  isDashboardLoading: false,
+  isRecentPortfoliosLoading: false,
   isSubmitting: false,
   loading: false,
   searchTerm: '',
@@ -38,14 +42,32 @@ const portfolioEntityConfig = entityConfig({
   selectId: (portfolio: IPortfolio) => portfolio.id,
 });
 
+const dashboardEntityConfig = entityConfig({
+  entity: type<IPortfolio>(),
+  collection: '_dashboard_portfolios',
+  selectId: (portfolio: IPortfolio) => portfolio.id,
+});
+
+const recentPortfoliosEntityConfig = entityConfig({
+  entity: type<IPortfolio>(),
+  collection: '_recent_portfolios',
+  selectId: (portfolio: IPortfolio) => portfolio.id,
+});
+
+const devtools = environment.storeWithDevTools;
+
 export const PortfolioStore = signalStore(
   { providedIn: 'root' },
-  withDevtools('portfolios'),
+  devtools('portfolios'),
   withState(initialState),
   withEntities(portfolioEntityConfig),
-  withComputed(({ _portfoliosEntities }) => ({
+  withEntities(dashboardEntityConfig),
+  withEntities(recentPortfoliosEntityConfig),
+  withComputed(({ _portfoliosEntities, _dashboard_portfoliosEntities, _recent_portfoliosEntities }) => ({
     // Get all portfolios as array
     portfolios: computed(() => _portfoliosEntities()),
+    dashboardPortfolios: computed(() => _dashboard_portfoliosEntities()),
+    recentPortfolios: computed(() => _recent_portfoliosEntities()),
   })),
   withMethods((store) => {
     const portfolioService = inject(PortfolioService);
@@ -100,36 +122,49 @@ export const PortfolioStore = signalStore(
       ),
     );
 
-    // // Load single portfolio by ID
-    // loadPortfolioById: rxMethod<string>(
-    //   pipe(
-    //     switchMap((id) => {
-    //       patchState(store, { loading: true, error: null, selectedPortfolioId: id });
-    //       return portfolioService.getPortfolioById(id).pipe(
-    //         tapResponse({
-    //           next: (portfolio) => {
-    //             if (portfolio) {
-    //               patchState(store, addEntity(portfolio, portfolioEntityConfig), {
-    //                 loading: false,
-    //               });
-    //             } else {
-    //               patchState(store, {
-    //                 loading: false,
-    //                 error: 'IPortfolio not found',
-    //               });
-    //             }
-    //           },
-    //           error: (error) => {
-    //             patchState(store, {
-    //               loading: false,
-    //               error: error.message || 'Failed to load portfolio',
-    //             });
-    //           },
-    //         }),
-    //       );
-    //     }),
-    //   ),
-    // ),
+    const loadRecentPortfolios = rxMethod<void>(
+      pipe(
+        switchMap(() => {
+          patchState(store, { isRecentPortfoliosLoading: true });
+          return portfolioService
+            .getPortfolios({
+              limit: 5,
+              orderBy: 'updatedAt',
+              orderDirection: 'desc',
+            })
+            .pipe(
+              tapResponse({
+                next: (portfolios: IPortfolio[]) =>
+                  patchState(store, setAllEntities(portfolios, recentPortfoliosEntityConfig), {
+                    isRecentPortfoliosLoading: false,
+                  }),
+                error: (error: FirebaseError) => {
+                  notify.error(error.message ?? 'Failed to load recent portfolios');
+                  patchState(store, { isRecentPortfoliosLoading: false });
+                },
+              }),
+            );
+        }),
+      ),
+    );
+
+    const loadDashboardPortfolios = rxMethod<void>(
+      pipe(
+        switchMap(() => {
+          patchState(store, { isDashboardLoading: true });
+          return portfolioService.getPortfolios({ orderBy: 'updatedAt', orderDirection: 'desc' }).pipe(
+            tapResponse({
+              next: (portfolios: IPortfolio[]) =>
+                patchState(store, setAllEntities(portfolios, dashboardEntityConfig), { isDashboardLoading: false }),
+              error: (error: FirebaseError) => {
+                notify.error(error.message ?? 'Failed to load dashboard portfolios');
+                patchState(store, { isDashboardLoading: false });
+              },
+            }),
+          );
+        }),
+      ),
+    );
 
     // Create new portfolio
     const createPortfolio = rxMethod<PortfolioRequestBody>(
@@ -226,6 +261,14 @@ export const PortfolioStore = signalStore(
     //   ),
     // ),
 
-    return { updateFilters, loadPortfolios, createPortfolio, updatePortfolio, deletePortfolio };
+    return {
+      updateFilters,
+      loadPortfolios,
+      createPortfolio,
+      updatePortfolio,
+      deletePortfolio,
+      loadRecentPortfolios,
+      loadDashboardPortfolios,
+    };
   }),
 );
