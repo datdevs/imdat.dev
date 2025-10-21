@@ -35,4 +35,5 @@ jobs:
           cache-dependency-path: ./package-lock.json
 
       - run: npm ci
-      - run: npx nx run-many -t lint test build -p admin-panel
+      # - run: npx nx run-many -t lint test build -p admin-panel
+      - run: npx nx affected -t lint test build
