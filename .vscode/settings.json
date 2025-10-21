@@ -53,7 +53,7 @@
     "**/src/assets": true
   },
   "stylelint.validate": ["css", "scss"],
-  "tailwindCSS.experimental.configFile": "apps/admin-panel/src/styles.scss",
+  "tailwindCSS.experimental.configFile": "apps/admin-panel/src/tailwind.config.css",
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,0 +1,9 @@
+@use 'tailwindcss';
+
+:host {
+  --tui-chart-categorical-00: var(--tui-status-positive);
+  --tui-chart-categorical-01: var(--tui-status-neutral);
+  --tui-chart-categorical-02: var(--tui-status-warning);
+
+  @apply py-5;
+}

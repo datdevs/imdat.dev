@@ -1,0 +1,165 @@
+@let stats = dashboardPortfolios();
+@let isStatsLoading = isDashboardLoading();
+@let isRecentLoading = isRecentPortfoliosLoading();
+
+<header tuiHeader="h2">
+  <hgroup tuiTitle>
+    <h2 class="font-semibold">Dashboard</h2>
+    <p tuiSubtitle>Overview of your portfolio</p>
+  </hgroup>
+</header>
+
+<section class="mt-6 grid grid-cols-12 gap-5">
+  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+    <tui-avatar appearance="info" src="@tui.briefcase-business" />
+
+    <div tuiTitle>
+      <h3 class="font-semibold">{{ stats.total }}</h3>
+      <div tuiSubtitle>Total portfolios</div>
+    </div>
+  </div>
+
+  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+    <tui-avatar appearance="positive" src="@tui.cloud-upload" />
+
+    <div tuiTitle>
+      <h3 class="font-semibold">{{ stats.published }}</h3>
+      <div tuiSubtitle>Published portfolios</div>
+    </div>
+  </div>
+
+  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+    <tui-avatar appearance="neutral" src="@tui.file-pen-line" />
+
+    <div tuiTitle>
+      <h3 class="font-semibold">{{ stats.draft }}</h3>
+      <div tuiSubtitle>Draft portfolios</div>
+    </div>
+  </div>
+
+  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+    <tui-avatar appearance="warning" src="@tui.archive" />
+
+    <div tuiTitle>
+      <h3 class="font-semibold">{{ stats.archived }}</h3>
+      <div tuiSubtitle>Archived portfolios</div>
+    </div>
+  </div>
+
+  <div class="col-span-6" tuiCardLarge>
+    <header tuiHeader="h6">
+      <h3 tuiTitle>Status Distribution</h3>
+    </header>
+
+    <div class="flex flex-col items-center justify-center gap-8 pt-5">
+      <tui-pie-chart
+        size="xl"
+        [activeItemIndex]="pieChartActiveItemIndex"
+        [value]="stats.statusDistributionValue"
+      ></tui-pie-chart>
+
+      <div class="flex gap-2">
+        @for (item of stats.statusDistribution; track item.status; let index = $index) {
+          <tui-legend-item
+            size="s"
+            [color]="'var(--tui-chart-categorical-0' + index + ')'"
+            [text]="item.status | status"
+            (tuiHoveredChange)="onLegendOfPieChartHover(index, $event)"
+          >
+            <span>{{ stats.statusDistributionValue[index] || 0 }}</span>
+          </tui-legend-item>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="col-span-6" tuiCardLarge>
+    <header tuiHeader="h6">
+      <h3 tuiTitle>Daily Portfolios</h3>
+    </header>
+
+    <tui-axes
+      class="axes"
+      [axisXLabels]="['Jan 2019', 'Feb', 'Mar', '']"
+      [axisYLabels]="[
+        '0',
+        '10',
+        '15',
+        '20',
+        '25',
+        '30',
+        '35',
+        '40',
+        '45',
+        '50',
+        '55',
+        '60',
+        '65',
+        '70',
+        '75',
+        '80',
+        '85',
+        '90',
+        '95',
+        '100',
+      ]"
+    >
+      <tui-bar-chart
+        [max]="10000"
+        [value]="[
+          [3660, 8281, 1069, 9034, 5797, 6918, 8495, 3234, 6204, 1392, 2088, 8637, 8779],
+          [3952, 3671, 3781, 5323, 3537, 4107, 2962, 3320, 8632, 4755, 9130, 1195, 3574],
+        ]"
+      />
+    </tui-axes>
+  </div>
+
+  <div class="col-span-12" tuiCardLarge>
+    <header tuiHeader="h6">
+      <h3 tuiTitle>Recent Portfolios</h3>
+
+      <aside tuiAccessories>
+        <a appearance="secondary" routerLink="/portfolio" size="s" tuiButton>View all</a>
+      </aside>
+    </header>
+
+    @if (isRecentLoading) {
+      <div tuiCell [tuiSkeleton]="isRecentLoading">
+        <div class="aspect-square size-[80px] rounded-xl object-cover"></div>
+      </div>
+    }
+
+    @for (portfolio of recentPortfolios(); track portfolio.id) {
+      <div tuiCell>
+        <img
+          class="aspect-square size-[80px] rounded-xl object-cover"
+          height="80"
+          loading="lazy"
+          width="80"
+          [alt]="portfolio.images[0].alt"
+          [ngSrc]="portfolio.images[0].url"
+        />
+
+        <div tuiTitle>
+          {{ portfolio.title }}
+          <span class="text-sm" tuiSubtitle>
+            {{ portfolio.updatedAt.toDate() | date: 'dd/MM/yyyy, HH:mm:ss' }}
+          </span>
+          <p>
+            {{ portfolio.shortDescription }}
+          </p>
+        </div>
+
+        <a
+          appearance="secondary"
+          iconStart="pencil"
+          size="s"
+          tuiButton
+          [routerLink]="['/portfolio', 'edit', portfolio.id]"
+        >
+          Edit
+        </a>
+      </div>
+    }
+  </div>
+</section>

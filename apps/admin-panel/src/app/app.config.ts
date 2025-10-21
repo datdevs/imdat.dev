@@ -1,4 +1,10 @@
-import { ApplicationConfig, inject, provideAppInitializer, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  isDevMode,
+  provideAppInitializer,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { initializeAppCheck, provideAppCheck, ReCaptchaV3Provider } from '@angular/fire/app-check';
 import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
@@ -26,14 +32,14 @@ export const appConfig: ApplicationConfig = {
     ),
     provideAuth(() => {
       const auth = getAuth();
-      if (location.hostname === 'localhost') {
+      if (isDevMode()) {
         connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });
       }
       return auth;
     }),
     provideFirestore(() => {
       const firestore = getFirestore();
-      if (location.hostname === 'localhost') {
+      if (isDevMode()) {
         connectFirestoreEmulator(firestore, '127.0.0.1', 8080);
       }
       return firestore;

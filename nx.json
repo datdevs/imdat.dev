@@ -12,8 +12,7 @@
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
-    ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    ]
   },
   "nxCloudId": "68c7c97156420937c3b57804",
   "targetDefaults": {
