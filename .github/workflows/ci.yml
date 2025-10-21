@@ -16,8 +16,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          filter: tree:0
           fetch-depth: 0
+
+      - name: Cache node npm
+        uses: actions/cache@v4
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       # This enables task distribution via Nx Cloud
       # Run this command as early as possible, before dependencies are installed
@@ -25,13 +33,14 @@ jobs:
       # Uncomment this line to enable task distribution
       # - run: npx nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
 
-      # Cache node_modules
-      - uses: actions/setup-node@v4
+      - name: Setup node
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: "npm"
+          cache-dependency-path: ./package-lock.json
 
-      # - run: npm ci --legacy-peer-deps
+      - run: npm ci --legacy-peer-deps
       # - run: npx playwright install --with-deps
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
