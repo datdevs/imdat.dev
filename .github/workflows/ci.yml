@@ -33,9 +33,9 @@ jobs:
       # Uncomment this line to enable task distribution
       # - run: npx nx start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
       - run: npx nx-cloud start-ci-run --stop-agents-after=lint,test,build
-      - run: nx affected -t lint
-      - run: nx affected -t test
-      - run: nx affected -t build
+      - run: npx nx affected -t lint
+      - run: npx nx affected -t test
+      - run: npx nx affected -t build
 
       - name: Setup node
         uses: actions/setup-node@v6
