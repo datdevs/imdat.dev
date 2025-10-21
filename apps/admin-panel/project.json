@@ -25,7 +25,11 @@
             "output": "assets/taiga-ui/icons"
           }
         ],
-        "styles": ["apps/admin-panel/src/taiga-ui.less", "apps/admin-panel/src/styles.scss"],
+        "styles": [
+          "apps/admin-panel/src/tailwind.config.css",
+          "apps/admin-panel/src/taiga-ui.less",
+          "apps/admin-panel/src/styles.scss"
+        ],
         "stylePreprocessorOptions": {
           "includePaths": ["apps/admin-panel/src/styles"]
         }
