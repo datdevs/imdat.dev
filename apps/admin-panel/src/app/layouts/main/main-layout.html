@@ -19,7 +19,7 @@
 </header>
 
 <div class="flex flex-1">
-  <aside class="h-full" tuiTheme="light" [tuiNavigationAside]="expanded()">
+  <aside tuiTheme="light" [tuiNavigationAside]="expanded()">
     <header>
       @for (menu of sideNavHeaderMenus(); track menu.path) {
         <button tuiAsideItem type="button" [iconStart]="menu.data?.icon" [routerLink]="menu.path">

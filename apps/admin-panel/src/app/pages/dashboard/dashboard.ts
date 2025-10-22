@@ -1,11 +1,20 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  HostListener,
+  inject,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TuiAxes, TuiBarChart, TuiLegendItem, TuiPieChart } from '@taiga-ui/addon-charts';
 import { TuiHovered } from '@taiga-ui/cdk/directives/hovered';
 import { TuiAppearance, TuiButton } from '@taiga-ui/core';
 import { TuiAvatar, TuiSkeleton } from '@taiga-ui/kit';
-import { TuiCard, TuiCell, TuiHeader } from '@taiga-ui/layout';
+import { TuiCard, TuiCell, TuiCellOptions, TuiHeader } from '@taiga-ui/layout';
 
 import { StatusEnum } from '../../core/constants/status';
 import { IPortfolio } from '../../models/portfolio';
@@ -19,7 +28,6 @@ import { StatusPipe } from '../../utils/pipes';
     DatePipe,
     StatusPipe,
     NgOptimizedImage,
-
     TuiHeader,
     TuiAvatar,
     TuiCell,
@@ -39,9 +47,9 @@ import { StatusPipe } from '../../utils/pipes';
 })
 export class Dashboard {
   private readonly portfolioStore = inject(PortfolioStore);
+
   protected readonly isDashboardLoading: Signal<boolean> = this.portfolioStore.isDashboardLoading;
   protected readonly isRecentPortfoliosLoading: Signal<boolean> = this.portfolioStore.isRecentPortfoliosLoading;
-
   protected readonly recentPortfolios: Signal<IPortfolio[]> = computed(() => this.portfolioStore.recentPortfolios());
   protected readonly dashboardPortfolios: Signal<{
     archived: number;
@@ -73,14 +81,20 @@ export class Dashboard {
   });
 
   protected pieChartActiveItemIndex = NaN;
-
-  protected readonly value = [13769, 12367, 10172, 3018, 2592];
-
-  protected readonly labels = ['Food', 'Cafe', 'OSS', 'Taxi', 'Other'];
+  protected readonly value: number[] = [13769, 12367, 10172, 3018, 2592];
+  protected readonly labels: string[] = ['Food', 'Cafe', 'OSS', 'Taxi', 'Other'];
+  protected readonly cellSize: WritableSignal<TuiCellOptions['size']> = signal<TuiCellOptions['size']>(
+    window.innerWidth > 768 ? 'l' : 'm',
+  );
 
   constructor() {
     this.portfolioStore.loadDashboardPortfolios();
     this.portfolioStore.loadRecentPortfolios();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.cellSize.set(window.innerWidth > 768 ? 'l' : 'm');
   }
 
   onLegendOfPieChartHover(index: number, hovered: boolean): void {

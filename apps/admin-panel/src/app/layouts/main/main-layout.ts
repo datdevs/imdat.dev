@@ -27,7 +27,7 @@ import { appRoutes, MenuItem } from '../../app.routes';
 import { ProfileButton } from '../../components/profile-button/profile-button';
 
 @Component({
-  selector: 'app-main',
+  selector: 'app-main-layout',
   imports: [
     RouterModule,
     ProfileButton,
@@ -47,8 +47,8 @@ import { ProfileButton } from '../../components/profile-button/profile-button';
     TuiTabs,
     TuiTextfield,
   ],
-  templateUrl: './main.layout.html',
-  styleUrl: './main.layout.scss',
+  templateUrl: './main-layout.html',
+  styleUrl: './main-layout.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainLayout {

@@ -4,13 +4,13 @@
 
 <header tuiHeader="h2">
   <hgroup tuiTitle>
-    <h2 class="font-semibold">Dashboard</h2>
+    <h2 class="font-semibold max-md:text-2xl">Dashboard</h2>
     <p tuiSubtitle>Overview of your portfolio</p>
   </hgroup>
 </header>
 
 <section class="mt-6 grid grid-cols-12 gap-5">
-  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+  <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
     <tui-avatar appearance="info" src="@tui.briefcase-business" />
 
     <div tuiTitle>
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+  <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
     <tui-avatar appearance="positive" src="@tui.cloud-upload" />
 
     <div tuiTitle>
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+  <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
     <tui-avatar appearance="neutral" src="@tui.file-pen-line" />
 
     <div tuiTitle>
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div class="col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
+  <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
     <tui-avatar appearance="warning" src="@tui.archive" />
 
     <div tuiTitle>
@@ -46,9 +46,9 @@
     </div>
   </div>
 
-  <div class="col-span-6" tuiCardLarge>
+  <div class="col-span-12 lg:col-span-6" tuiCardLarge>
     <header tuiHeader="h6">
-      <h3 tuiTitle>Status Distribution</h3>
+      <h6 tuiTitle>Status Distribution</h6>
     </header>
 
     <div class="flex flex-col items-center justify-center gap-8 pt-5">
@@ -58,7 +58,7 @@
         [value]="stats.statusDistributionValue"
       ></tui-pie-chart>
 
-      <div class="flex gap-2">
+      <div class="flex flex-wrap justify-center gap-2">
         @for (item of stats.statusDistribution; track item.status; let index = $index) {
           <tui-legend-item
             size="s"
@@ -73,9 +73,9 @@
     </div>
   </div>
 
-  <div class="col-span-6" tuiCardLarge>
+  <div class="col-span-12 lg:col-span-6" tuiCardLarge>
     <header tuiHeader="h6">
-      <h3 tuiTitle>Daily Portfolios</h3>
+      <h6 tuiTitle>Daily Portfolios</h6>
     </header>
 
     <tui-axes
@@ -116,7 +116,7 @@
 
   <div class="col-span-12" tuiCardLarge>
     <header tuiHeader="h6">
-      <h3 tuiTitle>Recent Portfolios</h3>
+      <h6 tuiTitle>Recent Portfolios</h6>
 
       <aside tuiAccessories>
         <a appearance="secondary" routerLink="/portfolio" size="s" tuiButton>View all</a>
@@ -124,15 +124,15 @@
     </header>
 
     @if (isRecentLoading) {
-      <div tuiCell [tuiSkeleton]="isRecentLoading">
+      <div [tuiCell]="cellSize()" [tuiSkeleton]="isRecentLoading">
         <div class="aspect-square size-[80px] rounded-xl object-cover"></div>
       </div>
     }
 
     @for (portfolio of recentPortfolios(); track portfolio.id) {
-      <div tuiCell>
+      <div [tuiCell]="cellSize()">
         <img
-          class="aspect-square size-[80px] rounded-xl object-cover"
+          class="aspect-square size-[60px] rounded-xl object-cover md:size-[80px]"
           height="80"
           loading="lazy"
           width="80"
