@@ -44,8 +44,12 @@ Thumbs.db
 .github/instructions/nx.instructions.md
 
 .angular
-firebase.config.ts
 
 *.log
 
 firebase-data
+
+# Environment variables
+.env
+.env.local
+.env.*.local

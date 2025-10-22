@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
+    "appspot",
     "dotlottie",
+    "firebaseapp",
     "Firestore",
     "gzipper",
     "imdat",
@@ -9,7 +11,8 @@
     "notiflix",
     "nrwl",
     "polymorpheus",
-    "rspack"
+    "rspack",
+    "VITE"
   ],
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
   "editor.codeActionsOnSave": {

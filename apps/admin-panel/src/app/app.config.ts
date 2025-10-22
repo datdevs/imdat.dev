@@ -14,7 +14,7 @@ import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from 
 import { tuiDateFormatProvider } from '@taiga-ui/core';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
 
-import { firebaseConfig } from '../config/firebase';
+import { firebaseConfig, RECAPTCHA_V3_SITE_KEY } from '../config';
 import { appRoutes } from './app.routes';
 import { AuthService, initializeNotifyService, NotifyService, PageTitleService } from './services';
 import { AuthStore } from './store/auth';
@@ -25,11 +25,16 @@ export const appConfig: ApplicationConfig = {
     provideEventPlugins(),
     provideZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideAppCheck(() =>
-      initializeAppCheck(getApp(), {
-        provider: new ReCaptchaV3Provider('6Lf8-ioqAAAAAALOhjPzaUXUiSSNotkDMNU_Citq'),
-      }),
-    ),
+    ...(isDevMode()
+      ? []
+      : [
+          provideAppCheck(() =>
+            initializeAppCheck(getApp(), {
+              provider: new ReCaptchaV3Provider(RECAPTCHA_V3_SITE_KEY),
+              isTokenAutoRefreshEnabled: true,
+            }),
+          ),
+        ]),
     provideAuth(() => {
       const auth = getAuth();
       if (isDevMode()) {
