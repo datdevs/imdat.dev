@@ -1,5 +1,16 @@
 {
-  "cSpell.words": ["dotlottie", "Firestore", "imdat", "lottiefiles", "ngrx", "notiflix", "polymorpheus", "rspack"],
+  "cSpell.words": [
+    "dotlottie",
+    "Firestore",
+    "gzipper",
+    "imdat",
+    "lottiefiles",
+    "ngrx",
+    "notiflix",
+    "nrwl",
+    "polymorpheus",
+    "rspack"
+  ],
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "always",
