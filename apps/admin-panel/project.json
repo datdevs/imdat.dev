@@ -32,7 +32,8 @@
         ],
         "stylePreprocessorOptions": {
           "includePaths": ["apps/admin-panel/src/styles"]
-        }
+        },
+        "allowedCommonJsDependencies": ["notiflix"]
       },
       "configurations": {
         "production": {
@@ -102,7 +103,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "admin-panel:build",
-        "port": 4200,
+        "port": 3001,
         "staticFilePath": "dist/apps/admin-panel/browser",
         "spa": true
       }

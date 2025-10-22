@@ -1,7 +1,7 @@
 import { AuthGuard, AuthPipe, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { Route } from '@angular/router';
 
-import { MainLayout } from './layouts/main/main.layout';
+import { MainLayout } from './layouts/main/main-layout';
 import { NotFound } from './pages/not-found/not-found';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
