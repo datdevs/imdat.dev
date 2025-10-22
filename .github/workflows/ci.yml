@@ -1,4 +1,4 @@
-name: Deploy Production
+name: Deploy
 
 on:
   push:
@@ -40,6 +40,13 @@ jobs:
       - name: Compress build output
         run: npx gzipper c dist
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/
+          retention-days: 1
+
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - name: Fix CI
         run: npx nx fix-ci
@@ -55,7 +62,7 @@ jobs:
         if: success()
 
   deploy:
-    name: Deploy Applications to Cloudflare Pages
+    name: Deploy to Cloudflare
     runs-on: ubuntu-latest
     environment: Production
     permissions:
@@ -70,6 +77,12 @@ jobs:
         with:
           filter: tree:0
           fetch-depth: 0
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/
 
       - name: Deploy ${{ matrix.project }}
         uses: cloudflare/wrangler-action@v3
