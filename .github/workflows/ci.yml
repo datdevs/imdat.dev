@@ -1,4 +1,4 @@
-name: CI
+name: Deploy application to Cloudflare Pages
 
 on:
   push:
@@ -11,11 +11,9 @@ permissions:
   deployments: write
 
 jobs:
-  main:
+  build:
+    name: Build Application based on changes
     runs-on: ubuntu-latest
-
-    environment: Production
-
     steps:
       - uses: actions/checkout@v5
         with:
@@ -39,17 +37,30 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
 
       # When you enable task distribution
-      - run: npx nx affected -t lint test build
+      - run: npx nx affected -t lint test build --exclude="*-e2e"
       - run: npx gzipper c dist
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - run: npx nx fix-ci
         if: always()
+
+      - run: npx nx show projects --affected --exclude="*-e2e"
+        if: success()
+
+  deploy:
+    name: Deploy Application to Cloudflare Pages
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          filter: tree:0
+          fetch-depth: 0
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist/apps/admin-panel/browser --project-name=admin-imdat-dev
+          command: pages deploy dist/apps/admin-panel/browser --project-name=${{ secrets.ADMIN_PROJECT_NAME }}
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
