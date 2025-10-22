@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyCzHJUrP1wCoo0FJ3B7C80VSPZOO2POsx0',
-  appId: '1:673833772088:web:6d7eaf7262a4ebc87372cd',
-  authDomain: 'imdat-dev.firebaseapp.com',
-  measurementId: 'G-0BCZHM0BDZ',
-  messagingSenderId: '673833772088',
-  projectId: 'imdat-dev',
-  storageBucket: 'imdat-dev.appspot.com',
+  apiKey: import.meta.env.FIREBASE_API_KEY,
+  appId: import.meta.env.FIREBASE_APP_ID,
+  authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
+  measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID,
+  messagingSenderId: import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
+  projectId: import.meta.env.FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
 };
