@@ -27,7 +27,6 @@
     "**/.git": true,
     "**/.nx": true,
     "**/.tsbuildinfo": true,
-    "**/dist": true,
     "**/node_modules": true
   },
   "files.watcherExclude": {
@@ -38,8 +37,7 @@
     "**/coverage/**": true,
     "**/dist/**": true,
     "**/node_modules/**": true,
-    "**/projects/**": true,
-    "**/src/assets/**": true
+    "**/projects/**": true
   },
   "nxConsole.generateAiAgentRules": true,
   "search.exclude": {
@@ -50,7 +48,7 @@
     "**/dist": true,
     "**/node_modules": true,
     "**/projects": true,
-    "**/src/assets": true
+    "firebase-data": true
   },
   "stylelint.validate": ["css", "scss"],
   "tailwindCSS.experimental.configFile": "apps/admin-panel/src/tailwind.config.css",
