@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-  pull_request:
 
 permissions:
   actions: read
   contents: read
+  deployments: write
 
 jobs:
   main:
@@ -28,17 +28,25 @@ jobs:
       # Cache node_modules
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
 
-      # - run: npm ci --legacy-peer-deps
+      - run: npm ci --legacy-peer-deps
       # - run: npx playwright install --with-deps
-      # - uses: nrwl/nx-set-shas@v4
+      - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: npx nx-cloud record -- echo Hello World
-      # When you enable task distribution, run the e2e-ci task instead of e2e
-      # - run: npx nx affected -t lint test build e2e
+      # When you enable task distribution
+      - run: npx nx affected -t lint test build
+      - run: npx gzipper c dist
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
-      # - run: npx nx fix-ci
-      # if: always()
+      - run: npx nx fix-ci
+        if: always()
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist/apps/admin-panel/browser --project-name=admin-imdat-dev
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
