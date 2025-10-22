@@ -1,4 +1,4 @@
-name: Deploy application to Cloudflare Pages
+name: Deploy Production
 
 on:
   push:
@@ -11,8 +11,10 @@ permissions:
 
 jobs:
   build:
-    name: Build Application based on changes
+    name: Build Applications based on changes
     runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.get-projects.outputs.projects }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
