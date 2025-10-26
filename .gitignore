@@ -57,3 +57,4 @@ firebase-data
 # Next.js
 .next
 out
+.open-next

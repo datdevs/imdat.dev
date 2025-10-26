@@ -3,7 +3,8 @@
   "version": "1.1.0",
   "license": "MIT",
   "scripts": {
-    "emulate": "firebase emulators:start --import ./firebase-data --export-on-exit ./firebase-data"
+    "emulate": "firebase emulators:start --import ./firebase-data --export-on-exit ./firebase-data",
+    "preview": "opennextjs-cloudflare build --config=apps/landing-page/wrangler.jsonc --openNextConfigPath=apps/landing-page/open-next.config.ts && opennextjs-cloudflare preview"
   },
   "private": true,
   "dependencies": {
@@ -68,6 +69,7 @@
     "@nx/playwright": "22.0.1",
     "@nx/web": "22.0.1",
     "@nx/workspace": "22.0.1",
+    "@opennextjs/cloudflare": "^1.11.0",
     "@playwright/test": "^1.56.1",
     "@schematics/angular": "~20.3.7",
     "@stylistic/eslint-plugin": "^5.5.0",
