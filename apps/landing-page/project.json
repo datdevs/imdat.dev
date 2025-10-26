@@ -5,7 +5,7 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "opennextjs-cloudflare:build": {
+    "deploy": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "cache": true,
