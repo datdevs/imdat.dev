@@ -13,8 +13,8 @@ jobs:
   build:
     name: Build Applications based on changes
     runs-on: ubuntu-latest
-    # outputs:
-    #   projects: ${{ steps.get-projects.outputs.projects }}
+    outputs:
+      projects: ${{ steps.get-projects.outputs.projects }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -51,75 +51,70 @@ jobs:
       - name: Compress build output
         run: npx gzipper c dist
 
-      # - name: Upload build artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: build-artifacts
-      #     path: dist/
-      #     retention-days: 1
-
-      - name: Deploy
-        uses: cloudflare/wrangler-action@v3
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy --no-bundle
-          # command: pages deploy dist/apps/${{ matrix.project }}/browser --project-name=${{ matrix.project }}-imdat-dev
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          name: build-artifacts
+          path: dist/
+          retention-days: 1
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - name: Fix CI
         run: npx nx fix-ci
         if: always()
 
-      # - name: Get affected projects
-      #   id: get-projects
-      #   run: |
-      #     PROJECTS=$(npx nx show projects --affected --exclude="*-e2e" | tr '\n' ',' | sed 's/,$//')
-      #     PROJECTS_JSON="[\"$(echo $PROJECTS | sed 's/,/","/g')\"]"
-      #     echo "projects=$PROJECTS_JSON" >> $GITHUB_OUTPUT
-      #     echo "Affected projects: $PROJECTS"
-      #   if: success()
+      - name: Get affected projects
+        id: get-projects
+        run: |
+          PROJECTS=$(npx nx show projects --affected --exclude="*-e2e" | tr '\n' ',' | sed 's/,$//')
+          PROJECTS_JSON="[\"$(echo $PROJECTS | sed 's/,/","/g')\"]"
+          echo "projects=$PROJECTS_JSON" >> $GITHUB_OUTPUT
+          echo "Affected projects: $PROJECTS"
+        if: success()
 
-  # deploy:
-  #   name: Deploy to Cloudflare
-  #   runs-on: ubuntu-latest
-  #   environment: Production
-  #   permissions:
-  #     deployments: write
-  #   needs: build
-  #   strategy:
-  #     matrix:
-  #       project: ${{ fromJson(needs.build.outputs.projects) }}
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v5
-  #       with:
-  #         filter: tree:0
-  #         fetch-depth: 0
+  deploy:
+    name: Deploy to Cloudflare
+    runs-on: ubuntu-latest
+    environment: Production
+    permissions:
+      deployments: write
+    needs: build
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.build.outputs.projects) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          filter: tree:0
+          fetch-depth: 0
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
-  #         cache: "npm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
 
-  #     - name: Install dependencies
-  #       run: npm ci --legacy-peer-deps
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
 
-  #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v5
-  #       with:
-  #         name: build-artifacts
-  #         path: dist/
+      - name: Download build artifacts
+        uses: actions/download-artifact@v5
+        with:
+          name: build-artifacts
+          path: dist/
+        if: matrix.project != 'landing-page'
 
-  #     - name: Deploy ${{ matrix.project }}
-  #       uses: cloudflare/wrangler-action@v3
-  #       with:
-  #         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-  #         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-  #         # command: deploy --name=${{ matrix.project }}-imdat-dev
-  #         # command: pages deploy dist/apps/${{ matrix.project }}/browser --project-name=${{ matrix.project }}-imdat-dev
-  #         # Optional: Enable this if you want to have GitHub Deployments triggered
-  #         gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy ${{ matrix.project }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist/apps/${{ matrix.project }}/browser --project-name=${{ matrix.project }}-imdat-dev
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        if: matrix.project != 'landing-page'
+
+      - name: Deploy landing-page
+        run: npx nx deploy landing-page
+        if: matrix.project == 'landing-page'
