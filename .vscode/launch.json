@@ -5,10 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome",
+      "name": "Launch Admin Panel",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:3001",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    },
+    {
+      "name": "Launch Landing Page",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}",
       "sourceMaps": true
     }

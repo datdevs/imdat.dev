@@ -79,6 +79,12 @@
     },
     "@nx/angular:component": {
       "style": "scss"
+    },
+    "@nx/next": {
+      "application": {
+        "style": "tailwind",
+        "linter": "eslint"
+      }
     }
   }
 }
