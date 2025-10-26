@@ -45,11 +45,17 @@ jobs:
       - name: Set Nx shas
         uses: nrwl/nx-set-shas@v4
 
+      - name: Check affected projects
+        id: affected-projects
+        run: npx nx show projects --affected --exclude="*-e2e"
+
       - name: Run affected tasks
-        run: npx nx affected -t build --exclude="*-e2e,landing-page"
+        run: npx nx affected -t build --exclude="*-e2e"
+        if: contains(steps.affected-projects.outputs, 'landing-page') == false
 
       - name: Compress build output
         run: npx gzipper c dist
+        if: success()
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -57,6 +63,7 @@ jobs:
           name: build-artifacts
           path: dist/
           retention-days: 1
+        if: success()
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - name: Fix CI
