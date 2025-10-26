@@ -3,8 +3,7 @@
   "version": "1.1.0",
   "license": "MIT",
   "scripts": {
-    "emulate": "firebase emulators:start --import ./firebase-data --export-on-exit ./firebase-data",
-    "preview": "opennextjs-cloudflare build --config=apps/landing-page/wrangler.jsonc --openNextConfigPath=apps/landing-page/open-next.config.ts && opennextjs-cloudflare preview"
+    "emulate": "firebase emulators:start --import ./firebase-data --export-on-exit ./firebase-data"
   },
   "private": true,
   "dependencies": {
