@@ -53,3 +53,8 @@ firebase-data
 .env
 .env.local
 .env.*.local
+
+# Next.js
+.next
+out
+.open-next

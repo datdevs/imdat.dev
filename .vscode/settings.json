@@ -10,6 +10,7 @@
     "ngrx",
     "notiflix",
     "nrwl",
+    "opennextjs",
     "polymorpheus",
     "RECAPTCHA",
     "rspack",

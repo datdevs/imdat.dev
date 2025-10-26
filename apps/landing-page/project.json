@@ -1,0 +1,26 @@
+{
+  "name": "landing-page",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/landing-page",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "opennextjs-cloudflare:build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "cache": true,
+      "outputs": ["{projectRoot}/.open-next"],
+      "options": {
+        "cwd": "apps/landing-page",
+        "command": "opennextjs-cloudflare build -s && opennextjs-cloudflare deploy"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/landing-page/jest.config.ts"
+      }
+    }
+  }
+}
