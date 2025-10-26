@@ -45,13 +45,8 @@ jobs:
       - name: Set Nx shas
         uses: nrwl/nx-set-shas@v4
 
-      - name: Check affected projects
-        id: affected-projects
-        run: npx nx show projects --affected --exclude="*-e2e"
-
       - name: Run affected tasks
-        run: npx nx affected -t build --exclude="*-e2e"
-        if: contains(steps.affected-projects.outputs, 'landing-page') == false
+        run: npx nx affected -t build --exclude="*-e2e,landing-page"
 
       - name: Compress build output
         run: npx gzipper c dist
