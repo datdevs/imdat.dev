@@ -116,5 +116,5 @@ jobs:
         if: matrix.project != 'landing-page'
 
       - name: Deploy landing-page
-        run: npx nx deploy landing-page
+        run: export CLOUDFLARE_API_TOKEN=${{ secrets.CLOUDFLARE_API_TOKEN }} && export CLOUDFLARE_ACCOUNT_ID=${{ secrets.CLOUDFLARE_ACCOUNT_ID }} && npx nx deploy landing-page
         if: matrix.project == 'landing-page'
