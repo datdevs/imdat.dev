@@ -7,12 +7,11 @@
   "targets": {
     "deploy": {
       "executor": "nx:run-commands",
-      "dependsOn": ["build"],
       "cache": true,
       "outputs": ["{projectRoot}/.open-next"],
       "options": {
         "cwd": "apps/landing-page",
-        "command": "opennextjs-cloudflare build -s && opennextjs-cloudflare deploy"
+        "command": "next build --webpack && opennextjs-cloudflare build -s && opennextjs-cloudflare deploy"
       }
     },
     "test": {

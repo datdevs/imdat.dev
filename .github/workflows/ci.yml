@@ -75,7 +75,7 @@ jobs:
         if: success()
 
   deploy:
-    name: Deploy to Cloudflare
+    name: Deploy
     runs-on: ubuntu-latest
     environment: Production
     permissions:
@@ -90,17 +90,6 @@ jobs:
         with:
           filter: tree:0
           fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: "npm"
-        if: matrix.project == 'landing-page'
-
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-        if: matrix.project == 'landing-page'
 
       - name: Download pre-built artifacts
         uses: actions/download-artifact@v5
@@ -117,7 +106,18 @@ jobs:
           command: pages deploy dist/apps/${{ matrix.project }}/browser --project-name=${{ matrix.project }}-imdat-dev
         if: matrix.project != 'landing-page'
 
-      - name: Build and deploy landing-page
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+        if: matrix.project == 'landing-page'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+        if: matrix.project == 'landing-page'
+
+      - name: Deploy opennextjs-cloudflare
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
