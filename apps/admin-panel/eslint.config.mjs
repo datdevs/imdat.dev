@@ -1,7 +1,8 @@
 import nx from '@nx/eslint-plugin';
-import baseConfig from '../../eslint.config.mjs';
 import { defineConfig } from 'eslint/config';
 import ngrx from '@ngrx/eslint-plugin/v9';
+
+import baseConfig from '../../eslint.config.mjs';
 
 export default defineConfig([
   ...baseConfig,
