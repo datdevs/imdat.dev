@@ -1,7 +1,7 @@
-//@ts-check
+// @ts-check
+/* eslint-disable @typescript-eslint/no-require-imports */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins } = require('@nx/next');
 const { join } = require('path');
 
 /**
