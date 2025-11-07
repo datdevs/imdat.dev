@@ -13,13 +13,6 @@
         "cwd": "apps/landing-page",
         "command": "next build --webpack && opennextjs-cloudflare build -s && opennextjs-cloudflare deploy"
       }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/landing-page/jest.config.ts"
-      }
     }
   }
 }
