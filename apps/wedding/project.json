@@ -1,0 +1,18 @@
+{
+  "name": "wedding",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/wedding",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "deploy": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "outputs": ["{projectRoot}/.open-next"],
+      "options": {
+        "cwd": "apps/wedding",
+        "command": "next build --webpack && opennextjs-cloudflare build -s && opennextjs-cloudflare deploy"
+      }
+    }
+  }
+}
