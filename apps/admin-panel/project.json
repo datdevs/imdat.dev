@@ -26,7 +26,7 @@
           }
         ],
         "styles": [
-          "apps/admin-panel/src/tailwind.config.css",
+          "apps/admin-panel/src/tailwind.css",
           "apps/admin-panel/src/taiga-ui.less",
           "apps/admin-panel/src/styles.scss"
         ],
