@@ -1,7 +1,7 @@
 'use client';
 
 import { clsx } from 'clsx';
-import { Menu as MenuIcon } from 'lucide-react';
+import { Menu as MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,7 @@ export default function Aside({
   readonly dictionary: Dictionary;
   readonly locale: Intl.LocalesArgument;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAsideOpen, setIsAsideOpen] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
 
   const date = new Date('2021-05-02');
@@ -25,7 +25,7 @@ export default function Aside({
   });
   const formattedDate = formatter.format(date);
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsAsideOpen(!isAsideOpen);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,20 +37,39 @@ export default function Aside({
 
   return (
     <>
-      <button className={clsx('animate-fade-in-down fixed top-0 right-0 z-100 lg:hidden')} onClick={toggle}>
+      <button
+        className={clsx('animate-fade-in-down fixed top-0 right-0 z-101 lg:hidden', {
+          hidden: isAsideOpen,
+        })}
+        onClick={toggle}
+      >
         <MenuIcon />
       </button>
 
       <aside
         className={clsx(
-          'fixed top-0 bottom-0 left-0 z-101 flex w-full flex-col justify-between gap-4 overflow-scroll bg-[#f6f1f0] p-8 [scrollbar-width:none] max-lg:transition-all lg:z-10 lg:w-1/4',
+          'fixed top-0 bottom-0 left-0 z-100 flex w-full flex-col justify-between gap-4 overflow-scroll bg-[#f6f1f0] p-8 [scrollbar-width:none]',
+          'lg:z-10 lg:w-1/4',
+          'duration-1000 max-lg:transition-all',
+          {
+            'max-lg:scale-0 max-lg:opacity-0': !isAsideOpen,
+            'max-lg:scale-100 max-lg:opacity-100': isAsideOpen,
+          },
         )}
-        id="vuj-aside"
       >
+        <button
+          className={clsx('absolute top-0 right-0 z-10 border-none bg-transparent text-neutral-400 lg:hidden', {
+            hidden: !isAsideOpen,
+          })}
+          onClick={toggle}
+        >
+          <XIcon />
+        </button>
+
         <div className="flex flex-col items-center justify-center gap-2">
           <Image
             alt="wedding logo"
-            className="w-[90px] md:mb-3"
+            className="size-auto md:mb-3"
             height={39}
             loading="lazy"
             src={IMAGE.logo}
@@ -60,6 +79,7 @@ export default function Aside({
             Đạt <small>&</small> Trang
           </span>
           <span className="text-xs tracking-[5px] text-neutral-900">02.05.2021</span>
+          <span className="bg-primary/50 mx-auto mt-2 inline-block h-px w-14"></span>
         </div>
 
         <nav>
@@ -84,8 +104,8 @@ export default function Aside({
           </ul>
         </nav>
 
-        <div className="text-center">
-          <span className="bg-primary/50 mx-auto mb-2 inline-block h-px w-14"></span>
+        <div className="flex flex-col items-center justify-center gap-4 text-center">
+          <span className="bg-primary/50 mx-auto inline-block h-px w-14"></span>
 
           <div className="space-y-1 text-xs tracking-wide text-gray-400">
             <p>Dat & Trang wedding</p>
