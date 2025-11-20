@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import 'tailwindcss' source('../src');
 
 @theme {
   --font-sans: 'Poppins', sans-serif;
