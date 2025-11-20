@@ -87,6 +87,7 @@
     "angular-eslint": "20.7.0",
     "autoprefixer": "10.4.22",
     "babel-jest": "^30.2.0",
+    "clsx": "^2.1.1",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.7",
     "eslint-config-prettier": "^10.1.8",
