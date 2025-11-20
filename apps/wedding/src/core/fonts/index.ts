@@ -22,6 +22,9 @@ const DisplayFont = Prata({
 });
 
 const SnellRoundhand = localFont({
+  display: 'optional',
+  fallback: ['cursive'],
+  preload: true,
   src: './SnellRoundhand.woff',
   variable: '--font-handwriting',
 });

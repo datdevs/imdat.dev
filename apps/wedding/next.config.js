@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
 const { composePlugins } = require('@nx/next');
-const { join } = require('path');
+const { join } = require('node:path');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
