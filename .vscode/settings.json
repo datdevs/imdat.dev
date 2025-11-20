@@ -69,7 +69,8 @@
     "**/dist": true,
     "**/node_modules": true,
     "**/projects": true,
-    "firebase-data": true
+    "firebase-data": true,
+    "**/.next": true
   },
   "stylelint.validate": ["css", "scss", "less"],
   "tailwindCSS.experimental.configFile": {
