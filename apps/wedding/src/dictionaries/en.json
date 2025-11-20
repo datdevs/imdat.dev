@@ -1,0 +1,10 @@
+{
+  "common": {
+    "home": "Home",
+    "couple": "Couple",
+    "saveTheDay": "Save the Day",
+    "gallery": "Gallery",
+    "event": "Event",
+    "rsvp": "RSVP"
+  }
+}
