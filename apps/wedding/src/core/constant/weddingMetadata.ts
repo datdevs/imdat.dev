@@ -55,13 +55,13 @@ export const WEDDING_METADATA: Metadata = {
 
   // Icons and manifest
   icons: {
-    apple: [{ sizes: '180x180', type: 'image/png', url: '/images/wedding-icon-apple.png' }],
-    icon: [
-      { sizes: 'any', url: '/images/wedding-icon.png' },
-      { sizes: '192x192', type: 'image/png', url: '/images/wedding-icon-192.png' },
-      { sizes: '512x512', type: 'image/png', url: '/images/wedding-icon-512.png' },
-    ],
-    shortcut: '/images/wedding-icon.png',
+    // apple: [{ sizes: '180x180', type: 'image/png', url: '/images/wedding-icon-apple.png' }],
+    // icon: [
+    //   { sizes: 'any', url: '/images/wedding-icon.png' },
+    //   { sizes: '192x192', type: 'image/png', url: '/images/wedding-icon-192.png' },
+    //   { sizes: '512x512', type: 'image/png', url: '/images/wedding-icon-512.png' },
+    // ],
+    shortcut: '/favicon.ico',
   },
   // Comprehensive keywords for SEO
   keywords: [
