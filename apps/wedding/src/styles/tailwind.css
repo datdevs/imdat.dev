@@ -1,0 +1,8 @@
+@import 'tailwindcss' source('../../src');
+
+@theme {
+  --font-sans: 'Dosis', sans-serif;
+  --font-serif: 'Prata', serif;
+
+  --color-primary: oklab(69.23% 0.02341 0.08707);
+}
