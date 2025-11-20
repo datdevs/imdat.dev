@@ -1,18 +1,24 @@
 {
+  "cSpell.language": "en,vi",
   "cSpell.words": [
     "appspot",
+    "Dosis",
     "dotlottie",
     "firebaseapp",
     "Firestore",
     "gzipper",
     "imdat",
+    "imdatdev",
     "lottiefiles",
     "ngrx",
     "notiflix",
     "nrwl",
+    "oklab",
     "opennextjs",
     "polymorpheus",
+    "Prata",
     "RECAPTCHA",
+    "Roundhand",
     "rspack",
     "VITE"
   ],
@@ -33,7 +39,6 @@
     "cache": true,
     "cacheLocation": ".eslintcache"
   },
-  "eslint.validate": ["typescript", "html"],
   "files.associations": {
     "*.css": "tailwindcss"
   },
@@ -66,8 +71,12 @@
     "**/projects": true,
     "firebase-data": true
   },
-  "stylelint.validate": ["css", "scss"],
-  "tailwindCSS.experimental.configFile": "apps/admin-panel/src/tailwind.config.css",
+  "stylelint.validate": ["css", "scss", "less"],
+  "tailwindCSS.experimental.configFile": {
+    "apps/admin-panel/src/tailwind.css": "apps/admin-panel/src/**",
+    "apps/landing-page/src/app/global.css": "apps/landing-page/src/**",
+    "apps/wedding/src/styles/tailwind.css": "apps/wedding/src/**"
+  },
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "typescript.tsdk": "node_modules/typescript/lib"
 }
