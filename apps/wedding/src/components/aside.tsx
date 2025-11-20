@@ -49,7 +49,7 @@ export default function Aside({
       <aside
         className={clsx(
           'fixed top-0 bottom-0 left-0 z-100 flex w-full flex-col justify-between gap-4 overflow-scroll bg-[#f6f1f0] p-8 [scrollbar-width:none]',
-          'lg:z-10 lg:w-1/4',
+          'lg:z-10 lg:w-1/5',
           'duration-1000 max-lg:transition-all',
           {
             'max-lg:scale-0 max-lg:opacity-0': !isAsideOpen,
