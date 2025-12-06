@@ -4,6 +4,7 @@ import { clsx } from 'clsx';
 import { Menu as MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { IMAGE, MENU } from '../core/constant';
@@ -18,6 +19,7 @@ export default function Aside({
 }) {
   const [isAsideOpen, setIsAsideOpen] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
+  const pathname = usePathname();
 
   const date = new Date('2021-05-02');
   const formatter = new Intl.DateTimeFormat(locale, {
@@ -29,11 +31,19 @@ export default function Aside({
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsMenuActive(MENU.some((menu: Menu) => location.pathname === menu.url));
+      // Check if current hash matches any menu URL
+      const currentHash = location.hash;
+      setIsMenuActive(MENU.some((menu: Menu) => currentHash === menu.url || pathname + currentHash === menu.url));
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
+    // Check on mount and pathname change
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [pathname]);
 
   return (
     <>
