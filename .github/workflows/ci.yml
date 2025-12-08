@@ -17,7 +17,7 @@ jobs:
       projects: ${{ steps.get-projects.outputs.projects }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           filter: tree:0
           fetch-depth: 0
@@ -34,7 +34,7 @@ jobs:
           sed -i "s/\$VITE_RECAPTCHA_V3_SITE_KEY/${{ vars.VITE_RECAPTCHA_V3_SITE_KEY }}/g" apps/admin-panel/src/app/core/environments/environment.prod.ts
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: "npm"
@@ -53,7 +53,7 @@ jobs:
         if: success()
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: build-artifacts
           path: dist/
@@ -86,13 +86,13 @@ jobs:
         project: ${{ fromJson(needs.build.outputs.projects) }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           filter: tree:0
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: "npm"
@@ -101,7 +101,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Download pre-built artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: build-artifacts
           path: dist/
@@ -119,5 +119,5 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: npx nx deploy ${matrix.project}
+        run: npx nx deploy ${{matrix.project}}
         if: matrix.project == 'landing-page' || matrix.project == 'wedding'
