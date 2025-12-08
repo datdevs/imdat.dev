@@ -1,0 +1,50 @@
+@import 'tailwindcss' source('../../src');
+
+@theme {
+  --font-sans: 'Dosis', sans-serif;
+  --font-serif: 'Prata', serif;
+  --font-handwriting: 'Snell Roundhand', cursive;
+
+  --color-primary: oklab(69.23% 0.02341 0.08707);
+
+  --animate-fade-in-down: fade-in-down 0.5s ease;
+  --animate-zoom-in: zoom-in 10s ease;
+
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom-in {
+    to {
+      transform: scale(1.5);
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply font-sans text-neutral-500;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply m-0 mb-5 font-serif font-medium text-gray-950;
+  }
+
+  button,
+  input[type='submit'],
+  input[type='reset'],
+  input[type='button'] {
+    @apply border-primary hover:text-primary active:text-primary bg-primary cursor-pointer rounded-none border p-2.5 text-xs font-medium tracking-[2px] text-white uppercase transition-colors duration-300 hover:bg-transparent active:bg-transparent;
+  }
+}

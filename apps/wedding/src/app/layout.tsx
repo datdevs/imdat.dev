@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
-import { BodyFont, DisplayFont, SnellRoundhand } from '../core/fonts';
+
 import { WEDDING_METADATA, WEDDING_VIEWPORT } from '../core/constant';
+import { BodyFont, DisplayFont, SnellRoundhand } from '../core/fonts';
+import '../styles/tailwind.css';
 import '../styles/index.css';
 
 export const metadata: Metadata = WEDDING_METADATA;
