@@ -10,13 +10,12 @@ import { useEffect, useState } from 'react';
 import { IMAGE, MENU } from '../core/constant';
 import { Dictionary, Menu } from '../models/common';
 
-export default function Aside({
-  dictionary,
-  locale,
-}: {
+interface AsideProps {
   readonly dictionary: Dictionary;
   readonly locale: Intl.LocalesArgument;
-}) {
+}
+
+export default function Aside({ dictionary, locale }: AsideProps) {
   const [isAsideOpen, setIsAsideOpen] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const pathname = usePathname();

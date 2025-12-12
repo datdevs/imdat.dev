@@ -14,7 +14,11 @@ import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
 
 const transformOrigins: readonly string[] = ['bottom-left', 'bottom-right', 'center', 'top-left', 'top-right'] as const;
 
-export default function Slider({ slides }: { readonly slides: readonly string[] }) {
+interface SliderProps {
+  readonly slides: readonly string[];
+}
+
+export default function Slider({ slides }: SliderProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleSlideChange = useCallback((swiper: SwiperClass) => {

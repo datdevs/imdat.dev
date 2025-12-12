@@ -7,6 +7,10 @@ import { BRIDE, GROOM, IMAGE, Lang, LOCALES } from '../core/constant';
 import { Dictionary } from '../models/common';
 import { fetchMediaUrls, getDictionary, updatePersonWithMedia } from '../utils';
 
+// Route segment config for static rendering with time-based revalidation
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function Index({ params }: { readonly params: Promise<{ lang?: Lang }> }) {
   const { lang } = await params;
   const locale = LOCALES[lang ?? Lang.VI];

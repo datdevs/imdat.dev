@@ -23,6 +23,12 @@ const nextConfig = {
   outputFileTracingRoot: join(__dirname, '../../'),
   poweredByHeader: false,
   reactStrictMode: true,
+  // Cache Components: Enable for advanced caching with 'use cache' directive
+  // This is optional and provides fine-grained cache control
+  // See: https://nextjs.org/docs/app/api-reference/next-config-js/cacheComponents
+  experimental: {
+    cacheComponents: true,
+  },
 };
 
 module.exports = composePlugins()(nextConfig);
