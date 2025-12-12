@@ -5,7 +5,7 @@ import { Menu as MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import { IMAGE, MENU } from '../core/constant';
 import { Dictionary, Menu } from '../models/common';
@@ -118,7 +118,9 @@ export default function Aside({ dictionary, locale }: AsideProps) {
 
           <div className="space-y-1 text-xs tracking-wide text-gray-400">
             <p>Dat & Trang wedding</p>
-            <p>Nha Trang, {formattedDate}</p>
+            <Suspense fallback={<p>Nha Trang, ...</p>}>
+              <p>Nha Trang, {formattedDate}</p>
+            </Suspense>
           </div>
         </div>
       </aside>
