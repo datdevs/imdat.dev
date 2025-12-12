@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     // Add response headers for caching and security
     const headers = new Headers({
-      'Content-Type': 'application/json',
       'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300',
+      'Content-Type': 'application/json',
       'X-Content-Type-Options': 'nosniff',
     });
 
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     console.error('Error in /api/hello:', error);
     return NextResponse.json(
       { error: 'Internal Server Error', message: 'An unexpected error occurred' },
-      { status: 500, headers: { 'Content-Type': 'application/json' } },
+      { headers: { 'Content-Type': 'application/json' }, status: 500 },
     );
   }
 }

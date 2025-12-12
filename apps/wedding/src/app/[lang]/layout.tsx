@@ -1,7 +1,8 @@
 'use cache';
 
 import type { Metadata, Viewport } from 'next';
-import { Suspense, cache } from 'react';
+
+import { cache, Suspense } from 'react';
 
 import { Lang, LOCALES, WEDDING_VIEWPORT } from '../../core/constant';
 import { BodyFont, DisplayFont, SnellRoundhand } from '../../core/fonts';

@@ -17,13 +17,13 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
     fetchMediaUrls(IMAGE.slides),
     updatePersonWithMedia({
       ...BRIDE,
-      name: dict.couple.bride.name,
       description: dict.couple.bride.description,
+      name: dict.couple.bride.name,
     }),
     updatePersonWithMedia({
       ...GROOM,
-      name: dict.couple.groom.name,
       description: dict.couple.groom.description,
+      name: dict.couple.groom.name,
     }),
   ]);
 
@@ -62,4 +62,3 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
     </>
   );
 }
-

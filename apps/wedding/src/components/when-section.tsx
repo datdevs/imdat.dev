@@ -1,9 +1,9 @@
 interface WhenSectionProps {
-  readonly label: string;
   readonly date: string;
+  readonly label: string;
 }
 
-export default function WhenSection({ label, date }: WhenSectionProps) {
+export default function WhenSection({ date, label }: WhenSectionProps) {
   return (
     <div className="space-y-4">
       <h4 className="font-serif text-2xl">{label}</h4>
@@ -11,4 +11,3 @@ export default function WhenSection({ label, date }: WhenSectionProps) {
     </div>
   );
 }
-
