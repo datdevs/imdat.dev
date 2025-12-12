@@ -6,6 +6,19 @@
   --font-handwriting: 'Snell Roundhand', cursive;
 
   --color-primary: oklab(69.23% 0.02341 0.08707);
+  --color-discord: #5865f2;
+  --color-facebook: #0866ff;
+  --color-instagram: #ff0069;
+  --color-line: #00c300;
+  --color-linkedin: #0a66c2;
+  --color-pinterest: #bd081c;
+  --color-snapchat: #fffc00;
+  --color-telegram: #26a5e4;
+  --color-threads: #000000;
+  --color-tiktok: #000000;
+  --color-tumblr: #36465d;
+  --color-whatsapp: #25d366;
+  --color-x: #000000;
 
   --animate-fade-in-down: fade-in-down 0.5s ease;
   --animate-zoom-in: zoom-in 10s ease;

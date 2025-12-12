@@ -1,3 +1,4 @@
+export * from './couple';
 export * from './defaultSeo';
 export * from './image';
 export * from './lang';

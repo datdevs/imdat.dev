@@ -5,6 +5,14 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "dev": {
+      "executor": "@nx/next:server",
+      "options": {
+        "buildTarget": "wedding:build",
+        "dev": true,
+        "port": 3002
+      }
+    },
     "deploy": {
       "executor": "nx:run-commands",
       "cache": true,

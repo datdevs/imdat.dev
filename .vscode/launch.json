@@ -19,6 +19,14 @@
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}",
       "sourceMaps": true
+    },
+    {
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "name": "Launch Wedding Page",
+      "url": "http://localhost:3002",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }
