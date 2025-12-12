@@ -1,5 +1,7 @@
+'use cache';
+
 import type { Metadata, Viewport } from 'next';
-import { cache } from 'react';
+import { Suspense, cache } from 'react';
 
 import { Lang, LOCALES, WEDDING_VIEWPORT } from '../../core/constant';
 import { BodyFont, DisplayFont, SnellRoundhand } from '../../core/fonts';
@@ -39,7 +41,10 @@ export async function generateMetadata({ params }: { readonly params: Promise<{ 
           : 'These are memories of our wedding, our special day on May 2, 2021. Share the most beautiful moments, congratulations and memorable memories of Chi Dat & Dieu Trang wedding in Nha Trang.',
       images: [
         {
-          alt: lang === Lang.VI ? 'Chí Đạt & Diệu Trang Wedding - 02-05-2021' : 'Chi Dat & Dieu Trang Wedding - 02-05-2021',
+          alt:
+            lang === Lang.VI
+              ? 'Chí Đạt & Diệu Trang Wedding - 02-05-2021'
+              : 'Chi Dat & Dieu Trang Wedding - 02-05-2021',
           height: 630,
           type: 'image/jpeg',
           url: 'https://wedding.imdat.dev/assets/images/wedding-banner.jpg',
@@ -97,9 +102,8 @@ export default async function LangLayout({
   return (
     <html className="scroll-smooth" lang={lang}>
       <body className={`${BodyFont.variable} ${DisplayFont.variable} ${SnellRoundhand.variable} antialiased`}>
-        {children}
+        <Suspense fallback={null}>{children}</Suspense>
       </body>
     </html>
   );
 }
-
