@@ -1,7 +1,6 @@
 'use cache';
 
 import 'server-only';
-
 import { cache } from 'react';
 
 import type { Person } from '../models/common';

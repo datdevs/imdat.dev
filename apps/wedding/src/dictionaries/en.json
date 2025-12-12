@@ -6,5 +6,32 @@
     "gallery": "Gallery",
     "event": "Event",
     "rsvp": "RSVP"
+  },
+  "hero": {
+    "title": "Ryan & Helen",
+    "subtitle": "2 May, 2021 - Nha Trang"
+  },
+  "aside": {
+    "coupleNames": "Đạt <small>&</small> Trang",
+    "weddingDate": "02.05.2021",
+    "weddingLocation": "Dat & Trang wedding"
+  },
+  "event": {
+    "date": "May 2, 2021",
+    "venueName": "Yasaka Saigon Nhatrang Hotel",
+    "venueAddress": "18 Trần Phú, Lộc Thọ, Nha Trang",
+    "mapLabel": "View Map",
+    "whenLabel": "When?",
+    "whereLabel": "Where?"
+  },
+  "couple": {
+    "bride": {
+      "name": "Diệu Trang",
+      "description": "Today I will be the most beautiful and happiest bride. I hope we will always be happy like this, my dear."
+    },
+    "groom": {
+      "name": "Chí Đạt",
+      "description": "No one is perfect, but we can complement each other. Love means knowing how to sacrifice and compromise with each other to live well."
+    }
   }
 }

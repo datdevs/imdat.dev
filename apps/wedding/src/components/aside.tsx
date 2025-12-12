@@ -5,7 +5,7 @@ import { Menu as MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IMAGE, MENU } from '../core/constant';
 import { Dictionary, Menu } from '../models/common';
@@ -84,10 +84,11 @@ export default function Aside({ dictionary, locale }: AsideProps) {
             src={IMAGE.logo}
             width={90}
           />
-          <span className="font-handwriting text-primary text-2xl md:text-4xl">
-            Đạt <small>&</small> Trang
-          </span>
-          <span className="text-xs tracking-[5px] text-neutral-900">02.05.2021</span>
+          <span
+            className="font-handwriting text-primary text-2xl md:text-4xl"
+            dangerouslySetInnerHTML={{ __html: dictionary.aside.coupleNames }}
+          />
+          <span className="text-xs tracking-[5px] text-neutral-900">{dictionary.aside.weddingDate}</span>
           <span className="bg-primary/50 mx-auto mt-2 inline-block h-px w-14"></span>
         </div>
 
@@ -117,10 +118,8 @@ export default function Aside({ dictionary, locale }: AsideProps) {
           <span className="bg-primary/50 mx-auto inline-block h-px w-14"></span>
 
           <div className="space-y-1 text-xs tracking-wide text-gray-400">
-            <p>Dat & Trang wedding</p>
-            <Suspense fallback={<p>Nha Trang, ...</p>}>
-              <p>Nha Trang, {formattedDate}</p>
-            </Suspense>
+            <p>{dictionary.aside.weddingLocation}</p>
+            <p>Nha Trang, {formattedDate}</p>
           </div>
         </div>
       </aside>
