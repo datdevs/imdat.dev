@@ -15,10 +15,10 @@ export const fetchMedia = async (path: string): Promise<SignedUrlResponse> => {
   url.searchParams.set('file', path);
 
   const response = await fetch(url.toString(), {
-    method: 'GET',
     headers: {
-      'X-API-Key': API_KEY || '',
+      'X-API-Key': API_KEY ?? '',
     },
+    method: 'GET',
     // Next.js caching options
     next: {
       // Cache for 1 hour, revalidate on-demand
