@@ -1,0 +1,11 @@
+export { default as Aside } from './aside';
+export { default as CoupleSection } from './couple-section';
+export { default as EventDetailsSection } from './event-details-section';
+export { default as GoogleMapsIcon } from './google-maps-icon';
+export { default as GoogleMapsLink } from './google-maps-link';
+export { default as PersonCard } from './person-card';
+export { default as Slider } from './slider';
+export { default as SocialLinks } from './social-links';
+export { default as WhenSection } from './when-section';
+export { default as WhereSection } from './where-section';
+

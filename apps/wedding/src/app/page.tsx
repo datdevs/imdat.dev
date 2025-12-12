@@ -2,14 +2,24 @@ import { HeartIcon } from 'lucide-react';
 
 import Aside from '../components/aside';
 import CoupleSection from '../components/couple-section';
+import EventDetailsSection from '../components/event-details-section';
 import Slider from '../components/slider';
-import { BRIDE, GROOM, IMAGE, Lang, LOCALES } from '../core/constant';
+import {
+  BRIDE,
+  EVENT_DATE,
+  GROOM,
+  IMAGE,
+  Lang,
+  LOCALES,
+  MAP_LABEL,
+  MAP_URL,
+  VENUE_ADDRESS,
+  VENUE_NAME,
+  WHEN_LABEL,
+  WHERE_LABEL,
+} from '../core/constant';
 import { Dictionary } from '../models/common';
 import { fetchMediaUrls, getDictionary, updatePersonWithMedia } from '../utils';
-
-// Route segment config for static rendering with time-based revalidation
-export const dynamic = 'force-static';
-export const revalidate = 3600; // Revalidate every hour
 
 export default async function Index({ params }: { readonly params: Promise<{ lang?: Lang }> }) {
   const { lang } = await params;
@@ -43,6 +53,16 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
         </section>
 
         <CoupleSection bride={bride} groom={groom} />
+
+        <EventDetailsSection
+          address={VENUE_ADDRESS}
+          date={EVENT_DATE}
+          mapLabel={MAP_LABEL}
+          mapUrl={MAP_URL}
+          venueName={VENUE_NAME}
+          whenLabel={WHEN_LABEL}
+          whereLabel={WHERE_LABEL}
+        />
       </main>
     </>
   );
