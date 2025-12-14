@@ -15,10 +15,25 @@ export function proxy(request: NextRequest) {
   if (pathnameIsMissingLocale) {
     const locale = i18n.defaultLocale;
     const newUrl = new URL(`/${locale}${pathname}`, request.url);
-    return NextResponse.redirect(newUrl);
+
+    // Set custom request headers
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('x-lang', locale);
+
+    return NextResponse.redirect(newUrl, {
+      headers: requestHeaders,
+    });
   }
 
-  return NextResponse.next();
+  // Set custom request headers
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-lang', pathname.split('/')[1]);
+
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 }
 
 export const config = {
