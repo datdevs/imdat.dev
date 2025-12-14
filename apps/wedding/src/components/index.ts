@@ -1,4 +1,6 @@
 export { default as Aside } from './aside';
+export { default as CountdownItem } from './countdown-item';
+export { default as CountdownSection } from './countdown-section';
 export { default as CoupleSection } from './couple-section';
 export { default as EventDetailsSection } from './event-details-section';
 export { default as GoogleMapsIcon } from './google-maps-icon';

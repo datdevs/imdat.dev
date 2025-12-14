@@ -18,7 +18,7 @@
   },
   "event": {
     "date": "May 2, 2021",
-    "venueName": "Yasaka Saigon Nhatrang Hotel",
+    "venueName": "Yasaka Saigon Nha Trang Hotel",
     "venueAddress": "18 Trần Phú, Lộc Thọ, Nha Trang",
     "mapLabel": "View Map",
     "whenLabel": "When?",
@@ -26,12 +26,21 @@
   },
   "couple": {
     "bride": {
-      "name": "Diệu Trang",
+      "name": "Helen",
       "description": "Today I will be the most beautiful and happiest bride. I hope we will always be happy like this, my dear."
     },
     "groom": {
-      "name": "Chí Đạt",
+      "name": "Ryan",
       "description": "No one is perfect, but we can complement each other. Love means knowing how to sacrifice and compromise with each other to live well."
     }
+  },
+  "countdown": {
+    "title": "The Day We Become One",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes",
+    "seconds": "Seconds",
+    "reachedMessage": "We got married! 🎉",
+    "subReachedMessage": "May 2, 2021"
   }
 }

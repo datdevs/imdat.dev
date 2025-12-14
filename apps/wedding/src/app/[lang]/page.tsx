@@ -1,19 +1,20 @@
 import { HeartIcon } from 'lucide-react';
 
 import Aside from '../../components/aside';
+import CountdownSection from '../../components/countdown-section';
 import CoupleSection from '../../components/couple-section';
 import EventDetailsSection from '../../components/event-details-section';
 import Slider from '../../components/slider';
 import { BRIDE, GROOM, IMAGE, Lang, LOCALES, MAP_URL } from '../../core/constant';
 import { Dictionary } from '../../models/common';
-import { fetchMediaUrls, getDictionary, updatePersonWithMedia } from '../../utils';
+import { fetchMediaUrl, fetchMediaUrls, getDictionary, updatePersonWithMedia } from '../../utils';
 
 export default async function Index({ params }: { readonly params: Promise<{ lang: Lang }> }) {
   const { lang } = await params;
   const locale = LOCALES[lang];
   const dict: Dictionary = await getDictionary(lang);
 
-  const [slides, bride, groom] = await Promise.all([
+  const [slides, bride, groom, countdownBackground] = await Promise.all([
     fetchMediaUrls(IMAGE.slides),
     updatePersonWithMedia({
       ...BRIDE,
@@ -25,6 +26,7 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
       description: dict.couple.groom.description,
       name: dict.couple.groom.name,
     }),
+    fetchMediaUrl(IMAGE.background.countdown),
   ]);
 
   return (
@@ -57,6 +59,20 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
           venueName={dict.event.venueName}
           whenLabel={dict.event.whenLabel}
           whereLabel={dict.event.whereLabel}
+        />
+
+        <CountdownSection
+          backgroundImage={countdownBackground}
+          labels={{
+            days: dict.countdown.days,
+            hours: dict.countdown.hours,
+            minutes: dict.countdown.minutes,
+            reachedMessage: dict.countdown.reachedMessage,
+            seconds: dict.countdown.seconds,
+            subReachedMessage: dict.countdown.subReachedMessage,
+          }}
+          targetDate={new Date('2021-05-02')}
+          title={dict.countdown.title}
         />
       </main>
     </>

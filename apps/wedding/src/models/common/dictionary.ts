@@ -5,6 +5,15 @@ export interface Dictionary {
     weddingLocation: string;
   };
   common: Record<string, string>;
+  countdown: {
+    days: string;
+    hours: string;
+    minutes: string;
+    reachedMessage: string;
+    seconds: string;
+    subReachedMessage: string;
+    title: string;
+  };
   couple: {
     bride: {
       description: string;

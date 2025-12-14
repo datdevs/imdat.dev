@@ -18,7 +18,7 @@
   },
   "event": {
     "date": "Ngày 2 tháng 5 năm 2021",
-    "venueName": "Yasaka Saigon Nhatrang Hotel",
+    "venueName": "Yasaka Sài Gòn Nha Trang Hotel",
     "venueAddress": "18 Trần Phú, Lộc Thọ, Nha Trang",
     "mapLabel": "Xem Bản Đồ",
     "whenLabel": "Lúc nào?",
@@ -33,5 +33,14 @@
       "name": "Chí Đạt",
       "description": "Không ai hoàn hảo cả nhưng chúng ta có thể bù đắp cho nhau, tình yêu là phải biết hy sinh và nhường nhịn lẫn nhau mới sống tốt."
     }
+  },
+  "countdown": {
+    "title": "Ngày chúng ta về chung một nhà",
+    "days": "Ngày",
+    "hours": "Giờ",
+    "minutes": "Phút",
+    "seconds": "Giây",
+    "reachedMessage": "Chúng ta đã về chung một nhà! 🎉",
+    "subReachedMessage": "Ngày 2 tháng 5 năm 2021"
   }
 }

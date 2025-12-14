@@ -22,7 +22,7 @@ export default function EventDetailsSection({
   whereLabel,
 }: EventDetailsSectionProps) {
   return (
-    <div className="py-25">
+    <section className="py-25">
       <div className="container mx-auto text-center">
         <WhenSection date={date} label={whenLabel} />
         <WhereSection address={address} label={whereLabel} venueName={venueName} />
@@ -30,6 +30,6 @@ export default function EventDetailsSection({
           <GoogleMapsLink href={mapUrl} label={mapLabel} />
         </div>
       </div>
-    </div>
+    </section>
   );
 }
