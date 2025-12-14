@@ -415,46 +415,6 @@ body.offcanvas .vuj-nav-toggle {
   top: 12px;
 }
 
-.vuj-couple-title {
-  color: #bd945a;
-  display: block;
-  font-family: 'Snell Roundhand', cursive;
-  font-size: 60px;
-  font-weight: 400;
-  line-height: 1.5em;
-  margin-bottom: 10px;
-}
-
-.vuj-couple-subtitle,
-.vuj-couple-subtitle-s {
-  color: #000;
-  font-family: Prata, serif;
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
-.vuj-couple-subtitle-s {
-  font-size: 16px;
-  font-style: italic;
-  margin-bottom: 16px;
-}
-
-.vuj-couple-subtitle-link {
-  margin: 0;
-
-  a {
-    align-items: center;
-    display: inline-flex;
-  }
-}
-
-.vuj-couple-subtitle-link svg {
-  margin-right: 5px;
-  margin-top: -4px;
-  width: 20px;
-}
-
 .vuj-title-meta {
   color: #bd945a;
   display: block;
@@ -802,21 +762,6 @@ body.offcanvas .vuj-nav-toggle {
   .container {
     padding-left: 30px;
     padding-right: 30px;
-  }
-
-  .vuj-couple-title {
-    font-size: 26px;
-    line-height: 1.2em;
-    margin-bottom: 15px;
-  }
-
-  .vuj-couple-subtitle {
-    font-size: 16px;
-  }
-
-  #countdown .section-head h4 {
-    font-size: 26px;
-    line-height: 1em;
   }
 
   .seeyou .section-head h4 {

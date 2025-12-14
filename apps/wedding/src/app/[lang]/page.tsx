@@ -1,10 +1,8 @@
-import { HeartIcon } from 'lucide-react';
-
 import Aside from '../../components/aside';
 import CountdownSection from '../../components/countdown-section';
 import CoupleSection from '../../components/couple-section';
 import EventDetailsSection from '../../components/event-details-section';
-import Slider from '../../components/slider';
+import HeroSection from '../../components/hero-section';
 import { BRIDE, GROOM, IMAGE, Lang, LOCALES, MAP_URL } from '../../core/constant';
 import { Dictionary } from '../../models/common';
 import { fetchMediaUrl, fetchMediaUrls, getDictionary, updatePersonWithMedia } from '../../utils';
@@ -34,20 +32,7 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
       <Aside dictionary={dict} locale={locale} />
 
       <main className="ms-auto w-full lg:w-4/5">
-        <section className="relative">
-          <Slider slides={slides} />
-
-          <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center bg-linear-to-b from-transparent via-black/20 to-transparent text-white text-shadow-[1px_1px_5px_rgba(0,0,0,0.2)]">
-            <h1 className="font-handwriting text-8xl text-white">{dict.hero.title}</h1>
-            <p className="font-sans text-xl tracking-[5px] uppercase">{dict.hero.subtitle}</p>
-          </div>
-
-          <div className="absolute right-0 bottom-0 left-0 z-10 flex animate-bounce items-center justify-center pb-16">
-            <a className="flex cursor-pointer text-white" href="#couple">
-              <HeartIcon className="size-6" />
-            </a>
-          </div>
-        </section>
+        <HeroSection scrollTarget="#couple" slides={slides} subtitle={dict.hero.subtitle} title={dict.hero.title} />
 
         <CoupleSection bride={bride} groom={groom} />
 
