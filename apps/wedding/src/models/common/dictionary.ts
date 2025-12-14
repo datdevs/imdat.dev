@@ -32,6 +32,16 @@ export interface Dictionary {
     whenLabel: string;
     whereLabel: string;
   };
+  gallery: {
+    categories: {
+      engagement: string;
+      party: string;
+      wedding: string;
+    };
+    subtitle: string;
+    title: string;
+    viewAll: string;
+  };
   hero: {
     subtitle: string;
     title: string;

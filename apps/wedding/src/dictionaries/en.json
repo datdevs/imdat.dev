@@ -43,6 +43,16 @@
     "reachedMessage": "We got married! 🎉",
     "subReachedMessage": "May 2, 2021"
   },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Our Memories",
+    "categories": {
+      "engagement": "Engagement",
+      "wedding": "Wedding",
+      "party": "Reception"
+    },
+    "viewAll": "View All"
+  },
   "notFound": {
     "title": "404 - Page Not Found",
     "message": "The page you are looking for does not exist.",

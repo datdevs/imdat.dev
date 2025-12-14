@@ -2,6 +2,7 @@ import Aside from '../../components/aside';
 import CountdownSection from '../../components/countdown-section';
 import CoupleSection from '../../components/couple-section';
 import EventDetailsSection from '../../components/event-details-section';
+import GallerySection from '../../components/gallery-section';
 import HeroSection from '../../components/hero-section';
 import { BRIDE, GROOM, IMAGE, Lang, LOCALES, MAP_URL } from '../../core/constant';
 import { Dictionary } from '../../models/common';
@@ -17,7 +18,16 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
   const locale = LOCALES[lang];
   const dict: Dictionary = await getDictionary(lang);
 
-  const [slides, bride, groom, countdownBackground] = await Promise.all([
+  // Prepare gallery images by category
+  const allGalleryPaths: string[] = [];
+  const galleryPathsByCategory: Record<string, string[]> = {};
+
+  Object.entries(IMAGE.gallery).forEach(([category, paths]) => {
+    galleryPathsByCategory[category] = paths;
+    allGalleryPaths.push(...paths);
+  });
+
+  const [slides, bride, groom, countdownBackground, galleryUrls] = await Promise.all([
     fetchMediaUrls(IMAGE.slides),
     updatePersonWithMedia({
       ...BRIDE,
@@ -30,7 +40,31 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
       name: dict.couple.groom.name,
     }),
     fetchMediaUrl(IMAGE.background.countdown),
+    fetchMediaUrls(allGalleryPaths),
   ]);
+
+  // Organize gallery images by category
+  const galleryImages = allGalleryPaths
+    .map((path, index) => {
+      const url = galleryUrls[index];
+      if (!url) return null;
+
+      // Find which category this image belongs to
+      const category = Object.entries(galleryPathsByCategory).find(([, paths]) => paths.includes(path))?.[0];
+      if (!category) return null;
+
+      // Extract filename for alt text
+      const filename = path.split('/').pop() ?? `image-${index}`;
+      const alt = filename.replace(/\.[^/.]+$/, '');
+
+      return {
+        alt,
+        category,
+        fullSrc: url,
+        src: url,
+      };
+    })
+    .filter((img): img is { alt: string; category: string; fullSrc: string; src: string } => img !== null);
 
   return (
     <>
@@ -63,6 +97,14 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
           }}
           targetDate={new Date('2021-05-02')}
           title={dict.countdown.title}
+        />
+
+        <GallerySection
+          categories={dict.gallery.categories}
+          images={galleryImages}
+          subtitle={dict.gallery.subtitle}
+          title={dict.gallery.title}
+          viewAllLabel={dict.gallery.viewAll}
         />
       </main>
     </>
