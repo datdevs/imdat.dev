@@ -1,7 +1,3 @@
-'use cache';
-
-import { Suspense } from 'react';
-
 import Aside from '../../components/aside';
 import CountdownSection from '../../components/countdown-section';
 import CoupleSection from '../../components/couple-section';
@@ -16,14 +12,6 @@ export async function generateStaticParams() {
 }
 
 export default async function Index({ params }: { readonly params: Promise<{ lang: string }> }) {
-  return (
-    <Suspense fallback={null}>
-      <PageContent params={params} />
-    </Suspense>
-  );
-}
-
-async function PageContent({ params }: { readonly params: Promise<{ lang: string }> }) {
   const { lang: langParam } = await params;
   const lang = langParam as Lang;
   const locale = LOCALES[lang];

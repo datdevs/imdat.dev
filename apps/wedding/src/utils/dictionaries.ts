@@ -1,5 +1,3 @@
-'use cache';
-
 import 'server-only';
 
 import { Lang } from '../core/constant';
