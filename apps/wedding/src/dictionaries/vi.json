@@ -42,5 +42,11 @@
     "seconds": "Giây",
     "reachedMessage": "Chúng ta đã về chung một nhà! 🎉",
     "subReachedMessage": "Ngày 2 tháng 5 năm 2021"
+  },
+  "notFound": {
+    "title": "404 - Không tìm thấy trang",
+    "message": "Trang bạn đang tìm kiếm không tồn tại.",
+    "description": "Có thể trang đã bị xóa hoặc địa chỉ URL không chính xác.",
+    "backToHome": "Quay về trang chủ"
   }
 }

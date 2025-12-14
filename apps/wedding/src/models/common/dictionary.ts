@@ -36,4 +36,10 @@ export interface Dictionary {
     subtitle: string;
     title: string;
   };
+  notFound: {
+    backToHome: string;
+    description: string;
+    message: string;
+    title: string;
+  };
 }
