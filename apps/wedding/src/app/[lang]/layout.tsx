@@ -7,8 +7,9 @@ import { cache, Suspense } from 'react';
 import { Lang, LOCALES, WEDDING_VIEWPORT } from '../../core/constant';
 import { BodyFont, DisplayFont, SnellRoundhand } from '../../core/fonts';
 
-export async function generateMetadata({ params }: { readonly params: Promise<{ lang: Lang }> }): Promise<Metadata> {
-  const { lang } = await params;
+export async function generateMetadata({ params }: { readonly params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const locale = LOCALES[lang];
   const baseUrl = 'https://wedding.imdat.dev';
 
@@ -87,8 +88,8 @@ export async function generateMetadata({ params }: { readonly params: Promise<{ 
 
 export const viewport: Viewport = WEDDING_VIEWPORT;
 
-const getLang = cache(async (params: Promise<{ lang: Lang }>) => {
-  return (await params).lang;
+const getLang = cache(async (params: Promise<{ lang: string }>) => {
+  return (await params).lang as Lang;
 });
 
 export default async function LangLayout({
@@ -96,7 +97,7 @@ export default async function LangLayout({
   params,
 }: {
   readonly children: React.ReactNode;
-  readonly params: Promise<{ lang: Lang }>;
+  readonly params: Promise<{ lang: string }>;
 }) {
   const lang = await getLang(params);
 

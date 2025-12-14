@@ -1,3 +1,7 @@
+'use cache';
+
+import { Suspense } from 'react';
+
 import Aside from '../../components/aside';
 import CountdownSection from '../../components/countdown-section';
 import CoupleSection from '../../components/couple-section';
@@ -7,8 +11,21 @@ import { BRIDE, GROOM, IMAGE, Lang, LOCALES, MAP_URL } from '../../core/constant
 import { Dictionary } from '../../models/common';
 import { fetchMediaUrl, fetchMediaUrls, getDictionary, updatePersonWithMedia } from '../../utils';
 
-export default async function Index({ params }: { readonly params: Promise<{ lang: Lang }> }) {
-  const { lang } = await params;
+export async function generateStaticParams() {
+  return [{ lang: Lang.EN }, { lang: Lang.VI }];
+}
+
+export default async function Index({ params }: { readonly params: Promise<{ lang: string }> }) {
+  return (
+    <Suspense fallback={null}>
+      <PageContent params={params} />
+    </Suspense>
+  );
+}
+
+async function PageContent({ params }: { readonly params: Promise<{ lang: string }> }) {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const locale = LOCALES[lang];
   const dict: Dictionary = await getDictionary(lang);
 
