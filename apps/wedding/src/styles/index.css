@@ -415,46 +415,6 @@ body.offcanvas .vuj-nav-toggle {
   top: 12px;
 }
 
-.vuj-couple-title {
-  color: #bd945a;
-  display: block;
-  font-family: 'Snell Roundhand', cursive;
-  font-size: 60px;
-  font-weight: 400;
-  line-height: 1.5em;
-  margin-bottom: 10px;
-}
-
-.vuj-couple-subtitle,
-.vuj-couple-subtitle-s {
-  color: #000;
-  font-family: Prata, serif;
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 0;
-}
-
-.vuj-couple-subtitle-s {
-  font-size: 16px;
-  font-style: italic;
-  margin-bottom: 16px;
-}
-
-.vuj-couple-subtitle-link {
-  margin: 0;
-
-  a {
-    align-items: center;
-    display: inline-flex;
-  }
-}
-
-.vuj-couple-subtitle-link svg {
-  margin-right: 5px;
-  margin-top: -4px;
-  width: 20px;
-}
-
 .vuj-title-meta {
   color: #bd945a;
   display: block;
@@ -468,81 +428,6 @@ body.offcanvas .vuj-nav-toggle {
 /* ======= Bride & Groom style ======= */
 
 /* ======= Wedding Countdown style ======= */
-
-#countdown {
-  position: relative;
-  text-align: center;
-  text-shadow: 1px 1px 5px rgb(0 0 0 / 20%);
-
-  &::before {
-    background-color: rgba(#bd945a, 30%);
-    content: '';
-    inset: 0;
-    position: absolute;
-    z-index: 1;
-  }
-}
-
-#showtime {
-  position: relative;
-  z-index: 5;
-}
-
-#countdown .section-head {
-  margin-bottom: 30px;
-  z-index: 1;
-}
-
-#countdown .section-head h4 {
-  color: #fff;
-  font-family: 'Snell Roundhand', cursive;
-  font-size: 60px;
-  font-weight: 400;
-  margin-bottom: 0;
-  position: relative;
-}
-
-#countdown ul {
-  margin-bottom: 0;
-  padding: 0;
-}
-
-#countdown li {
-  color: #fff;
-  display: inline-block;
-  font-family: Prata, serif;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  line-height: 3em;
-  list-style-type: none;
-  padding: 15px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-#countdown li span {
-  color: #fff;
-  display: block;
-  font-size: 60px;
-}
-
-@media all and (width <= 768px) {
-  #countdown li {
-    font-size: 12px;
-    padding: 15px;
-  }
-}
-
-@media all and (width <= 567px) {
-  #countdown {
-    background-attachment: unset;
-  }
-
-  #countdown li span {
-    font-size: 32px;
-  }
-}
 
 /* =====  Gallery style  ===== */
 
@@ -877,21 +762,6 @@ body.offcanvas .vuj-nav-toggle {
   .container {
     padding-left: 30px;
     padding-right: 30px;
-  }
-
-  .vuj-couple-title {
-    font-size: 26px;
-    line-height: 1.2em;
-    margin-bottom: 15px;
-  }
-
-  .vuj-couple-subtitle {
-    font-size: 16px;
-  }
-
-  #countdown .section-head h4 {
-    font-size: 26px;
-    line-height: 1em;
   }
 
   .seeyou .section-head h4 {

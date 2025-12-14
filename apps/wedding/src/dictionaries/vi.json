@@ -6,5 +6,41 @@
     "gallery": "Album ảnh",
     "event": "Sự kiện",
     "rsvp": "Gửi lời chúc"
+  },
+  "hero": {
+    "title": "Ryan & Helen",
+    "subtitle": "2 tháng 5, 2021 - Nha Trang"
+  },
+  "aside": {
+    "coupleNames": "Đạt <small>&</small> Trang",
+    "weddingDate": "02.05.2021",
+    "weddingLocation": "Đám cưới Đạt & Trang"
+  },
+  "event": {
+    "date": "Ngày 2 tháng 5 năm 2021",
+    "venueName": "Yasaka Sài Gòn Nha Trang Hotel",
+    "venueAddress": "18 Trần Phú, Lộc Thọ, Nha Trang",
+    "mapLabel": "Xem Bản Đồ",
+    "whenLabel": "Lúc nào?",
+    "whereLabel": "Ở đâu?"
+  },
+  "couple": {
+    "bride": {
+      "name": "Diệu Trang",
+      "description": "Hôm nay em sẽ là cô dâu đẹp nhất, hạnh phúc nhất. Em mong chúng ta sẽ mãi mãi hạnh phúc như thế này anh nhé."
+    },
+    "groom": {
+      "name": "Chí Đạt",
+      "description": "Không ai hoàn hảo cả nhưng chúng ta có thể bù đắp cho nhau, tình yêu là phải biết hy sinh và nhường nhịn lẫn nhau mới sống tốt."
+    }
+  },
+  "countdown": {
+    "title": "Ngày chúng ta về chung một nhà",
+    "days": "Ngày",
+    "hours": "Giờ",
+    "minutes": "Phút",
+    "seconds": "Giây",
+    "reachedMessage": "Chúng ta đã về chung một nhà! 🎉",
+    "subReachedMessage": "Ngày 2 tháng 5 năm 2021"
   }
 }

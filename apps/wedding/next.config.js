@@ -8,6 +8,7 @@ const { join } = require('node:path');
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
+  cacheComponents: true,
   images: {
     remotePatterns: [
       {

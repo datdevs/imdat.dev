@@ -1,4 +1,7 @@
 export const IMAGE = {
+  background: {
+    countdown: 'background/banner.jpeg',
+  },
   couple: {
     bride: 'couple/bride.jpg',
     groom: 'couple/groom.jpg',
