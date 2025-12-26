@@ -4,7 +4,6 @@ import '../styles/index.css';
 import { Metadata, Viewport } from 'next';
 import { headers } from 'next/headers';
 
-import { LangSetter } from '../components/lang-setter';
 import { Lang, LOCALES, WEDDING_VIEWPORT } from '../core/constant';
 import { BodyFont, DisplayFont, SnellRoundhand } from '../core/fonts';
 
