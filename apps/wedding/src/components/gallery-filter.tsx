@@ -16,7 +16,7 @@ export default function GalleryFilter({ activeFilter, categories, onFilterChange
       {Object.entries(categories).map(([key, label]) => (
         <li key={key}>
           <button
-            className={activeFilter === key ? 'active' : ''}
+            className={activeFilter === key ? 'text-primary bg-white' : ''}
             data-filter={`.${key}`}
             onClick={(e) => handleFilterClick(e, key)}
             type="button"
@@ -27,7 +27,7 @@ export default function GalleryFilter({ activeFilter, categories, onFilterChange
       ))}
       <li>
         <button
-          className={activeFilter === '*' ? 'active backlink' : 'backlink'}
+          className={activeFilter === '*' ? 'text-primary bg-white' : ''}
           onClick={(e) => handleFilterClick(e, '*')}
           type="button"
         >
