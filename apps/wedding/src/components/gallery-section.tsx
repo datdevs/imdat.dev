@@ -34,11 +34,20 @@ export default function GallerySection({ categories, images, subtitle, title, vi
 
   // Initialize Isotope
   useEffect(() => {
+    if (globalThis.window === undefined) return;
+
     if (gridRef.current && images.length > 0) {
-      isotopeRef.current = new Isotope(gridRef.current, {
-        itemSelector: '.gallery-item',
-        layoutMode: 'fitRows',
-      });
+      const loadIsotope = async () => {
+        // Dynamically import the library and use it
+        const Isotope = (await import('isotope-layout')).default;
+
+        isotopeRef.current = new Isotope(gridRef.current as HTMLElement, {
+          itemSelector: '.gallery-item',
+          layoutMode: 'fitRows',
+        });
+      };
+
+      loadIsotope();
 
       // Re-arrange when images load
       const imageElements = gridRef.current.querySelectorAll('img');
@@ -63,7 +72,7 @@ export default function GallerySection({ categories, images, subtitle, title, vi
         });
       } else {
         // If no images found yet, layout immediately
-        isotopeRef.current.layout();
+        isotopeRef?.current?.layout();
       }
 
       return () => {
