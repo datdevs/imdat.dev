@@ -12,7 +12,7 @@ export default function GalleryFilter({ activeFilter, categories, onFilterChange
   };
 
   return (
-    <ul className="gallery-menu mb-0 flex flex-wrap gap-2">
+    <ul className="flex flex-wrap gap-2">
       {Object.entries(categories).map(([key, label]) => (
         <li key={key}>
           <button

@@ -9,11 +9,11 @@ interface GalleryItemProps {
 
 export default function GalleryItem({ alt, category, fullSrc, src }: GalleryItemProps) {
   return (
-    <div className={`gallery-item ${category}`}>
+    <div className={category}>
       <a className="img-zoom" data-src={fullSrc} href={fullSrc}>
         <div className="gallery-box">
           <div className="gallery-img">
-            <Image alt={alt} className="vuj-laz" height={208} src={src} width={312} />
+            <Image alt={alt} className="h-52 w-full object-cover" height={512} src={src} width={512} />
           </div>
           <div className="gallery-detail"></div>
         </div>
