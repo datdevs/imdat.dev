@@ -42,5 +42,21 @@
     "seconds": "Giây",
     "reachedMessage": "Chúng ta đã về chung một nhà! 🎉",
     "subReachedMessage": "Ngày 2 tháng 5 năm 2021"
+  },
+  "gallery": {
+    "title": "Album ảnh",
+    "subtitle": "Kỷ niệm của chúng ta",
+    "categories": {
+      "engagement": "Lễ Đính Hôn",
+      "wedding": "Lễ Thành Hôn",
+      "party": "Tiệc cưới"
+    },
+    "viewAll": "Xem tất cả"
+  },
+  "notFound": {
+    "title": "404 - Không tìm thấy trang",
+    "message": "Trang bạn đang tìm kiếm không tồn tại.",
+    "description": "Có thể trang đã bị xóa hoặc địa chỉ URL không chính xác.",
+    "backToHome": "Quay về trang chủ"
   }
 }

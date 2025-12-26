@@ -1,5 +1,3 @@
-'use cache';
-
 import type { SignedUrlResponse } from '../models/api';
 
 const BASE_URL = 'https://storage.imdat.dev';

@@ -431,31 +431,6 @@ body.offcanvas .vuj-nav-toggle {
 
 /* =====  Gallery style  ===== */
 
-.img-zoom {
-  cursor: pointer;
-}
-
-.gallery-menu li a {
-  color: #888;
-  cursor: pointer;
-  display: block;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 5px 15px;
-  transition: all 0.5s;
-}
-
-.gallery-menu a.active,
-.gallery-menu a:hover {
-  background-color: #bd945a;
-  color: #fff;
-}
-
-.gallery-item {
-  padding: 15px;
-  position: relative;
-}
-
 .gallery-box {
   overflow: hidden;
   position: relative;

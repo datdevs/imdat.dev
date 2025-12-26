@@ -27,6 +27,14 @@
       "name": "Launch Wedding Page",
       "url": "http://localhost:3002",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Wedding Page Chrome",
+      "url": "http://localhost:3002",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
     }
   ]
 }
