@@ -27,7 +27,7 @@
     "@ngrx/signals": "^20.1.0",
     "@ngrx/store": "^20.1.0",
     "@taiga-ui/addon-charts": "^4.64.0",
-    "@taiga-ui/addon-mobile": "^4.64.0",
+    "@taiga-ui/addon-mobile": "^4.65.0",
     "@taiga-ui/addon-table": "^4.64.0",
     "@taiga-ui/cdk": "^4.64.0",
     "@taiga-ui/core": "^4.64.0",
