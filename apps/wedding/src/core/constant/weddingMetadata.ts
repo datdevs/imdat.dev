@@ -123,7 +123,7 @@ export const WEDDING_METADATA: Metadata = {
 
   // Open Graph metadata for social sharing
   openGraph: {
-    alternateLocale: ['en_US'],
+    alternateLocale: ['en_US', 'vi_VN'],
     countryName: 'Vietnam',
     description:
       'Đây là những kỷ niệm về đám cưới, ngày trọng đại của chúng tôi vào ngày 02-05-2021. Chia sẻ những khoảnh khắc đẹp nhất, lời chúc mừng và kỷ niệm đáng nhớ của đám cưới Chí Đạt & Diệu Trang tại Nha Trang.',
@@ -134,13 +134,6 @@ export const WEDDING_METADATA: Metadata = {
         type: 'image/jpeg',
         url: 'https://wedding.imdat.dev/assets/images/wedding-banner.jpg',
         width: 1200,
-      },
-      {
-        alt: 'Chí Đạt & Diệu Trang Wedding Banner',
-        height: 600,
-        type: 'image/jpeg',
-        url: 'https://wedding.imdat.dev/assets/images/wedding-banner.jpg',
-        width: 800,
       },
     ],
     locale: 'vi_VN',
