@@ -7,8 +7,6 @@ import { headers } from 'next/headers';
 import { Lang, LOCALES, WEDDING_VIEWPORT } from '../core/constant';
 import { BodyFont, DisplayFont, SnellRoundhand } from '../core/fonts';
 
-export const runtime = 'edge';
-
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const lang = (headersList.get('x-lang') ?? Lang.VI) as Lang;
