@@ -6,7 +6,7 @@ import baseConfig from '../../eslint.config.mjs';
 
 // Tricky: Remove project service from ngrx config to avoid errors
 // Enabling "project" does nothing when "projectService" is enabled.
-delete ngrx.configs.all[1].languageOptions.parserOptions.project;
+// delete ngrx.configs.all[1].languageOptions.parserOptions.project;
 
 export default defineConfig([
   ...baseConfig,
