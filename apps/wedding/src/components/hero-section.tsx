@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({ scrollTarget, slides, subtitle, title }: HeroSectionProps) {
   return (
-    <section className="relative">
+    <section className="relative" id="hero">
       <Slider slides={slides} />
       <HeroOverlay subtitle={subtitle} title={title} />
       <ScrollIndicator href={scrollTarget} />

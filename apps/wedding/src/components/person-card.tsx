@@ -23,7 +23,7 @@ export default function PersonCard({ person, rtl = false }: PersonCardProps) {
       />
 
       <div className={clsx('space-y-3', rtl ? 'text-right' : 'text-left')}>
-        <h6 className="text-2xl">{person.name}</h6>
+        <h2 className="text-2xl">{person.name}</h2>
         <p>{person.description}</p>
         <SocialLinks className={rtl ? 'justify-end' : 'justify-start'} links={person.socialLinks} />
       </div>

@@ -3627,23 +3627,19 @@ export default class Page {
     HTML: import('./examples/2/index.html?raw'),
     'dialog-example/dialog-example.component.ts': import('./examples/2/dialog-example/dialog-example.component.ts?raw'),
     'dialog-example/dialog-example.style.less': import('./examples/2/dialog-example/dialog-example.style.less?raw'),
-    'dialog-example/dialog-example.template.html': import(
-      './examples/2/dialog-example/dialog-example.template.html?raw'
-    ),
+    'dialog-example/dialog-example.template.html':
+      import('./examples/2/dialog-example/dialog-example.template.html?raw'),
   };
 
   protected readonly example7 = {
     TypeScript: import('./examples/7/index.ts?raw'),
     HTML: import('./examples/7/index.html?raw'),
-    'search-example/search-dialog-example.component.ts': import(
-      './examples/7/search-example/search-dialog-example.component.ts?raw'
-    ),
-    'search-example/search-dialog-example.template.html': import(
-      './examples/7/search-example/search-dialog-example.template.html?raw'
-    ),
-    'search-example/search-dialog-example.component.less': import(
-      './examples/7/search-example/search-dialog-example.component.less?raw'
-    ),
+    'search-example/search-dialog-example.component.ts':
+      import('./examples/7/search-example/search-dialog-example.component.ts?raw'),
+    'search-example/search-dialog-example.template.html':
+      import('./examples/7/search-example/search-dialog-example.template.html?raw'),
+    'search-example/search-dialog-example.component.less':
+      import('./examples/7/search-example/search-dialog-example.component.less?raw'),
   };
 
   protected readonly example9 = {

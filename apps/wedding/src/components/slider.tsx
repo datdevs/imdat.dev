@@ -27,7 +27,8 @@ export default function Slider({ slides }: SliderProps) {
 
   return (
     <SwiperComponent
-      allowTouchMove={false}
+      allowTouchMove={true}
+      aria-label="Hero image carousel"
       autoplay={{ delay: 5000 }}
       className="h-screen w-full"
       effect="fade"
@@ -36,7 +37,6 @@ export default function Slider({ slides }: SliderProps) {
       }}
       loop={true}
       modules={[A11y, Autoplay, EffectFade]}
-      noSwiping={true}
       onSlideChange={handleSlideChange}
       speed={2500}
       touchMoveStopPropagation={true}
@@ -47,14 +47,21 @@ export default function Slider({ slides }: SliderProps) {
         const animationClasses = clsx(
           'slide-image',
           'pointer-events-none size-full object-cover select-none',
-          'transition-transform duration-15000',
+          'transition-transform duration-15000 motion-reduce:transition-none',
           `origin-${transformOrigins[index % transformOrigins.length]}`,
-          isCurrentSlide ? 'scale-100' : 'scale-125',
+          isCurrentSlide ? 'scale-100' : 'scale-125 motion-reduce:scale-100',
         );
 
         return (
-          <SwiperSlide key={slide}>
-            <Image alt="Slide" className={animationClasses} height={2000} loading="eager" src={slide} width={2000} />
+          <SwiperSlide aria-label={`Slide ${index + 1} of ${slides.length}`} key={slide}>
+            <Image
+              alt={`Wedding slide ${index + 1} of ${slides.length}`}
+              className={animationClasses}
+              height={2000}
+              loading="eager"
+              src={slide}
+              width={2000}
+            />
           </SwiperSlide>
         );
       })}

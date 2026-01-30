@@ -13,4 +13,3 @@ export default function WhereSection({ address, label, venueName }: WhereSection
     </div>
   );
 }
-

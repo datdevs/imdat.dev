@@ -69,10 +69,14 @@ export default function CountdownSection({ backgroundImage, labels, targetDate, 
 
   return (
     <section
-      className="relative bg-cover bg-fixed"
+      className="relative bg-cover bg-fixed max-md:bg-scroll"
       style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : undefined}
     >
-      <div className="bg-primary/20 pointer-events-none py-32 text-shadow-[1px_1px_5px_rgba(0,0,0,0.2)]">
+      <div
+        aria-atomic="true"
+        aria-live="polite"
+        className="bg-primary/20 pointer-events-none py-32 text-shadow-[1px_1px_5px_rgba(0,0,0,0.2)]"
+      >
         <div className="container mx-auto space-y-12 text-center text-white">
           {hasReached ? (
             <>
@@ -85,7 +89,10 @@ export default function CountdownSection({ backgroundImage, labels, targetDate, 
             <>
               <h2 className="font-handwriting text-6xl text-white">{title}</h2>
 
-              <ul className="flex items-center justify-center gap-4 font-serif text-2xl tracking-[5px] text-white uppercase">
+              <ul
+                aria-label="Wedding countdown timer"
+                className="flex items-center justify-center gap-4 font-serif text-2xl tracking-[5px] text-white uppercase"
+              >
                 <CountdownItem id="days" label={labels.days} value={timeLeft.days} />
                 <CountdownItem id="hours" label={labels.hours} value={timeLeft.hours} />
                 <CountdownItem id="minutes" label={labels.minutes} value={timeLeft.minutes} />

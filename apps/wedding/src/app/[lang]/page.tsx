@@ -68,9 +68,15 @@ export default async function Index({ params }: { readonly params: Promise<{ lan
 
   return (
     <>
+      <a
+        className="focus:bg-primary focus:ring-primary sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-9999 focus:rounded focus:px-4 focus:py-2 focus:text-white focus:ring-2 focus:ring-offset-2"
+        href="#hero"
+      >
+        Skip to main content
+      </a>
       <Aside dictionary={dict} locale={locale} />
 
-      <main className="ms-auto w-full lg:w-4/5">
+      <main className="ms-auto w-full lg:w-4/5" id="main-content">
         <HeroSection scrollTarget="#couple" slides={slides} subtitle={dict.hero.subtitle} title={dict.hero.title} />
 
         <CoupleSection bride={bride} groom={groom} />

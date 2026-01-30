@@ -8,6 +8,17 @@ textarea:focus {
   outline: none;
 }
 
+input[type='password']:focus-visible,
+input[type='email']:focus-visible,
+input[type='text']:focus-visible,
+input[type='file']:focus-visible,
+input[type='radio']:focus-visible,
+input[type='checkbox']:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #bd945a;
+  outline-offset: 2px;
+}
+
 input[type='password'],
 input[type='email'],
 input[type='text'],
@@ -58,7 +69,10 @@ label {
   font-weight: 400;
   line-height: 1.75em;
   margin-bottom: 0;
-  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  transition:
+    color,
+    opacity,
+    transform 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   vertical-align: middle;
 }
 
@@ -66,7 +80,9 @@ input[type='radio']::after,
 input[type='radio']::before {
   content: '';
   position: absolute;
-  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  transition:
+    opacity,
+    transform 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
 
 input[type='checkbox'] {
@@ -177,6 +193,11 @@ input[type='radio']:checked::before {
   border: 1px solid #ececec;
   box-shadow: none;
   outline: none;
+}
+
+.form-control:focus-visible {
+  outline: 2px solid #bd945a;
+  outline-offset: 2px;
 }
 
 #message {
@@ -449,7 +470,9 @@ body.offcanvas .vuj-nav-toggle {
   left: 0;
   position: absolute;
   top: 0;
-  transition: all 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
+  transition:
+    background-color,
+    opacity 0.27s cubic-bezier(0.3, 0.1, 0.58, 1);
   width: 100%;
 }
 
@@ -464,7 +487,9 @@ body.offcanvas .vuj-nav-toggle {
   pointer-events: none;
   position: absolute;
   top: 0;
-  transition: all 0.35s ease-in-out;
+  transition:
+    opacity,
+    transform 0.35s ease-in-out;
   user-select: none;
   width: 100%;
   z-index: 10;
@@ -524,7 +549,7 @@ body.offcanvas .vuj-nav-toggle {
 }
 
 .whenwhere .item .whenwhere-img img {
-  transition: all 0.5s;
+  transition: transform 0.5s;
 }
 
 .whenwhere .item .content {
@@ -646,7 +671,9 @@ body.offcanvas .vuj-nav-toggle {
   height: 100%;
   left: 100%;
   position: absolute;
-  transition: all 0.3s ease;
+  transition:
+    width,
+    left 0.3s ease;
   width: 0;
   z-index: 1;
 }
@@ -729,6 +756,18 @@ body.offcanvas .vuj-nav-toggle {
   .footer2 {
     padding: 100px 30px 80px;
     text-align: center;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

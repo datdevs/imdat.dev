@@ -7,12 +7,15 @@ interface CountdownItemProps {
 }
 
 export default function CountdownItem({ id, label, value }: CountdownItemProps) {
+  const labelId = `${id}-label`;
   return (
     <li className="flex items-start">
-      <span className="text-6xl" id={id}>
+      <span aria-labelledby={labelId} className="text-6xl" id={id}>
         {value}
       </span>
-      <span className="text-2xl">{label}</span>
+      <span className="text-2xl" id={labelId}>
+        {label}
+      </span>
     </li>
   );
 }

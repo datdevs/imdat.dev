@@ -93,7 +93,7 @@ export default async function RootLayout({ children }: { readonly children: Reac
   const lang = (headersList.get('x-lang') ?? Lang.VI) as Lang;
 
   return (
-    <html className="scroll-smooth" lang={lang}>
+    <html className="scroll-smooth motion-reduce:scroll-auto" lang={lang}>
       <body className={`${BodyFont.variable} ${DisplayFont.variable} ${SnellRoundhand.variable} antialiased`}>
         {children}
       </body>

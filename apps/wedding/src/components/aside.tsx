@@ -28,6 +28,13 @@ export default function Aside({ dictionary, locale }: AsideProps) {
 
   const toggle = () => setIsAsideOpen(!isAsideOpen);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggle();
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       // Check if current hash matches any menu URL
@@ -47,19 +54,25 @@ export default function Aside({ dictionary, locale }: AsideProps) {
   return (
     <>
       <button
-        className={clsx('animate-fade-in-down fixed top-0 right-0 z-101 lg:hidden', {
-          hidden: isAsideOpen,
-        })}
+        aria-label="Toggle navigation menu"
+        className={clsx(
+          'animate-fade-in-down focus-visible:ring-primary fixed top-0 right-0 z-101 focus-visible:ring-2 focus-visible:outline-none lg:hidden',
+          {
+            hidden: isAsideOpen,
+          },
+        )}
         onClick={toggle}
+        onKeyDown={handleKeyDown}
       >
-        <MenuIcon />
+        <MenuIcon aria-hidden="true" />
       </button>
 
       <aside
+        aria-label="Wedding information"
         className={clsx(
           'fixed top-0 bottom-0 left-0 z-100 flex w-full flex-col justify-between gap-4 overflow-scroll bg-[#f6f1f0] p-8 [scrollbar-width:none]',
           'lg:z-10 lg:w-1/5',
-          'duration-1000 max-lg:transition-all',
+          'duration-1000 max-lg:transition-[transform,opacity]',
           {
             'max-lg:scale-0 max-lg:opacity-0': !isAsideOpen,
             'max-lg:scale-100 max-lg:opacity-100': isAsideOpen,
@@ -67,12 +80,17 @@ export default function Aside({ dictionary, locale }: AsideProps) {
         )}
       >
         <button
-          className={clsx('absolute top-0 right-0 z-10 border-none bg-transparent text-neutral-400 lg:hidden', {
-            hidden: !isAsideOpen,
-          })}
+          aria-label="Close navigation menu"
+          className={clsx(
+            'focus-visible:ring-primary absolute top-0 right-0 z-10 border-none bg-transparent text-neutral-400 focus-visible:ring-2 focus-visible:outline-none lg:hidden',
+            {
+              hidden: !isAsideOpen,
+            },
+          )}
           onClick={toggle}
+          onKeyDown={handleKeyDown}
         >
-          <XIcon />
+          <XIcon aria-hidden="true" />
         </button>
 
         <div className="flex flex-col items-center justify-center gap-2">
@@ -92,15 +110,15 @@ export default function Aside({ dictionary, locale }: AsideProps) {
           <span className="bg-primary/50 mx-auto mt-2 inline-block h-px w-14"></span>
         </div>
 
-        <nav>
+        <nav aria-label="Main navigation">
           <ul className="space-y-5 text-center md:space-y-8">
             {MENU.map((menu: Menu) => (
               <li key={menu.url}>
                 <Link
-                  aria-describedby={menu.labelKey}
+                  aria-label={dictionary.common[menu.labelKey]}
                   className={clsx(
-                    'after:bg-primary relative pb-2 font-serif text-base leading-6 font-normal tracking-wide text-neutral-600',
-                    "after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 after:content-[''] hover:after:w-full",
+                    'after:bg-primary focus-visible:ring-primary relative pb-2 font-serif text-base leading-6 font-normal tracking-wide text-neutral-600 focus-visible:ring-2 focus-visible:outline-none',
+                    "after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:transition-[width] after:duration-300 after:content-[''] hover:after:w-full",
                     {
                       'text-primary after:w-full': isMenuActive,
                     },

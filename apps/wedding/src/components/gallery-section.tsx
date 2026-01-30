@@ -118,7 +118,12 @@ export default function GallerySection({ categories, images, subtitle, title, vi
             viewAllLabel={viewAllLabel}
           />
         </div>
-        <LightGallery plugins={[lgThumbnail, lgZoom]} selector=".img-zoom" speed={500}>
+        <LightGallery
+          aria-label="Wedding photo gallery"
+          plugins={[lgThumbnail, lgZoom]}
+          selector=".img-zoom"
+          speed={500}
+        >
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3" ref={gridRef}>
             {images.map((image, index) => (
               <GalleryItem

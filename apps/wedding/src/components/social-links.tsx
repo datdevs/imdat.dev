@@ -72,13 +72,17 @@ export default function SocialLinks({ className, links }: SocialLinksProps) {
 
         return (
           <Link
-            className={clsx('text-primary transition-colors duration-300', hoverColorMap[link.platform])}
+            aria-label={`Visit ${link.platform} profile`}
+            className={clsx(
+              'text-primary focus-visible:ring-primary transition-colors duration-300 focus-visible:rounded focus-visible:ring-2 focus-visible:outline-none',
+              hoverColorMap[link.platform],
+            )}
             href={link.url}
             key={link.platform}
             rel="noopener noreferrer"
             target="_blank"
           >
-            <Icon className="size-6 fill-current" />
+            <Icon aria-hidden="true" className="size-6 fill-current" />
           </Link>
         );
       })}

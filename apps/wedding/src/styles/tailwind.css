@@ -58,6 +58,6 @@
   input[type='submit'],
   input[type='reset'],
   input[type='button'] {
-    @apply border-primary hover:text-primary active:text-primary bg-primary cursor-pointer rounded-none border p-2.5 text-xs font-medium tracking-[2px] text-white uppercase transition-colors duration-300 hover:bg-transparent active:bg-transparent;
+    @apply border-primary hover:text-primary active:text-primary bg-primary focus-visible:ring-primary cursor-pointer rounded-none border p-2.5 text-xs font-medium tracking-[2px] text-white uppercase transition-colors duration-300 hover:bg-transparent focus-visible:ring-2 focus-visible:outline-none active:bg-transparent;
   }
 }

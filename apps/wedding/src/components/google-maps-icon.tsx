@@ -33,4 +33,3 @@ export default function GoogleMapsIcon({ className }: GoogleMapsIconProps) {
     </svg>
   );
 }
-

@@ -18,7 +18,7 @@ export default function GoogleMapsLink({ className, href, label }: GoogleMapsLin
       href={href}
       target="_blank"
     >
-      <GoogleMapsIcon className="size-6" />
+      <GoogleMapsIcon aria-hidden="true" className="size-6" />
       <span>{label}</span>
     </Link>
   );
