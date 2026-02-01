@@ -58,9 +58,11 @@ export default function Slider({ slides }: SliderProps) {
             <Image
               alt={`Wedding slide ${index + 1} of ${slides.length}`}
               className={animationClasses}
+              fetchPriority={isFirstSlide ? 'high' : undefined}
               height={2000}
               loading={isFirstSlide ? 'eager' : 'lazy'}
               priority={isFirstSlide}
+              quality={70}
               sizes="100vw"
               src={slide}
               width={2000}
