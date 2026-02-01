@@ -1,8 +1,7 @@
 // @ts-check
 /* eslint-disable @typescript-eslint/no-require-imports */
 
-const { composePlugins } = require('@nx/next');
-// const { join } = require('node:path');
+const { composePlugins, withNx } = require('@nx/next');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -20,11 +19,15 @@ const nextConfig = {
   },
   // Use this to set Nx-specific options
   // See: https://nx.dev/recipes/next/next-config-setup
-  // nx: {},
-  // output: 'standalone',
-  // outputFileTracingRoot: join(__dirname, '../../'),
+  nx: {},
   poweredByHeader: false,
+  productionBrowserSourceMaps: true,
   reactStrictMode: true,
 };
 
-module.exports = composePlugins()(nextConfig);
+const plugins = [
+  // Add more Next.js plugins to this list if needed.
+  withNx,
+];
+
+module.exports = composePlugins(...plugins)(nextConfig);

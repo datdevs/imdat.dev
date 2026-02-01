@@ -11,6 +11,6 @@ export default defineConfig([
   ...nextTs,
   ...nx.configs['flat/react-typescript'],
   {
-    ignores: ['.next/**/*'],
+    ignores: ['.next/**/*', '**/out-tsc'],
   },
 ]);
