@@ -73,7 +73,7 @@
     "@nx/playwright": "22.4.4",
     "@nx/web": "22.4.4",
     "@nx/workspace": "22.4.4",
-    "@playwright/test": "^1.58.0",
+    "@playwright/test": "^1.58.1",
     "@schematics/angular": "21.1.2",
     "@stylistic/eslint-plugin": "^5.7.1",
     "@swc-node/register": "~1.11.1",
