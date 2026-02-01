@@ -18,6 +18,7 @@ export default function PersonCard({ person, rtl = false }: PersonCardProps) {
         className="size-35 flex-none rounded-full object-cover"
         height={person.image.height ?? 140}
         loading="lazy"
+        sizes="(max-width: 768px) 140px, 140px"
         src={person.image.src}
         width={person.image.width ?? 140}
       />

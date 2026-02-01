@@ -5,7 +5,7 @@ import { Menu as MenuIcon, XIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { IMAGE, MENU } from '../core/constant';
 import { Dictionary, Menu } from '../models/common';
@@ -20,26 +20,37 @@ export default function Aside({ dictionary, locale }: AsideProps) {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const pathname = usePathname();
 
-  const date = new Date('2021-05-02');
-  const formatter = new Intl.DateTimeFormat(locale, {
-    dateStyle: 'long',
-  });
-  const formattedDate = formatter.format(date);
+  // Memoize date and formatter to prevent recreation on every render
+  const date = useMemo(() => new Date('2021-05-02'), []);
+  const formatter = useMemo(() => new Intl.DateTimeFormat(locale, { dateStyle: 'long' }), [locale]);
+  const formattedDate = useMemo(() => formatter.format(date), [formatter, date]);
 
-  const toggle = () => setIsAsideOpen(!isAsideOpen);
+  const toggle = useCallback(() => setIsAsideOpen((prev) => !prev), []);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       toggle();
     }
-  };
+  }, [toggle]);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      // Check if current hash matches any menu URL
-      const currentHash = location.hash;
-      setIsMenuActive(MENU.some((menu: Menu) => currentHash === menu.url || pathname + currentHash === menu.url));
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Check if current hash matches any menu URL
+          const currentHash = location.hash;
+          setIsMenuActive((prev) => {
+            const newValue = MENU.some((menu: Menu) => currentHash === menu.url || pathname + currentHash === menu.url);
+            // Only update if value changed
+            return prev !== newValue ? newValue : prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     // Check on mount and pathname change
@@ -99,6 +110,7 @@ export default function Aside({ dictionary, locale }: AsideProps) {
             className="size-auto md:mb-3"
             height={39}
             loading="lazy"
+            sizes="(max-width: 768px) 90px, 90px"
             src={IMAGE.logo}
             width={90}
           />

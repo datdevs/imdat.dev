@@ -9,6 +9,8 @@ const { join } = require('node:path');
  **/
 const nextConfig = {
   images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 3600,
     remotePatterns: [
       {
         hostname: 'storage.imdat.dev',

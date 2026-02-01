@@ -43,6 +43,7 @@ export default function Slider({ slides }: SliderProps) {
     >
       {slides.map((slide, index) => {
         const isCurrentSlide = index === activeIndex;
+        const isFirstSlide = index === 0;
 
         const animationClasses = clsx(
           'slide-image',
@@ -58,7 +59,9 @@ export default function Slider({ slides }: SliderProps) {
               alt={`Wedding slide ${index + 1} of ${slides.length}`}
               className={animationClasses}
               height={2000}
-              loading="eager"
+              loading={isFirstSlide ? 'eager' : 'lazy'}
+              priority={isFirstSlide}
+              sizes="100vw"
               src={slide}
               width={2000}
             />

@@ -8,7 +8,7 @@ const BodyFont = Dosis({
   style: ['normal'],
   subsets: ['latin', 'latin-ext', 'vietnamese'],
   variable: '--font-sans',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['400', '500'], // Only load weights actually used (400=normal, 500=medium)
 });
 
 const DisplayFont = Prata({

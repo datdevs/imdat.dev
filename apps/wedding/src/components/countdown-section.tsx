@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import CountdownItem from './countdown-item';
 
@@ -42,7 +42,7 @@ const calculateTimeLeft = (target: Date) => {
 };
 
 export default function CountdownSection({ backgroundImage, labels, targetDate, title }: CountdownSectionProps) {
-  const initialTime = calculateTimeLeft(targetDate);
+  const initialTime = useMemo(() => calculateTimeLeft(targetDate), [targetDate]);
   const [timeLeft, setTimeLeft] = useState({
     days: initialTime.days,
     hours: initialTime.hours,
@@ -55,13 +55,24 @@ export default function CountdownSection({ backgroundImage, labels, targetDate, 
     // Update every second
     const interval = setInterval(() => {
       const result = calculateTimeLeft(targetDate);
-      setTimeLeft({
-        days: result.days,
-        hours: result.hours,
-        minutes: result.minutes,
-        seconds: result.seconds,
+      setTimeLeft((prev) => {
+        // Only update if values actually changed to prevent unnecessary re-renders
+        if (
+          prev.days !== result.days ||
+          prev.hours !== result.hours ||
+          prev.minutes !== result.minutes ||
+          prev.seconds !== result.seconds
+        ) {
+          return {
+            days: result.days,
+            hours: result.hours,
+            minutes: result.minutes,
+            seconds: result.seconds,
+          };
+        }
+        return prev;
       });
-      setHasReached(result.hasReached);
+      setHasReached((prev) => (prev === result.hasReached ? prev : result.hasReached));
     }, 1000);
 
     return () => clearInterval(interval);

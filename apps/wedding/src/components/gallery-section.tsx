@@ -38,10 +38,10 @@ export default function GallerySection({ categories, images, subtitle, title, vi
 
     if (gridRef.current && images.length > 0) {
       const loadIsotope = async () => {
-        // Dynamically import the library and use it
         const Isotope = (await import('isotope-layout')).default;
+        if (!gridRef.current) return;
 
-        isotopeRef.current = new Isotope(gridRef.current as HTMLElement, {
+        isotopeRef.current = new Isotope(gridRef.current, {
           itemSelector: '.gallery-item',
           layoutMode: 'fitRows',
         });
@@ -110,7 +110,7 @@ export default function GallerySection({ categories, images, subtitle, title, vi
           <h3 className="font-handwriting text-primary mb-2.5 text-3xl">{title}</h3>
           <h2 className="font-serif text-3xl font-medium tracking-[1px] text-black uppercase">{subtitle}</h2>
         </div>
-        <div className="mb-8">
+        <div className="mb-7">
           <GalleryFilter
             activeFilter={activeFilter}
             categories={categories}
@@ -124,7 +124,7 @@ export default function GallerySection({ categories, images, subtitle, title, vi
           selector=".img-zoom"
           speed={500}
         >
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3" ref={gridRef}>
+          <div className="-mx-2.5" ref={gridRef}>
             {images.map((image, index) => (
               <GalleryItem
                 alt={image.alt}
