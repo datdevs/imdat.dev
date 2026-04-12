@@ -61,3 +61,7 @@ out
 
 # Snyk Security Extension - AI Rules (auto-generated)
 .cursor/rules/snyk_rules.mdc
+
+.nx/polygraph
+.claude/worktrees
+.claude/settings.local.json
