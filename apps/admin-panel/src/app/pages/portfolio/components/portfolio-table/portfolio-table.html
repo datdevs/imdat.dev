@@ -1,7 +1,7 @@
 @let data = portfolios();
 @let isLoading = loading();
 
-<tui-loader [overlay]="true" [showLoader]="isLoading">
+<tui-loader [overlay]="true" [loading]="isLoading">
   <tui-scrollbar>
     <cdk-virtual-scroll-viewport
       #viewport
@@ -131,9 +131,10 @@
             </td>
             <td tuiTd>
               <div tuiCell>
-                <tui-badge tuiStatus [appearance]="item.status | appearance">
+                <!-- TODO: (Taiga UI migration) [appearance] binding uses a dynamic expression. If it can produce "error"/"success"/"glass", replace with "negative"/"positive"/"secondary-grayscale" -->
+<span tuiBadge tuiStatus [appearance]="item.status | appearance">
                   {{ item.status | status }}
-                </tui-badge>
+                </span>
               </div>
             </td>
             <td tuiTd>
@@ -152,8 +153,8 @@
                   appearance="action"
                   iconStart="ellipsis"
                   size="xs"
-                  tuiDropdownAlign="right"
-                  tuiDropdownOpen
+                  tuiDropdownAlign="end"
+                  tuiDropdownAuto
                   tuiIconButton
                   type="button"
                   [tuiDropdown]="actions"

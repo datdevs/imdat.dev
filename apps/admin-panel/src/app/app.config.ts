@@ -11,9 +11,7 @@ import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from '@angular/router';
-import { tuiDateFormatProvider } from '@taiga-ui/core';
-import { provideEventPlugins } from '@taiga-ui/event-plugins';
-
+import { tuiDateFormatProvider, provideTaiga } from '@taiga-ui/core';
 import { appRoutes } from './app.routes';
 import { environment } from './core/environments';
 import { AuthService, initializeNotifyService, NotifyService, PageTitleService } from './services';
@@ -22,7 +20,7 @@ import { AuthStore } from './store/auth';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
-    provideEventPlugins(),
+    provideTaiga(),
     provideZonelessChangeDetection(),
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     ...(isDevMode()

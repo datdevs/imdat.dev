@@ -18,7 +18,7 @@ import {
   RouterLinkActive,
   RouterModule,
 } from '@angular/router';
-import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
+import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiIcon, TuiInput } from '@taiga-ui/core';
 import { TuiAvatar, TuiBadgedContent, TuiBadgeNotification, TuiChevron, TuiFade, TuiTabs } from '@taiga-ui/kit';
 import { TuiNavigation } from '@taiga-ui/layout';
 import { filter } from 'rxjs/operators';
@@ -45,7 +45,7 @@ import { ProfileButton } from '../../components/profile-button/profile-button';
     TuiIcon,
     TuiNavigation,
     TuiTabs,
-    TuiTextfield,
+    TuiInput,
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',

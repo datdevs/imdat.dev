@@ -2,8 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
-import { TuiAutoColorPipe, TuiDataList, TuiDropdown, TuiFallbackSrcPipe, TuiIcon, TuiOptionNew } from '@taiga-ui/core';
-import { TuiAvatar } from '@taiga-ui/kit';
+import { TuiDataList, TuiDropdown, TuiIcon, TuiOptionNew } from '@taiga-ui/core';
+import { TuiAvatar, TuiAutoColorPipe } from '@taiga-ui/kit';
 
 import { AuthService } from '../../services/auth.service';
 import { AuthStore } from '../../store/auth';
@@ -17,7 +17,6 @@ import { AuthStore } from '../../store/auth';
     TuiDropdown,
     TuiDataList,
     TuiAvatar,
-    TuiFallbackSrcPipe,
     TuiAutoColorPipe,
     TuiOptionNew,
   ],

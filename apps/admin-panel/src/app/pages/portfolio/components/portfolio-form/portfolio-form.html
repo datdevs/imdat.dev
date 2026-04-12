@@ -14,9 +14,9 @@
         Title
         <span class="text-red-500">*</span>
       </label>
-      <input formControlName="title" name="title" tuiTextfield />
+      <input formControlName="title" name="title" tuiInput />
     </tui-textfield>
-    <tui-error formControlName="title" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="title"  />
 
     <tui-textfield>
       <label for="shortDescription" tuiLabel>
@@ -33,7 +33,7 @@
         [tuiTextfieldCleaner]="true"
       ></textarea>
     </tui-textfield>
-    <tui-error formControlName="shortDescription" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="shortDescription"  />
 
     <tui-textfield>
       <label for="description" tuiLabel>
@@ -51,7 +51,7 @@
         [tuiTextfieldCleaner]="true"
       ></textarea>
     </tui-textfield>
-    <tui-error formControlName="description" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="description"  />
 
     <tui-textfield tuiChevron [stringify]="statusStringify" [tuiTextfieldCleaner]="false">
       <label for="status" tuiLabel>
@@ -60,7 +60,7 @@
       </label>
       <input formControlName="status" name="status" tuiSelect />
 
-      <tui-data-list *tuiTextfieldDropdown>
+      <tui-data-list *tuiDropdown>
         @for (item of statusOptions; track $index) {
           <button new tuiOption type="button" [value]="item.value">
             {{ item.label }}
@@ -89,12 +89,12 @@
       <tui-input-chip *tuiItem />
 
       <tui-data-list-wrapper
-        *tuiTextfieldDropdown
+        *tuiDropdown
         new
         [items]="commonTechnologies | tuiFilterByInput | tuiHideSelected"
       />
     </tui-textfield>
-    <tui-error formControlName="technologies" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="technologies"  />
 
     <tui-textfield multi>
       <label for="features" tuiLabel>
@@ -106,7 +106,7 @@
 
       <tui-input-chip *tuiItem />
     </tui-textfield>
-    <tui-error formControlName="features" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="features"  />
   }
 
   <!-- Images & Links Tab -->
@@ -159,18 +159,18 @@
               Image URL
               <span class="text-red-500">*</span>
             </label>
-            <input formControlName="url" name="url" tuiTextfield type="url" />
+            <input formControlName="url" name="url" tuiInput type="url" />
           </tui-textfield>
-          <tui-error formControlName="url" [error]="[] | tuiFieldError | async" />
+          <tui-error formControlName="url"  />
 
           <tui-textfield>
             <label for="alt" tuiLabel>
               Image description
               <span class="text-red-500">*</span>
             </label>
-            <input formControlName="alt" name="alt" tuiTextfield type="text" />
+            <input formControlName="alt" name="alt" tuiInput type="text" />
           </tui-textfield>
-          <tui-error formControlName="alt" [error]="[] | tuiFieldError | async" />
+          <tui-error formControlName="alt"  />
 
           <footer>
             <button appearance="secondary" size="m" tuiButton type="button" (click)="cancelImage()">Cancel</button>
@@ -206,17 +206,17 @@
         formControlName="githubUrl"
         name="githubUrl"
         placeholder="https://github.com/username/repo"
-        tuiTextfield
+        tuiInput
         type="url"
       />
     </tui-textfield>
-    <tui-error formControlName="githubUrl" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="githubUrl"  />
 
     <tui-textfield>
       <label for="liveUrl" tuiLabel>Live URL</label>
-      <input formControlName="liveUrl" name="liveUrl" placeholder="https://example.com" tuiTextfield type="url" />
+      <input formControlName="liveUrl" name="liveUrl" placeholder="https://example.com" tuiInput type="url" />
     </tui-textfield>
-    <tui-error formControlName="liveUrl" [error]="[] | tuiFieldError | async" />
+    <tui-error formControlName="liveUrl"  />
   }
 
   <!-- Form Actions -->

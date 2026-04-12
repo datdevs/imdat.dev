@@ -11,20 +11,9 @@ import {
   TuiTablePagination,
   TuiTablePaginationEvent,
 } from '@taiga-ui/addon-table';
-import {
-  TuiAppearance,
-  TuiButton,
-  TuiDataList,
-  TuiDropdown,
-  TuiDropdownContext,
-  TuiLoader,
-  TuiOptionNew,
-  TuiScrollable,
-  TuiScrollbar,
-  TuiTitle,
-} from '@taiga-ui/core';
-import { TuiBadge, TuiCheckbox, TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
-import { TuiCard, TuiCell } from '@taiga-ui/layout';
+import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiDropdownContext, TuiLoader, TuiOptionNew, TuiScrollable, TuiScrollbar, TuiTitle, TuiCell, TuiCheckbox } from '@taiga-ui/core';
+import { TuiBadge, TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
+import { TuiCard } from '@taiga-ui/layout';
 
 import { Empty } from '../../../../components/empty/empty';
 import { IPortfolio, PortfolioFilters } from '../../../../models/portfolio';

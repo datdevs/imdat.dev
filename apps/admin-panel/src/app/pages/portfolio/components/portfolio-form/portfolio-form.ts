@@ -13,14 +13,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiValidationError } from '@taiga-ui/cdk/classes';
 import { TuiStringHandler } from '@taiga-ui/cdk/types';
-import { TuiButton, TuiDataList, TuiDialogContext, TuiError, TuiIcon, TuiLabel, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiDataList, TuiDialogContext, TuiError, TuiIcon, TuiLabel, TuiInput, TuiFilterByInputPipe } from '@taiga-ui/core';
 import {
   TuiButtonLoading,
   TuiChip,
   TuiDataListWrapper,
-  TuiElasticContainer,
-  TuiFieldErrorPipe,
-  TuiFilterByInputPipe,
   TuiHideSelectedPipe,
   TuiInputChip,
   TuiSelect,
@@ -30,7 +27,7 @@ import {
   TuiTextareaLimit,
   tuiValidationErrorsProvider,
 } from '@taiga-ui/kit';
-import { TuiForm } from '@taiga-ui/layout';
+import { TuiForm, TuiElasticContainer } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 
 import { STATUS_OPTIONS, StatusEnum } from '../../../../core/constants/status';
@@ -46,15 +43,14 @@ type IPortfolioForm = Record<keyof PortfolioRequestBody, FormControl<any>>;
     ReactiveFormsModule,
     // Pipes
     AsyncPipe,
-    TuiFieldErrorPipe,
+    TuiError,
     TuiFilterByInputPipe,
     TuiHideSelectedPipe,
     // Taiga UI
     TuiTabs,
     TuiForm,
     TuiLabel,
-    TuiError,
-    TuiTextfield,
+    TuiInput,
     TuiTextarea,
     TuiTextareaLimit,
     TuiSelect,

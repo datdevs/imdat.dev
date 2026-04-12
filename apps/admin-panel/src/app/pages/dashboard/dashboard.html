@@ -11,7 +11,7 @@
 
 <section class="mt-6 grid grid-cols-12 gap-5">
   <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
-    <tui-avatar appearance="info" src="@tui.briefcase-business" />
+    <span tuiAvatar="@tui.briefcase-business" appearance="info" ></span>
 
     <div tuiTitle>
       <h3 class="font-semibold">{{ stats.total }}</h3>
@@ -20,7 +20,7 @@
   </div>
 
   <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
-    <tui-avatar appearance="positive" src="@tui.cloud-upload" />
+    <span tuiAvatar="@tui.cloud-upload" appearance="positive" ></span>
 
     <div tuiTitle>
       <h3 class="font-semibold">{{ stats.published }}</h3>
@@ -29,7 +29,7 @@
   </div>
 
   <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
-    <tui-avatar appearance="neutral" src="@tui.file-pen-line" />
+    <span tuiAvatar="@tui.file-pen-line" appearance="neutral" ></span>
 
     <div tuiTitle>
       <h3 class="font-semibold">{{ stats.draft }}</h3>
@@ -38,7 +38,7 @@
   </div>
 
   <div class="col-span-12 md:col-span-6 lg:col-span-3" tuiCardLarge tuiCell [tuiSkeleton]="isStatsLoading">
-    <tui-avatar appearance="warning" src="@tui.archive" />
+    <span tuiAvatar="@tui.archive" appearance="warning" ></span>
 
     <div tuiTitle>
       <h3 class="font-semibold">{{ stats.archived }}</h3>

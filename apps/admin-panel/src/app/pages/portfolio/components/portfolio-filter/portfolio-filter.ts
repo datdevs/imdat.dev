@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, linkedSignal, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TuiDayRange } from '@taiga-ui/cdk/date-time';
-import { TuiButton, TuiDropdown, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiDropdown, TuiInput } from '@taiga-ui/core';
 import { TuiChip, TuiFilter, TuiInputChip, TuiInputDateRange } from '@taiga-ui/kit';
 
 import { STATUS_OPTIONS, StatusEnum } from '../../../../core/constants/status';
@@ -17,7 +17,7 @@ import { StatusPipe } from '../../../../utils/pipes';
     FormsModule,
     TuiFilter,
     TuiButton,
-    TuiTextfield,
+    TuiInput,
     TuiInputDateRange,
     TuiDropdown,
     TuiInputChip,

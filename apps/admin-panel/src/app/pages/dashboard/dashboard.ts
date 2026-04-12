@@ -12,9 +12,9 @@ import {
 import { RouterLink } from '@angular/router';
 import { TuiAxes, TuiBarChart, TuiLegendItem, TuiPieChart } from '@taiga-ui/addon-charts';
 import { TuiHovered } from '@taiga-ui/cdk/directives/hovered';
-import { TuiAppearance, TuiButton } from '@taiga-ui/core';
+import { TuiAppearance, TuiButton, TuiCell } from '@taiga-ui/core';
 import { TuiAvatar, TuiSkeleton } from '@taiga-ui/kit';
-import { TuiCard, TuiCell, TuiCellOptions, TuiHeader } from '@taiga-ui/layout';
+import { TuiCard, TuiCellOptions, TuiHeader } from '@taiga-ui/layout';
 
 import { StatusEnum } from '../../core/constants/status';
 import { IPortfolio } from '../../models/portfolio';

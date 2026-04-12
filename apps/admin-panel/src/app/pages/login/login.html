@@ -7,16 +7,16 @@
 
   <tui-textfield>
     <label for="username" tuiLabel>Username</label>
-    <input formControlName="username" name="username" tuiTextfield (keyup.enter)="handleSignIn()" />
+    <input formControlName="username" name="username" tuiInput (keyup.enter)="handleSignIn()" />
   </tui-textfield>
-  <tui-error formControlName="username" [error]="[] | tuiFieldError | async" />
+  <tui-error formControlName="username"  />
 
   <tui-textfield>
     <label for="password" tuiLabel>Password</label>
-    <input formControlName="password" name="password" tuiTextfield type="password" (keyup.enter)="handleSignIn()" />
+    <input formControlName="password" name="password" tuiInput type="password" (keyup.enter)="handleSignIn()" />
     <tui-icon tuiPassword />
   </tui-textfield>
-  <tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+  <tui-error formControlName="password"  />
 
   <footer class="justify-end">
     <button size="m" tuiButton type="submit" [disabled]="loading()" [loading]="loading()" (click)="handleSignIn()">
