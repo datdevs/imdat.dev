@@ -1,8 +1,15 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiButton, TuiError, TuiIcon, TuiLabel, TuiTitle, TuiInput } from '@taiga-ui/core';
-import { TuiButtonLoading, TuiPassword, tuiValidationErrorsProvider } from '@taiga-ui/kit';
+import {
+  TuiButton,
+  TuiError,
+  TuiIcon,
+  TuiInput,
+  TuiLabel,
+  TuiTitle,
+  tuiValidationErrorsProvider,
+} from '@taiga-ui/core';
+import { TuiButtonLoading, TuiPassword } from '@taiga-ui/kit';
 import { TuiCard, TuiForm, TuiHeader } from '@taiga-ui/layout';
 
 import { LoginFormControls } from '../../models/forms';
@@ -12,7 +19,6 @@ import { AuthStore } from '../../store/auth';
   selector: 'app-login',
   imports: [
     ReactiveFormsModule,
-    AsyncPipe,
     TuiForm,
     TuiCard,
     TuiHeader,

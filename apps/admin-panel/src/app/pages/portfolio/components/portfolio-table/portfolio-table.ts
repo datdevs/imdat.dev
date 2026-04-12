@@ -11,7 +11,20 @@ import {
   TuiTablePagination,
   TuiTablePaginationEvent,
 } from '@taiga-ui/addon-table';
-import { TuiAppearance, TuiButton, TuiDataList, TuiDropdown, TuiDropdownContext, TuiLoader, TuiOptionNew, TuiScrollable, TuiScrollbar, TuiTitle, TuiCell, TuiCheckbox } from '@taiga-ui/core';
+import {
+  TuiAppearance,
+  TuiButton,
+  TuiCell,
+  TuiCheckbox,
+  TuiDataList,
+  TuiDropdown,
+  TuiDropdownContext,
+  TuiLoader,
+  TuiOption,
+  TuiScrollable,
+  TuiScrollbar,
+  TuiTitle,
+} from '@taiga-ui/core';
 import { TuiBadge, TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
 import { TuiCard } from '@taiga-ui/layout';
 
@@ -41,7 +54,7 @@ import { AppearancePipe } from '../../../../utils/pipes/appearance-pipe';
     StatusPipe,
     AppearancePipe,
     TuiDataList,
-    TuiOptionNew,
+    TuiOption,
     NgOptimizedImage,
     Empty,
     TuiAppearance,

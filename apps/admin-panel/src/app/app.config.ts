@@ -11,7 +11,8 @@ import { connectAuthEmulator, getAuth, provideAuth } from '@angular/fire/auth';
 import { connectFirestoreEmulator, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { PreloadAllModules, provideRouter, TitleStrategy, withPreloading } from '@angular/router';
-import { tuiDateFormatProvider, provideTaiga } from '@taiga-ui/core';
+import { provideTaiga, tuiDateFormatProvider } from '@taiga-ui/core';
+
 import { appRoutes } from './app.routes';
 import { environment } from './core/environments';
 import { AuthService, initializeNotifyService, NotifyService, PageTitleService } from './services';
@@ -48,7 +49,7 @@ export const appConfig: ApplicationConfig = {
       return firestore;
     }),
     provideRouter(appRoutes, withPreloading(PreloadAllModules) /* withDebugTracing() */),
-    tuiDateFormatProvider({ mode: 'DMY', separator: '/' }),
+    tuiDateFormatProvider({ mode: 'dd/mm/yyyy', separator: '/' }),
     provideAppInitializer(() => {
       const initializerFn = initializeNotifyService(inject(NotifyService));
       return initializerFn();

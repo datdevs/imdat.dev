@@ -8,9 +8,9 @@
       "command": "npx",
       "args": ["-y", "next-devtools-mcp@latest"]
     },
-    "TaigaUi": {
+    "taiga-ui": {
       "command": "npx",
-      "args": ["@taiga-ui/mcp@latest", "--source-url=https://taiga-ui.dev/llms-full.txt"]
+      "args": ["-y", "@taiga-ui/mcp@latest", "--source-url=https://taiga-ui.dev/llms-full.txt"]
     }
   }
 }

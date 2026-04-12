@@ -1,4 +1,4 @@
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,7 +13,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiValidationError } from '@taiga-ui/cdk/classes';
 import { TuiStringHandler } from '@taiga-ui/cdk/types';
-import { TuiButton, TuiDataList, TuiDialogContext, TuiError, TuiIcon, TuiLabel, TuiInput, TuiFilterByInputPipe } from '@taiga-ui/core';
+import {
+  TuiButton,
+  TuiDataList,
+  TuiDialogContext,
+  TuiError,
+  TuiFilterByInputPipe,
+  TuiIcon,
+  TuiInput,
+  TuiLabel,
+  tuiValidationErrorsProvider,
+} from '@taiga-ui/core';
 import {
   TuiButtonLoading,
   TuiChip,
@@ -24,10 +34,8 @@ import {
   TuiSwitch,
   TuiTabs,
   TuiTextarea,
-  TuiTextareaLimit,
-  tuiValidationErrorsProvider,
 } from '@taiga-ui/kit';
-import { TuiForm, TuiElasticContainer } from '@taiga-ui/layout';
+import { TuiElasticContainer, TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 
 import { STATUS_OPTIONS, StatusEnum } from '../../../../core/constants/status';
@@ -42,7 +50,6 @@ type IPortfolioForm = Record<keyof PortfolioRequestBody, FormControl<any>>;
   imports: [
     ReactiveFormsModule,
     // Pipes
-    AsyncPipe,
     TuiError,
     TuiFilterByInputPipe,
     TuiHideSelectedPipe,
@@ -52,7 +59,6 @@ type IPortfolioForm = Record<keyof PortfolioRequestBody, FormControl<any>>;
     TuiLabel,
     TuiInput,
     TuiTextarea,
-    TuiTextareaLimit,
     TuiSelect,
     TuiDataList,
     TuiDataListWrapper,

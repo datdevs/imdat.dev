@@ -1,0 +1,19 @@
+---
+description: Use Taiga UI MCP when working with Taiga UI (components, styles, migrations, imports).
+alwaysApply: false
+globs:
+  - "**/*taiga*"
+  - "**/apps/admin-panel/**/*.{ts,html,scss,less}"
+---
+
+# Taiga UI MCP (required workflow)
+
+When the task involves Taiga UI—imports, components, directives, tokens, styles, or version upgrades—**use the Taiga UI MCP server** before relying on memory or random `node_modules` grepping.
+
+1. **Call `get_overview` first** — import map, checklist, CDK types, common mistakes (official docs say to always start here).
+2. Use **`get_list_components`** with an optional `query` to find component IDs when exploring.
+3. Use **`get_component_example`** with `{ "names": ["…"] }` for full docs and snippets for specific components (e.g. `TuiTextarea`, `TuiCell`).
+
+Do not skip MCP for “quick” Taiga questions; it reduces wrong-package imports and outdated APIs.
+
+Server name in Cursor: **`taiga-ui`** (see `.cursor/mcp.json`).

@@ -1,9 +1,8 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
-import { TuiDataList, TuiDropdown, TuiIcon, TuiOptionNew } from '@taiga-ui/core';
-import { TuiAvatar, TuiAutoColorPipe } from '@taiga-ui/kit';
+import { TuiDataList, TuiDropdown, TuiIcon, TuiOption } from '@taiga-ui/core';
+import { TuiAutoColorPipe, TuiAvatar } from '@taiga-ui/kit';
 
 import { AuthService } from '../../services/auth.service';
 import { AuthStore } from '../../store/auth';
@@ -11,14 +10,13 @@ import { AuthStore } from '../../store/auth';
 @Component({
   selector: 'app-profile-button',
   imports: [
-    AsyncPipe,
     RouterModule,
     TuiIcon,
     TuiDropdown,
     TuiDataList,
     TuiAvatar,
     TuiAutoColorPipe,
-    TuiOptionNew,
+    TuiOption,
   ],
   templateUrl: './profile-button.html',
   styleUrl: './profile-button.scss',
