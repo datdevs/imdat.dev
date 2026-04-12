@@ -1,6 +1,6 @@
 {
   "name": "@imdat.dev/source",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "license": "MIT",
   "scripts": {
     "emulate": "firebase emulators:start --import ./firebase-data --export-on-exit ./firebase-data"
@@ -36,14 +36,14 @@
     "@taiga-ui/addon-table": "5.1.0",
     "@taiga-ui/cdk": "5.1.0",
     "@taiga-ui/core": "5.1.0",
-    "@taiga-ui/event-plugins": "^4.7.0",
+    "@taiga-ui/event-plugins": "^5.0.0",
     "@taiga-ui/icons": "5.1.0",
     "@taiga-ui/kit": "5.1.0",
     "@taiga-ui/layout": "5.1.0",
     "firebase": "^12.12.0",
     "isotope-layout": "^3.0.6",
     "lightgallery": "^2.9.0",
-    "lucide-react": "^0.561.0",
+    "lucide-react": "^1.8.0",
     "next": "16.2.3",
     "notiflix": "^3.2.8",
     "react": "^19.2.5",
@@ -118,7 +118,7 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "stylelint": "^17.7.0",
     "stylelint-config-standard-scss": "^17.0.0",
-    "stylelint-order": "^7.0.1",
+    "stylelint-order": "^8.1.1",
     "stylelint-prettier": "^5.0.3",
     "stylelint-scss": "^7.0.0",
     "ts-jest": "^29.4.9",
