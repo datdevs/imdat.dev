@@ -5,6 +5,11 @@
   "scripts": {
     "emulate": "firebase emulators:start --import ./firebase-data --export-on-exit ./firebase-data"
   },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": "24.13.0",
+    "pnpm": "10.33.0"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "21.1.2",
