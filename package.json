@@ -7,7 +7,7 @@
   },
   "packageManager": "pnpm@10.33.0",
   "engines": {
-    "node": "24.13.0",
+    "node": "24.14.1",
     "pnpm": "10.33.0"
   },
   "private": true,
@@ -46,8 +46,8 @@
     "@taiga-ui/addon-table": "5.1.0",
     "@taiga-ui/cdk": "5.1.0",
     "@taiga-ui/core": "5.1.0",
-    "@taiga-ui/design-tokens": "~0.291.0",
-    "@taiga-ui/font-watcher": "~0.5.0",
+    "@taiga-ui/design-tokens": "~0.293.0",
+    "@taiga-ui/font-watcher": "~0.6.0",
     "@taiga-ui/i18n": "5.1.0",
     "@taiga-ui/event-plugins": "^5.0.0",
     "@taiga-ui/icons": "5.1.0",
