@@ -74,6 +74,14 @@
       Featured Portfolio
       <tui-icon tuiTooltip="Featured portfolio will be displayed on the home page" />
     </label>
+
+    @if (form.controls.status.value !== StatusEnum.DRAFT) {
+      <tui-textfield>
+        <label for="publishedAt" tuiLabel>Published date</label>
+        <input formControlName="publishedAt" name="publishedAt" tuiInputDate />
+      </tui-textfield>
+      <tui-error formControlName="publishedAt"  />
+    }
   }
 
   <!-- Technologies & Features Tab -->

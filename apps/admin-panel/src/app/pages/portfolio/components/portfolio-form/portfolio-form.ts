@@ -12,11 +12,13 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiValidationError } from '@taiga-ui/cdk/classes';
+import { TuiDay } from '@taiga-ui/cdk/date-time';
 import { TuiStringHandler } from '@taiga-ui/cdk/types';
 import {
   TuiButton,
   TuiDataList,
   TuiDialogContext,
+  TuiDropdown,
   TuiError,
   TuiFilterByInputPipe,
   TuiIcon,
@@ -30,6 +32,7 @@ import {
   TuiDataListWrapper,
   TuiHideSelectedPipe,
   TuiInputChip,
+  TuiInputDate,
   TuiSelect,
   TuiSwitch,
   TuiTabs,
@@ -43,7 +46,13 @@ import { Status } from '../../../../models/common';
 import { IPortfolio, PortfolioImage, PortfolioRequestBody } from '../../../../models/portfolio';
 import { PortfolioStore } from '../../../../store/portfolio/portfolio.store';
 
-type IPortfolioForm = Record<keyof PortfolioRequestBody, FormControl<any>>;
+// `publishedAt` uses CDK `TuiDay`; other fields stay loosely typed for `FormGroup` inference.
+/* eslint-disable @typescript-eslint/no-explicit-any -- mixed strict `publishedAt` + legacy controls */
+type IPortfolioForm = { publishedAt: FormControl<null | TuiDay> } & Omit<
+  Record<keyof PortfolioRequestBody, FormControl<any>>,
+  'publishedAt'
+>;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 @Component({
   selector: 'app-portfolio-form',
@@ -59,7 +68,9 @@ type IPortfolioForm = Record<keyof PortfolioRequestBody, FormControl<any>>;
     TuiLabel,
     TuiInput,
     TuiTextarea,
+    TuiInputDate,
     TuiSelect,
+    TuiDropdown,
     TuiDataList,
     TuiDataListWrapper,
     TuiSwitch,
@@ -80,6 +91,7 @@ type IPortfolioForm = Record<keyof PortfolioRequestBody, FormControl<any>>;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+/** `*tuiDropdown` uses TuiDropdown; `*tuiItem` on chip dropdowns is bundled with TuiInputChip. */
 export class PortfolioForm implements OnInit {
   public readonly context = injectContext<TuiDialogContext<boolean, IPortfolio | undefined>>();
   protected readonly currentTab: WritableSignal<number> = signal(0);
@@ -100,7 +112,7 @@ export class PortfolioForm implements OnInit {
     githubUrl: this.fb.control(null, [Validators.pattern(/^https?:\/\/github\.com\/.+/)]),
     liveUrl: this.fb.control(null, [Validators.pattern(/^https?:\/\/.+/)]),
     images: this.fb.control<PortfolioImage[]>([]),
-    publishedAt: this.fb.control<Date | null>(null),
+    publishedAt: this.fb.control<null | TuiDay>(null),
   });
 
   protected readonly imageFormGroup = this.fb.group({
@@ -110,6 +122,7 @@ export class PortfolioForm implements OnInit {
   });
 
   protected readonly statusOptions: Status<StatusEnum>[] = STATUS_OPTIONS;
+  protected readonly StatusEnum = StatusEnum;
 
   protected readonly commonTechnologies: string[] = [
     'Angular',
@@ -144,8 +157,12 @@ export class PortfolioForm implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
-    if (this.context.data) {
-      this.form.patchValue({ ...this.context.data, publishedAt: this.context?.data?.publishedAt?.toDate() ?? null });
+    const data = this.context.data;
+    if (data) {
+      this.form.patchValue({
+        ...data,
+        publishedAt: data.publishedAt ? TuiDay.fromLocalNativeDate(data.publishedAt.toDate()) : null,
+      });
     }
   }
 
@@ -207,7 +224,8 @@ export class PortfolioForm implements OnInit {
       return;
     }
 
-    const formValue = this.form.value;
+    const formValue = this.form.getRawValue();
+    const publishedDay = formValue.publishedAt;
     const portfolioData: PortfolioRequestBody = {
       title: formValue.title,
       shortDescription: formValue.shortDescription,
@@ -219,7 +237,10 @@ export class PortfolioForm implements OnInit {
       githubUrl: formValue.githubUrl,
       liveUrl: formValue.liveUrl,
       images: formValue.images,
-      publishedAt: formValue.status === StatusEnum.DRAFT ? null : (formValue.publishedAt ?? new Date()),
+      publishedAt:
+        formValue.status === StatusEnum.DRAFT
+          ? undefined
+          : (publishedDay?.toLocalNativeDate() ?? new Date()),
     };
 
     if (formValue.id) {

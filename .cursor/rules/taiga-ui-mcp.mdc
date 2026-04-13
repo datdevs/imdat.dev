@@ -16,4 +16,4 @@ When the task involves Taiga UI—imports, components, directives, tokens, style
 
 Do not skip MCP for “quick” Taiga questions; it reduces wrong-package imports and outdated APIs.
 
-Server name in Cursor: **`taiga-ui`** (see `.cursor/mcp.json`).
+In Cursor, MCP tools are registered with a **workspace-prefixed** id. Use server **`project-0-imdat.dev-taiga-ui`** when invoking tools (check **Cursor Settings → MCP** if this differs after renames). The config key in `.cursor/mcp.json` may still be `taiga-ui`.
