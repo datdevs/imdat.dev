@@ -27,7 +27,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Set Nx shas
-        uses: nrwl/nx-set-shas@v4
+        uses: nrwl/nx-set-shas@v5
 
       - name: Run affected tasks
         run: npx nx affected -t lint test build
