@@ -47,7 +47,7 @@
     "@taiga-ui/cdk": "5.1.0",
     "@taiga-ui/core": "5.1.0",
     "@taiga-ui/design-tokens": "~0.291.0",
-    "@taiga-ui/font-watcher": "~0.5.0",
+    "@taiga-ui/font-watcher": "~0.6.0",
     "@taiga-ui/i18n": "5.1.0",
     "@taiga-ui/event-plugins": "^5.0.0",
     "@taiga-ui/icons": "5.1.0",
