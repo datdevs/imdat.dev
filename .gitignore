@@ -64,5 +64,7 @@ out
 
 .nx/polygraph
 .claude/worktrees
+.worktrees
 .claude/settings.local.json
 .gitnexus
+.pnpm-store
