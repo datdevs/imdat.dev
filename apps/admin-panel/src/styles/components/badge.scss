@@ -1,12 +1,70 @@
 :root {
   [tuiStatus][data-size='s'],
   [tuiStatus][data-size='m'],
-  [tuiStatus][data-size='l'] {
-    gap: 0.375rem;
+  [tuiStatus][data-size='l'],
+  tui-badge[data-size='m'],
+  [tuiBadge][data-size='m'] {
+    --t-radius: var(--app-radius-sm);
+    --badge-status: var(--tui-status-neutral);
+    --badge-status-pale: color-mix(in srgb, var(--badge-status) 22%, var(--tui-base-01));
+    --badge-border-color: color-mix(in srgb, var(--badge-status) 45%, var(--tui-base-06));
+    --badge-text-color: var(--badge-status);
+
+    background-color: var(--badge-status-pale);
+    color: var(--badge-text-color);
+    gap: var(--app-space-1);
+    border: var(--app-border-width) var(--app-border-style) var(--badge-border-color);
+    border-radius: var(--t-radius);
+    font-weight: 500;
   }
 
   tui-badge[data-size='m'],
   [tuiBadge][data-size='m'] {
-    --t-padding: 0 0.625rem;
+    --t-padding: 0 var(--app-space-2);
+  }
+
+  [tuiStatus][data-appearance='positive'],
+  [tuiStatus][data-status='positive'],
+  [tuiBadge][data-appearance='positive'],
+  [tuiBadge][data-status='positive'],
+  tui-badge[data-appearance='positive'],
+  tui-badge[data-status='positive'] {
+    --badge-status: var(--tui-status-positive);
+  }
+
+  [tuiStatus][data-appearance='warning'],
+  [tuiStatus][data-status='warning'],
+  [tuiBadge][data-appearance='warning'],
+  [tuiBadge][data-status='warning'],
+  tui-badge[data-appearance='warning'],
+  tui-badge[data-status='warning'] {
+    --badge-status: var(--tui-status-warning);
+  }
+
+  [tuiStatus][data-appearance='negative'],
+  [tuiStatus][data-status='negative'],
+  [tuiBadge][data-appearance='negative'],
+  [tuiBadge][data-status='negative'],
+  tui-badge[data-appearance='negative'],
+  tui-badge[data-status='negative'] {
+    --badge-status: var(--tui-status-negative);
+  }
+
+  [tuiStatus][data-appearance='info'],
+  [tuiStatus][data-status='info'],
+  [tuiBadge][data-appearance='info'],
+  [tuiBadge][data-status='info'],
+  tui-badge[data-appearance='info'],
+  tui-badge[data-status='info'] {
+    --badge-status: var(--tui-status-info);
+  }
+
+  [tuiStatus][data-appearance='neutral'],
+  [tuiStatus][data-status='neutral'],
+  [tuiBadge][data-appearance='neutral'],
+  [tuiBadge][data-status='neutral'],
+  tui-badge[data-appearance='neutral'],
+  tui-badge[data-status='neutral'] {
+    --badge-status: var(--tui-status-neutral);
   }
 }
