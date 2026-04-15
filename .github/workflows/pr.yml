@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24.14.1
-          cache: "pnpm"
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
@@ -36,9 +36,9 @@ jobs:
         uses: nrwl/nx-set-shas@v5
 
       - name: Run affected tasks
-        run: pnpm nx affected -t lint test build
+        run: pnpm dlx nx affected -t lint test build
 
       # Nx Cloud recommends fixes for failures to help you get CI green faster. Learn more: https://nx.dev/ci/features/self-healing-ci
       - name: Fix CI
-        run: pnpm nx fix-ci
+        run: pnpm dlx nx fix-ci
         if: always()
