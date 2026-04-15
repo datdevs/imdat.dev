@@ -1,5 +1,22 @@
 @use 'tailwindcss';
 
 :host {
-  @apply py-5;
+  --portfolio-space-page: clamp(1rem, 1.1vw + 0.85rem, 1.75rem);
+  --portfolio-space-sections: clamp(0.875rem, 1vw + 0.5rem, 1.25rem);
+  --portfolio-surface-radius: 1.25rem;
+  --portfolio-surface-padding: clamp(1rem, 0.9vw + 0.8rem, 1.5rem);
+  --portfolio-surface-border: 1px solid var(--tui-base-03);
+  --portfolio-surface-background: var(--tui-background-base);
+
+  display: block;
+  padding-block: var(--portfolio-space-page);
+}
+
+:host > app-portfolio-filter,
+:host > app-portfolio-table {
+  display: block;
+}
+
+:host > app-portfolio-filter {
+  margin-bottom: var(--portfolio-space-sections);
 }

@@ -1,10 +1,28 @@
+:host {
+  --portfolio-table-space: clamp(0.875rem, 0.7vw + 0.65rem, 1.25rem);
+  --portfolio-table-radius: var(--portfolio-surface-radius, 1.25rem);
+  --portfolio-table-border: var(--portfolio-surface-border, 1px solid var(--tui-base-03));
+  --portfolio-table-background: var(--portfolio-surface-background, #fff);
+
+  display: block;
+}
+
 .viewport {
-  block-size: calc(100vh - 12rem);
-  border-radius: var(--tui-radius-xl);
+  block-size: calc(100vh - 13rem);
+  border: var(--portfolio-table-border);
+  border-radius: var(--portfolio-table-radius);
+  background-color: var(--portfolio-table-background);
 }
 
 table {
   th {
     white-space: nowrap;
   }
+}
+
+.mt-5[tuiCardLarge] {
+  margin-top: var(--portfolio-table-space);
+  border: var(--portfolio-table-border);
+  border-radius: var(--portfolio-table-radius);
+  background-color: var(--portfolio-table-background);
 }

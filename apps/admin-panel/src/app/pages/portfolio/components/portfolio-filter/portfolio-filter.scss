@@ -1,5 +1,13 @@
 @use 'tailwindcss';
 
 :host {
-  @apply mb-5 flex flex-wrap items-center gap-2 rounded-[1.25rem] bg-white p-4;
+  --portfolio-filter-space: clamp(0.75rem, 0.8vw + 0.55rem, 1rem);
+  --portfolio-filter-padding: var(--portfolio-surface-padding, clamp(0.875rem, 0.9vw + 0.65rem, 1.25rem));
+
+  @apply flex flex-wrap items-center;
+  background-color: var(--portfolio-surface-background, #fff);
+  border: var(--portfolio-surface-border, 1px solid var(--tui-base-03));
+  gap: var(--portfolio-filter-space);
+  border-radius: var(--portfolio-surface-radius, 1.25rem);
+  padding: var(--portfolio-filter-padding);
 }
