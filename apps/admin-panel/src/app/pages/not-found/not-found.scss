@@ -1,37 +1,49 @@
 :host {
-  align-items: center;
+  --not-found-space-page: clamp(1rem, 1.2vw + 0.85rem, 1.75rem);
+  --not-found-space-content: clamp(1rem, 1vw + 0.75rem, 1.5rem);
+  --not-found-surface-background: var(--tui-background-base);
+  --not-found-surface-border: 1px solid var(--tui-base-03);
 
-  // background-color: rgba(mat.get-theme-color(theme.$light-theme, primary-container), 0.5);
-  display: flex;
-  justify-content: center;
+  display: block;
   min-height: 100vh;
+  padding-block: var(--not-found-space-page);
 }
 
-.mat-mdc-card {
-  margin: 20px;
-  max-width: calc(100% - 40px);
-  width: 600px;
+.not-found-card {
+  margin-inline: auto;
+  max-width: min(100%, 42rem);
+  border: var(--not-found-surface-border);
+  border-radius: var(--app-radius-surface);
+  background: var(--not-found-surface-background);
+  padding: clamp(1.25rem, 1.1vw + 1rem, 1.875rem);
 }
 
 .lottie__frame {
-  height: 500px;
-  width: 500px;
+  width: min(100%, 24rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
 }
 
-.section {
-  &__wrap {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px 50px;
-  }
+.not-found__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--not-found-space-content);
+  text-align: center;
+}
 
-  &__title {
-    font-size: 3rem;
-    margin: 0 0 20px;
-  }
+.not-found__title {
+  margin: 0;
+  color: var(--tui-text-primary);
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+}
 
-  &__content {
-    margin: 0 0 30px;
-  }
+.not-found__content {
+  margin: 0;
+  color: var(--tui-text-secondary);
+  max-width: 30ch;
+}
+
+.not-found__back {
+  margin-top: var(--app-space-2);
 }

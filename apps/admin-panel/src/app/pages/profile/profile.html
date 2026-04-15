@@ -1,30 +1,34 @@
-<!-- <app-loading-overlay [loading]="loading()">
-  <mat-card>
-    <mat-card-content>
-      <form [formGroup]="profileForm">
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input formControlName="displayName" matInput />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input formControlName="email" matInput />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Avatar</mat-label>
-          <input formControlName="photoURL" matInput placeholder="https://" />
-        </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions [align]="'end'">
-      <button mat-flat-button [disabled]="loading()" (click)="save()">
-        @if (loading()) {
-          <mat-spinner color="white" [diameter]="20"></mat-spinner>
-        } @else {
-          <mat-icon>save</mat-icon>
-        }
-        <span>Save</span>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</app-loading-overlay> -->
+<section class="profile-page">
+  <div class="profile-card">
+    <header class="profile-card__header">
+      <h1 class="profile-card__title">Profile</h1>
+      <p class="profile-card__subtitle">Manage your account details and avatar settings.</p>
+    </header>
+
+    <form class="profile-form" [formGroup]="profileForm" (submit)="save()">
+      <label class="profile-field">
+        <span class="profile-field__label">Display name</span>
+        <input class="profile-field__input" type="text" formControlName="displayName" />
+      </label>
+
+      <label class="profile-field">
+        <span class="profile-field__label">Email</span>
+        <input class="profile-field__input" type="email" formControlName="email" />
+      </label>
+
+      <label class="profile-field">
+        <span class="profile-field__label">Phone number</span>
+        <input class="profile-field__input" type="tel" formControlName="phoneNumber" />
+      </label>
+
+      <label class="profile-field">
+        <span class="profile-field__label">Avatar URL</span>
+        <input class="profile-field__input" type="url" formControlName="photoURL" placeholder="https://" />
+      </label>
+
+      <footer class="profile-form__actions">
+        <button class="profile-form__submit" type="submit" [disabled]="loading()">Save changes</button>
+      </footer>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+.profile-button__trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile__info {
+  display: grid;
+  min-width: 0;
+}
+
+.profile__name,
+.profile__email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile__name {
+  color: var(--tui-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.profile__email {
+  color: var(--tui-text-secondary);
+  font-size: 0.75rem;
+}
