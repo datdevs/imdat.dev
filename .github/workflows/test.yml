@@ -19,7 +19,7 @@ jobs:
           filter: tree:0
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v6
+      - uses: pnpm/action-setup@v5
         name: Install pnpm
         with:
           run_install: false
