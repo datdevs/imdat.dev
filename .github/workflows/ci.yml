@@ -53,7 +53,7 @@ jobs:
       #   run: pnpm exec playwright install --with-deps
 
       - name: Set Nx shas
-        uses: nrwl/nx-set-shas@v5
+        uses: nrwl/nx-set-shas@v4
 
       - name: Run affected tasks
         run: pnpm exec nx affected -t build --exclude="*-e2e,landing-page,wedding"
