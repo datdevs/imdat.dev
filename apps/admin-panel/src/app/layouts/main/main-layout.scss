@@ -1,13 +1,52 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  main[tuiNavigationMain] {
-    border-width: 1.25rem;
-  }
+  display: block;
+  min-height: 100vh;
 }
 
-aside[tuiNavigationAside] {
-  height: calc(100vh - 48px);
+.app-shell {
+  --app-shell-header-height: 3rem;
+  --app-shell-surface-base: #020617;
+  --app-shell-surface-elevated: #0f172a;
+  --app-shell-surface-main: #111827;
+  --app-shell-border: rgba(148, 163, 184, 0.2);
+  --app-shell-content-max-width: 80rem;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--app-shell-surface-base);
+  color: var(--tui-text-primary);
+}
+
+.app-shell__header {
+  min-height: var(--app-shell-header-height);
+  background: var(--app-shell-surface-elevated);
+  border-bottom: 1px solid var(--app-shell-border);
+  padding-inline: var(--app-space-4);
+}
+
+.app-shell__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.app-shell__aside[tuiNavigationAside] {
+  min-height: 100%;
+  border-right: 1px solid var(--app-shell-border);
+  background: var(--app-shell-surface-elevated);
+}
+
+.app-shell__main[tuiNavigationMain] {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  overflow: auto;
+  background: var(--app-shell-surface-main);
+  padding: var(--app-space-6) var(--app-space-6) var(--app-space-8);
+}
+
+.app-shell__content {
+  width: 100%;
+  max-width: var(--app-shell-content-max-width);
 }

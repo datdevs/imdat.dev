@@ -1,5 +1,9 @@
 .grid {
+  --grid-gutter-default: var(--app-space-4, 1rem);
+  --grid-column-min: 0;
+
   display: grid;
-  gap: var(--grid-row-gutter, 16px) var(--grid-column-gutter, 16px);
-  grid-template-columns: repeat(var(--grid-columns, 1), 100%);
+  gap: var(--grid-row-gutter, var(--grid-gutter-default))
+    var(--grid-column-gutter, var(--grid-gutter-default));
+  grid-template-columns: repeat(var(--grid-columns, 1), minmax(var(--grid-column-min), 1fr));
 }
