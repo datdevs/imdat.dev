@@ -2,12 +2,35 @@
   $svg-icon-size: 18px;
 
   > .idv-notification {
-    box-shadow: 0 2px 10px rgb(0 0 0 / 5%);
+    --notify-radius: var(--app-radius-md);
+    --notify-surface: var(--tui-base-01);
+    --notify-status: var(--tui-status-neutral);
+    --notify-surface-tint: color-mix(in srgb, var(--notify-status) 12%, var(--notify-surface));
+    --notify-border-color: color-mix(in srgb, var(--notify-status) 48%, var(--tui-base-06));
+    --notify-icon-bg: color-mix(in srgb, var(--notify-status) 20%, transparent);
+    --notify-text-color: var(--tui-text-primary);
+    --notify-shadow: var(--tui-shadow-small);
+    --notify-shadow-hover: var(--tui-shadow-small-hover);
+    --notify-icon-size: #{$svg-icon-size};
+
+    background: var(--notify-surface-tint);
+    color: var(--notify-text-color);
+    border: var(--app-border-width) var(--app-border-style) var(--notify-border-color);
+    border-radius: var(--notify-radius);
+    box-shadow: var(--notify-shadow);
     line-height: 1.5;
+    transition:
+      box-shadow var(--app-motion-duration-fast) var(--app-motion-ease),
+      transform var(--app-motion-duration-fast) var(--app-motion-ease);
+
+    &:hover {
+      box-shadow: var(--notify-shadow-hover);
+      transform: translateY(-1px);
+    }
 
     > span.nx-with-icon {
-      margin: 0 0 0 $svg-icon-size;
-      width: calc(100% - $svg-icon-size);
+      margin: 0 0 0 var(--notify-icon-size);
+      width: calc(100% - var(--notify-icon-size));
     }
 
     &.nx-with-icon {
@@ -15,11 +38,37 @@
     }
 
     > .nx-message-icon {
-      border-radius: 0;
+      background-color: var(--notify-icon-bg);
+      border-radius: var(--app-radius-sm);
       font-size: $svg-icon-size;
       height: 1em;
       line-height: 1;
       width: 1em;
     }
+  }
+
+  > .idv-notification.nx-success,
+  > .idv-notification[data-variant='positive'] {
+    --notify-status: var(--tui-status-positive);
+  }
+
+  > .idv-notification.nx-warning,
+  > .idv-notification[data-variant='warning'] {
+    --notify-status: var(--tui-status-warning);
+  }
+
+  > .idv-notification.nx-failure,
+  > .idv-notification.nx-danger,
+  > .idv-notification[data-variant='negative'] {
+    --notify-status: var(--tui-status-negative);
+  }
+
+  > .idv-notification.nx-info,
+  > .idv-notification[data-variant='info'] {
+    --notify-status: var(--tui-status-info);
+  }
+
+  > .idv-notification[data-variant='neutral'] {
+    --notify-status: var(--tui-status-neutral);
   }
 }

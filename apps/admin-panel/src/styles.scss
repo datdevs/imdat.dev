@@ -1,5 +1,12 @@
 @use 'styles/index';
 
 :root {
-  --tui-theme-color: #fff;
+  --app-surface: #0b1326;
+  --app-surface-2: #111a32;
+  --app-surface-3: #1a2542;
+  --app-text-primary: #dae2fd;
+  --app-text-muted: #9fb0d9;
+  --app-accent: #2665fd;
+  --app-border: #2a375d;
+  --tui-theme-color: var(--app-text-primary);
 }

@@ -1,0 +1,125 @@
+:host {
+  --profile-space-page: clamp(1rem, 1.1vw + 0.85rem, 1.75rem);
+  --profile-space-card: clamp(1.25rem, 1.2vw + 1rem, 2rem);
+  --profile-space-fields: clamp(0.875rem, 0.75vw + 0.7rem, 1.125rem);
+  --profile-surface-border: 1px solid var(--tui-base-03);
+  --profile-surface-background: var(--tui-background-base);
+  --profile-input-background: var(--tui-background-neutral-1);
+
+  display: block;
+  padding-block: var(--profile-space-page);
+}
+
+.profile-page {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--profile-space-card);
+  width: min(100%, 42rem);
+  border: var(--profile-surface-border);
+  border-radius: var(--app-radius-surface);
+  background: var(--profile-surface-background);
+  padding: var(--profile-space-card);
+}
+
+.profile-card__header {
+  display: grid;
+  gap: var(--app-space-2);
+}
+
+.profile-card__title {
+  margin: 0;
+  color: var(--tui-text-primary);
+  font-size: clamp(1.25rem, 0.9vw + 1.05rem, 1.75rem);
+}
+
+.profile-card__subtitle {
+  margin: 0;
+  color: var(--tui-text-secondary);
+  font-size: 0.9375rem;
+}
+
+.profile-form {
+  display: grid;
+  gap: var(--profile-space-fields);
+}
+
+.profile-field {
+  display: grid;
+  gap: var(--app-space-2);
+}
+
+.profile-field__label {
+  color: var(--tui-text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.profile-field__input {
+  border: var(--profile-surface-border);
+  border-radius: var(--app-radius-control);
+  background: var(--profile-input-background);
+  color: var(--tui-text-primary);
+  font: inherit;
+  min-height: 2.625rem;
+  padding: 0 var(--app-space-3);
+  transition:
+    border-color var(--app-transition-duration) var(--app-transition-ease),
+    box-shadow var(--app-transition-duration) var(--app-transition-ease);
+}
+
+.profile-field__input:focus-visible {
+  border-color: var(--app-border-color-focus);
+  box-shadow: 0 0 0 var(--app-focus-ring-offset) var(--app-focus-ring-color);
+  outline: none;
+}
+
+.profile-field__input:disabled {
+  cursor: not-allowed;
+  color: var(--tui-text-tertiary);
+}
+
+.profile-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--app-space-2);
+}
+
+.profile-form__submit {
+  border: 0;
+  border-radius: var(--app-radius-control);
+  background: var(--tui-background-accent-1);
+  color: var(--tui-text-primary-on-accent-1);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  min-height: 2.625rem;
+  padding-inline: var(--app-space-4);
+  transition:
+    filter var(--app-transition-duration) var(--app-transition-ease),
+    transform var(--app-motion-duration-fast) var(--app-transition-ease);
+}
+
+.profile-form__submit:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.profile-form__submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.profile-form__submit:focus-visible {
+  box-shadow: 0 0 0 var(--app-focus-ring-offset) var(--app-focus-ring-color);
+  outline: none;
+}
+
+.profile-form__submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

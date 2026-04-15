@@ -4,6 +4,24 @@
   --tui-chart-categorical-00: var(--tui-status-positive);
   --tui-chart-categorical-01: var(--tui-status-neutral);
   --tui-chart-categorical-02: var(--tui-status-warning);
+  --dashboard-space-page: clamp(1rem, 1.2vw + 0.8rem, 1.75rem);
+  --dashboard-space-header: clamp(0.25rem, 0.7vw + 0.1rem, 0.75rem);
+  --dashboard-space-grid: clamp(1rem, 1vw + 0.75rem, 1.5rem);
 
-  @apply py-5;
+  display: block;
+}
+
+.dashboard-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dashboard-space-page);
+  padding-block: var(--dashboard-space-page);
+}
+
+.dashboard-page__header {
+  margin-bottom: var(--dashboard-space-header);
+}
+
+.dashboard-grid {
+  gap: var(--dashboard-space-grid);
 }

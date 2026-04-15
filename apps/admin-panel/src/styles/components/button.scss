@@ -2,5 +2,48 @@ button[tuiButton][data-size],
 button[tuiIconButton][data-size],
 a[tuiButton][data-size],
 a[tuiIconButton][data-size] {
+  --button-radius: var(--app-radius-md);
+  --button-focus-ring: color-mix(in srgb, var(--tui-primary) 34%, transparent);
+  --button-disabled-opacity: 0.55;
+
+  border-radius: var(--button-radius);
   font-weight: 500;
+  transition:
+    background-color var(--app-motion-duration-fast) var(--app-motion-ease),
+    border-color var(--app-motion-duration-fast) var(--app-motion-ease),
+    box-shadow var(--app-motion-duration-fast) var(--app-motion-ease),
+    color var(--app-motion-duration-fast) var(--app-motion-ease),
+    filter var(--app-motion-duration-fast) var(--app-motion-ease),
+    opacity var(--app-motion-duration-fast) var(--app-motion-ease),
+    transform var(--app-motion-duration-fast) var(--app-motion-ease);
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 var(--app-focus-ring-offset) var(--tui-base-01),
+      0 0 0 calc(var(--app-focus-ring-width) + var(--app-focus-ring-offset)) var(--button-focus-ring);
+  }
+
+  &:active:not([disabled]):not([aria-disabled='true']) {
+    transform: translateY(1px);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    filter: saturate(0.72);
+    opacity: var(--button-disabled-opacity);
+    pointer-events: none;
+  }
+
+  &[aria-disabled='true'] {
+    // Visual cue only; keyboard/click behavior must be enforced in component logic.
+    cursor: not-allowed;
+    filter: saturate(0.72);
+    opacity: var(--button-disabled-opacity);
+  }
+}
+
+button[tuiButton][data-size][data-appearance='primary'],
+a[tuiButton][data-size][data-appearance='primary'] {
+  font-weight: 600;
 }

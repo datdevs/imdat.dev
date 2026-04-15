@@ -1,5 +1,5 @@
 @if (user(); as user) {
-  <div class="cursor-pointer" tuiDropdownAlign="end" tuiDropdownAuto type="button" [tuiDropdown]="settingsMenu">
+  <div class="profile-button__trigger" tuiDropdownAlign="end" tuiDropdownAuto type="button" [tuiDropdown]="settingsMenu">
     <span size="s" tuiAvatar="@tui.user" [style.background]="(user.displayName ?? '') | tuiAutoColor">
       @if (user.photoURL) {
         <img [src]="user.photoURL" alt="" />
@@ -15,9 +15,9 @@
         }
       </span>
 
-      <div class="profile__info text-left">
-        <div class="profile__name truncate text-sm font-medium text-gray-900">{{ user?.displayName }}</div>
-        <div class="profile__email truncate text-xs font-normal text-gray-400">{{ user?.email }}</div>
+      <div class="profile__info">
+        <div class="profile__name">{{ user?.displayName }}</div>
+        <div class="profile__email">{{ user?.email }}</div>
       </div>
     </div>
 

@@ -1,9 +1,41 @@
 @use '@taiga-ui/styles/utils.scss' as *;
 
 [tuiAppearance][data-appearance='textfield'] {
+  --textfield-radius: var(--app-radius-md);
   --t-shadow: none;
+  --t-radius: var(--textfield-radius);
+  --t-border-width: var(--app-border-width);
+  --textfield-surface: var(--tui-base-01);
+  --textfield-surface-hover: var(--tui-base-02);
+  --textfield-border: color-mix(in srgb, var(--tui-base-05) 72%, transparent);
+  --textfield-border-hover: color-mix(in srgb, var(--tui-base-06) 76%, transparent);
+  --textfield-focus-ring: color-mix(in srgb, var(--tui-primary) 30%, transparent);
+
+  background-color: var(--textfield-surface);
+  border-color: var(--textfield-border);
+  transition:
+    background-color var(--app-motion-duration-fast) var(--app-motion-ease),
+    border-color var(--app-motion-duration-fast) var(--app-motion-ease),
+    box-shadow var(--app-motion-duration-fast) var(--app-motion-ease);
 
   @include appearance-hover {
+    background-color: var(--textfield-surface-hover);
+    border-color: var(--textfield-border-hover);
     box-shadow: none;
+  }
+
+  &:focus-within {
+    border-color: var(--tui-primary);
+    box-shadow:
+      0 0 0 var(--app-focus-ring-offset) var(--textfield-surface),
+      0 0 0 calc(var(--app-focus-ring-width) + var(--app-focus-ring-offset)) var(--textfield-focus-ring);
+  }
+
+  &[data-state='disabled'],
+  &[aria-disabled='true'] {
+    background-color: var(--textfield-surface-hover);
+    border-color: color-mix(in srgb, var(--tui-base-04) 70%, transparent);
+    cursor: not-allowed;
+    opacity: 0.75;
   }
 }

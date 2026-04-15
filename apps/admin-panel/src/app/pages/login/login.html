@@ -1,26 +1,30 @@
-<form class="w-xl" tuiCardLarge tuiForm [formGroup]="loginForm">
-  <header tuiHeader>
-    <h1 tuiTitle>ImDat.dev</h1>
-  </header>
+<main class="login-page">
+  <div class="login-card-shell">
+    <form class="login-card w-xl" tuiCardLarge tuiForm [formGroup]="loginForm" (submit)="handleSignIn()">
+      <header class="login-card__header" tuiHeader>
+        <h1 tuiTitle>ImDat.dev</h1>
+      </header>
 
-  <h3 class="text-2xl">Sign in to your account</h3>
+      <h3 class="login-card__title text-2xl">Sign in to your account</h3>
 
-  <tui-textfield>
-    <label for="username" tuiLabel>Username</label>
-    <input formControlName="username" name="username" tuiInput (keyup.enter)="handleSignIn()" />
-  </tui-textfield>
-  <tui-error formControlName="username"  />
+      <tui-textfield>
+        <label for="username" tuiLabel>Username</label>
+        <input formControlName="username" name="username" tuiInput />
+      </tui-textfield>
+      <tui-error formControlName="username" />
 
-  <tui-textfield>
-    <label for="password" tuiLabel>Password</label>
-    <input formControlName="password" name="password" tuiInput type="password" (keyup.enter)="handleSignIn()" />
-    <tui-icon tuiPassword />
-  </tui-textfield>
-  <tui-error formControlName="password"  />
+      <tui-textfield>
+        <label for="password" tuiLabel>Password</label>
+        <input formControlName="password" name="password" tuiInput type="password" />
+        <tui-icon tuiPassword />
+      </tui-textfield>
+      <tui-error formControlName="password" />
 
-  <footer class="justify-end">
-    <button size="m" tuiButton type="submit" [disabled]="loading()" [loading]="loading()" (click)="handleSignIn()">
-      Sign In
-    </button>
-  </footer>
-</form>
+      <footer class="login-card__actions justify-end">
+        <button size="m" tuiButton type="submit" [disabled]="loading()" [loading]="loading()">
+          Sign In
+        </button>
+      </footer>
+    </form>
+  </div>
+</main>
