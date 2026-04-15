@@ -1,35 +1,35 @@
-@font-fallback: -apple-system, 'BlinkMacSystemFont', system-ui, 'Roboto', 'Segoe UI', 'Helvetica Neue', sans-serif;
+@font-fallback: -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
 &:root,
 &:host {
   // Fonts
-  --tui-font-heading: 'Poppins', @font-fallback;
-  --tui-font-text: 'Poppins', @font-fallback;
+  --tui-font-heading: 'Inter', @font-fallback;
+  --tui-font-text: 'Inter', @font-fallback;
   --tui-font-offset: ~'0rem';
   // Heading
-  --tui-typography-heading-h1: bold calc(var(--tui-font-offset) + 3.125rem) / 3.5rem var(--tui-font-heading);
-  --tui-typography-heading-h2: bold calc(var(--tui-font-offset) + 2.75rem) / 3rem var(--tui-font-heading);
-  --tui-typography-heading-h3: bold calc(var(--tui-font-offset) + 2.25rem) / 2.5rem var(--tui-font-heading);
-  --tui-typography-heading-h4: bold calc(var(--tui-font-offset) + 1.75rem) / 2rem var(--tui-font-heading);
-  --tui-typography-heading-h5: bold calc(var(--tui-font-offset) + 1.5rem) / 1.75rem var(--tui-font-heading);
-  --tui-typography-heading-h6: bold calc(var(--tui-font-offset) + 1.25rem) / 1.5rem var(--tui-font-heading);
+  --tui-typography-heading-h1: 600 calc(var(--tui-font-offset) + 2rem) / 2.5rem var(--tui-font-heading);
+  --tui-typography-heading-h2: 600 calc(var(--tui-font-offset) + 1.5rem) / 2rem var(--tui-font-heading);
+  --tui-typography-heading-h3: 600 calc(var(--tui-font-offset) + 1.25rem) / 1.75rem var(--tui-font-heading);
+  --tui-typography-heading-h4: 600 calc(var(--tui-font-offset) + 1.125rem) / 1.5rem var(--tui-font-heading);
+  --tui-typography-heading-h5: 600 calc(var(--tui-font-offset) + 1rem) / 1.5rem var(--tui-font-heading);
+  --tui-typography-heading-h6: 600 calc(var(--tui-font-offset) + 0.875rem) / 1.25rem var(--tui-font-heading);
   // Body
-  --tui-typography-legacy-body-xl: normal calc(var(--tui-font-offset) + 1.1875rem) / 1.75rem var(--tui-typography-family-text);
-  --tui-typography-body-l: normal calc(var(--tui-font-offset) + 1.0625rem) / 1.75rem var(--tui-typography-family-text);
-  --tui-typography-body-m: normal calc(var(--tui-font-offset) + 1rem) / 1.5rem var(--tui-typography-family-text);
-  --tui-typography-body-s: normal calc(var(--tui-font-offset) + 0.8125rem) / 1.25rem var(--tui-typography-family-text);
-  --tui-typography-body-xs: normal calc(var(--tui-font-offset) + 0.6875rem) / 1rem var(--tui-typography-family-text);
+  --tui-typography-legacy-body-xl: 400 calc(var(--tui-font-offset) + 1rem) / 1.5rem var(--tui-font-text);
+  --tui-typography-body-l: 400 calc(var(--tui-font-offset) + 1rem) / 1.5rem var(--tui-font-text);
+  --tui-typography-body-m: 400 calc(var(--tui-font-offset) + 0.875rem) / 1.25rem var(--tui-font-text);
+  --tui-typography-body-s: 400 calc(var(--tui-font-offset) + 0.8125rem) / 1.125rem var(--tui-font-text);
+  --tui-typography-body-xs: 500 calc(var(--tui-font-offset) + 0.75rem) / 1rem var(--tui-typography-family-text);
   // Reduced
-  --tui-typography-ui-l: normal calc(var(--tui-font-offset) + 1.0625rem) / 1.5rem var(--tui-typography-family-text);
-  --tui-typography-ui-m: normal calc(var(--tui-font-offset) + 1rem) / 1.25rem var(--tui-typography-family-text);
-  --tui-typography-ui-s: normal calc(var(--tui-font-offset) + 0.8125rem) / 1rem var(--tui-typography-family-text);
-  --tui-typography-ui-2xs: normal calc(var(--tui-font-offset) + 0.6875rem) / 0.8125rem var(--tui-typography-family-text);
+  --tui-typography-ui-l: 400 calc(var(--tui-font-offset) + 0.875rem) / 1.25rem var(--tui-typography-family-text);
+  --tui-typography-ui-m: 400 calc(var(--tui-font-offset) + 0.8125rem) / 1.125rem var(--tui-typography-family-text);
+  --tui-typography-ui-s: 500 calc(var(--tui-font-offset) + 0.75rem) / 1rem var(--tui-typography-family-text);
+  --tui-typography-ui-2xs: 500 calc(var(--tui-font-offset) + 0.75rem) / 1rem var(--tui-typography-family-text);
   // Radii
-  --tui-radius-xs: 0.25rem; // 4px
-  --tui-radius-s: 0.625rem; // 10px
-  --tui-radius-m: 0.625rem; // 10px
-  --tui-radius-l: 1rem; // 16px
-  --tui-radius-xl: 1.25rem; // 20px
+  --tui-radius-xs: 0.375rem; // 6px
+  --tui-radius-s: 0.5rem; // 8px
+  --tui-radius-m: 0.5rem; // 8px
+  --tui-radius-l: 0.75rem; // 12px
+  --tui-radius-xl: 0.75rem; // 12px
   // Sizes
   --tui-height-xs: 1.5rem;
   --tui-height-s: 2rem;
@@ -40,6 +40,6 @@
   --tui-padding-m: 0.75rem;
   --tui-padding-l: 1rem;
   // Misc
-  --tui-duration: 0.3s;
+  --tui-duration: 0.18s;
   --tui-disabled-opacity: 0.56;
 }
