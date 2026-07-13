@@ -70,3 +70,4 @@ out
 .pnpm-store
 
 .nx/self-healing
+.nx/migrate-runs
