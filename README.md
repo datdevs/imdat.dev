@@ -10,7 +10,6 @@ This repository is an Nx monorepo that houses three main applications:
 
 - **admin-panel**: Angular 21 admin interface for managing portfolios and content
 - **wedding**: Next.js 16 wedding website with internationalization support
-- **landing-page**: Next.js 16 landing page application
 
 All applications are built with modern web technologies and follow best practices for performance, maintainability, and developer experience.
 
@@ -43,21 +42,11 @@ All applications are built with modern web technologies and follow best practice
   - Responsive design with Tailwind CSS
   - Deployed to Cloudflare
 
-#### landing-page
-
-- **Framework**: Next.js 16 with React 19
-- **Purpose**: Landing page application
-- **Features**:
-  - Modern React components
-  - Tailwind CSS styling
-  - Deployed to Cloudflare
-
 ### Test Projects
 
 Each application has an associated e2e test project:
 
 - `admin-panel-e2e`: Playwright tests for admin panel
-- `landing-page-e2e`: Playwright tests for landing page
 
 ## Technology Stack
 
@@ -184,33 +173,18 @@ npx nx build wedding
 npx nx deploy wedding
 ```
 
-#### Landing Page (Next.js)
-
-```sh
-# Development server
-npx nx dev landing-page
-
-# Production build
-npx nx build landing-page
-
-# Deploy to Cloudflare
-npx nx deploy landing-page
-```
-
 ### Testing
 
 ```sh
 # Run unit tests for a specific project
 npx nx test admin-panel
 npx nx test wedding
-npx nx test landing-page
 
 # Run tests with coverage
 npx nx test admin-panel --coverage
 
 # Run e2e tests
 npx nx e2e admin-panel-e2e
-npx nx e2e landing-page-e2e
 
 # Run all tests
 npx nx run-many -t test
@@ -222,7 +196,6 @@ npx nx run-many -t test
 # Lint a specific project
 npx nx lint admin-panel
 npx nx lint wedding
-npx nx lint landing-page
 
 # Lint all projects
 npx nx run-many -t lint
@@ -265,8 +238,6 @@ apps/
   ├── admin-panel/          # Angular application
   ├── admin-panel-e2e/       # E2E tests for admin panel
   ├── wedding/               # Next.js wedding website
-  ├── landing-page/          # Next.js landing page
-  └── landing-page-e2e/      # E2E tests for landing page
 ```
 
 ### Admin Panel Architecture
@@ -288,7 +259,7 @@ For detailed Angular architecture guidelines, see [WARP.md](WARP.md).
 
 ### Next.js Applications Architecture
 
-Both `wedding` and `landing-page` follow Next.js App Router conventions:
+`wedding` follow Next.js App Router conventions:
 
 - **App Router**: Using the `app/` directory structure
 - **Server Components**: Default React Server Components
@@ -316,7 +287,7 @@ The repository uses GitHub Actions for continuous integration:
 
 - **Workflow**: `.github/workflows/ci.yml`
 - **Trigger**: Pushes to `master` branch
-- **Builds**: Affected projects (excluding e2e, landing-page, and wedding from main build)
+- **Builds**: Affected projects (excluding e2e, and wedding from main build)
 - **Nx Cloud**: Integrated for build caching and task distribution
 
 ### Deployment

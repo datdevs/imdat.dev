@@ -21,27 +21,27 @@
     "RECAPTCHA",
     "Roundhand",
     "rspack",
-    "VITE"
+    "VITE",
   ],
   "css.styleSheets": ["**/${fileBasenameNoExtension}.scss"],
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "always",
     "source.fixAll": "explicit",
-    "source.removeUnused.ts": "always"
+    "source.removeUnused.ts": "always",
     // "source.removeUnusedImports": "explicit"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.inlayHints.enabled": "on",
   "editor.quickSuggestions": {
-    "strings": "on"
+    "strings": "on",
   },
   "eslint.options": {
     "cache": true,
-    "cacheLocation": ".eslintcache"
+    "cacheLocation": ".eslintcache",
   },
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
   },
   "files.exclude": {
     "**/.angular": true,
@@ -49,7 +49,7 @@
     "**/.git": true,
     "**/.nx": true,
     "**/.tsbuildinfo": true,
-    "**/node_modules": true
+    "**/node_modules": true,
   },
   "files.watcherExclude": {
     "**/.angular/**": true,
@@ -59,7 +59,7 @@
     "**/coverage/**": true,
     "**/dist/**": true,
     "**/node_modules/**": true,
-    "**/projects/**": true
+    "**/projects/**": true,
   },
   "nxConsole.generateAiAgentRules": true,
   "search.exclude": {
@@ -71,14 +71,13 @@
     "**/node_modules": true,
     "**/projects": true,
     "firebase-data": true,
-    "**/.next": true
+    "**/.next": true,
   },
   "stylelint.validate": ["css", "scss", "less"],
   "tailwindCSS.experimental.configFile": {
     "apps/admin-panel/src/tailwind.css": "apps/admin-panel/src/**",
-    "apps/landing-page/src/app/global.css": "apps/landing-page/src/**",
-    "apps/wedding/src/styles/tailwind.css": "apps/wedding/src/**"
+    "apps/wedding/src/styles/tailwind.css": "apps/wedding/src/**",
   },
   "typescript.preferences.importModuleSpecifier": "project-relative",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
 }
