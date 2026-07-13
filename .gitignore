@@ -68,3 +68,5 @@ out
 .claude/settings.local.json
 .gitnexus
 .pnpm-store
+
+.nx/self-healing
