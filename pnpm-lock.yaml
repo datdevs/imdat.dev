@@ -216,20 +216,20 @@ importers:
         specifier: 21.1.1
         version: 21.1.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@taiga-ui/addon-charts':
-        specifier: 5.14.0
-        version: 5.14.0(3d13dfe127060e2a32a8ba2ac45a8bcf)
+        specifier: 5.15.0
+        version: 5.15.0(04c43fdc918655a40663f8adfd246e98)
       '@taiga-ui/addon-mobile':
-        specifier: 5.14.0
-        version: 5.14.0(9f060eb4fd47bc6bee0f34eaeaa287b8)
+        specifier: 5.15.0
+        version: 5.15.0(0fa5f9d4758209c2af3c3a0a65117e10)
       '@taiga-ui/addon-table':
-        specifier: 5.14.0
-        version: 5.14.0(be8aa75182a7a68d2ee1cb00b94716be)
+        specifier: 5.15.0
+        version: 5.15.0(b63b09d92ad0e037859c77f9b147f541)
       '@taiga-ui/cdk':
-        specifier: 5.14.0
-        version: 5.14.0(75be10d68980b495592aa3c304c4c061)
+        specifier: 5.15.0
+        version: 5.15.0(75be10d68980b495592aa3c304c4c061)
       '@taiga-ui/core':
-        specifier: 5.14.0
-        version: 5.14.0(f6cc5458c84513deb333fa865363e090)
+        specifier: 5.15.0
+        version: 5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)
       '@taiga-ui/design-tokens':
         specifier: ~0.310.0
         version: 0.310.0
@@ -240,23 +240,23 @@ importers:
         specifier: ~0.6.0
         version: 0.6.0
       '@taiga-ui/i18n':
-        specifier: 5.14.0
-        version: 5.14.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
+        specifier: 5.15.0
+        version: 5.15.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
       '@taiga-ui/icons':
-        specifier: 5.14.0
-        version: 5.14.0
+        specifier: 5.15.0
+        version: 5.15.0
       '@taiga-ui/kit':
-        specifier: 5.14.0
-        version: 5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629)
+        specifier: 5.15.0
+        version: 5.15.0(fe10a0511eb6d343f39713415e5e8e28)
       '@taiga-ui/layout':
-        specifier: 5.14.0
-        version: 5.14.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@taiga-ui/cdk@5.14.0(75be10d68980b495592aa3c304c4c061))(@taiga-ui/core@5.14.0(f6cc5458c84513deb333fa865363e090))(@taiga-ui/kit@5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629))(@taiga-ui/polymorpheus@5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))))(rxjs@7.8.2)
+        specifier: 5.15.0
+        version: 5.15.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@taiga-ui/cdk@5.15.0(75be10d68980b495592aa3c304c4c061))(@taiga-ui/core@5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a))(@taiga-ui/kit@5.15.0(fe10a0511eb6d343f39713415e5e8e28))(@taiga-ui/polymorpheus@5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))))(rxjs@7.8.2)
       '@taiga-ui/polymorpheus':
         specifier: ^5.0.1
         version: 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
       '@taiga-ui/styles':
-        specifier: 5.14.0
-        version: 5.14.0(@taiga-ui/design-tokens@0.310.0)
+        specifier: 5.15.0
+        version: 5.15.0(@taiga-ui/design-tokens@0.310.0)
       firebase:
         specifier: ^12.16.0
         version: 12.16.0
@@ -338,31 +338,31 @@ importers:
         version: 21.1.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ngrx/store@21.1.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(rxjs@7.8.2)
       '@nx/angular':
         specifier: 23.0.2
-        version: 23.0.2(b2f275621b06266e62a922d40b618829)
+        version: 23.0.2(cf0bcaa9ea626c932114c1eecf67729a)
       '@nx/devkit':
         specifier: 23.0.2
         version: 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/eslint':
         specifier: 23.0.2
-        version: 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
+        version: 23.0.2(3db1928b46dc26d32887330496f9d95f)
       '@nx/eslint-plugin':
         specifier: 23.0.2
         version: 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@typescript-eslint/parser@8.63.0(eslint@9.39.5(jiti@2.7.0))(typescript@5.9.3))(eslint-config-prettier@10.1.8(eslint@9.39.5(jiti@2.7.0)))(eslint@9.39.5(jiti@2.7.0))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)
       '@nx/jest':
         specifier: 23.0.2
-        version: 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)
+        version: 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)
       '@nx/js':
         specifier: 23.0.2
         version: 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/next':
         specifier: 23.0.2
-        version: 23.0.2(d730600144340dfc775c2432ebf827e3)
+        version: 23.0.2(e56754119a0b297711e85d219757921a)
       '@nx/playwright':
         specifier: 23.0.2
-        version: 23.0.2(e4024c0c7ff869193bfaa9de3ca3d9fb)
+        version: 23.0.2(3b1be51a6c9bc369bc3bde3933658815)
       '@nx/web':
         specifier: 23.0.2
-        version: 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+        version: 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@nx/workspace':
         specifier: 23.0.2
         version: 23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))
@@ -673,6 +673,7 @@ packages:
   '@angular/animations@21.2.18':
     resolution: {integrity: sha512-zN++Qb4Oz4x/5LYHuW9FItm7aHsV4HBz518GT25QusMvGymh+4io2TWhPYB0C9jx+g5q8GeQLd3c8r42yLrRxw==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/animations is deprecated. Use `animate.enter` and `animate.leave` instead. For more information see: https://v22.angular.dev/guide/animations.'
     peerDependencies:
       '@angular/core': 21.2.18
 
@@ -802,6 +803,7 @@ packages:
   '@angular/platform-browser-dynamic@21.2.18':
     resolution: {integrity: sha512-doTDss6GhDTGjVuuANlzFrdYKBqHQVlWgy2tiTjy9EbrmMTOOHg0D6yUQXh1ZqmUWKDZ3owkUjUNGiXt92rQ6w==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
+    deprecated: '@angular/platform-browser-dynamic is deprecated. Use `@angular/platform-browser` instead.'
     peerDependencies:
       '@angular/common': 21.2.18
       '@angular/compiler': 21.2.18
@@ -4406,46 +4408,46 @@ packages:
   '@swc/types@0.1.27':
     resolution: {integrity: sha512-K6h3iUlqeM946U4sXFYeahefR1YBbXJvko+hv8WS8/0BNJ4OHiHRywMnQUJCqkR7Y9+hqQ1TvEpiKqUhz7NEFg==}
 
-  '@taiga-ui/addon-charts@5.14.0':
-    resolution: {integrity: sha512-CS0oFbqJ18cOIK/Fr4BNfd0MrxtasWIGLb3JmkVNQkNephS3dHzUB4MMdqY7ev5QC3CBlGj4d+Qw2vXalsPWUQ==}
+  '@taiga-ui/addon-charts@5.15.0':
+    resolution: {integrity: sha512-hA66DpJGmt3ynpccEFkW9Xnc23EoeyDuoeAGmhaFPURDH7zW5twywz8XaWuwtYSfbOAjYCEbOVGzQ1FuoguofA==}
     peerDependencies:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
       '@ng-web-apis/common': ^5.3.0
-      '@taiga-ui/cdk': 5.14.0
-      '@taiga-ui/core': 5.14.0
+      '@taiga-ui/cdk': 5.15.0
+      '@taiga-ui/core': 5.15.0
       '@taiga-ui/polymorpheus': ^5.0.1
 
-  '@taiga-ui/addon-mobile@5.14.0':
-    resolution: {integrity: sha512-sqQOE1MED24QU4i7sE54mwlBHbm3zKmjsdHg0FQevEB9kMoV4ESR/pgx90LaW6Soo5wWSWnAq3RX6A7Qxoin/g==}
+  '@taiga-ui/addon-mobile@5.15.0':
+    resolution: {integrity: sha512-dYcBR/xV37zI4ubJqyJ26ANIu/1YWyzNMfBqmQCKs1n4svW3EjOSCkaOM/i2G29nqNQNN6nzzpxuncIf0sIaeA==}
     peerDependencies:
       '@angular/cdk': '>=19.0.0'
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
       '@ng-web-apis/common': ^5.3.0
       '@ng-web-apis/platform': ^5.3.0
-      '@taiga-ui/cdk': 5.14.0
-      '@taiga-ui/core': 5.14.0
-      '@taiga-ui/kit': 5.14.0
-      '@taiga-ui/layout': 5.14.0
+      '@taiga-ui/cdk': 5.15.0
+      '@taiga-ui/core': 5.15.0
+      '@taiga-ui/kit': 5.15.0
+      '@taiga-ui/layout': 5.15.0
       '@taiga-ui/polymorpheus': ^5.0.1
       rxjs: '>=7.0.0'
 
-  '@taiga-ui/addon-table@5.14.0':
-    resolution: {integrity: sha512-CXJL1R35JZXuA4WPKAHFAy3N2UTRb0kUkYTt3q9DanFMXSR1+mDve5Jrx72Ir3woFvj2rwZwbtyWxWuHbjzBqg==}
+  '@taiga-ui/addon-table@5.15.0':
+    resolution: {integrity: sha512-QLEvDrCDe+kgWifnbjndRQMKDL6lzBdT9+S9lKwc+H3Z+GhPUry3ZcpejX8lX4OtKg7huMdHYdEDKIc5kBXrNA==}
     peerDependencies:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
       '@ng-web-apis/intersection-observer': ^5.3.0
-      '@taiga-ui/cdk': 5.14.0
-      '@taiga-ui/core': 5.14.0
-      '@taiga-ui/i18n': 5.14.0
-      '@taiga-ui/kit': 5.14.0
+      '@taiga-ui/cdk': 5.15.0
+      '@taiga-ui/core': 5.15.0
+      '@taiga-ui/i18n': 5.15.0
+      '@taiga-ui/kit': 5.15.0
       '@taiga-ui/polymorpheus': ^5.0.1
       rxjs: '>=7.0.0'
 
-  '@taiga-ui/cdk@5.14.0':
-    resolution: {integrity: sha512-uYNTGSj2ozj+CpxUF57auiytvC9UJ2JFE3YksdHDOMNgd9zGjZ1wjyzG2/FG3A4wFhxhIgyHGC7SKN8YMDPLHw==}
+  '@taiga-ui/cdk@5.15.0':
+    resolution: {integrity: sha512-095k27z9REEPO3WgfTufb6D4Q+S0ADL0gy6Fz6hfH4inVuGKiPyX//1cWV4v0jVYKiwXgz8iMetooQp44SH9sQ==}
     peerDependencies:
       '@angular/cdk': '>=19.0.0'
       '@angular/common': '>=19.0.0'
@@ -4461,8 +4463,8 @@ packages:
       '@taiga-ui/polymorpheus': ^5.0.1
       rxjs: '>=7.0.0'
 
-  '@taiga-ui/core@5.14.0':
-    resolution: {integrity: sha512-GGqA86XU6nWz9CtTykptK6UKuhn+VbUPrmqnHM0+O44GZ/Ng9Z3GC4WMliqiBvJGnViOwmbxy0sPeXANSb3tEA==}
+  '@taiga-ui/core@5.15.0':
+    resolution: {integrity: sha512-Qjrkhu6xbWLwu7I0y1H6BanEfGKibNV5neXcGiiJdsSfjiqch2X7TI36kvHXBVzcxGZ0iCYm1bhAud0Oh15ezg==}
     peerDependencies:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
@@ -4473,11 +4475,11 @@ packages:
       '@ng-web-apis/intersection-observer': ^5.3.0
       '@ng-web-apis/mutation-observer': ^5.3.0
       '@ng-web-apis/platform': ^5.3.0
-      '@taiga-ui/cdk': 5.14.0
+      '@taiga-ui/cdk': 5.15.0
       '@taiga-ui/event-plugins': ^5.0.0
-      '@taiga-ui/i18n': 5.14.0
+      '@taiga-ui/i18n': 5.15.0
       '@taiga-ui/polymorpheus': ^5.0.1
-      '@taiga-ui/styles': 5.14.0
+      '@taiga-ui/styles': 5.15.0
       rxjs: '>=7.0.0'
 
   '@taiga-ui/design-tokens@0.310.0':
@@ -4493,18 +4495,18 @@ packages:
   '@taiga-ui/font-watcher@0.6.0':
     resolution: {integrity: sha512-TqDKkzFJhTLEcvlEQkQoUnD+kVZaCh0MRq2I1AFY8/XKTuVa+/P+Il/m2uC4xVg3v04X17160gcTLRaQMUV0Uw==}
 
-  '@taiga-ui/i18n@5.14.0':
-    resolution: {integrity: sha512-/h/yCKX0L9w7g+nFSg0mmmMgFC4tzpXWo5LKknv2qnFJNrTkA71aw75nTiN0bY68I+rPtVVLlI4OX6okJVNSkA==}
+  '@taiga-ui/i18n@5.15.0':
+    resolution: {integrity: sha512-3KOH94/7osWRgtnWIjrvBTYmSIzySjZObkX7IzcPrx74sNAVN1Oxtg5gq2d4+MzdCV/l+tjEOUo7ehy8SZCoAw==}
     peerDependencies:
       '@angular/core': '>=19.0.0'
       '@ng-web-apis/common': ^5.3.0
       rxjs: '>=7.0.0'
 
-  '@taiga-ui/icons@5.14.0':
-    resolution: {integrity: sha512-y8XsDZmrVMAAgPiSiM0zrEw/ctqzviD1eS02l0MRYFa324ZO2/Rn5Frw6D2ZRw00GzcRjhTX0euInEZ2CUGihg==}
+  '@taiga-ui/icons@5.15.0':
+    resolution: {integrity: sha512-8+ruAJ3BcXckae3Kl5PQ8cggmnAggJ+YTomyEg2wpjGWY1O/yDV7bmeTtM4a0YNA63nQIDjRIXiR/LIHj9LHMg==}
 
-  '@taiga-ui/kit@5.14.0':
-    resolution: {integrity: sha512-YCg1l5+Bg/56QGXqYsYgzx6ZIbSzxd92i/shHegClaWfZmpwafMzwfZQV64Pn2/SDKiscM7xV9mMFUfrh+JGhQ==}
+  '@taiga-ui/kit@5.15.0':
+    resolution: {integrity: sha512-u8UChfLlG585v+l6BqDQqh3DjpdasT+Vbl9utJoA3VY/RaM0yL/9Gv6j2pSROzUJGmCkeuD7OJPPdQpDFe3fhQ==}
     peerDependencies:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
@@ -4519,21 +4521,21 @@ packages:
       '@ng-web-apis/mutation-observer': ^5.3.0
       '@ng-web-apis/platform': ^5.3.0
       '@ng-web-apis/resize-observer': ^5.3.0
-      '@taiga-ui/cdk': 5.14.0
-      '@taiga-ui/core': 5.14.0
-      '@taiga-ui/i18n': 5.14.0
+      '@taiga-ui/cdk': 5.15.0
+      '@taiga-ui/core': 5.15.0
+      '@taiga-ui/i18n': 5.15.0
       '@taiga-ui/polymorpheus': ^5.0.1
-      '@taiga-ui/styles': 5.14.0
+      '@taiga-ui/styles': 5.15.0
       rxjs: '>=7.0.0'
 
-  '@taiga-ui/layout@5.14.0':
-    resolution: {integrity: sha512-syrz0nxZq5sai/RJpmBS+Q+WTGFjdD1nEkx84TlNbvW2Mz/ItqmRYy2Z6mNDfHKNb0+NE5iM2IbPbCvel0yigg==}
+  '@taiga-ui/layout@5.15.0':
+    resolution: {integrity: sha512-/it2gXr9VfYsOiO5sA4eymMHeeRVPduoXh7tokt+wGOLZAM3HzoY3pbhFwW2bQCKXhfe8wF6zGwoQRxUJQnZjQ==}
     peerDependencies:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
-      '@taiga-ui/cdk': 5.14.0
-      '@taiga-ui/core': 5.14.0
-      '@taiga-ui/kit': 5.14.0
+      '@taiga-ui/cdk': 5.15.0
+      '@taiga-ui/core': 5.15.0
+      '@taiga-ui/kit': 5.15.0
       '@taiga-ui/polymorpheus': ^5.0.1
       rxjs: '>=7.0.0'
 
@@ -4543,10 +4545,10 @@ packages:
       '@angular/core': '>=19.0.0'
       '@angular/platform-browser': '>=19.0.0'
 
-  '@taiga-ui/styles@5.14.0':
-    resolution: {integrity: sha512-+Dxb5DRtleYFH9XS4G/b+igUh3CPIlrK4NbJB/DfN/uf6nJ6JoB75CVssJtehuWT+YRzdOHbJ/67AEAvesTHxQ==}
+  '@taiga-ui/styles@5.15.0':
+    resolution: {integrity: sha512-jjT1qwF1y2PeoimbRsz304d9/beCMxpyc5shV9Lx90qHOFN9Wt3jDe2wDgBOY6mclH3W5kHPYMDt/nF/+vUpAA==}
     peerDependencies:
-      '@taiga-ui/design-tokens': ~0.308.0
+      '@taiga-ui/design-tokens': ~0.310.0
 
   '@tailwindcss/node@4.3.2':
     resolution: {integrity: sha512-yWP/sqEcBLaD8JuA6zNwxoYKr75qxTioYwlRwekj5Jr/I5GXnoJfjetH/psLUIv74cYTH2lBUEzBkinthoYcBg==}
@@ -13214,16 +13216,16 @@ snapshots:
       node-gyp: 12.4.0
       proc-log: 6.1.0
 
-  '@nx/angular@23.0.2(b2f275621b06266e62a922d40b618829)':
+  '@nx/angular@23.0.2(cf0bcaa9ea626c932114c1eecf67729a)':
     dependencies:
       '@angular-devkit/core': 21.2.19
       '@angular-devkit/schematics': 21.2.19
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/eslint': 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
+      '@nx/eslint': 23.0.2(3db1928b46dc26d32887330496f9d95f)
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/module-federation': 23.0.2(d74bc90db9754839a9faba3aab3544b3)
-      '@nx/rspack': 23.0.2(8d13f2b31c2ddca76b60b5588e1539ff)
-      '@nx/web': 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+      '@nx/module-federation': 23.0.2(768e5f449464e06116f0167dceb9f992)
+      '@nx/rspack': 23.0.2(98cda3c9c63b82181221d07b31de5c01)
+      '@nx/web': 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@nx/webpack': 23.0.2(@babel/traverse@7.29.7)(@rspack/core@1.6.8(@swc/helpers@0.5.23))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       '@phenomnomnominal/tsquery': 6.2.0(typescript@5.9.3)
       '@schematics/angular': 21.2.19
@@ -13320,7 +13322,7 @@ snapshots:
       - typescript
       - verdaccio
 
-  '@nx/eslint@23.0.2(330ca230b32afe9f3f8026b90b9a061d)':
+  '@nx/eslint@23.0.2(3db1928b46dc26d32887330496f9d95f)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
@@ -13329,7 +13331,7 @@ snapshots:
       tslib: 2.8.1
       typescript: 5.9.3
     optionalDependencies:
-      '@nx/jest': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)
+      '@nx/jest': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)
       '@zkochan/js-yaml': 0.0.7
     transitivePeerDependencies:
       - '@babel/traverse'
@@ -13340,7 +13342,7 @@ snapshots:
       - supports-color
       - verdaccio
 
-  '@nx/jest@23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)':
+  '@nx/jest@23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
       '@jest/reporters': 30.4.1
       '@jest/test-result': 30.4.1
@@ -13410,11 +13412,11 @@ snapshots:
       - nx
       - supports-color
 
-  '@nx/module-federation@23.0.2(ba5094dc3afa724ecf69019224dff7c8)':
+  '@nx/module-federation@23.0.2(38d2407c623bb23d27a2f9c31b424950)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/web': 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+      '@nx/web': 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@rspack/core': 1.6.8(@swc/helpers@0.5.23)
       express: 4.22.2
       http-proxy-middleware: 3.0.7
@@ -13450,11 +13452,11 @@ snapshots:
       - verdaccio
       - webpack-cli
 
-  '@nx/module-federation@23.0.2(d74bc90db9754839a9faba3aab3544b3)':
+  '@nx/module-federation@23.0.2(768e5f449464e06116f0167dceb9f992)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/web': 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+      '@nx/web': 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@rspack/core': 1.6.8(@swc/helpers@0.5.23)
       express: 4.22.2
       http-proxy-middleware: 3.0.7
@@ -13490,14 +13492,14 @@ snapshots:
       - verdaccio
       - webpack-cli
 
-  '@nx/next@23.0.2(d730600144340dfc775c2432ebf827e3)':
+  '@nx/next@23.0.2(e56754119a0b297711e85d219757921a)':
     dependencies:
       '@babel/plugin-proposal-decorators': 7.29.7(@babel/core@7.29.7)
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/eslint': 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
+      '@nx/eslint': 23.0.2(3db1928b46dc26d32887330496f9d95f)
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/react': 23.0.2(74813dd81eb3d5e02d348f319999e2ec)
-      '@nx/web': 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+      '@nx/react': 23.0.2(ba941c74215e9b670abf7a99085e118e)
+      '@nx/web': 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@nx/webpack': 23.0.2(@babel/traverse@7.29.7)(@rspack/core@1.6.8(@swc/helpers@0.5.23))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       '@phenomnomnominal/tsquery': 6.2.0(typescript@5.9.3)
       '@svgr/webpack': 8.1.0(typescript@5.9.3)
@@ -13583,10 +13585,10 @@ snapshots:
   '@nx/nx-win32-x64-msvc@23.0.2':
     optional: true
 
-  '@nx/playwright@23.0.2(e4024c0c7ff869193bfaa9de3ca3d9fb)':
+  '@nx/playwright@23.0.2(3b1be51a6c9bc369bc3bde3933658815)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/eslint': 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
+      '@nx/eslint': 23.0.2(3db1928b46dc26d32887330496f9d95f)
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       minimatch: 10.2.5
       semver: 7.8.5
@@ -13605,14 +13607,14 @@ snapshots:
       - supports-color
       - verdaccio
 
-  '@nx/react@23.0.2(74813dd81eb3d5e02d348f319999e2ec)':
+  '@nx/react@23.0.2(ba941c74215e9b670abf7a99085e118e)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/eslint': 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
+      '@nx/eslint': 23.0.2(3db1928b46dc26d32887330496f9d95f)
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/module-federation': 23.0.2(d74bc90db9754839a9faba3aab3544b3)
+      '@nx/module-federation': 23.0.2(768e5f449464e06116f0167dceb9f992)
       '@nx/rollup': 23.0.2(@babel/core@7.29.7)(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/babel__core@7.20.5)(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(rollup@4.62.2)(typescript@5.9.3)
-      '@nx/web': 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+      '@nx/web': 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@phenomnomnominal/tsquery': 6.2.0(typescript@5.9.3)
       '@svgr/webpack': 8.1.0(typescript@5.9.3)
       express: 4.22.2
@@ -13623,7 +13625,7 @@ snapshots:
       semver: 7.8.5
       tslib: 2.8.1
     optionalDependencies:
-      '@nx/vite': 23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(330ca230b32afe9f3f8026b90b9a061d))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))
+      '@nx/vite': 23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(3db1928b46dc26d32887330496f9d95f))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/traverse'
@@ -13693,12 +13695,12 @@ snapshots:
       - typescript
       - verdaccio
 
-  '@nx/rspack@23.0.2(8d13f2b31c2ddca76b60b5588e1539ff)':
+  '@nx/rspack@23.0.2(98cda3c9c63b82181221d07b31de5c01)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/module-federation': 23.0.2(ba5094dc3afa724ecf69019224dff7c8)
-      '@nx/web': 23.0.2(04b354af97b8177d9ac0dfc997f49aa8)
+      '@nx/module-federation': 23.0.2(38d2407c623bb23d27a2f9c31b424950)
+      '@nx/web': 23.0.2(8bfadc6bdd992f02830042dffec303f1)
       '@phenomnomnominal/tsquery': 6.2.0(typescript@5.9.3)
       autoprefixer: 10.5.2(postcss@8.5.17)
       browserslist: 4.28.6
@@ -13760,11 +13762,11 @@ snapshots:
       - verdaccio
       - webpack-cli
 
-  '@nx/vite@23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(330ca230b32afe9f3f8026b90b9a061d))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))':
+  '@nx/vite@23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(3db1928b46dc26d32887330496f9d95f))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
-      '@nx/vitest': 23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(330ca230b32afe9f3f8026b90b9a061d))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))
+      '@nx/vitest': 23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(3db1928b46dc26d32887330496f9d95f))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))
       '@phenomnomnominal/tsquery': 6.2.0(typescript@5.9.3)
       ajv: 8.20.0
       enquirer: 2.3.6
@@ -13786,7 +13788,7 @@ snapshots:
       - vitest
     optional: true
 
-  '@nx/vitest@23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(330ca230b32afe9f3f8026b90b9a061d))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))':
+  '@nx/vitest@23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(3db1928b46dc26d32887330496f9d95f))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
@@ -13794,7 +13796,7 @@ snapshots:
       semver: 7.8.5
       tslib: 2.8.1
     optionalDependencies:
-      '@nx/eslint': 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
+      '@nx/eslint': 23.0.2(3db1928b46dc26d32887330496f9d95f)
       vite: 7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0)
     transitivePeerDependencies:
       - '@babel/traverse'
@@ -13807,7 +13809,7 @@ snapshots:
       - verdaccio
     optional: true
 
-  '@nx/web@23.0.2(04b354af97b8177d9ac0dfc997f49aa8)':
+  '@nx/web@23.0.2(8bfadc6bdd992f02830042dffec303f1)':
     dependencies:
       '@nx/devkit': 23.0.2(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
@@ -13816,10 +13818,10 @@ snapshots:
       picocolors: 1.1.1
       tslib: 2.8.1
     optionalDependencies:
-      '@nx/eslint': 23.0.2(330ca230b32afe9f3f8026b90b9a061d)
-      '@nx/jest': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)
-      '@nx/playwright': 23.0.2(e4024c0c7ff869193bfaa9de3ca3d9fb)
-      '@nx/vite': 23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(330ca230b32afe9f3f8026b90b9a061d))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))
+      '@nx/eslint': 23.0.2(3db1928b46dc26d32887330496f9d95f)
+      '@nx/jest': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(ts-jest@29.4.11(@babel/core@7.29.7)(@jest/transform@30.4.1)(@jest/types@30.4.1)(babel-jest@30.4.1(@babel/core@7.29.7))(esbuild@0.28.1)(jest-util@30.4.1)(jest@30.4.2(@types/node@24.13.3)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3)))(typescript@5.9.3))(ts-node@10.9.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(@types/node@24.13.3)(typescript@5.9.3))(typescript@5.9.3)
+      '@nx/playwright': 23.0.2(3b1be51a6c9bc369bc3bde3933658815)
+      '@nx/vite': 23.0.2(@babel/traverse@7.29.7)(@nx/eslint@23.0.2(3db1928b46dc26d32887330496f9d95f))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(vite@7.3.6(@types/node@24.13.3)(jiti@2.7.0)(less@4.5.1)(lightningcss@1.32.0)(sass-embedded@1.100.0)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.0))
       '@nx/webpack': 23.0.2(@babel/traverse@7.29.7)(@rspack/core@1.6.8(@swc/helpers@0.5.23))(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
     transitivePeerDependencies:
       - '@babel/traverse'
@@ -13838,7 +13840,7 @@ snapshots:
       '@nx/js': 23.0.2(@babel/traverse@7.29.7)(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23))(nx@23.0.2(@swc-node/register@1.11.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(@swc/types@0.1.27)(typescript@5.9.3))(@swc/core@1.15.43(@swc/helpers@0.5.23)))
       '@phenomnomnominal/tsquery': 6.2.0(typescript@5.9.3)
       ajv: 8.20.0
-      autoprefixer: 10.5.2(postcss@8.5.17)
+      autoprefixer: 10.5.2(postcss@8.5.18)
       babel-loader: 9.2.1(@babel/core@7.29.7)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       browserslist: 4.28.6
       copy-webpack-plugin: 14.0.0(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
@@ -13852,16 +13854,16 @@ snapshots:
       mini-css-extract-plugin: 2.4.7(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       parse5: 4.0.0
       picocolors: 1.1.1
-      postcss: 8.5.17
-      postcss-import: 14.1.0(postcss@8.5.17)
-      postcss-loader: 8.2.1(@rspack/core@1.6.8(@swc/helpers@0.5.23))(postcss@8.5.17)(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
+      postcss: 8.5.18
+      postcss-import: 14.1.0(postcss@8.5.18)
+      postcss-loader: 8.2.1(@rspack/core@1.6.8(@swc/helpers@0.5.23))(postcss@8.5.18)(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       rxjs: 7.8.2
       sass: 1.101.0
       sass-embedded: 1.100.0
       sass-loader: 16.0.8(@rspack/core@1.6.8(@swc/helpers@0.5.23))(sass-embedded@1.100.0)(sass@1.101.0)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       source-map-loader: 5.0.0(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       style-loader: 3.3.4(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
-      terser-webpack-plugin: 5.6.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.17)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
+      terser-webpack-plugin: 5.6.1(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       ts-loader: 9.6.2(loader-utils@2.0.4)(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18))
       tsconfig-paths-webpack-plugin: 4.2.0
       tslib: 2.8.1
@@ -14568,45 +14570,45 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@taiga-ui/addon-charts@5.14.0(3d13dfe127060e2a32a8ba2ac45a8bcf)':
+  '@taiga-ui/addon-charts@5.15.0(04c43fdc918655a40663f8adfd246e98)':
     dependencies:
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
       '@ng-web-apis/common': 5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2)
-      '@taiga-ui/cdk': 5.14.0(75be10d68980b495592aa3c304c4c061)
-      '@taiga-ui/core': 5.14.0(f6cc5458c84513deb333fa865363e090)
+      '@taiga-ui/cdk': 5.15.0(75be10d68980b495592aa3c304c4c061)
+      '@taiga-ui/core': 5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)
       '@taiga-ui/polymorpheus': 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
       tslib: 2.8.1
 
-  '@taiga-ui/addon-mobile@5.14.0(9f060eb4fd47bc6bee0f34eaeaa287b8)':
+  '@taiga-ui/addon-mobile@5.15.0(0fa5f9d4758209c2af3c3a0a65117e10)':
     dependencies:
       '@angular/cdk': 21.2.14(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2)
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
       '@ng-web-apis/common': 5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2)
       '@ng-web-apis/platform': 5.3.0
-      '@taiga-ui/cdk': 5.14.0(75be10d68980b495592aa3c304c4c061)
-      '@taiga-ui/core': 5.14.0(f6cc5458c84513deb333fa865363e090)
-      '@taiga-ui/kit': 5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629)
-      '@taiga-ui/layout': 5.14.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@taiga-ui/cdk@5.14.0(75be10d68980b495592aa3c304c4c061))(@taiga-ui/core@5.14.0(f6cc5458c84513deb333fa865363e090))(@taiga-ui/kit@5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629))(@taiga-ui/polymorpheus@5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))))(rxjs@7.8.2)
+      '@taiga-ui/cdk': 5.15.0(75be10d68980b495592aa3c304c4c061)
+      '@taiga-ui/core': 5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)
+      '@taiga-ui/kit': 5.15.0(fe10a0511eb6d343f39713415e5e8e28)
+      '@taiga-ui/layout': 5.15.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@taiga-ui/cdk@5.15.0(75be10d68980b495592aa3c304c4c061))(@taiga-ui/core@5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a))(@taiga-ui/kit@5.15.0(fe10a0511eb6d343f39713415e5e8e28))(@taiga-ui/polymorpheus@5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))))(rxjs@7.8.2)
       '@taiga-ui/polymorpheus': 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@taiga-ui/addon-table@5.14.0(be8aa75182a7a68d2ee1cb00b94716be)':
+  '@taiga-ui/addon-table@5.15.0(b63b09d92ad0e037859c77f9b147f541)':
     dependencies:
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
       '@ng-web-apis/intersection-observer': 5.3.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))
-      '@taiga-ui/cdk': 5.14.0(75be10d68980b495592aa3c304c4c061)
-      '@taiga-ui/core': 5.14.0(f6cc5458c84513deb333fa865363e090)
-      '@taiga-ui/i18n': 5.14.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
-      '@taiga-ui/kit': 5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629)
+      '@taiga-ui/cdk': 5.15.0(75be10d68980b495592aa3c304c4c061)
+      '@taiga-ui/core': 5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)
+      '@taiga-ui/i18n': 5.15.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@taiga-ui/kit': 5.15.0(fe10a0511eb6d343f39713415e5e8e28)
       '@taiga-ui/polymorpheus': 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@taiga-ui/cdk@5.14.0(75be10d68980b495592aa3c304c4c061)':
+  '@taiga-ui/cdk@5.15.0(75be10d68980b495592aa3c304c4c061)':
     dependencies:
       '@angular/cdk': 21.2.14(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2)
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
@@ -14632,7 +14634,7 @@ snapshots:
       - '@types/semver'
       - chokidar
 
-  '@taiga-ui/core@5.14.0(f6cc5458c84513deb333fa865363e090)':
+  '@taiga-ui/core@5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)':
     dependencies:
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
@@ -14643,11 +14645,11 @@ snapshots:
       '@ng-web-apis/intersection-observer': 5.3.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))
       '@ng-web-apis/mutation-observer': 5.3.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))
       '@ng-web-apis/platform': 5.3.0
-      '@taiga-ui/cdk': 5.14.0(75be10d68980b495592aa3c304c4c061)
+      '@taiga-ui/cdk': 5.15.0(75be10d68980b495592aa3c304c4c061)
       '@taiga-ui/event-plugins': 5.0.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(rxjs@7.8.2)
-      '@taiga-ui/i18n': 5.14.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@taiga-ui/i18n': 5.15.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
       '@taiga-ui/polymorpheus': 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
-      '@taiga-ui/styles': 5.14.0(@taiga-ui/design-tokens@0.310.0)
+      '@taiga-ui/styles': 5.15.0(@taiga-ui/design-tokens@0.310.0)
       rxjs: 7.8.2
       tslib: 2.8.1
 
@@ -14664,18 +14666,18 @@ snapshots:
 
   '@taiga-ui/font-watcher@0.6.0': {}
 
-  '@taiga-ui/i18n@5.14.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)':
+  '@taiga-ui/i18n@5.15.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)':
     dependencies:
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
       '@ng-web-apis/common': 5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2)
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@taiga-ui/icons@5.14.0':
+  '@taiga-ui/icons@5.15.0':
     dependencies:
       tslib: 2.8.1
 
-  '@taiga-ui/kit@5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629)':
+  '@taiga-ui/kit@5.15.0(fe10a0511eb6d343f39713415e5e8e28)':
     dependencies:
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
@@ -14690,21 +14692,21 @@ snapshots:
       '@ng-web-apis/mutation-observer': 5.3.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))
       '@ng-web-apis/platform': 5.3.0
       '@ng-web-apis/resize-observer': 5.3.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))
-      '@taiga-ui/cdk': 5.14.0(75be10d68980b495592aa3c304c4c061)
-      '@taiga-ui/core': 5.14.0(f6cc5458c84513deb333fa865363e090)
-      '@taiga-ui/i18n': 5.14.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@taiga-ui/cdk': 5.15.0(75be10d68980b495592aa3c304c4c061)
+      '@taiga-ui/core': 5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)
+      '@taiga-ui/i18n': 5.15.0(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@ng-web-apis/common@5.3.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@types/dom-speech-recognition@0.0.10)(rxjs@7.8.2))(rxjs@7.8.2)
       '@taiga-ui/polymorpheus': 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
-      '@taiga-ui/styles': 5.14.0(@taiga-ui/design-tokens@0.310.0)
+      '@taiga-ui/styles': 5.15.0(@taiga-ui/design-tokens@0.310.0)
       rxjs: 7.8.2
       tslib: 2.8.1
 
-  '@taiga-ui/layout@5.14.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@taiga-ui/cdk@5.14.0(75be10d68980b495592aa3c304c4c061))(@taiga-ui/core@5.14.0(f6cc5458c84513deb333fa865363e090))(@taiga-ui/kit@5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629))(@taiga-ui/polymorpheus@5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))))(rxjs@7.8.2)':
+  '@taiga-ui/layout@5.15.0(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@taiga-ui/cdk@5.15.0(75be10d68980b495592aa3c304c4c061))(@taiga-ui/core@5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a))(@taiga-ui/kit@5.15.0(fe10a0511eb6d343f39713415e5e8e28))(@taiga-ui/polymorpheus@5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))))(rxjs@7.8.2)':
     dependencies:
       '@angular/common': 21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2)
       '@angular/core': 21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)
-      '@taiga-ui/cdk': 5.14.0(75be10d68980b495592aa3c304c4c061)
-      '@taiga-ui/core': 5.14.0(f6cc5458c84513deb333fa865363e090)
-      '@taiga-ui/kit': 5.14.0(57a0bb04eb586d4ebe8ae5ea093a9629)
+      '@taiga-ui/cdk': 5.15.0(75be10d68980b495592aa3c304c4c061)
+      '@taiga-ui/core': 5.15.0(64971bea823cbc3ce1fbdcd82a8ac47a)
+      '@taiga-ui/kit': 5.15.0(fe10a0511eb6d343f39713415e5e8e28)
       '@taiga-ui/polymorpheus': 5.0.1(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(@angular/platform-browser@21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))
       rxjs: 7.8.2
       tslib: 2.8.1
@@ -14715,7 +14717,7 @@ snapshots:
       '@angular/platform-browser': 21.2.18(@angular/animations@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2)))(@angular/common@21.2.18(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))(rxjs@7.8.2))(@angular/core@21.2.18(@angular/compiler@21.2.18)(rxjs@7.8.2)(zone.js@0.16.2))
       tslib: 2.8.1
 
-  '@taiga-ui/styles@5.14.0(@taiga-ui/design-tokens@0.310.0)':
+  '@taiga-ui/styles@5.15.0(@taiga-ui/design-tokens@0.310.0)':
     dependencies:
       '@taiga-ui/design-tokens': 0.310.0
 
@@ -15963,20 +15965,20 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  css-declaration-sorter@7.4.0(postcss@8.5.17):
+  css-declaration-sorter@7.4.0(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
 
   css-functions-list@3.3.3: {}
 
   css-loader@6.11.0(@rspack/core@1.6.8(@swc/helpers@0.5.23))(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18)):
     dependencies:
-      icss-utils: 5.1.0(postcss@8.5.17)
-      postcss: 8.5.17
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.17)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.17)
-      postcss-modules-scope: 3.2.1(postcss@8.5.17)
-      postcss-modules-values: 4.0.0(postcss@8.5.17)
+      icss-utils: 5.1.0(postcss@8.5.18)
+      postcss: 8.5.18
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.18)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.18)
+      postcss-modules-scope: 3.2.1(postcss@8.5.18)
+      postcss-modules-values: 4.0.0(postcss@8.5.18)
       postcss-value-parser: 4.2.0
       semver: 7.8.5
     optionalDependencies:
@@ -15986,9 +15988,9 @@ snapshots:
   css-minimizer-webpack-plugin@8.0.0(lightningcss@1.32.0)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
-      cssnano: 7.1.9(postcss@8.5.17)
+      cssnano: 7.1.9(postcss@8.5.18)
       jest-worker: 30.4.1
-      postcss: 8.5.17
+      postcss: 8.5.18
       schema-utils: 4.3.3
       serialize-javascript: 7.0.7
       webpack: 5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18)
@@ -16032,49 +16034,49 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssnano-preset-default@7.0.17(postcss@8.5.17):
+  cssnano-preset-default@7.0.17(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
-      css-declaration-sorter: 7.4.0(postcss@8.5.17)
-      cssnano-utils: 5.0.3(postcss@8.5.17)
-      postcss: 8.5.17
-      postcss-calc: 10.1.1(postcss@8.5.17)
-      postcss-colormin: 7.0.10(postcss@8.5.17)
-      postcss-convert-values: 7.0.12(postcss@8.5.17)
-      postcss-discard-comments: 7.0.8(postcss@8.5.17)
-      postcss-discard-duplicates: 7.0.4(postcss@8.5.17)
-      postcss-discard-empty: 7.0.3(postcss@8.5.17)
-      postcss-discard-overridden: 7.0.3(postcss@8.5.17)
-      postcss-merge-longhand: 7.0.7(postcss@8.5.17)
-      postcss-merge-rules: 7.0.11(postcss@8.5.17)
-      postcss-minify-font-values: 7.0.3(postcss@8.5.17)
-      postcss-minify-gradients: 7.0.5(postcss@8.5.17)
-      postcss-minify-params: 7.0.9(postcss@8.5.17)
-      postcss-minify-selectors: 7.1.2(postcss@8.5.17)
-      postcss-normalize-charset: 7.0.3(postcss@8.5.17)
-      postcss-normalize-display-values: 7.0.3(postcss@8.5.17)
-      postcss-normalize-positions: 7.0.4(postcss@8.5.17)
-      postcss-normalize-repeat-style: 7.0.4(postcss@8.5.17)
-      postcss-normalize-string: 7.0.3(postcss@8.5.17)
-      postcss-normalize-timing-functions: 7.0.3(postcss@8.5.17)
-      postcss-normalize-unicode: 7.0.9(postcss@8.5.17)
-      postcss-normalize-url: 7.0.3(postcss@8.5.17)
-      postcss-normalize-whitespace: 7.0.3(postcss@8.5.17)
-      postcss-ordered-values: 7.0.4(postcss@8.5.17)
-      postcss-reduce-initial: 7.0.9(postcss@8.5.17)
-      postcss-reduce-transforms: 7.0.3(postcss@8.5.17)
-      postcss-svgo: 7.1.3(postcss@8.5.17)
-      postcss-unique-selectors: 7.0.7(postcss@8.5.17)
+      css-declaration-sorter: 7.4.0(postcss@8.5.18)
+      cssnano-utils: 5.0.3(postcss@8.5.18)
+      postcss: 8.5.18
+      postcss-calc: 10.1.1(postcss@8.5.18)
+      postcss-colormin: 7.0.10(postcss@8.5.18)
+      postcss-convert-values: 7.0.12(postcss@8.5.18)
+      postcss-discard-comments: 7.0.8(postcss@8.5.18)
+      postcss-discard-duplicates: 7.0.4(postcss@8.5.18)
+      postcss-discard-empty: 7.0.3(postcss@8.5.18)
+      postcss-discard-overridden: 7.0.3(postcss@8.5.18)
+      postcss-merge-longhand: 7.0.7(postcss@8.5.18)
+      postcss-merge-rules: 7.0.11(postcss@8.5.18)
+      postcss-minify-font-values: 7.0.3(postcss@8.5.18)
+      postcss-minify-gradients: 7.0.5(postcss@8.5.18)
+      postcss-minify-params: 7.0.9(postcss@8.5.18)
+      postcss-minify-selectors: 7.1.2(postcss@8.5.18)
+      postcss-normalize-charset: 7.0.3(postcss@8.5.18)
+      postcss-normalize-display-values: 7.0.3(postcss@8.5.18)
+      postcss-normalize-positions: 7.0.4(postcss@8.5.18)
+      postcss-normalize-repeat-style: 7.0.4(postcss@8.5.18)
+      postcss-normalize-string: 7.0.3(postcss@8.5.18)
+      postcss-normalize-timing-functions: 7.0.3(postcss@8.5.18)
+      postcss-normalize-unicode: 7.0.9(postcss@8.5.18)
+      postcss-normalize-url: 7.0.3(postcss@8.5.18)
+      postcss-normalize-whitespace: 7.0.3(postcss@8.5.18)
+      postcss-ordered-values: 7.0.4(postcss@8.5.18)
+      postcss-reduce-initial: 7.0.9(postcss@8.5.18)
+      postcss-reduce-transforms: 7.0.3(postcss@8.5.18)
+      postcss-svgo: 7.1.3(postcss@8.5.18)
+      postcss-unique-selectors: 7.0.7(postcss@8.5.18)
 
-  cssnano-utils@5.0.3(postcss@8.5.17):
+  cssnano-utils@5.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
 
-  cssnano@7.1.9(postcss@8.5.17):
+  cssnano@7.1.9(postcss@8.5.18):
     dependencies:
-      cssnano-preset-default: 7.0.17(postcss@8.5.17)
+      cssnano-preset-default: 7.0.17(postcss@8.5.18)
       lilconfig: 3.1.3
-      postcss: 8.5.17
+      postcss: 8.5.18
 
   csso@5.0.5:
     dependencies:
@@ -17376,6 +17378,10 @@ snapshots:
   icss-utils@5.1.0(postcss@8.5.17):
     dependencies:
       postcss: 8.5.17
+
+  icss-utils@5.1.0(postcss@8.5.18):
+    dependencies:
+      postcss: 8.5.18
 
   idb@7.1.1: {}
 
@@ -19137,46 +19143,53 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-calc@10.1.1(postcss@8.5.17):
+  postcss-calc@10.1.1(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
 
-  postcss-colormin@7.0.10(postcss@8.5.17):
+  postcss-colormin@7.0.10(postcss@8.5.18):
     dependencies:
       '@colordx/core': 5.5.0
       browserslist: 4.28.6
       caniuse-api: 3.0.0
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-convert-values@7.0.12(postcss@8.5.17):
+  postcss-convert-values@7.0.12(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-discard-comments@7.0.8(postcss@8.5.17):
+  postcss-discard-comments@7.0.8(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
-  postcss-discard-duplicates@7.0.4(postcss@8.5.17):
+  postcss-discard-duplicates@7.0.4(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
 
-  postcss-discard-empty@7.0.3(postcss@8.5.17):
+  postcss-discard-empty@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
 
-  postcss-discard-overridden@7.0.3(postcss@8.5.17):
+  postcss-discard-overridden@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
 
   postcss-import@14.1.0(postcss@8.5.17):
     dependencies:
       postcss: 8.5.17
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.12
+
+  postcss-import@14.1.0(postcss@8.5.18):
+    dependencies:
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.12
@@ -19193,52 +19206,68 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  postcss-loader@8.2.1(@rspack/core@1.6.8(@swc/helpers@0.5.23))(postcss@8.5.18)(typescript@5.9.3)(webpack@5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18)):
+    dependencies:
+      cosmiconfig: 9.0.2(typescript@5.9.3)
+      jiti: 2.7.0
+      postcss: 8.5.18
+      semver: 7.8.5
+    optionalDependencies:
+      '@rspack/core': 1.6.8(@swc/helpers@0.5.23)
+      webpack: 5.105.2(@swc/core@1.15.43(@swc/helpers@0.5.23))(lightningcss@1.32.0)(postcss@8.5.18)
+    transitivePeerDependencies:
+      - typescript
+
   postcss-media-query-parser@0.2.3: {}
 
-  postcss-merge-longhand@7.0.7(postcss@8.5.17):
+  postcss-merge-longhand@7.0.7(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
-      stylehacks: 7.0.11(postcss@8.5.17)
+      stylehacks: 7.0.11(postcss@8.5.18)
 
-  postcss-merge-rules@7.0.11(postcss@8.5.17):
+  postcss-merge-rules@7.0.11(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
       caniuse-api: 3.0.0
-      cssnano-utils: 5.0.3(postcss@8.5.17)
-      postcss: 8.5.17
+      cssnano-utils: 5.0.3(postcss@8.5.18)
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
-  postcss-minify-font-values@7.0.3(postcss@8.5.17):
+  postcss-minify-font-values@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-minify-gradients@7.0.5(postcss@8.5.17):
+  postcss-minify-gradients@7.0.5(postcss@8.5.18):
     dependencies:
       '@colordx/core': 5.5.0
-      cssnano-utils: 5.0.3(postcss@8.5.17)
-      postcss: 8.5.17
+      cssnano-utils: 5.0.3(postcss@8.5.18)
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-minify-params@7.0.9(postcss@8.5.17):
+  postcss-minify-params@7.0.9(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
-      cssnano-utils: 5.0.3(postcss@8.5.17)
-      postcss: 8.5.17
+      cssnano-utils: 5.0.3(postcss@8.5.18)
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-minify-selectors@7.1.2(postcss@8.5.17):
+  postcss-minify-selectors@7.1.2(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
       caniuse-api: 3.0.0
       cssesc: 3.0.0
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
   postcss-modules-extract-imports@3.1.0(postcss@8.5.17):
     dependencies:
       postcss: 8.5.17
+
+  postcss-modules-extract-imports@3.1.0(postcss@8.5.18):
+    dependencies:
+      postcss: 8.5.18
 
   postcss-modules-local-by-default@4.2.0(postcss@8.5.17):
     dependencies:
@@ -19247,15 +19276,32 @@ snapshots:
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
 
+  postcss-modules-local-by-default@4.2.0(postcss@8.5.18):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.18)
+      postcss: 8.5.18
+      postcss-selector-parser: 7.1.4
+      postcss-value-parser: 4.2.0
+
   postcss-modules-scope@3.2.1(postcss@8.5.17):
     dependencies:
       postcss: 8.5.17
+      postcss-selector-parser: 7.1.4
+
+  postcss-modules-scope@3.2.1(postcss@8.5.18):
+    dependencies:
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
   postcss-modules-values@4.0.0(postcss@8.5.17):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.17)
       postcss: 8.5.17
+
+  postcss-modules-values@4.0.0(postcss@8.5.18):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.18)
+      postcss: 8.5.18
 
   postcss-modules@6.0.1(postcss@8.5.17):
     dependencies:
@@ -19269,66 +19315,66 @@ snapshots:
       postcss-modules-values: 4.0.0(postcss@8.5.17)
       string-hash: 1.1.3
 
-  postcss-normalize-charset@7.0.3(postcss@8.5.17):
+  postcss-normalize-charset@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
 
-  postcss-normalize-display-values@7.0.3(postcss@8.5.17):
+  postcss-normalize-display-values@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-positions@7.0.4(postcss@8.5.17):
+  postcss-normalize-positions@7.0.4(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-repeat-style@7.0.4(postcss@8.5.17):
+  postcss-normalize-repeat-style@7.0.4(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-string@7.0.3(postcss@8.5.17):
+  postcss-normalize-string@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-timing-functions@7.0.3(postcss@8.5.17):
+  postcss-normalize-timing-functions@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-unicode@7.0.9(postcss@8.5.17):
+  postcss-normalize-unicode@7.0.9(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-url@7.0.3(postcss@8.5.17):
+  postcss-normalize-url@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-normalize-whitespace@7.0.3(postcss@8.5.17):
+  postcss-normalize-whitespace@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-ordered-values@7.0.4(postcss@8.5.17):
+  postcss-ordered-values@7.0.4(postcss@8.5.18):
     dependencies:
-      cssnano-utils: 5.0.3(postcss@8.5.17)
-      postcss: 8.5.17
+      cssnano-utils: 5.0.3(postcss@8.5.18)
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
-  postcss-reduce-initial@7.0.9(postcss@8.5.17):
+  postcss-reduce-initial@7.0.9(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
       caniuse-api: 3.0.0
-      postcss: 8.5.17
+      postcss: 8.5.18
 
-  postcss-reduce-transforms@7.0.3(postcss@8.5.17):
+  postcss-reduce-transforms@7.0.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
 
   postcss-resolve-nested-selector@0.1.6: {}
@@ -19350,15 +19396,15 @@ snapshots:
     dependencies:
       postcss: 8.5.17
 
-  postcss-svgo@7.1.3(postcss@8.5.17):
+  postcss-svgo@7.1.3(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-value-parser: 4.2.0
       svgo: 4.0.2
 
-  postcss-unique-selectors@7.0.7(postcss@8.5.17):
+  postcss-unique-selectors@7.0.7(postcss@8.5.18):
     dependencies:
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
   postcss-value-parser@4.2.0: {}
@@ -20244,10 +20290,10 @@ snapshots:
       '@babel/core': 7.29.7
       babel-plugin-macros: 3.1.0
 
-  stylehacks@7.0.11(postcss@8.5.17):
+  stylehacks@7.0.11(postcss@8.5.18):
     dependencies:
       browserslist: 4.28.6
-      postcss: 8.5.17
+      postcss: 8.5.18
       postcss-selector-parser: 7.1.4
 
   stylelint-config-recommended-scss@17.0.1(postcss@8.5.18)(stylelint@17.14.0(typescript@5.9.3)):
@@ -20783,7 +20829,7 @@ snapshots:
       esbuild: 0.28.1
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.17
+      postcss: 8.5.18
       rollup: 4.62.2
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -20802,7 +20848,7 @@ snapshots:
       esbuild: 0.28.1
       fdir: 6.5.0(picomatch@4.0.5)
       picomatch: 4.0.5
-      postcss: 8.5.17
+      postcss: 8.5.18
       rollup: 4.62.2
       tinyglobby: 0.2.17
     optionalDependencies:
