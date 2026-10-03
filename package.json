@@ -103,7 +103,7 @@
     "@testing-library/react": "16.3.2",
     "@types/isotope-layout": "^3.0.15",
     "@types/jest": "^30.0.0",
-    "@types/node": "24.13.3",
+    "@types/node": "24.19.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/utils": "^8.63.0",
